@@ -1530,6 +1530,7 @@ static Bytes_0(void) {
 	OpOff		(x,	128,	0);
 	OpHex		(x,	1);
 	MakeCode	(0X401999);
+	MakeName	(0X401999,	"dsound_sound_start");
 	MakeCode	(x=0X40199E);
 	OpStkvar	(x,	1);
 	MakeCode	(x=0X4019A1);
@@ -1549,6 +1550,7 @@ static Bytes_0(void) {
 	OpOff		(x,	0,	0);
 	OpOff		(x,	128,	0);
 	MakeCode	(0X401A05);
+	MakeName	(0X401A05,	"dsound_sound_stop");
 	MakeCode	(x=0X401A07);
 	OpStkvar	(x,	1);
 	MakeCode	(x=0X401A1D);
@@ -1608,6 +1610,7 @@ static Bytes_0(void) {
 	OpOff		(x,	128,	0);
 	MakeComm	(0X401B34,	"pUnkOuter");
 	MakeCode	(0X401B34);
+	MakeName	(0X401B34,	"video_create_directdraw");
 	MakeComm	(0X401B36,	"iid");
 	MakeCode	(x=0X401B36);
 	OpOff		(x,	0,	0);
@@ -1619,17 +1622,22 @@ static Bytes_0(void) {
 	MakeComm	(0X401B40,	"lpGuid");
 	MakeCode	(0X401B4F);
 	MakeCode	(0X401B57);
+	MakeName	(0X401B57,	"dd_release");
 	MakeCode	(x=0X401B66);
 	OpHex		(x,	1);
 	MakeCode	(0X401B6E);
+	MakeName	(0X401B6E,	"video_create_ddcontext");
 	MakeCode	(x=0X401B77);
 	OpHex		(x,	1);
 	MakeCode	(0X401B7F);
+	MakeName	(0X401B7F,	"ddraw_count_display_modes_callback");
 	MakeCode	(0X401B8B);
+	MakeName	(0X401B8B,	"ddraw_count_display_modes");
 	MakeCode	(x=0X401B99);
 	OpOff		(x,	0,	0);
 	OpOff		(x,	128,	0);
 	MakeCode	(0X401BBA);
+	MakeName	(0X401BBA,	"ddraw_get_display_modes_callback");
 	MakeCode	(x=0X401BCB);
 	OpStkvar	(x,	1);
 	MakeCode	(x=0X401BEA);
@@ -1639,6 +1647,7 @@ static Bytes_0(void) {
 	OpHex		(x,	1);
 	MakeCode	(0X401C2A);
 	MakeCode	(0X401C49);
+	MakeName	(0X401C49,	"ddraw_get_display_modes");
 	MakeCode	(x=0X401C4F);
 	OpStkvar	(x,	1);
 	MakeCode	(x=0X401C55);
@@ -2607,6 +2616,7 @@ static Bytes_0(void) {
 	MakeCode	(0X4034FB);
 	MakeName	(0X4034FB,	"nullsub_1");
 	MakeCode	(0X4034FC);
+	MakeName	(0X4034FC,	"ddraw_lock_psurface");
 	MakeCode	(x=0X4034FF);
 	OpHex		(x,	1);
 	MakeCode	(x=0X403518);
@@ -2631,6 +2641,7 @@ static Bytes_0(void) {
 	OpStkvar	(x,	1);
 	MakeCode	(0X40356F);
 	MakeCode	(0X403575);
+	MakeName	(0X403575,	"ddraw_unlock_psurface");
 	MakeCode	(x=0X403592);
 	OpHex		(x,	1);
 	MakeCode	(x=0X40359A);
@@ -2747,6 +2758,7 @@ static Bytes_0(void) {
 	OpStkvar	(x,	1);
 	MakeCode	(0X40370F);
 	MakeCode	(0X403718);
+	MakeName	(0X403718,	"video_set_gdi_interface");
 	MakeCode	(x=0X40372C);
 	OpOff		(x,	1,	0);
 	OpOff		(x,	129,	0);
@@ -3305,6 +3317,7 @@ static Bytes_0(void) {
 	MakeCode	(x=0X4041E9);
 	OpHex		(x,	1);
 	MakeCode	(0X4041F1);
+	MakeName	(0X4041F1,	"return_1");
 	MakeCode	(0X4041F5);
 	MakeCode	(x=0X4041FE);
 	OpStkvar	(x,	1);
@@ -3415,6 +3428,7 @@ static Bytes_0(void) {
 	MakeComm	(0X404460,	"hWnd");
 	MakeComm	(0X404468,	"plpal");
 	MakeCode	(0X40447F);
+	MakeName	(0X40447F,	"dinput_init");
 	MakeCode	(x=0X404482);
 	OpHex		(x,	1);
 	MakeCode	(x=0X40448D);
@@ -3502,6 +3516,7 @@ static Bytes_0(void) {
 	MakeCode	(x=0X40474F);
 	OpStkvar	(x,	1);
 	MakeCode	(0X40477F);
+	MakeName	(0X40477F,	"get_keyboard_input");
 	MakeCode	(x=0X404784);
 	OpHex		(x,	1);
 	MakeCode	(x=0X404791);
@@ -3625,6 +3640,7 @@ static Bytes_0(void) {
 	MakeCode	(x=0X404ABA);
 	OpStkvar	(x,	1);
 	MakeCode	(0X404ACD);
+	MakeName	(0X404ACD,	"free_dsound");
 	MakeCode	(x=0X404AE1);
 	OpHex		(x,	1);
 	MakeCode	(x=0X404AF7);
@@ -3646,6 +3662,7 @@ static Bytes_0(void) {
 	MakeCode	(x=0X404B5C);
 	OpHex		(x,	1);
 	MakeCode	(0X404B68);
+	MakeName	(0X404B68,	"sound_prepare");
 	MakeCode	(x=0X404B6B);
 	OpHex		(x,	1);
 	MakeCode	(x=0X404B78);
@@ -3713,6 +3730,7 @@ static Bytes_0(void) {
 	OpStkvar	(x,	1);
 	MakeCode	(0X404CCE);
 	MakeCode	(0X404CD3);
+	MakeName	(0X404CD3,	"sound_stop");
 	MakeCode	(x=0X404CD4);
 	OpStkvar	(x,	1);
 	MakeCode	(x=0X404CE4);
@@ -3727,6 +3745,7 @@ static Bytes_0(void) {
 	OpStkvar	(x,	0);
 	OpHex		(x,	1);
 	MakeCode	(0X404D4E);
+	MakeName	(0X404D4E,	"has_sound_finished");
 	MakeCode	(x=0X404D51);
 	OpStkvar	(x,	1);
 	MakeCode	(x=0X404D5C);
@@ -3737,6 +3756,7 @@ static Bytes_0(void) {
 	OpStkvar	(x,	0);
 	OpHex		(x,	1);
 	MakeCode	(0X404D7A);
+	MakeName	(0X404D7A,	"sound_play");
 	MakeCode	(x=0X404D7E);
 	OpStkvar	(x,	1);
 	MakeCode	(x=0X404D88);
@@ -3753,20 +3773,25 @@ static Bytes_0(void) {
 	MakeCode	(0X404DCC);
 	MakeCode	(x=0X404DD2);
 	OpStkvar	(x,	1);
+	MakeName	(0X404DD2,	"dsound_set_frequency");
 	MakeCode	(x=0X404DDD);
 	OpStkvar	(x,	0);
 	MakeCode	(x=0X404DED);
 	OpStkvar	(x,	1);
+	MakeName	(0X404DED,	"dsound_set_pan");
 	MakeCode	(x=0X404DF8);
 	OpStkvar	(x,	0);
 	MakeCode	(x=0X404E08);
 	OpStkvar	(x,	1);
+	MakeName	(0X404E08,	"dsound_set_volume");
 	MakeCode	(x=0X404E13);
 	OpStkvar	(x,	0);
 	MakeCode	(0X404E23);
 	MakeCode	(0X404E3A);
 	MakeCode	(0X404E53);
+	MakeName	(0X404E53,	"j_get_dsound_devices");
 	MakeCode	(0X404E58);
+	MakeName	(0X404E58,	"quit_dsound");
 	MakeComm	(0X404E61,	"void *");
 	MakeCode	(x=0X404E67);
 	OpHex		(x,	1);
@@ -3775,6 +3800,7 @@ static Bytes_0(void) {
 	MakeCode	(0X404E80);
 	MakeCode	(x=0X404E8C);
 	OpHex		(x,	1);
+	MakeName	(0X404E8C,	"get_num_dsound_devices");
 	MakeComm	(0X404E93,	"LPVOID");
 	MakeComm	(0X404E95,	"LPDSENUMCALLBACKA");
 	MakeCode	(x=0X404E95);
@@ -3810,6 +3836,7 @@ static Bytes_0(void) {
 	OpOff		(x,	0,	0);
 	OpOff		(x,	128,	0);
 	MakeCode	(0X404F29);
+	MakeName	(0X404F29,	"get_dsound_devices");
 	MakeComm	(0X404F39,	"size_t");
 	MakeCode	(0X404F4E);
 	MakeCode	(x=0X404F4F);
@@ -4109,6 +4136,7 @@ static Bytes_0(void) {
 	MakeComm	(0X4053B1,	"hmmio");
 	MakeCode	(x=0X4053BB);
 	OpStkvar	(x,	1);
+	MakeName	(0X4053BB,	"enum_displaymodes_callback");
 	MakeCode	(0X4053D9);
 	MakeCode	(x=0X4053E3);
 	OpHex		(x,	1);
@@ -4162,6 +4190,7 @@ static Bytes_0(void) {
 	MakeComm	(0X405498,	"dwExStyle");
 	MakeCode	(x=0X4054A3);
 	OpStkvar	(x,	0);
+	MakeName	(0X4054A3,	"update_palette");
 	MakeCode	(x=0X4054A7);
 	OpStkvar	(x,	0);
 	MakeCode	(x=0X4054AB);
@@ -4265,6 +4294,7 @@ static Bytes_0(void) {
 	OpHex		(x,	1);
 	MakeCode	(x=0X4056BC);
 	OpHex		(x,	1);
+	MakeName	(0X4056BC,	"video_create");
 	MakeCode	(0X4056CD);
 	MakeCode	(x=0X4056E6);
 	OpHex		(x,	1);
@@ -4543,6 +4573,7 @@ static Bytes_0(void) {
 	OpHex		(x,	1);
 	MakeCode	(0X40634C);
 	MakeCode	(0X406386);
+	MakeName	(0X406386,	"run_game_loop");
 	MakeCode	(x=0X406389);
 	OpHex		(x,	1);
 	MakeComm	(0X40638F,	"dwCoInit");
@@ -4628,6 +4659,7 @@ static Bytes_0(void) {
 	MakeCode	(x=0X406514);
 	OpStkvar	(x,	1);
 	MakeCode	(0X406520);
+	MakeName	(0X406520,	"ddwindow_move_to_top_corner");
 	MakeComm	(0X406522,	"uFlags");
 	MakeComm	(0X406524,	"cy");
 	MakeComm	(0X406525,	"cx");
@@ -5213,11 +5245,13 @@ static Bytes_0(void) {
 	MakeCode	(x=0X406FDD);
 	OpHex		(x,	1);
 	MakeCode	(0X406FEC);
+	MakeName	(0X406FEC,	"store_mouse_input");
 	MakeCode	(x=0X406FF4);
 	OpHex		(x,	1);
 	MakeCode	(x=0X40701A);
 	OpStkvar	(x,	1);
 	MakeCode	(0X407028);
+	MakeName	(0X407028,	"get_next_key");
 	MakeCode	(x=0X40703E);
 	OpHex		(x,	1);
 	MakeCode	(0X407048);
@@ -5334,6 +5368,7 @@ static Bytes_0(void) {
 	OpHex		(x,	1);
 	MakeCode	(0X407246);
 	MakeCode	(0X407247);
+	MakeName	(0X407247,	"get_mouse_input");
 	MakeCode	(x=0X407259);
 	OpHex		(x,	1);
 	MakeCode	(0X40726A);
@@ -5489,7 +5524,9 @@ static Bytes_0(void) {
 	OpHex		(x,	1);
 	MakeComm	(0X4078B5,	"nExitCode");
 	MakeCode	(0X4078B5);
+	MakeName	(0X4078B5,	"post_quit_message");
 	MakeCode	(0X4078BE);
+	MakeName	(0X4078BE,	"get_system_time");
 	MakeCode	(x=0X4078C1);
 	OpHex		(x,	1);
 	MakeCode	(x=0X4078C4);
@@ -5506,6 +5543,7 @@ static Bytes_0(void) {
 	MakeCode	(0X4078F8);
 	MakeName	(0X4078F8,	"j_timeGetTime");
 	MakeCode	(0X4078FE);
+	MakeName	(0X4078FE,	"get_system_info");
 	MakeCode	(x=0X407901);
 	OpHex		(x,	1);
 	MakeCode	(x=0X407907);
@@ -5866,6 +5904,15 @@ static Bytes_0(void) {
 	OpStkvar	(x,	1);
 	MakeComm	(0X407DEF,	"lpType");
 	MakeComm	(0X407DF0,	"lpReserved");
+}
+
+//------------------------------------------------------------------------
+// Information about bytes
+
+static Bytes_1(void) {
+        auto x;
+#define id x
+
 	MakeCode	(x=0X407DF2);
 	OpOff		(x,	0,	0);
 	OpOff		(x,	128,	0);
@@ -5956,15 +6003,6 @@ static Bytes_0(void) {
 	OpStkvar	(x,	1);
 	MakeCode	(x=0X407EDF);
 	OpStkvar	(x,	0);
-}
-
-//------------------------------------------------------------------------
-// Information about bytes
-
-static Bytes_1(void) {
-        auto x;
-#define id x
-
 	MakeComm	(0X407EE2,	"lpcbData");
 	MakeComm	(0X407EE9,	"lpData");
 	MakeCode	(x=0X407EEA);
@@ -6046,6 +6084,7 @@ static Bytes_1(void) {
 	OpStkvar	(x,	0);
 	MakeCode	(0X407FC6);
 	MakeCode	(0X407FCD);
+	MakeName	(0X407FCD,	"get_cursor_position");
 	MakeCode	(x=0X407FD2);
 	OpStkvar	(x,	1);
 	MakeComm	(0X407FD5,	"lpPoint");
@@ -6151,10 +6190,12 @@ static Bytes_1(void) {
 	MakeComm	(0X408156,	"wParam");
 	MakeComm	(0X408163,	"hWnd");
 	MakeCode	(0X408163);
+	MakeName	(0X408163,	"loadingwindow_destory");
 	MakeCode	(x=0X408173);
 	OpHex		(x,	1);
 	MakeCode	(x=0X40817B);
 	OpStkvar	(x,	1);
+	MakeName	(0X40817B,	"loadingwindow_setrange");
 	MakeCode	(x=0X408180);
 	OpHex		(x,	1);
 	MakeComm	(0X40818A,	"lParam");
@@ -8463,6 +8504,7 @@ static Bytes_1(void) {
 	OpHex		(x,	1);
 	MakeCode	(x=0X40FB7F);
 	OpHex		(x,	1);
+	MakeName	(0X40FBD9,	"SEH_12A719C");
 	MakeCode	(x=0X40FC29);
 	OpHex		(x,	1);
 	MakeCode	(x=0X40FC4A);
@@ -8471,8 +8513,10 @@ static Bytes_1(void) {
 	OpHex		(x,	1);
 	MakeCode	(x=0X40FC61);
 	OpHex		(x,	1);
+	MakeName	(0X40FC61,	"SEH_12A7E8C");
 	MakeCode	(x=0X40FC71);
 	OpHex		(x,	1);
+	MakeName	(0X40FC79,	"SEH_12A7F2C");
 	MakeCode	(x=0X40FC8C);
 	OpHex		(x,	1);
 	MakeCode	(x=0X40FD32);
@@ -12898,6 +12942,15 @@ static Bytes_1(void) {
 	MakeCode	(x=0X427F56);
 	OpOff		(x,	0,	0);
 	OpOff		(x,	128,	0);
+}
+
+//------------------------------------------------------------------------
+// Information about bytes
+
+static Bytes_2(void) {
+        auto x;
+#define id x
+
 	MakeCode	(x=0X427F62);
 	OpHex		(x,	1);
 	MakeCode	(x=0X427F68);
@@ -13050,15 +13103,6 @@ static Bytes_1(void) {
 	MakeComm	(0X428410,	"switch 4 cases ");
 	MakeCode	(x=0X428410);
 	OpHex		(x,	1);
-}
-
-//------------------------------------------------------------------------
-// Information about bytes
-
-static Bytes_2(void) {
-        auto x;
-#define id x
-
 	MakeComm	(0X428413,	"switch jump");
 	MakeRptCmt	(0X42841A,	"jumptable 00428413 case 1");
 	MakeCode	(0X42841A);
@@ -16211,6 +16255,7 @@ static Bytes_2(void) {
 	MakeCode	(x=0X431A6D);
 	OpHex		(x,	1);
 	MakeCode	(0X431A8A);
+	MakeName	(0X431A8A,	"window_error_open");
 	MakeCode	(x=0X431AA6);
 	OpOff		(x,	1,	0);
 	OpOff		(x,	129,	0);
@@ -16281,6 +16326,7 @@ static Bytes_2(void) {
 	MakeName	(0X431E31,	"nullsub_39");
 	MakeCode	(x=0X431E32);
 	OpHex		(x,	1);
+	MakeName	(0X431E32,	"toggle_pause");
 	MakeCode	(x=0X431E37);
 	OpHex		(x,	1);
 	MakeCode	(x=0X431E49);
@@ -18962,6 +19008,7 @@ static Bytes_2(void) {
 	OpHex		(x,	1);
 	MakeCode	(0X43ADF6);
 	MakeCode	(0X43AF37);
+	MakeName	(0X43AF37,	"top_toolbar_view_menu_dropdown");
 	MakeCode	(0X43AF84);
 	MakeCode	(0X43AF9C);
 	MakeCode	(0X43AFA3);
@@ -19211,6 +19258,7 @@ static Bytes_2(void) {
 	MakeCode	(x=0X43C6D3);
 	OpStkvar	(x,	1);
 	MakeCode	(0X43C70E);
+	MakeName	(0X43C70E,	"stop_tutorial");
 	MakeComm	(0X43C718,	"lpBaseAddress");
 	MakeCode	(x=0X43C723);
 	OpHex		(x,	1);
@@ -19231,6 +19279,7 @@ static Bytes_2(void) {
 	OpHex		(x,	1);
 	MakeCode	(0X43C7A2);
 	MakeCode	(0X43C7CF);
+	MakeName	(0X43C7CF,	"write_tutorial_input");
 	MakeCode	(x=0X43C7D6);
 	OpOff		(x,	1,	0);
 	OpOff		(x,	129,	0);
@@ -19253,6 +19302,7 @@ static Bytes_2(void) {
 	MakeCode	(0X43C888);
 	MakeArray	(0X43C88A,	0X2);
 	MakeCode	(0X43C88C);
+	MakeName	(0X43C88C,	"reset_all");
 	MakeCode	(0X43C8FD);
 	MakeCode	(0X43C90C);
 	MakeCode	(0X43CA76);
@@ -19317,6 +19367,7 @@ static Bytes_2(void) {
 	MakeCode	(x=0X43CD08);
 	OpHex		(x,	1);
 	MakeCode	(0X43CD35);
+	MakeName	(0X43CD35,	"window_resize_gui_scenario_editor");
 	MakeCode	(0X43CE21);
 	MakeCode	(0X43CE47);
 	MakeCode	(0X43CE56);
@@ -19414,6 +19465,15 @@ static Bytes_2(void) {
 	OpHex		(x,	1);
 	MakeCode	(0X43D540);
 	MakeName	(0X43D540,	"nullsub_212");
+}
+
+//------------------------------------------------------------------------
+// Information about bytes
+
+static Bytes_3(void) {
+        auto x;
+#define id x
+
 	MakeCode	(0X43D541);
 	MakeCode	(0X43D5A6);
 	MakeCode	(0X43D60B);
@@ -19571,15 +19631,6 @@ static Bytes_2(void) {
 	MakeCode	(0X43E3AF);
 	MakeCode	(0X43E3C4);
 	MakeCode	(0X43E3D9);
-}
-
-//------------------------------------------------------------------------
-// Information about bytes
-
-static Bytes_3(void) {
-        auto x;
-#define id x
-
 	MakeCode	(0X43E420);
 	MakeName	(0X43E420,	"nullsub_172");
 	MakeCode	(0X43E421);
@@ -20477,6 +20528,7 @@ static Bytes_3(void) {
 	MakeCode	(x=0X4416A6);
 	OpHex		(x,	1);
 	MakeCode	(0X4416B5);
+	MakeName	(0X4416B5,	"get_file_path");
 	MakeCode	(x=0X4416B8);
 	OpOff		(x,	1,	0);
 	OpOff		(x,	129,	0);
@@ -20684,6 +20736,7 @@ static Bytes_3(void) {
 	OpOff		(x,	1,	0);
 	OpOff		(x,	129,	0);
 	MakeCode	(0X441BB8);
+	MakeName	(0X441BB8,	"config_save");
 	MakeComm	(0X441BCD,	"lpFileName");
 	MakeCode	(x=0X441BD3);
 	OpHex		(x,	1);
@@ -20699,6 +20752,7 @@ static Bytes_3(void) {
 	MakeCode	(x=0X441C17);
 	OpHex		(x,	1);
 	MakeCode	(0X441C26);
+	MakeName	(0X441C26,	"save_scenario_or_game");
 	MakeCode	(x=0X441C2B);
 	OpHex		(x,	1);
 	MakeCode	(x=0X441C3C);
@@ -21057,6 +21111,7 @@ static Bytes_3(void) {
 	OpHex		(x,	1);
 	MakeCode	(0X442BAF);
 	MakeCode	(0X442BBF);
+	MakeName	(0X442BBF,	"sawyercoding_write_chunk_buffer");
 	MakeComm	(0X442BCC,	"nNumberOfBytesToWrite");
 	MakeComm	(0X442BCE,	"lpBuffer");
 	MakeCode	(x=0X442BCE);
@@ -21307,6 +21362,7 @@ static Bytes_3(void) {
 	MakeCode	(0X4436A8);
 	MakeCode	(0X4436C8);
 	MakeCode	(0X4436E0);
+	MakeName	(0X4436E0,	"scenario_write_checksum");
 	MakeComm	(0X4436EA,	"nNumberOfBytesToWrite");
 	MakeComm	(0X4436EC,	"lpBuffer");
 	MakeCode	(x=0X4436EC);
@@ -21350,6 +21406,7 @@ static Bytes_3(void) {
 	MakeCode	(0X4437FA);
 	MakeCode	(0X4437FC);
 	MakeCode	(0X443807);
+	MakeName	(0X443807,	"window_levelselect_init_tabs");
 	MakeCode	(x=0X443819);
 	OpHex		(x,	1);
 	MakeCode	(0X443838);
@@ -21476,6 +21533,7 @@ static Bytes_3(void) {
 	MakeCode	(0X443EA6);
 	MakeCode	(0X443EB3);
 	MakeCode	(0X443EF6);
+	MakeName	(0X443EF6,	"window_levelselect_onscrollgetheight");
 	MakeCode	(x=0X443F18);
 	OpHex		(x,	1);
 	MakeCode	(0X443F31);
@@ -21771,6 +21829,7 @@ static Bytes_3(void) {
 	MakeCode	(x=0X444B46);
 	OpHex		(x,	1);
 	MakeCode	(0X444B61);
+	MakeName	(0X444B61,	"scenario_scores_save");
 	MakeComm	(0X444B75,	"lpFileName");
 	MakeCode	(x=0X444B7B);
 	OpHex		(x,	1);
@@ -21791,6 +21850,7 @@ static Bytes_3(void) {
 	MakeCode	(x=0X444C0D);
 	OpHex		(x,	1);
 	MakeCode	(0X444C1B);
+	MakeName	(0X444C1B,	"scenario_basic_name_compare");
 	MakeCode	(0X444C35);
 	MakeCode	(0X444C4E);
 	MakeCode	(x=0X444CB5);
@@ -22515,6 +22575,7 @@ static Bytes_3(void) {
 	MakeCode	(x=0X446CE6);
 	OpHex		(x,	1);
 	MakeCode	(0X446CF4);
+	MakeName	(0X446CF4,	"editor_object_flags_free");
 	MakeComm	(0X446D0E,	"void *");
 	MakeCode	(x=0X446D14);
 	OpHex		(x,	1);
@@ -22687,6 +22748,7 @@ static Bytes_3(void) {
 	MakeCode	(0X44733A);
 	MakeName	(0X44733A,	"nullsub_36");
 	MakeCode	(0X44733C);
+	MakeName	(0X44733C,	"gfx_load_g1");
 	MakeComm	(0X447350,	"lpFileName");
 	MakeCode	(x=0X447356);
 	OpHex		(x,	1);
@@ -22728,11 +22790,13 @@ static Bytes_3(void) {
 	OpHex		(x,	1);
 	MakeCode	(0X447475);
 	MakeCode	(0X447485);
+	MakeName	(0X447485,	"clear_screen");
 	MakeCode	(x=0X4474A0);
 	OpHex		(x,	1);
 	MakeCode	(x=0X4474A7);
 	OpHex		(x,	1);
 	MakeCode	(0X4474BA);
+	MakeName	(0X4474BA,	"gfx_fill_rect");
 	MakeCode	(x=0X44750E);
 	OpOff		(x,	1,	0);
 	OpOff		(x,	129,	0);
@@ -22905,6 +22969,7 @@ static Bytes_3(void) {
 	OpOff		(x,	129,	0);
 	MakeCode	(x=0X447C21);
 	OpHex		(x,	1);
+	MakeName	(0X447C21,	"pixel_is_present_bmp");
 	MakeCode	(x=0X447C29);
 	OpHex		(x,	1);
 	MakeCode	(x=0X447C36);
@@ -23267,6 +23332,7 @@ static Bytes_3(void) {
 	MakeCode	(x=0X448C6F);
 	OpHex		(x,	1);
 	MakeCode	(0X448C79);
+	MakeName	(0X448C79,	"gfx_draw_sprite");
 	MakeCode	(x=0X448C7B);
 	OpHex		(x,	1);
 	MakeCode	(x=0X448C84);
@@ -23341,6 +23407,7 @@ static Bytes_3(void) {
 	OpOff		(x,	129,	0);
 	MakeCode	(x=0X448FB3);
 	OpHex		(x,	1);
+	MakeName	(0X448FB3,	"gfx_bmp_sprite_to_buffer");
 	MakeCode	(x=0X448FBF);
 	OpHex		(x,	1);
 	MakeCode	(x=0X448FCB);
@@ -23360,6 +23427,7 @@ static Bytes_3(void) {
 	MakeCode	(0X44930B);
 	MakeCode	(x=0X44933B);
 	OpHex		(x,	1);
+	MakeName	(0X44933B,	"gfx_rle_sprite_to_buffer");
 	MakeCode	(x=0X44934B);
 	OpHex		(x,	1);
 	MakeCode	(x=0X449379);
@@ -24289,6 +24357,7 @@ static Bytes_3(void) {
 	MakeCode	(x=0X450FB2);
 	OpHex		(x,	1);
 	MakeCode	(0X451025);
+	MakeName	(0X451025,	"gfx_draw_string");
 	MakeCode	(x=0X4510AD);
 	OpHex		(x,	1);
 	MakeCode	(x=0X4510C8);
@@ -24565,6 +24634,7 @@ static Bytes_3(void) {
 	MakeCode	(x=0X451DBA);
 	OpHex		(x,	1);
 	MakeCode	(0X451DCB);
+	MakeName	(0X451DCB,	"copy_rect");
 	MakeCode	(0X451E3B);
 	MakeCode	(x=0X451E60);
 	OpHex		(x,	1);
@@ -24599,6 +24669,7 @@ static Bytes_3(void) {
 	OpHex		(x,	1);
 	MakeCode	(0X451FFE);
 	MakeCode	(0X452001);
+	MakeName	(0X452001,	"load_cursors");
 	MakeComm	(0X45200B,	"lpCursorName");
 	MakeCode	(x=0X452012);
 	OpHex		(x,	1);
@@ -24768,6 +24839,7 @@ static Bytes_3(void) {
 	MakeCode	(x=0X452457);
 	OpOff		(x,	1,	0);
 	OpOff		(x,	129,	0);
+	MakeName	(0X452457,	"gfx_transpose_palette");
 	MakeCode	(x=0X45245C);
 	OpHex		(x,	1);
 	MakeCode	(x=0X45245F);
@@ -24796,6 +24868,7 @@ static Bytes_3(void) {
 	OpOff		(x,	1,	0);
 	OpOff		(x,	129,	0);
 	MakeCode	(0X452667);
+	MakeName	(0X452667,	"save_screenshot");
 	MakeComm	(0X452671,	"size_t");
 	MakeCode	(x=0X45267B);
 	OpHex		(x,	1);
@@ -24882,23 +24955,29 @@ static Bytes_3(void) {
 	MakeCode	(x=0X452A37);
 	OpHex		(x,	1);
 	MakeCode	(0X452A5B);
+	MakeName	(0X452A5B,	"DrawLightRain");
 	MakeCode	(0X452AB4);
+	MakeName	(0X452AB4,	"DrawHeavyRain");
 	MakeCode	(0X452B5F);
+	MakeName	(0X452B5F,	"update_rain_animation");
 	MakeCode	(x=0X452B73);
 	OpOff		(x,	1,	0);
 	OpOff		(x,	129,	0);
 	MakeCode	(0X452BA4);
+	MakeName	(0X452BA4,	"DrawRainAnimation");
 	MakeCode	(x=0X452BCA);
 	OpOff		(x,	1,	0);
 	OpOff		(x,	129,	0);
 	MakeCode	(0X452BEC);
 	MakeCode	(0X452BED);
+	MakeName	(0X452BED,	"DrawRainWindow");
 	MakeCode	(0X452C46);
 	MakeCode	(0X452C72);
 	MakeCode	(0X452C94);
 	MakeCode	(0X452CC0);
 	MakeCode	(0X452CC1);
 	MakeCode	(0X452D1A);
+	MakeName	(0X452D1A,	"redraw_peep_and_rain");
 	MakeCode	(x=0X452D2E);
 	OpHex		(x,	1);
 	MakeCode	(x=0X452D34);
@@ -24915,6 +24994,7 @@ static Bytes_3(void) {
 	MakeCode	(x=0X452D85);
 	OpHex		(x,	1);
 	MakeCode	(0X452DA4);
+	MakeName	(0X452DA4,	"gfx_draw_line");
 	MakeCode	(x=0X452E3D);
 	OpHex		(x,	1);
 	MakeCode	(x=0X452E6F);
@@ -24946,7 +25026,9 @@ static Bytes_3(void) {
 	OpHex		(x,	1);
 	MakeCode	(0X453089);
 	MakeCode	(0X45308A);
+	MakeName	(0X45308A,	"gfx_draw_line_on_buffer");
 	MakeCode	(0X4530F8);
+	MakeName	(0X4530F8,	"set_vehicle_type_image_max_sizes");
 	MakeCode	(x=0X4530FB);
 	OpHex		(x,	1);
 	MakeCode	(x=0X45314A);
@@ -25632,6 +25714,15 @@ static Bytes_3(void) {
 	OpHex		(x,	1);
 	MakeCode	(x=0X4552AA);
 	OpHex		(x,	1);
+}
+
+//------------------------------------------------------------------------
+// Information about bytes
+
+static Bytes_4(void) {
+        auto x;
+#define id x
+
 	MakeCode	(x=0X4552B4);
 	OpHex		(x,	1);
 	MakeCode	(x=0X4552B8);
@@ -25918,15 +26009,6 @@ static Bytes_3(void) {
 	MakeCode	(x=0X4559DD);
 	OpOff		(x,	1,	0);
 	OpOff		(x,	129,	0);
-}
-
-//------------------------------------------------------------------------
-// Information about bytes
-
-static Bytes_4(void) {
-        auto x;
-#define id x
-
 	MakeCode	(x=0X4559F9);
 	OpOff		(x,	1,	0);
 	OpOff		(x,	129,	0);
@@ -27294,8 +27376,10 @@ static Bytes_4(void) {
 	MakeCode	(x=0X45A0D6);
 	OpStkvar	(x,	1);
 	MakeCode	(0X45A0E7);
+	MakeName	(0X45A0E7,	"viewport_render");
 	MakeCode	(0X45A19E);
 	MakeCode	(0X45A1A4);
+	MakeName	(0X45A1A4,	"viewport_paint");
 	MakeCode	(x=0X45A1AF);
 	OpHex		(x,	1);
 	MakeCode	(x=0X45A1BD);
@@ -28082,8 +28166,10 @@ static Bytes_4(void) {
 	OpHex		(x,	1);
 	MakeCode	(0X45E777);
 	MakeCode	(0X45E779);
+	MakeName	(0X45E779,	"paint_attach_to_previous_ps");
 	MakeCode	(0X45E7B3);
 	MakeCode	(0X45E7B5);
+	MakeName	(0X45E7B5,	"paint_arrange_structs");
 	MakeCode	(x=0X45E83B);
 	OpHex		(x,	1);
 	MakeCode	(x=0X45E843);
@@ -28308,6 +28394,7 @@ static Bytes_4(void) {
 	OpOff		(x,	129,	0);
 	MakeCode	(0X45F1A6);
 	MakeCode	(0X45F1A7);
+	MakeName	(0X45F1A7,	"screen_get_map_xy");
 	MakeCode	(0X45F213);
 	MakeCode	(x=0X45F218);
 	OpHex		(x,	1);
@@ -28419,6 +28506,7 @@ static Bytes_4(void) {
 	MakeCode	(x=0X45FD7E);
 	OpHex		(x,	1);
 	MakeCode	(0X45FD8E);
+	MakeName	(0X45FD8E,	"screen_pos_to_map_pos");
 	MakeCode	(x=0X45FDA2);
 	OpHex		(x,	1);
 	MakeCode	(x=0X45FDA6);
@@ -28429,6 +28517,7 @@ static Bytes_4(void) {
 	OpHex		(x,	1);
 	MakeCode	(0X45FDF6);
 	MakeCode	(0X45FE05);
+	MakeName	(0X45FE05,	"screen_get_map_xy_quadrant");
 	MakeCode	(x=0X45FE19);
 	OpHex		(x,	1);
 	MakeCode	(x=0X45FE1D);
@@ -28439,6 +28528,7 @@ static Bytes_4(void) {
 	OpHex		(x,	1);
 	MakeCode	(0X45FE3D);
 	MakeCode	(0X45FE4C);
+	MakeName	(0X45FE4C,	"screen_get_map_xy_side");
 	MakeCode	(x=0X45FE60);
 	OpHex		(x,	1);
 	MakeCode	(x=0X45FE64);
@@ -28566,9 +28656,11 @@ static Bytes_4(void) {
 	OpHex		(x,	1);
 	MakeCode	(0X4610DC);
 	MakeCode	(0X4610F2);
+	MakeName	(0X4610F2,	"invalidate_map_selection_rect");
 	MakeCode	(x=0X4610F3);
 	OpHex		(x,	1);
 	MakeCode	(0X46112C);
+	MakeName	(0X46112C,	"invalidate_map_selection_tiles");
 	MakeCode	(x=0X46112D);
 	OpHex		(x,	1);
 	MakeCode	(0X461158);
@@ -28620,6 +28712,7 @@ static Bytes_4(void) {
 	MakeCode	(x=0X46127E);
 	OpHex		(x,	1);
 	MakeCode	(0X4612A6);
+	MakeName	(0X4612A6,	"create_map_animation");
 	MakeCode	(x=0X4612AF);
 	OpOff		(x,	1,	0);
 	OpOff		(x,	129,	0);
@@ -28633,12 +28726,14 @@ static Bytes_4(void) {
 	MakeCode	(x=0X461348);
 	OpOff		(x,	1,	0);
 	OpOff		(x,	129,	0);
+	MakeName	(0X461348,	"map_update_tile_pointers");
 	MakeCode	(x=0X461364);
 	OpOff		(x,	1,	0);
 	OpOff		(x,	129,	0);
 	MakeCode	(x=0X46137B);
 	OpHex		(x,	1);
 	MakeCode	(0X461393);
+	MakeName	(0X461393,	"map_check_free_elements_and_reorganise");
 	MakeCode	(0X4613ED);
 	MakeCode	(x=0X4613F0);
 	OpHex		(x,	1);
@@ -28648,6 +28743,7 @@ static Bytes_4(void) {
 	MakeCode	(x=0X461466);
 	OpHex		(x,	1);
 	MakeCode	(0X46148F);
+	MakeName	(0X46148F,	"reorganise_map_elements");
 	MakeComm	(0X4614A5,	"hCursor");
 	MakeCode	(x=0X4614B1);
 	OpHex		(x,	1);
@@ -28723,6 +28819,7 @@ static Bytes_4(void) {
 	MakeCode	(x=0X4616D0);
 	OpHex		(x,	1);
 	MakeCode	(0X4616D6);
+	MakeName	(0X4616D6,	"insert_map_element");
 	MakeCode	(x=0X4616E0);
 	OpHex		(x,	1);
 	MakeCode	(x=0X4616E6);
@@ -29064,6 +29161,7 @@ static Bytes_4(void) {
 	MakeCode	(x=0X462886);
 	OpHex		(x,	1);
 	MakeCode	(0X462893);
+	MakeName	(0X462893,	"vehicle_check_collision");
 	MakeCode	(x=0X46289E);
 	OpHex		(x,	1);
 	MakeCode	(x=0X4628A2);
@@ -30710,6 +30808,7 @@ static Bytes_4(void) {
 	MakeCode	(0X467155);
 	MakeCode	(0X4671F6);
 	MakeCode	(0X467297);
+	MakeName	(0X467297,	"map_element_height");
 	MakeCode	(x=0X4672A8);
 	OpHex		(x,	1);
 	MakeCode	(x=0X4672AA);
@@ -31226,7 +31325,9 @@ static Bytes_4(void) {
 	OpHex		(x,	1);
 	MakeCode	(0X468FCD);
 	MakeCode	(0X468FD3);
+	MakeName	(0X468FD3,	"show_gridlines");
 	MakeCode	(0X468FFE);
+	MakeName	(0X468FFE,	"hide_gridlines");
 	MakeCode	(x=0X46900F);
 	OpHex		(x,	1);
 	MakeCode	(0X46902E);
@@ -31942,6 +32043,7 @@ static Bytes_4(void) {
 	MakeCode	(x=0X46A76F);
 	OpHex		(x,	1);
 	MakeCode	(0X46A794);
+	MakeName	(0X46A794,	"game_loop_iteration");
 	MakeCode	(x=0X46A897);
 	OpHex		(x,	1);
 	MakeCode	(x=0X46A8B0);
@@ -31989,6 +32091,7 @@ static Bytes_4(void) {
 	MakeCode	(x=0X46AD40);
 	OpHex		(x,	1);
 	MakeCode	(0X46AD7D);
+	MakeName	(0X46AD7D,	"load_title_screen");
 	MakeCode	(x=0X46AD87);
 	OpHex		(x,	1);
 	MakeCode	(x=0X46AD9E);
@@ -32152,6 +32255,7 @@ static Bytes_4(void) {
 	OpHex		(x,	1);
 	MakeCode	(0X46B5BD);
 	MakeCode	(0X46B5C0);
+	MakeName	(0X46B5C0,	"window_map_center_on_view_point");
 	MakeCode	(x=0X46B5EF);
 	OpHex		(x,	1);
 	MakeCode	(x=0X46B5F2);
@@ -32607,6 +32711,15 @@ static Bytes_4(void) {
 	MakeCode	(x=0X46C772);
 	OpOff		(x,	1,	0);
 	OpOff		(x,	129,	0);
+}
+
+//------------------------------------------------------------------------
+// Information about bytes
+
+static Bytes_5(void) {
+        auto x;
+#define id x
+
 	MakeCode	(x=0X46C780);
 	OpHex		(x,	1);
 	MakeCode	(x=0X46C78E);
@@ -32961,15 +33074,6 @@ static Bytes_4(void) {
 	MakeCode	(x=0X46D49D);
 	OpOff		(x,	1,	0);
 	OpOff		(x,	129,	0);
-}
-
-//------------------------------------------------------------------------
-// Information about bytes
-
-static Bytes_5(void) {
-        auto x;
-#define id x
-
 	MakeCode	(x=0X46D4AD);
 	OpHex		(x,	1);
 	MakeCode	(x=0X46D502);
@@ -33839,6 +33943,7 @@ static Bytes_5(void) {
 	MakeCode	(0X46FE58);
 	MakeCode	(0X46FEA8);
 	MakeCode	(0X46FED5);
+	MakeName	(0X46FED5,	"sprite_clear_all_unused");
 	MakeCode	(x=0X46FEE5);
 	OpHex		(x,	1);
 	MakeCode	(x=0X46FEE8);
@@ -33899,6 +34004,7 @@ static Bytes_5(void) {
 	MakeCode	(0X470188);
 	MakeCode	(0X470194);
 	MakeCode	(0X47019F);
+	MakeName	(0X47019F,	"move_sprite_to_list");
 	MakeCode	(x=0X4701C1);
 	OpHex		(x,	1);
 	MakeCode	(x=0X4701C4);
@@ -34770,6 +34876,7 @@ static Bytes_5(void) {
 	MakeCode	(x=0X471B86);
 	OpHex		(x,	1);
 	MakeCode	(0X471B95);
+	MakeName	(0X471B95,	"free_scenario_text_from_object");
 	MakeComm	(0X471BB0,	"void *");
 	MakeCode	(x=0X471BB6);
 	OpHex		(x,	1);
@@ -34867,6 +34974,7 @@ static Bytes_5(void) {
 	MakeCode	(x=0X471FE9);
 	OpHex		(x,	1);
 	MakeCode	(0X471FF8);
+	MakeName	(0X471FF8,	"unload_object");
 	MakeComm	(0X47201C,	"void *");
 	MakeCode	(x=0X472022);
 	OpHex		(x,	1);
@@ -34899,6 +35007,7 @@ static Bytes_5(void) {
 	MakeCode	(x=0X47216C);
 	OpHex		(x,	1);
 	MakeCode	(0X472172);
+	MakeName	(0X472172,	"object_get_localised_text");
 	MakeCode	(x=0X472186);
 	OpHex		(x,	1);
 	MakeCode	(x=0X47218D);
@@ -34985,10 +35094,12 @@ static Bytes_5(void) {
 	OpHex		(x,	1);
 	MakeCode	(0X47237B);
 	MakeCode	(0X47237D);
+	MakeName	(0X47237D,	"reset_loaded_objects");
 	MakeCode	(0X4723BD);
 	MakeCode	(0X4723CB);
 	MakeCode	(0X4723ED);
 	MakeCode	(0X4723F1);
+	MakeName	(0X4723F1,	"scenario_write_available_items");
 	MakeComm	(0X4723FB,	"size_t");
 	MakeCode	(x=0X472405);
 	OpHex		(x,	1);
@@ -35003,6 +35114,7 @@ static Bytes_5(void) {
 	OpHex		(x,	1);
 	MakeCode	(0X472476);
 	MakeCode	(0X47247E);
+	MakeName	(0X47247E,	"read_and_load_objects");
 	MakeComm	(0X4724A8,	"size_t");
 	MakeCode	(x=0X4724B2);
 	OpHex		(x,	1);
@@ -35041,6 +35153,7 @@ static Bytes_5(void) {
 	OpHex		(x,	1);
 	MakeCode	(0X47267F);
 	MakeCode	(0X472687);
+	MakeName	(0X472687,	"object_load_packed");
 	MakeComm	(0X472696,	"nNumberOfBytesToRead");
 	MakeComm	(0X472698,	"lpBuffer");
 	MakeCode	(x=0X472698);
@@ -35174,6 +35287,7 @@ static Bytes_5(void) {
 	OpHex		(x,	1);
 	MakeCode	(0X472C4B);
 	MakeCode	(0X472C84);
+	MakeName	(0X472C84,	"reset_selected_object_count_and_size");
 	MakeCode	(x=0X472CB1);
 	OpHex		(x,	1);
 	MakeCode	(x=0X472CC8);
@@ -35181,6 +35295,7 @@ static Bytes_5(void) {
 	MakeCode	(x=0X472CFD);
 	OpOff		(x,	1,	0);
 	OpOff		(x,	129,	0);
+	MakeName	(0X472CFD,	"window_editor_object_selection_select_required_objects");
 	MakeCode	(0X472D18);
 	MakeCode	(0X472D19);
 	MakeCode	(x=0X472D23);
@@ -35589,10 +35704,12 @@ static Bytes_5(void) {
 	OpHex		(x,	1);
 	MakeCode	(0X473B83);
 	MakeCode	(0X473B91);
+	MakeName	(0X473B91,	"editor_object_flags_free_0");
 	MakeComm	(0X473BB3,	"void *");
 	MakeCode	(x=0X473BB9);
 	OpHex		(x,	1);
 	MakeCode	(0X473BC7);
+	MakeName	(0X473BC7,	"object_create_identifier_name");
 	MakeCode	(x=0X473C20);
 	OpHex		(x,	1);
 	MakeCode	(x=0X473C23);
@@ -35674,6 +35791,7 @@ static Bytes_5(void) {
 	OpOff		(x,	1,	0);
 	OpOff		(x,	129,	0);
 	MakeCode	(0X473D1D);
+	MakeName	(0X473D1D,	"window_editor_object_selection_select_object");
 	MakeCode	(x=0X473D3B);
 	OpHex		(x,	1);
 	MakeCode	(x=0X473D3D);
@@ -35842,9 +35960,11 @@ static Bytes_5(void) {
 	MakeCode	(0X47480A);
 	MakeCode	(0X47481E);
 	MakeCode	(0X474821);
+	MakeName	(0X474821,	"unload_unselected_objects");
 	MakeCode	(x=0X474837);
 	OpHex		(x,	1);
 	MakeCode	(0X474874);
+	MakeName	(0X474874,	"editor_load_selected_objects");
 	MakeCode	(x=0X47488A);
 	OpHex		(x,	1);
 	MakeCode	(0X4748D4);
@@ -39221,6 +39341,15 @@ static Bytes_5(void) {
 	OpStkvar	(x,	1);
 	MakeCode	(x=0X47BAD2);
 	OpHex		(x,	1);
+}
+
+//------------------------------------------------------------------------
+// Information about bytes
+
+static Bytes_6(void) {
+        auto x;
+#define id x
+
 	MakeCode	(x=0X47BAE1);
 	OpHex		(x,	1);
 	MakeCode	(x=0X47BAF6);
@@ -39652,15 +39781,6 @@ static Bytes_5(void) {
 	MakeCode	(x=0X47C65F);
 	OpOff		(x,	1,	0);
 	OpOff		(x,	129,	0);
-}
-
-//------------------------------------------------------------------------
-// Information about bytes
-
-static Bytes_6(void) {
-        auto x;
-#define id x
-
 	MakeCode	(x=0X47C669);
 	OpHex		(x,	1);
 	MakeCode	(x=0X47C66C);
@@ -45897,6 +46017,7 @@ static Bytes_6(void) {
 	OpHex		(x,	1);
 	MakeCode	(0X4899E2);
 	MakeCode	(0X4899E4);
+	MakeName	(0X4899E4,	"init_audio");
 	MakeCode	(0X489A37);
 	MakeCode	(x=0X489A3D);
 	OpOff		(x,	1,	0);
@@ -45923,12 +46044,15 @@ static Bytes_6(void) {
 	OpHex		(x,	1);
 	MakeCode	(0X489B86);
 	MakeCode	(0X489BA1);
+	MakeName	(0X489BA1,	"audio_close");
 	MakeCode	(x=0X489C0A);
 	OpHex		(x,	1);
 	MakeCode	(x=0X489C11);
 	OpHex		(x,	1);
 	MakeCode	(0X489C34);
+	MakeName	(0X489C34,	"audio_pause_sounds");
 	MakeCode	(0X489C58);
+	MakeName	(0X489C58,	"unpause_sounds");
 	MakeCode	(0X489C6A);
 	MakeCode	(x=0X489C74);
 	OpOff		(x,	1,	0);
@@ -45937,6 +46061,7 @@ static Bytes_6(void) {
 	OpHex		(x,	1);
 	MakeCode	(x=0X489CB5);
 	OpHex		(x,	1);
+	MakeName	(0X489CB5,	"sound_play_panned");
 	MakeCode	(x=0X489CE6);
 	OpHex		(x,	1);
 	MakeCode	(x=0X489CEA);
@@ -46278,9 +46403,11 @@ static Bytes_6(void) {
 	MakeCode	(x=0X48AC08);
 	OpHex		(x,	1);
 	MakeCode	(0X48AC2B);
+	MakeName	(0X48AC2B,	"stop_title_music");
 	MakeCode	(x=0X48AC50);
 	OpHex		(x,	1);
 	MakeCode	(0X48AC66);
+	MakeName	(0X48AC66,	"audio_start_title_music");
 	MakeCode	(x=0X48AC70);
 	OpHex		(x,	1);
 	MakeCode	(x=0X48AC79);
@@ -46336,6 +46463,15 @@ static Bytes_6(void) {
 	MakeCode	(0X48AE1B);
 	MakeCode	(0X48AE51);
 	MakeCode	(0X48AE58);
+}
+
+//------------------------------------------------------------------------
+// Information about bytes
+
+static Bytes_7(void) {
+        auto x;
+#define id x
+
 	MakeCode	(0X48AE5F);
 	MakeComm	(0X48AE92,	"lOffset");
 	MakeComm	(0X48AE94,	"pszFileName");
@@ -46788,15 +46924,6 @@ static Bytes_6(void) {
 	MakeCode	(0X48BE89);
 	MakeRptCmt	(0X48BE95,	"jumptable 0048BC6C case 7");
 	MakeCode	(0X48BE95);
-}
-
-//------------------------------------------------------------------------
-// Information about bytes
-
-static Bytes_7(void) {
-        auto x;
-#define id x
-
 	MakeCode	(x=0X48BEA4);
 	OpHex		(x,	1);
 	MakeCode	(x=0X48BEB8);
@@ -50494,6 +50621,7 @@ static Bytes_7(void) {
 	OpOff		(x,	1,	0);
 	OpOff		(x,	129,	0);
 	MakeCode	(0X494B3F);
+	MakeName	(0X494B3F,	"gfx_draw_string_left");
 	MakeCode	(x=0X494B43);
 	OpOff		(x,	1,	0);
 	OpOff		(x,	129,	0);
@@ -50515,6 +50643,7 @@ static Bytes_7(void) {
 	OpOff		(x,	1,	0);
 	OpOff		(x,	129,	0);
 	MakeCode	(0X494BBF);
+	MakeName	(0X494BBF,	"gfx_draw_string_left_clipped");
 	MakeCode	(x=0X494BC3);
 	OpOff		(x,	1,	0);
 	OpOff		(x,	129,	0);
@@ -50547,6 +50676,7 @@ static Bytes_7(void) {
 	OpOff		(x,	1,	0);
 	OpOff		(x,	129,	0);
 	MakeCode	(0X494C78);
+	MakeName	(0X494C78,	"gfx_draw_string_right");
 	MakeCode	(x=0X494C7C);
 	OpOff		(x,	1,	0);
 	OpOff		(x,	129,	0);
@@ -50554,6 +50684,7 @@ static Bytes_7(void) {
 	OpOff		(x,	1,	0);
 	OpOff		(x,	129,	0);
 	MakeCode	(0X494CB2);
+	MakeName	(0X494CB2,	"draw_string_right_underline");
 	MakeCode	(x=0X494CB6);
 	OpOff		(x,	1,	0);
 	OpOff		(x,	129,	0);
@@ -50564,6 +50695,7 @@ static Bytes_7(void) {
 	MakeCode	(x=0X494D3C);
 	OpHex		(x,	1);
 	MakeCode	(0X494D78);
+	MakeName	(0X494D78,	"draw_string_left_underline");
 	MakeCode	(x=0X494D7C);
 	OpOff		(x,	1,	0);
 	OpOff		(x,	129,	0);
@@ -50571,6 +50703,7 @@ static Bytes_7(void) {
 	OpOff		(x,	1,	0);
 	OpOff		(x,	129,	0);
 	MakeCode	(0X494DE8);
+	MakeName	(0X494DE8,	"draw_text_centred");
 	MakeCode	(x=0X494DF0);
 	OpOff		(x,	1,	0);
 	OpOff		(x,	129,	0);
@@ -50581,6 +50714,7 @@ static Bytes_7(void) {
 	OpHex		(x,	1);
 	MakeCode	(0X494E2E);
 	MakeCode	(0X494E33);
+	MakeName	(0X494E33,	"draw_string_centred_raw");
 	MakeCode	(x=0X494E40);
 	OpOff		(x,	1,	0);
 	OpOff		(x,	129,	0);
@@ -50589,6 +50723,7 @@ static Bytes_7(void) {
 	MakeCode	(0X494EA5);
 	MakeCode	(0X494EA8);
 	MakeCode	(0X494ECF);
+	MakeName	(0X494ECF,	"gfx_draw_string_centred_wrapped");
 	MakeCode	(x=0X494EDC);
 	OpOff		(x,	1,	0);
 	OpOff		(x,	129,	0);
@@ -50658,6 +50793,7 @@ static Bytes_7(void) {
 	MakeCode	(0X49520E);
 	MakeCode	(0X495211);
 	MakeCode	(0X495224);
+	MakeName	(0X495224,	"gfx_draw_string_left_wrapped");
 	MakeCode	(x=0X495231);
 	OpOff		(x,	1,	0);
 	OpOff		(x,	129,	0);
@@ -50677,6 +50813,7 @@ static Bytes_7(void) {
 	MakeCode	(x=0X4952F8);
 	OpHex		(x,	1);
 	MakeCode	(0X495301);
+	MakeName	(0X495301,	"gfx_wrap_string");
 	MakeCode	(x=0X495360);
 	OpOff		(x,	1,	0);
 	OpOff		(x,	129,	0);
@@ -50739,6 +50876,7 @@ static Bytes_7(void) {
 	MakeCode	(0X495671);
 	MakeCode	(0X49567B);
 	MakeCode	(0X495685);
+	MakeName	(0X495685,	"gfx_get_string_width");
 	MakeCode	(x=0X49569C);
 	OpOff		(x,	1,	0);
 	OpOff		(x,	129,	0);
@@ -50759,6 +50897,7 @@ static Bytes_7(void) {
 	MakeCode	(0X495704);
 	MakeCode	(0X49570B);
 	MakeCode	(0X495715);
+	MakeName	(0X495715,	"gfx_get_string_width_new_lined");
 	MakeCode	(x=0X495737);
 	OpOff		(x,	1,	0);
 	OpOff		(x,	129,	0);
@@ -50816,6 +50955,7 @@ static Bytes_7(void) {
 	MakeCode	(0X4958A9);
 	MakeCode	(0X4958C5);
 	MakeCode	(0X4958C6);
+	MakeName	(0X4958C6,	"format_string");
 	MakeCode	(0X4958DF);
 	MakeCode	(x=0X4958EA);
 	OpOff		(x,	1,	0);
@@ -50966,6 +51106,7 @@ static Bytes_7(void) {
 	MakeCode	(x=0X495E19);
 	OpStkvar	(x,	1);
 	MakeCode	(0X495E2A);
+	MakeName	(0X495E2A,	"format_int");
 	MakeCode	(0X495E47);
 	MakeCode	(0X495E63);
 	MakeCode	(x=0X495E74);
@@ -50981,6 +51122,7 @@ static Bytes_7(void) {
 	MakeCode	(0X495F08);
 	MakeCode	(0X495F22);
 	MakeCode	(0X495F35);
+	MakeName	(0X495F35,	"format_comma");
 	MakeCode	(0X495F52);
 	MakeCode	(0X495F74);
 	MakeCode	(x=0X495F85);
@@ -51021,6 +51163,7 @@ static Bytes_7(void) {
 	OpHex		(x,	1);
 	MakeCode	(0X4962EA);
 	MakeCode	(0X4962F1);
+	MakeName	(0X4962F1,	"format_comma2dp32");
 	MakeCode	(0X49630A);
 	MakeCode	(0X496326);
 	MakeCode	(x=0X49633D);
@@ -51054,6 +51197,7 @@ static Bytes_7(void) {
 	OpOff		(x,	1,	0);
 	OpOff		(x,	129,	0);
 	MakeCode	(0X496522);
+	MakeName	(0X496522,	"user_string_allocate");
 	MakeCode	(x=0X496528);
 	OpOff		(x,	1,	0);
 	OpOff		(x,	129,	0);
@@ -51136,6 +51280,7 @@ static Bytes_7(void) {
 	MakeCode	(x=0X496959);
 	OpHex		(x,	1);
 	MakeCode	(0X4969DA);
+	MakeName	(0X4969DA,	"get_local_time");
 	MakeCode	(0X4969E0);
 	MakeCode	(0X496A0F);
 	MakeName	(0X496A0F,	"nullsub_13");
@@ -52912,6 +53057,15 @@ static Bytes_7(void) {
 	OpHex		(x,	1);
 	MakeCode	(x=0X49B9BB);
 	OpHex		(x,	1);
+}
+
+//------------------------------------------------------------------------
+// Information about bytes
+
+static Bytes_8(void) {
+        auto x;
+#define id x
+
 	MakeCode	(x=0X49B9C9);
 	OpHex		(x,	1);
 	MakeCode	(x=0X49B9DC);
@@ -53489,15 +53643,6 @@ static Bytes_7(void) {
 	MakeCode	(0X49CAF9);
 	MakeRptCmt	(0X49CB05,	"jumptable 0049CAE6 case 2");
 	MakeCode	(0X49CB05);
-}
-
-//------------------------------------------------------------------------
-// Information about bytes
-
-static Bytes_8(void) {
-        auto x;
-#define id x
-
 	MakeRptCmt	(0X49CB11,	"jumptable 0049CAE6 case 3");
 	MakeCode	(0X49CB11);
 	MakeCode	(0X49CB3D);
@@ -60045,6 +60190,15 @@ static Bytes_8(void) {
 	MakeCode	(x=0X4AD0B5);
 	OpOff		(x,	1,	0);
 	OpOff		(x,	129,	0);
+}
+
+//------------------------------------------------------------------------
+// Information about bytes
+
+static Bytes_9(void) {
+        auto x;
+#define id x
+
 	MakeCode	(x=0X4AD0BC);
 	OpHex		(x,	1);
 	MakeCode	(x=0X4AD0C4);
@@ -60596,15 +60750,6 @@ static Bytes_8(void) {
 	MakeCode	(x=0X4ADF33);
 	OpOff		(x,	1,	0);
 	OpOff		(x,	129,	0);
-}
-
-//------------------------------------------------------------------------
-// Information about bytes
-
-static Bytes_9(void) {
-        auto x;
-#define id x
-
 	MakeCode	(x=0X4ADF49);
 	OpHex		(x,	1);
 	MakeCode	(x=0X4ADF5F);
@@ -64042,6 +64187,7 @@ static Bytes_9(void) {
 	OpOff		(x,	1,	0);
 	OpOff		(x,	129,	0);
 	MakeCode	(0X4B5088);
+	MakeName	(0X4B5088,	"track_design_save_reset_scenery");
 	MakeCode	(x=0X4B508D);
 	OpHex		(x,	1);
 	MakeCode	(0X4B509B);
@@ -65897,6 +66043,7 @@ static Bytes_9(void) {
 	OpOff		(x,	1,	0);
 	OpOff		(x,	129,	0);
 	MakeCode	(0X4B8405);
+	MakeName	(0X4B8405,	"paint_small_scenery_entry");
 	MakeCode	(x=0X4B8444);
 	OpHex		(x,	1);
 	MakeCode	(x=0X4B8496);
@@ -66809,6 +66956,15 @@ static Bytes_9(void) {
 	OpOff		(x,	129,	0);
 	MakeCode	(x=0X4BA202);
 	OpHex		(x,	1);
+}
+
+//------------------------------------------------------------------------
+// Information about bytes
+
+static Bytes_10(void) {
+        auto x;
+#define id x
+
 	MakeCode	(x=0X4BA20F);
 	OpHex		(x,	1);
 	MakeCode	(x=0X4BA214);
@@ -67337,15 +67493,6 @@ static Bytes_9(void) {
 	MakeCode	(x=0X4BAC85);
 	OpOff		(x,	1,	0);
 	OpOff		(x,	129,	0);
-}
-
-//------------------------------------------------------------------------
-// Information about bytes
-
-static Bytes_10(void) {
-        auto x;
-#define id x
-
 	MakeCode	(x=0X4BAC8F);
 	OpHex		(x,	1);
 	MakeCode	(x=0X4BAC92);
@@ -68485,6 +68632,7 @@ static Bytes_10(void) {
 	OpOff		(x,	1,	0);
 	OpOff		(x,	129,	0);
 	MakeCode	(0X4BE3F3);
+	MakeName	(0X4BE3F3,	"reset_keyboard_shortcuts");
 	MakeCode	(0X4BE5DE);
 	MakeCode	(0X4BE5EB);
 	MakeCode	(x=0X4BE5FA);
@@ -68707,11 +68855,16 @@ static Bytes_10(void) {
 	MakeCode	(0X4BF150);
 	MakeCode	(0X4BF184);
 	MakeCode	(0X4BF18A);
+	MakeName	(0X4BF18A,	"shortcut_underground_view_toggle");
 	MakeCode	(0X4BF194);
+	MakeName	(0X4BF194,	"shortcut_remove_base_land_toggle");
 	MakeCode	(0X4BF19E);
+	MakeName	(0X4BF19E,	"shortcut_remove_vertical_land_toggle");
 	MakeCode	(0X4BF1A8);
+	MakeName	(0X4BF1A8,	"shortcut_see_through_rides_toggle");
 	MakeCode	(0X4BF1B2);
 	MakeCode	(0X4BF1BC);
+	MakeName	(0X4BF1BC,	"shortcut_invisible_supports_toggle");
 	MakeCode	(x=0X4BF1C6);
 	OpHex		(x,	1);
 	MakeCode	(0X4BF1DB);
@@ -70869,6 +71022,7 @@ static Bytes_10(void) {
 	MakeCode	(0X4C57A6);
 	MakeArray	(0X4C57BD,	0X3);
 	MakeCode	(0X4C57C0);
+	MakeName	(0X4C57C0,	"viewport_init_all");
 	MakeCode	(x=0X4C57D9);
 	OpHex		(x,	1);
 	MakeCode	(x=0X4C57DC);
@@ -70900,6 +71054,7 @@ static Bytes_10(void) {
 	OpOff		(x,	129,	0);
 	MakeCode	(x=0X4C58C7);
 	OpHex		(x,	1);
+	MakeName	(0X4C58C7,	"gfx_fill_rect_inset");
 	MakeCode	(x=0X4C58ED);
 	OpHex		(x,	1);
 	MakeCode	(x=0X4C591A);
@@ -71127,12 +71282,14 @@ static Bytes_10(void) {
 	MakeCode	(x=0X4C5C65);
 	OpHex		(x,	1);
 	MakeCode	(0X4C5C69);
+	MakeName	(0X4C5C69,	"gfx_set_dirty_blocks");
 	MakeCode	(x=0X4C5CD2);
 	OpHex		(x,	1);
 	MakeCode	(x=0X4C5CD8);
 	OpOff		(x,	1,	0);
 	OpOff		(x,	129,	0);
 	MakeCode	(0X4C5CFA);
+	MakeName	(0X4C5CFA,	"gfx_draw_dirty_blocks");
 	MakeCode	(x=0X4C5D00);
 	OpOff		(x,	0,	0);
 	OpOff		(x,	128,	0);
@@ -71143,6 +71300,7 @@ static Bytes_10(void) {
 	OpOff		(x,	0,	0);
 	OpOff		(x,	128,	0);
 	MakeCode	(0X4C5DD5);
+	MakeName	(0X4C5DD5,	"window_draw_all");
 	MakeCode	(x=0X4C5E55);
 	OpOff		(x,	1,	0);
 	OpOff		(x,	129,	0);
@@ -71150,6 +71308,7 @@ static Bytes_10(void) {
 	OpHex		(x,	1);
 	MakeCode	(0X4C5EA8);
 	MakeCode	(0X4C5EA9);
+	MakeName	(0X4C5EA9,	"window_draw");
 	MakeCode	(x=0X4C5EE3);
 	OpHex		(x,	1);
 	MakeCode	(0X4C5F0B);
@@ -71363,6 +71522,7 @@ static Bytes_10(void) {
 	MakeCode	(0X4C6E4A);
 	MakeCode	(0X4C6E4B);
 	MakeCode	(0X4C6E65);
+	MakeName	(0X4C6E65,	"update_cursor_position");
 	MakeCode	(0X4C6E87);
 	MakeComm	(0X4C6EAE,	"unsigned int");
 	MakeComm	(0X4C6EAF,	"unsigned int");
@@ -71370,6 +71530,7 @@ static Bytes_10(void) {
 	OpHex		(x,	1);
 	MakeCode	(0X4C6EC3);
 	MakeCode	(0X4C6EE6);
+	MakeName	(0X4C6EE6,	"game_get_next_input");
 	MakeCode	(0X4C6F23);
 	MakeCode	(0X4C6F2D);
 	MakeCode	(x=0X4C6F53);
@@ -71596,6 +71757,7 @@ static Bytes_10(void) {
 	MakeCode	(x=0X4C8B76);
 	OpHex		(x,	1);
 	MakeCode	(0X4C8B85);
+	MakeName	(0X4C8B85,	"input_state_normal_left_down_scroll_vbottom");
 	MakeCode	(x=0X4C8BC7);
 	OpHex		(x,	1);
 	MakeCode	(x=0X4C8BFE);
@@ -71611,6 +71773,7 @@ static Bytes_10(void) {
 	MakeCode	(x=0X4C8CEE);
 	OpHex		(x,	1);
 	MakeCode	(0X4C8CFD);
+	MakeName	(0X4C8CFD,	"input_scroll_drag_continue");
 	MakeCode	(x=0X4C8D4D);
 	OpHex		(x,	1);
 	MakeCode	(x=0X4C8D79);
@@ -71629,6 +71792,7 @@ static Bytes_10(void) {
 	MakeCode	(x=0X4C8EE1);
 	OpHex		(x,	1);
 	MakeCode	(0X4C8EF0);
+	MakeName	(0X4C8EF0,	"widget_scroll_get_part");
 	MakeCode	(x=0X4C8F07);
 	OpHex		(x,	1);
 	MakeCode	(x=0X4C8F4A);
@@ -71640,6 +71804,7 @@ static Bytes_10(void) {
 	MakeCode	(0X4C903E);
 	MakeCode	(0X4C9065);
 	MakeCode	(0X4C906B);
+	MakeName	(0X4C906B,	"window_tooltip_open");
 	MakeCode	(x=0X4C90FF);
 	OpOff		(x,	1,	0);
 	OpOff		(x,	129,	0);
@@ -71732,6 +71897,7 @@ static Bytes_10(void) {
 	MakeCode	(0X4C9512);
 	MakeName	(0X4C9512,	"nullsub_85");
 	MakeCode	(0X4C9513);
+	MakeName	(0X4C9513,	"window_find_widget_from_point");
 	MakeCode	(x=0X4C957B);
 	OpStkvar	(x,	0);
 	MakeCode	(0X4C9592);
@@ -71784,11 +71950,13 @@ static Bytes_10(void) {
 	OpOff		(x,	129,	0);
 	MakeCode	(0X4C9983);
 	MakeCode	(0X4C9984);
+	MakeName	(0X4C9984,	"invalidate_all_windows_after_input");
 	MakeCode	(x=0X4C999F);
 	OpOff		(x,	1,	0);
 	OpOff		(x,	129,	0);
 	MakeCode	(0X4C99B8);
 	MakeCode	(0X4C99B9);
+	MakeName	(0X4C99B9,	"window_invalidate_pressed_image_buttons");
 	MakeCode	(x=0X4C9A39);
 	OpHex		(x,	1);
 	MakeCode	(x=0X4C9A46);
@@ -71806,6 +71974,7 @@ static Bytes_10(void) {
 	OpHex		(x,	1);
 	MakeCode	(0X4C9AF7);
 	MakeCode	(0X4C9AFA);
+	MakeName	(0X4C9AFA,	"window_find_from_point");
 	MakeCode	(x=0X4C9B06);
 	OpOff		(x,	1,	0);
 	OpOff		(x,	129,	0);
@@ -71815,6 +71984,7 @@ static Bytes_10(void) {
 	MakeCode	(x=0X4C9B56);
 	OpOff		(x,	1,	0);
 	OpOff		(x,	129,	0);
+	MakeName	(0X4C9B56,	"window_find_by_id");
 	MakeCode	(0X4C9B80);
 	MakeCode	(0X4C9B85);
 	MakeCode	(0X4C9B9D);
@@ -71889,12 +72059,14 @@ static Bytes_10(void) {
 	OpHex		(x,	1);
 	MakeCode	(0X4CA10B);
 	MakeCode	(0X4CA115);
+	MakeName	(0X4CA115,	"window_update_scroll_widgets");
 	MakeCode	(x=0X4CA138);
 	OpHex		(x,	1);
 	MakeCode	(x=0X4CA14F);
 	OpHex		(x,	1);
 	MakeCode	(0X4CA17E);
 	MakeCode	(0X4CA17F);
+	MakeName	(0X4CA17F,	"window_init_scroll_widgets");
 	MakeCode	(x=0X4CA1BF);
 	OpHex		(x,	1);
 	MakeCode	(x=0X4CA1C8);
@@ -71905,6 +72077,7 @@ static Bytes_10(void) {
 	OpHex		(x,	1);
 	MakeCode	(0X4CA1EB);
 	MakeCode	(0X4CA1ED);
+	MakeName	(0X4CA1ED,	"widget_scroll_update_thumbs");
 	MakeCode	(x=0X4CA1EE);
 	OpHex		(x,	1);
 	MakeCode	(x=0X4CA202);
@@ -71981,8 +72154,10 @@ static Bytes_10(void) {
 	MakeCode	(x=0X4CA4B6);
 	OpHex		(x,	1);
 	MakeCode	(0X4CA4BD);
+	MakeName	(0X4CA4BD,	"window_invalidate");
 	MakeCode	(x=0X4CA4DF);
 	OpHex		(x,	1);
+	MakeName	(0X4CA4DF,	"window_draw_widgets");
 	MakeCode	(x=0X4CA4E8);
 	OpHex		(x,	1);
 	MakeCode	(x=0X4CA5F5);
@@ -72361,6 +72536,7 @@ static Bytes_10(void) {
 	MakeCode	(x=0X4CB932);
 	OpHex		(x,	1);
 	MakeCode	(0X4CB966);
+	MakeName	(0X4CB966,	"window_invalidate_by_id");
 	MakeCode	(x=0X4CB96A);
 	OpHex		(x,	1);
 	MakeCode	(x=0X4CB973);
@@ -72408,6 +72584,7 @@ static Bytes_10(void) {
 	OpOff		(x,	129,	0);
 	MakeCode	(0X4CBE5D);
 	MakeCode	(0X4CBE5F);
+	MakeName	(0X4CBE5F,	"map_invalidate_tile_full");
 	MakeCode	(0X4CBE78);
 	MakeCode	(x=0X4CBE84);
 	OpHex		(x,	1);
@@ -72506,6 +72683,7 @@ static Bytes_10(void) {
 	OpOff		(x,	129,	0);
 	MakeCode	(0X4CC690);
 	MakeCode	(0X4CC692);
+	MakeName	(0X4CC692,	"window_close_by_id");
 	MakeCode	(x=0X4CC693);
 	OpOff		(x,	1,	0);
 	OpOff		(x,	129,	0);
@@ -72521,10 +72699,12 @@ static Bytes_10(void) {
 	OpHex		(x,	1);
 	MakeCode	(x=0X4CC750);
 	OpHex		(x,	1);
+	MakeName	(0X4CC750,	"window_bring_to_front");
 	MakeCode	(x=0X4CC76E);
 	OpOff		(x,	1,	0);
 	OpOff		(x,	129,	0);
 	MakeCode	(0X4CC7CB);
+	MakeName	(0X4CC7CB,	"window_set_disabled_widgets_and_invalidate");
 	MakeCode	(x=0X4CC7DD);
 	OpHex		(x,	1);
 	MakeCode	(x=0X4CC7EE);
@@ -72638,6 +72818,7 @@ static Bytes_10(void) {
 	MakeCode	(x=0X4CCDB8);
 	OpHex		(x,	1);
 	MakeCode	(0X4CCDE7);
+	MakeName	(0X4CCDE7,	"show_image_dropdown");
 	MakeCode	(x=0X4CCDED);
 	OpHex		(x,	1);
 	MakeCode	(x=0X4CCDF0);
@@ -72665,6 +72846,7 @@ static Bytes_10(void) {
 	OpOff		(x,	1,	0);
 	OpOff		(x,	129,	0);
 	MakeCode	(0X4CCF8C);
+	MakeName	(0X4CCF8C,	"show_colour_dropdown");
 	MakeCode	(x=0X4CCFA1);
 	OpOff		(x,	1,	0);
 	OpOff		(x,	129,	0);
@@ -72674,7 +72856,9 @@ static Bytes_10(void) {
 	OpHex		(x,	1);
 	MakeCode	(0X4CD00D);
 	MakeCode	(0X4CD00E);
+	MakeName	(0X4CD00E,	"window_dropdown_onpaint");
 	MakeCode	(0X4CD015);
+	MakeName	(0X4CD015,	"j_window_invalidate");
 	MakeCode	(0X4CD01A);
 	MakeName	(0X4CD01A,	"nullsub_86");
 	MakeCode	(0X4CD01B);
@@ -72709,6 +72893,7 @@ static Bytes_10(void) {
 	MakeCode	(0X4CD31F);
 	MakeCode	(0X4CD320);
 	MakeCode	(0X4CD3A9);
+	MakeName	(0X4CD3A9,	"window_bring_to_front_by_id");
 	MakeCode	(x=0X4CD3B6);
 	OpHex		(x,	1);
 	MakeCode	(0X4CD3D0);
@@ -72717,6 +72902,7 @@ static Bytes_10(void) {
 	OpOff		(x,	129,	0);
 	MakeCode	(0X4CD3FB);
 	MakeCode	(0X4CD406);
+	MakeName	(0X4CD406,	"gfx_invalidate_screen");
 	MakeCode	(0X4CD422);
 	MakeCode	(0X4CD447);
 	MakeCode	(0X4CD454);
@@ -72988,6 +73174,7 @@ static Bytes_10(void) {
 	MakeCode	(0X4CE367);
 	MakeCode	(0X4CE3CF);
 	MakeCode	(0X4CE3D6);
+	MakeName	(0X4CE3D6,	"tool_cancel");
 	MakeCode	(x=0X4CE3EB);
 	OpHex		(x,	1);
 	MakeCode	(x=0X4CE402);
@@ -72995,6 +73182,7 @@ static Bytes_10(void) {
 	MakeCode	(x=0X4CE438);
 	OpOff		(x,	1,	0);
 	OpOff		(x,	129,	0);
+	MakeName	(0X4CE438,	"window_get_main");
 	MakeCode	(0X4CE456);
 	MakeCode	(0X4CE458);
 	MakeCode	(0X4CE45C);
@@ -73167,6 +73355,7 @@ static Bytes_10(void) {
 	OpOff		(x,	129,	0);
 	MakeCode	(0X4CEC23);
 	MakeCode	(0X4CEC25);
+	MakeName	(0X4CEC25,	"viewport_update_pointers");
 	MakeCode	(x=0X4CEC27);
 	OpOff		(x,	1,	0);
 	OpOff		(x,	129,	0);
@@ -73177,6 +73366,7 @@ static Bytes_10(void) {
 	OpOff		(x,	1,	0);
 	OpOff		(x,	129,	0);
 	MakeCode	(0X4CEC50);
+	MakeName	(0X4CEC50,	"clip_drawpixelinfo");
 	MakeCode	(x=0X4CED64);
 	OpOff		(x,	1,	0);
 	OpOff		(x,	129,	0);
@@ -73257,6 +73447,7 @@ static Bytes_10(void) {
 	MakeCode	(0X4CF141);
 	MakeName	(0X4CF141,	"nullsub_88");
 	MakeCode	(0X4CF142);
+	MakeName	(0X4CF142,	"hide_cursor");
 	MakeComm	(0X4CF14D,	"hCursor");
 	MakeCode	(x=0X4CF158);
 	OpHex		(x,	1);
@@ -73359,6 +73550,7 @@ static Bytes_10(void) {
 	MakeCode	(x=0X4CF5B4);
 	OpHex		(x,	1);
 	MakeCode	(0X4CF5C5);
+	MakeName	(0X4CF5C5,	"loadingwindow_init");
 	MakeCode	(x=0X4CF5CB);
 	OpHex		(x,	1);
 	MakeCode	(x=0X4CF5DF);
@@ -73378,8 +73570,10 @@ static Bytes_10(void) {
 	OpHex		(x,	1);
 	MakeCode	(x=0X4CF60B);
 	OpHex		(x,	1);
+	MakeName	(0X4CF60B,	"loadingwindow_close");
 	MakeCode	(x=0X4CF621);
 	OpHex		(x,	1);
+	MakeName	(0X4CF621,	"loadingwindow_update");
 	MakeComm	(0X4CF631,	"wParam");
 	MakeCode	(x=0X4CF637);
 	OpHex		(x,	1);
@@ -73431,6 +73625,15 @@ static Bytes_10(void) {
 	OpOff		(x,	129,	0);
 	MakeCode	(x=0X4CF74E);
 	OpHex		(x,	1);
+}
+
+//------------------------------------------------------------------------
+// Information about bytes
+
+static Bytes_11(void) {
+        auto x;
+#define id x
+
 	MakeCode	(x=0X4CF765);
 	OpHex		(x,	1);
 	MakeCode	(0X4CF76D);
@@ -74027,15 +74230,6 @@ static Bytes_10(void) {
 	OpOff		(x,	128,	0);
 	MakeDword	(0X4D04C4);
 	MakeArray	(0X4D04C4,	0X3);
-}
-
-//------------------------------------------------------------------------
-// Information about bytes
-
-static Bytes_11(void) {
-        auto x;
-#define id x
-
 	MakeDword	(x=0X4D04D0);
 	OpOff		(x,	0,	0);
 	OpOff		(x,	128,	0);
@@ -78605,6 +78799,15 @@ static Bytes_11(void) {
 	OpStkvar	(x,	1);
 	MakeCode	(x=0X4D525D);
 	OpStkvar	(x,	1);
+}
+
+//------------------------------------------------------------------------
+// Information about bytes
+
+static Bytes_12(void) {
+        auto x;
+#define id x
+
 	MakeCode	(x=0X4D5260);
 	OpStkvar	(x,	1);
 	MakeCode	(x=0X4D5263);
@@ -79146,15 +79349,6 @@ static Bytes_11(void) {
 	OpHex		(x,	1);
 	MakeCode	(x=0X4D5B19);
 	OpStkvar	(x,	1);
-}
-
-//------------------------------------------------------------------------
-// Information about bytes
-
-static Bytes_12(void) {
-        auto x;
-#define id x
-
 	MakeCode	(x=0X4D5B22);
 	OpOff		(x,	0,	0);
 	OpOff		(x,	128,	0);
@@ -83960,6 +84154,15 @@ static Bytes_12(void) {
 	MakeDword	(x=0X4D835C);
 	OpOff		(x,	0,	0);
 	OpOff		(x,	128,	0);
+}
+
+//------------------------------------------------------------------------
+// Information about bytes
+
+static Bytes_13(void) {
+        auto x;
+#define id x
+
 	MakeDword	(x=0X4D8360);
 	OpOff		(x,	0,	0);
 	OpOff		(x,	128,	0);
@@ -84575,15 +84778,6 @@ static Bytes_12(void) {
 	MakeDword	(x=0X4D8690);
 	OpOff		(x,	0,	0);
 	OpOff		(x,	128,	0);
-}
-
-//------------------------------------------------------------------------
-// Information about bytes
-
-static Bytes_13(void) {
-        auto x;
-#define id x
-
 	MakeDword	(x=0X4D8694);
 	OpOff		(x,	0,	0);
 	OpOff		(x,	128,	0);
@@ -89717,6 +89911,15 @@ static Bytes_13(void) {
 	MakeDword	(x=0X4DA2CC);
 	OpOff		(x,	0,	0);
 	OpOff		(x,	128,	0);
+}
+
+//------------------------------------------------------------------------
+// Information about bytes
+
+static Bytes_14(void) {
+        auto x;
+#define id x
+
 	MakeDword	(x=0X4DA2D0);
 	OpOff		(x,	0,	0);
 	OpOff		(x,	128,	0);
@@ -90330,15 +90533,6 @@ static Bytes_13(void) {
 	MakeDword	(x=0X4F78F8);
 	OpOff		(x,	0,	0);
 	OpOff		(x,	128,	0);
-}
-
-//------------------------------------------------------------------------
-// Information about bytes
-
-static Bytes_14(void) {
-        auto x;
-#define id x
-
 	MakeDword	(x=0X4F78FC);
 	OpOff		(x,	0,	0);
 	OpOff		(x,	128,	0);
@@ -90568,6 +90762,7 @@ static Bytes_14(void) {
 	MakeDword	(x=0X4F8C60);
 	OpOff		(x,	0,	0);
 	OpOff		(x,	128,	0);
+	MakeName	(0X4F8C60,	"ui__messages___widgets_1");
 	MakeDword	(x=0X4F8C64);
 	OpOff		(x,	0,	0);
 	OpOff		(x,	128,	0);
@@ -91196,6 +91391,7 @@ static Bytes_14(void) {
 	MakeDword	(x=0X4F92C0);
 	OpOff		(x,	0,	0);
 	OpOff		(x,	128,	0);
+	MakeName	(0X4F92C0,	"ui__company___widgets_5");
 	MakeDword	(x=0X4F92C4);
 	OpOff		(x,	0,	0);
 	OpOff		(x,	128,	0);
@@ -91244,6 +91440,7 @@ static Bytes_14(void) {
 	MakeDword	(x=0X4F9338);
 	OpOff		(x,	0,	0);
 	OpOff		(x,	128,	0);
+	MakeName	(0X4F9338,	"ui__company_list___widgets_6");
 	MakeDword	(x=0X4F933C);
 	OpOff		(x,	0,	0);
 	OpOff		(x,	128,	0);
@@ -91708,6 +91905,7 @@ static Bytes_14(void) {
 	MakeDword	(x=0X4F96D8);
 	OpOff		(x,	0,	0);
 	OpOff		(x,	128,	0);
+	MakeName	(0X4F96D8,	"window_error_events");
 	MakeDword	(x=0X4F96DC);
 	OpOff		(x,	0,	0);
 	OpOff		(x,	128,	0);
@@ -94239,6 +94437,7 @@ static Bytes_14(void) {
 	MakeDword	(x=0X4FA438);
 	OpOff		(x,	0,	0);
 	OpOff		(x,	128,	0);
+	MakeName	(0X4FA438,	"ui__landscape_generation___widgets_4");
 	MakeDword	(x=0X4FA43C);
 	OpOff		(x,	0,	0);
 	OpOff		(x,	128,	0);
@@ -94273,6 +94472,7 @@ static Bytes_14(void) {
 	MakeDword	(x=0X4FA4B0);
 	OpOff		(x,	0,	0);
 	OpOff		(x,	128,	0);
+	MakeName	(0X4FA4B0,	"ui__scenario_options___widgets_3");
 	MakeDword	(x=0X4FA4B4);
 	OpOff		(x,	0,	0);
 	OpOff		(x,	128,	0);
@@ -95443,6 +95643,15 @@ static Bytes_14(void) {
 	MakeDword	(x=0X4FAE28);
 	OpOff		(x,	0,	0);
 	OpOff		(x,	128,	0);
+}
+
+//------------------------------------------------------------------------
+// Information about bytes
+
+static Bytes_15(void) {
+        auto x;
+#define id x
+
 	MakeDword	(x=0X4FAE2C);
 	OpOff		(x,	0,	0);
 	OpOff		(x,	128,	0);
@@ -95979,15 +96188,6 @@ static Bytes_14(void) {
 	MakeDword	(x=0X4FB3F0);
 	OpOff		(x,	0,	0);
 	OpOff		(x,	128,	0);
-}
-
-//------------------------------------------------------------------------
-// Information about bytes
-
-static Bytes_15(void) {
-        auto x;
-#define id x
-
 	MakeDword	(x=0X4FB3F4);
 	OpOff		(x,	0,	0);
 	OpOff		(x,	128,	0);
@@ -100726,6 +100926,7 @@ static Bytes_15(void) {
 	MakeDword	(x=0X4FCCEC);
 	OpOff		(x,	0,	0);
 	OpOff		(x,	128,	0);
+	MakeName	(0X4FCCEC,	"ui__industry___widgets_3");
 	MakeDword	(x=0X4FCCF0);
 	OpOff		(x,	0,	0);
 	OpOff		(x,	128,	0);
@@ -100752,6 +100953,7 @@ static Bytes_15(void) {
 	MakeDword	(x=0X4FCD2C);
 	OpOff		(x,	0,	0);
 	OpOff		(x,	128,	0);
+	MakeName	(0X4FCD2C,	"ui__industry_list___widgets_1");
 	MakeDword	(x=0X4FCD30);
 	OpOff		(x,	0,	0);
 	OpOff		(x,	128,	0);
@@ -101094,6 +101296,15 @@ static Bytes_15(void) {
 	MakeDword	(x=0X4FCF08);
 	OpOff		(x,	0,	0);
 	OpOff		(x,	128,	0);
+}
+
+//------------------------------------------------------------------------
+// Information about bytes
+
+static Bytes_16(void) {
+        auto x;
+#define id x
+
 	MakeDword	(x=0X4FCF0C);
 	OpOff		(x,	0,	0);
 	OpOff		(x,	128,	0);
@@ -101737,15 +101948,6 @@ static Bytes_15(void) {
 	MakeDword	(x=0X4FD7AA);
 	OpOff		(x,	0,	0);
 	OpOff		(x,	128,	0);
-}
-
-//------------------------------------------------------------------------
-// Information about bytes
-
-static Bytes_16(void) {
-        auto x;
-#define id x
-
 	MakeDword	(x=0X4FD7AE);
 	OpOff		(x,	0,	0);
 	OpOff		(x,	128,	0);
@@ -102348,6 +102550,7 @@ static Bytes_16(void) {
 	MakeDword	(x=0X4FDF40);
 	OpOff		(x,	0,	0);
 	OpOff		(x,	128,	0);
+	MakeName	(0X4FDF40,	"ui__multiplayer___widgets_1");
 	MakeDword	(x=0X4FDF44);
 	OpOff		(x,	0,	0);
 	OpOff		(x,	128,	0);
@@ -102593,9 +102796,11 @@ static Bytes_16(void) {
 	MakeDword	(x=0X4FE0B8);
 	OpOff		(x,	0,	0);
 	OpOff		(x,	128,	0);
+	MakeName	(0X4FE0B8,	"entry_pointers");
 	MakeDword	(x=0X4FE0BC);
 	OpOff		(x,	0,	0);
 	OpOff		(x,	128,	0);
+	MakeName	(0X4FE0BC,	"entry_pointers_p4");
 	MakeDword	(x=0X4FE0C0);
 	OpOff		(x,	0,	0);
 	OpOff		(x,	128,	0);
@@ -102797,6 +103002,7 @@ static Bytes_16(void) {
 	MakeDword	(x=0X4FE1C8);
 	OpOff		(x,	0,	0);
 	OpOff		(x,	128,	0);
+	MakeName	(0X4FE1C8,	"paint_entry_table");
 	MakeDword	(x=0X4FE1CC);
 	OpOff		(x,	0,	0);
 	OpOff		(x,	128,	0);
@@ -102897,6 +103103,7 @@ static Bytes_16(void) {
 	OpOff		(x,	0,	0);
 	OpOff		(x,	128,	0);
 	MakeWord	(0X4FE250);
+	MakeName	(0X4FE250,	"object_entry_group_counts");
 	MakeWord	(0X4FE294);
 	MakeByte	(0X4FE2D8);
 	MakeDword	(x=0X4FE2D9);
@@ -103024,6 +103231,7 @@ static Bytes_16(void) {
 	OpOff		(x,	128,	0);
 	MakeByte	(0X4FE384);
 	MakeByte	(0X4FE3A6);
+	MakeName	(0X4FE3A6,	"window_editor_object_selection_default_objects_flags");
 	MakeDword	(x=0X4FE3C8);
 	OpOff		(x,	0,	0);
 	OpOff		(x,	128,	0);
@@ -103757,6 +103965,7 @@ static Bytes_16(void) {
 	MakeDword	(x=0X4FEBF4);
 	OpOff		(x,	0,	0);
 	OpOff		(x,	128,	0);
+	MakeName	(0X4FEBF4,	"ui__station___widgets_2");
 	MakeDword	(x=0X4FEBF8);
 	OpOff		(x,	0,	0);
 	OpOff		(x,	128,	0);
@@ -103777,6 +103986,7 @@ static Bytes_16(void) {
 	MakeDword	(x=0X4FEC24);
 	OpOff		(x,	0,	0);
 	OpOff		(x,	128,	0);
+	MakeName	(0X4FEC24,	"ui__station_list___widgets_4");
 	MakeDword	(x=0X4FEC28);
 	OpOff		(x,	0,	0);
 	OpOff		(x,	128,	0);
@@ -104598,6 +104808,7 @@ static Bytes_16(void) {
 	MakeDword	(x=0X4FF734);
 	OpOff		(x,	0,	0);
 	OpOff		(x,	128,	0);
+	MakeName	(0X4FF734,	"ui__town___widgets_2");
 	MakeDword	(x=0X4FF738);
 	OpOff		(x,	0,	0);
 	OpOff		(x,	128,	0);
@@ -104618,6 +104829,7 @@ static Bytes_16(void) {
 	MakeDword	(x=0X4FF764);
 	OpOff		(x,	0,	0);
 	OpOff		(x,	128,	0);
+	MakeName	(0X4FF764,	"ui__town_list___widgets_3");
 	MakeDword	(x=0X4FF768);
 	OpOff		(x,	0,	0);
 	OpOff		(x,	128,	0);
@@ -106340,6 +106552,7 @@ static Bytes_16(void) {
 	MakeDword	(x=0X5002BC);
 	OpOff		(x,	0,	0);
 	OpOff		(x,	128,	0);
+	MakeName	(0X5002BC,	"ui__vehicle___widgets_4");
 	MakeDword	(x=0X5002C0);
 	OpOff		(x,	0,	0);
 	OpOff		(x,	128,	0);
@@ -106732,6 +106945,15 @@ static Bytes_16(void) {
 	MakeDword	(x=0X5004EC);
 	OpOff		(x,	0,	0);
 	OpOff		(x,	128,	0);
+}
+
+//------------------------------------------------------------------------
+// Information about bytes
+
+static Bytes_17(void) {
+        auto x;
+#define id x
+
 	MakeDword	(x=0X5004F0);
 	OpOff		(x,	0,	0);
 	OpOff		(x,	128,	0);
@@ -107099,6 +107321,7 @@ static Bytes_16(void) {
 	MakeDword	(x=0X5006E8);
 	OpOff		(x,	0,	0);
 	OpOff		(x,	128,	0);
+	MakeName	(0X5006E8,	"ui__terraform___widgets_4");
 	MakeDword	(x=0X5006EC);
 	OpOff		(x,	0,	0);
 	OpOff		(x,	128,	0);
@@ -107407,15 +107630,6 @@ static Bytes_16(void) {
 	MakeDword	(x=0X5008DC);
 	OpOff		(x,	0,	0);
 	OpOff		(x,	128,	0);
-}
-
-//------------------------------------------------------------------------
-// Information about bytes
-
-static Bytes_17(void) {
-        auto x;
-#define id x
-
 	MakeDword	(x=0X5008E0);
 	OpOff		(x,	0,	0);
 	OpOff		(x,	128,	0);
@@ -107798,6 +108012,7 @@ static Bytes_17(void) {
 	MakeDword	(x=0X500AD8);
 	OpOff		(x,	0,	0);
 	OpOff		(x,	128,	0);
+	MakeName	(0X500AD8,	"ui__options___widgets_5");
 	MakeDword	(x=0X500ADC);
 	OpOff		(x,	0,	0);
 	OpOff		(x,	128,	0);
@@ -108965,6 +109180,7 @@ static Bytes_17(void) {
 	MakeDword	(x=0X50435C);
 	OpOff		(x,	0,	0);
 	OpOff		(x,	128,	0);
+	MakeName	(0X50435C,	"ui__vehicle_list___widgets_5");
 	MakeDword	(x=0X504360);
 	OpOff		(x,	0,	0);
 	OpOff		(x,	128,	0);
@@ -109005,6 +109221,7 @@ static Bytes_17(void) {
 	MakeDword	(x=0X5043E0);
 	OpOff		(x,	0,	0);
 	OpOff		(x,	128,	0);
+	MakeName	(0X5043E0,	"ui__build_vehicle___widgets_5");
 	MakeDword	(x=0X5043E4);
 	OpOff		(x,	0,	0);
 	OpOff		(x,	128,	0);
@@ -109247,6 +109464,7 @@ static Bytes_17(void) {
 	MakeByte	(0X504619);
 	MakeDword	(0X504638);
 	MakeByte	(0X5046FA);
+	MakeName	(0X5046FA,	"appropriate_image_dropdown_items_per_row");
 	MakeDword	(x=0X50471C);
 	OpOff		(x,	0,	0);
 	OpOff		(x,	128,	0);
@@ -110209,6 +110427,7 @@ static Bytes_17(void) {
 	MakeStr		(0X508C78,	0X508C8A);
 	MakeName	(0X508C78,	"ClassName");
 	MakeArray	(0X508C8A,	0X2);
+	MakeName	(0X508CF0,	"ui__window_36___widgets_2");
 	MakeWord	(0X508D6C);
 	MakeArray	(0X508D6E,	0X2);
 	MakeWord	(0X508D70);
@@ -110239,17 +110458,22 @@ static Bytes_17(void) {
 	MakeWord	(0X508F10);
 	MakeWord	(0X508F12);
 	MakeWord	(0X508F14);
+	MakeName	(0X508F14,	"screen_flags");
 	MakeByte	(0X508F16);
 	MakeByte	(0X508F17);
+	MakeName	(0X508F17,	"flags_9DEA6E_with_pause");
 	MakeByte	(0X508F18);
 	MakeByte	(0X508F19);
+	MakeName	(0X508F19,	"on_tutorial");
 	MakeByte	(0X508F1A);
 	MakeByte	(0X508F1B);
+	MakeName	(0X508F1C,	"ui__window_12___widgets_1");
 	MakeWord	(0X508F20);
 	MakeArray	(0X508F22,	0X2);
 	MakeWord	(0X508F24);
 	MakeWord	(0X508F42);
 	MakeWord	(0X508F46);
+	MakeName	(0X508F54,	"ui__window_46___widgets");
 	MakeWord	(0X508F58);
 	MakeArray	(0X508F5A,	0X2);
 	MakeWord	(0X508F5C);
@@ -110385,6 +110609,7 @@ static Bytes_17(void) {
 	MakeByte	(0X50966C);
 	MakeWord	(0X50966E);
 	MakeWord	(0X509670);
+	MakeName	(0X509680,	"ui__company_face_selection___widgets");
 	MakeWord	(0X5096C4);
 	MakeDword	(x=0X5096C6);
 	OpOff		(x,	0,	0);
@@ -110477,9 +110702,11 @@ static Bytes_17(void) {
 	MakeWord	(0X509B90);
 	MakeWord	(0X509BA0);
 	MakeWord	(0X509BA4);
+	MakeName	(0X509C20,	"ui__window_0___widgets");
 	MakeWord	(0X509C24);
 	MakeArray	(0X509C26,	0X2);
 	MakeWord	(0X509C28);
+	MakeName	(0X509C34,	"ui__toolbar_top___widgets");
 	MakeDword	(0X509C3E);
 	MakeDword	(0X509C4E);
 	MakeDword	(x=0X509C52);
@@ -110541,6 +110768,7 @@ static Bytes_17(void) {
 	MakeWord	(0X509CF8);
 	MakeArray	(0X509CFA,	0X2);
 	MakeDword	(0X509CFE);
+	MakeName	(0X509D08,	"ui__toolbar_player_info___widgets");
 	MakeWord	(0X509D0A);
 	MakeWord	(0X509D0C);
 	MakeWord	(0X509D0E);
@@ -110549,6 +110777,7 @@ static Bytes_17(void) {
 	MakeDword	(x=0X509D1A);
 	OpOff		(x,	0,	0);
 	OpOff		(x,	128,	0);
+	MakeName	(0X509D5C,	"ui__toolbar_time___widgets");
 	MakeWord	(0X509D5E);
 	MakeWord	(0X509D60);
 	MakeWord	(0X509D62);
@@ -110575,10 +110804,12 @@ static Bytes_17(void) {
 	MakeWord	(0X509DCE);
 	MakeWord	(0X509DD0);
 	MakeDword	(0X509DD6);
+	MakeName	(0X509DE0,	"ui__tutorial___widgets");
 	MakeWord	(0X509DE2);
 	MakeWord	(0X509DE4);
 	MakeWord	(0X509DE6);
 	MakeByte	(0X509DF4);
+	MakeName	(0X509DF4,	"ui__title_menu___widgets");
 	MakeWord	(0X509DF6);
 	MakeWord	(0X509DF8);
 	MakeWord	(0X509DFA);
@@ -110601,7 +110832,13 @@ static Bytes_17(void) {
 	OpOff		(x,	128,	0);
 	MakeArray	(0X509E46,	0X2);
 	MakeWord	(0X509E4A);
+	MakeName	(0X509E58,	"ui__title_exit___widgets");
 	MakeWord	(0X509E5E);
+	MakeName	(0X509E6C,	"ui__title_logo___widgets");
+	MakeName	(0X509E80,	"ui__about___widgets");
+	MakeName	(0X509EE4,	"ui__about_atari___widgets");
+	MakeName	(0X509F38,	"ui__about_music___widgets");
+	MakeName	(0X509F8C,	"ui__prompt_save_game___widgets");
 	MakeDword	(0X509FA6);
 	MakeDword	(0X509FC6);
 	MakeWord	(0X50A000);
@@ -110651,6 +110888,7 @@ static Bytes_17(void) {
 	MakeArray	(0X50A11E,	0X2);
 	MakeDword	(0X50A122);
 	MakeByte	(0X50A12C);
+	MakeName	(0X50A12C,	"ui__window_4___widgets");
 	MakeWord	(0X50A12E);
 	MakeWord	(0X50A130);
 	MakeWord	(0X50A132);
@@ -110815,8 +111053,10 @@ static Bytes_17(void) {
 	MakeByte	(0X50AC50);
 	MakeByte	(0X50AC60);
 	MakeByte	(0X50AC74);
+	MakeName	(0X50ACB4,	"ui__scenario_select___widgets");
 	MakeWord	(0X50ACEA);
 	MakeWord	(0X50AD48);
+	MakeName	(0X50AD58,	"ui__prompt_browse___widgets");
 	MakeWord	(0X50AD5C);
 	MakeArray	(0X50AD5E,	0X2);
 	MakeWord	(0X50AD60);
@@ -110840,6 +111080,8 @@ static Bytes_17(void) {
 	MakeWord	(0X50ADC0);
 	MakeWord	(0X50ADCC);
 	MakeWord	(0X50ADD0);
+	MakeName	(0X50ADDC,	"ui__window_53___widgets");
+	MakeName	(0X50AE00,	"ui__prompt_ok_cancel___widgets");
 	MakeDword	(0X50AE3A);
 	MakeByte	(0X50AE52);
 	MakeByte	(0X50AE82);
@@ -110851,12 +111093,14 @@ static Bytes_17(void) {
 	MakeDword	(0X50AE98);
 	MakeDword	(0X50AE9C);
 	MakeDword	(0X50AEA0);
+	MakeName	(0X50AEA0,	"num_scenarios");
 	MakeDword	(0X50AEA4);
 	MakeDword	(0X50AEA8);
 	MakeByte	(0X50AEAC);
 	MakeByte	(0X50AEAD);
 	MakeArray	(0X50AEAE,	0X2);
 	MakeDword	(0X50AEB4);
+	MakeName	(0X50AEB4,	"config_flags");
 	MakeWord	(0X50AEB8);
 	MakeWord	(0X50AEBA);
 	MakeWord	(0X50AEBC);
@@ -110876,6 +111120,7 @@ static Bytes_17(void) {
 	MakeByte	(0X50AEDB);
 	MakeByte	(0X50AEDC);
 	MakeWord	(0X50AEDE);
+	MakeName	(0X50AEDE,	"keyboard_shortcuts");
 	MakeByte	(0X50AEE0);
 	MakeByte	(0X50AEE1);
 	MakeByte	(0X50AEE2);
@@ -111035,22 +111280,34 @@ static Bytes_17(void) {
 	MakeWord	(0X50B880);
 	MakeArray	(0X50B882,	0X2);
 	MakeDword	(0X50B884);
+	MakeName	(0X50B884,	"screen_dpi_dst_ptr");
 	MakeWord	(0X50B888);
+	MakeName	(0X50B888,	"screen_dpi_left");
 	MakeWord	(0X50B88A);
+	MakeName	(0X50B88A,	"screen_dpi_top");
 	MakeWord	(0X50B88C);
+	MakeName	(0X50B88C,	"screen_dpi_width");
 	MakeWord	(0X50B88E);
+	MakeName	(0X50B88E,	"screen_dpi_height");
 	MakeWord	(0X50B890);
+	MakeName	(0X50B890,	"screen_dpi_pitch");
 	MakeWord	(0X50B892);
 	MakeWord	(0X50B894);
+	MakeName	(0X50B894,	"screen_width");
 	MakeWord	(0X50B896);
+	MakeName	(0X50B896,	"screen_height");
 	MakeWord	(0X50B898);
 	MakeWord	(0X50B89A);
 	MakeWord	(0X50B89C);
 	MakeWord	(0X50B89E);
 	MakeWord	(0X50B8A0);
+	MakeName	(0X50B8A0,	"dirty_blocks_width");
 	MakeWord	(0X50B8A2);
+	MakeName	(0X50B8A2,	"dirty_blocks_height");
 	MakeDword	(0X50B8A4);
+	MakeName	(0X50B8A4,	"dirty_blocks_columns");
 	MakeDword	(0X50B8A8);
+	MakeName	(0X50B8A8,	"dirty_blocks_rows");
 	MakeByte	(0X50B8AC);
 	MakeByte	(0X50B8AD);
 	MakeByte	(0X50B8AE);
@@ -111077,6 +111334,7 @@ static Bytes_17(void) {
 	OpOff		(x,	0,	0);
 	OpOff		(x,	128,	0);
 	MakeDword	(0X50BC60);
+	MakeName	(0X50BC60,	"draw_rain_function");
 	MakeDword	(x=0X50BC64);
 	OpOff		(x,	0,	0);
 	OpOff		(x,	128,	0);
@@ -111208,6 +111466,7 @@ static Bytes_17(void) {
 	MakeDword	(0X50C18C);
 	MakeDword	(0X50C190);
 	MakeByte	(0X50C194);
+	MakeName	(0X50C194,	"game_initialized");
 	MakeByte	(0X50C195);
 	MakeByte	(0X50C196);
 	MakeByte	(0X50C197);
@@ -111219,6 +111478,7 @@ static Bytes_17(void) {
 	MakeDword	(0X50C1A6);
 	MakeDword	(0X50C1AE);
 	MakeArray	(0X50C1B2,	0X2);
+	MakeName	(0X50C1B4,	"ui__map___widgets");
 	MakeWord	(0X50C1B8);
 	MakeArray	(0X50C1BA,	0X2);
 	MakeWord	(0X50C1BC);
@@ -111270,6 +111530,7 @@ static Bytes_17(void) {
 	MakeWord	(0X50C364);
 	MakeWord	(0X50C392);
 	MakeDword	(0X50C3D0);
+	MakeName	(0X50C3D0,	"ride_entries");
 	MakeDword	(0X50C3D4);
 	MakeDword	(0X50C5D4);
 	MakeDword	(0X50C5D8);
@@ -111315,6 +111576,7 @@ static Bytes_17(void) {
 	MakeByte	(0X50D160);
 	MakeByte	(0X50D161);
 	MakeArray	(0X50D162,	0X2);
+	MakeName	(0X50D164,	"ui__object_selection___widgets");
 	MakeByte	(0X50D184);
 	MakeWord	(0X50D19A);
 	MakeWord	(0X50D1C8);
@@ -111323,6 +111585,7 @@ static Bytes_17(void) {
 	MakeWord	(0X50D1DA);
 	MakeWord	(0X50D1DC);
 	MakeDword	(0X50D1E8);
+	MakeName	(0X50D1E8,	"current_sound_device");
 	MakeDword	(0X50D1EC);
 	MakeDword	(0X50D430);
 	MakeByte	(0X50D434);
@@ -111338,6 +111601,7 @@ static Bytes_17(void) {
 	MakeDword	(0X50D5AC);
 	MakeDword	(0X50D5B0);
 	MakeByte	(0X50D5B4);
+	MakeName	(0X50D5B4,	"playing_title_music");
 	MakeByte	(0X50D5B5);
 	MakeByte	(0X50D5B8);
 	MakeWord	(0X50D5C0);
@@ -111816,6 +112080,15 @@ static Bytes_17(void) {
 	MakeName	(0X50E672,	"aBuildingList");
 	MakeStr		(0X50E680,	0X50E68B);
 	MakeName	(0X50E680,	"aWallsList");
+}
+
+//------------------------------------------------------------------------
+// Information about bytes
+
+static Bytes_18(void) {
+        auto x;
+#define id x
+
 	MakeStr		(0X50E68B,	0X50E698);
 	MakeName	(0X50E68B,	"aRatingsList");
 	MakeStr		(0X50E698,	0X50E6A3);
@@ -112293,15 +112566,6 @@ static Bytes_17(void) {
 	MakeName	(0X50FEAA,	"aDockingPlatfor");
 	MakeStr		(0X50FEBB,	0X50FECD);
 	MakeName	(0X50FEBB,	"aDockingPlatf_0");
-}
-
-//------------------------------------------------------------------------
-// Information about bytes
-
-static Bytes_18(void) {
-        auto x;
-#define id x
-
 	MakeStr		(0X50FECD,	0X50FEDE);
 	MakeName	(0X50FECD,	"aDockingPlatf_1");
 	MakeStr		(0X50FEDE,	0X50FEF0);
@@ -114815,6 +115079,7 @@ static Bytes_18(void) {
 	MakeDword	(x=0X5183FC);
 	OpOff		(x,	0,	0);
 	OpOff		(x,	128,	0);
+	MakeName	(0X5183FC,	"strings");
 	MakeDword	(x=0X518400);
 	OpOff		(x,	0,	0);
 	OpOff		(x,	128,	0);
@@ -115109,6 +115374,15 @@ static Bytes_18(void) {
 	MakeDword	(x=0X518584);
 	OpOff		(x,	0,	0);
 	OpOff		(x,	128,	0);
+}
+
+//------------------------------------------------------------------------
+// Information about bytes
+
+static Bytes_19(void) {
+        auto x;
+#define id x
+
 	MakeDword	(x=0X518588);
 	OpOff		(x,	0,	0);
 	OpOff		(x,	128,	0);
@@ -115958,15 +116232,6 @@ static Bytes_18(void) {
 	MakeDword	(x=0X5189F0);
 	OpOff		(x,	0,	0);
 	OpOff		(x,	128,	0);
-}
-
-//------------------------------------------------------------------------
-// Information about bytes
-
-static Bytes_19(void) {
-        auto x;
-#define id x
-
 	MakeDword	(x=0X5189F4);
 	OpOff		(x,	0,	0);
 	OpOff		(x,	128,	0);
@@ -120866,6 +121131,15 @@ static Bytes_19(void) {
 	MakeDword	(x=0X51A374);
 	OpOff		(x,	0,	0);
 	OpOff		(x,	128,	0);
+}
+
+//------------------------------------------------------------------------
+// Information about bytes
+
+static Bytes_20(void) {
+        auto x;
+#define id x
+
 	MakeDword	(x=0X51A378);
 	OpOff		(x,	0,	0);
 	OpOff		(x,	128,	0);
@@ -121283,6 +121557,7 @@ static Bytes_19(void) {
 	OpOff		(x,	0,	0);
 	OpOff		(x,	128,	0);
 	MakeDword	(0X521C0E);
+	MakeName	(0X521C18,	"ui__construction___widgets_3");
 	MakeByte	(0X521C98);
 	MakeByte	(0X521CA8);
 	MakeWord	(0X521CAA);
@@ -121555,6 +121830,7 @@ static Bytes_19(void) {
 	MakeWord	(0X522494);
 	MakeWord	(0X5224A4);
 	MakeWord	(0X5224A8);
+	MakeName	(0X522504,	"ui__window_25___widgets");
 	MakeWord	(0X522508);
 	MakeArray	(0X52250A,	0X2);
 	MakeWord	(0X52251C);
@@ -121655,6 +121931,9 @@ static Bytes_19(void) {
 	MakeWord	(0X522890);
 	MakeWord	(0X5228EC);
 	MakeWord	(0X5228F0);
+	MakeName	(0X5228FC,	"ui__keyboard_shortcuts___widgets");
+	MakeName	(0X522960,	"ui__keyboard_shortcuts_edit___widgets");
+	MakeName	(0X5229A4,	"ui__music_selection___widgets");
 	MakeWord	(0X5229FC);
 	MakeArray	(0X5229FE,	0X2);
 	MakeWord	(0X522A00);
@@ -121728,15 +122007,6 @@ static Bytes_19(void) {
 	MakeDword	(x=0X522E4C);
 	OpOff		(x,	0,	0);
 	OpOff		(x,	128,	0);
-}
-
-//------------------------------------------------------------------------
-// Information about bytes
-
-static Bytes_20(void) {
-        auto x;
-#define id x
-
 	MakeWord	(0X522E6A);
 	MakeWord	(0X522EAC);
 	MakeArray	(0X522EAE,	0X2);
@@ -121756,8 +122026,11 @@ static Bytes_20(void) {
 	MakeWord	(0X522FA4);
 	MakeWord	(0X523022);
 	MakeByte	(0X52302C);
+	MakeName	(0X523040,	"ui__window_44___widgets");
 	MakeDword	(0X52305A);
+	MakeName	(0X523094,	"ui__prompt_confirm_display_mode___widgets");
 	MakeDword	(0X5230C8);
+	MakeName	(0X5230C8,	"map_elements");
 	MakeWord	(0X5230D0);
 	MakeArray	(0X5230D2,	0X2);
 	MakeWord	(0X5230D4);
@@ -121825,7 +122098,9 @@ static Bytes_20(void) {
 	MakeWord	(0X523334);
 	MakeWord	(0X523336);
 	MakeDword	(0X523338);
+	MakeName	(0X523338,	"cursor_x");
 	MakeDword	(0X52333C);
+	MakeName	(0X52333C,	"cursor_y");
 	MakeDword	(0X523340);
 	MakeDword	(0X523344);
 	MakeWord	(0X523348);
@@ -121842,17 +122117,23 @@ static Bytes_20(void) {
 	MakeByte	(0X523364);
 	MakeArray	(0X523365,	0X3);
 	MakeDword	(0X523368);
+	MakeName	(0X523368,	"input_flags");
 	MakeByte	(0X52336C);
 	MakeByte	(0X52336D);
 	MakeByte	(0X52336E);
 	MakeByte	(0X52336F);
+	MakeName	(0X52336F,	"cursor_down_windowclass");
 	MakeWord	(0X523370);
+	MakeName	(0X523370,	"cursor_down_windownumber");
 	MakeDword	(0X523372);
+	MakeName	(0X523372,	"cursor_down_widget_index");
 	MakeWord	(0X523376);
 	MakeWord	(0X523378);
 	MakeWord	(0X52337A);
 	MakeWord	(0X52337C);
+	MakeName	(0X52337C,	"cursor_drag_windownumber");
 	MakeByte	(0X52337E);
+	MakeName	(0X52337E,	"cursor_drag_windowclass");
 	MakeByte	(0X52337F);
 	MakeByte	(0X523380);
 	MakeByte	(0X523381);
@@ -121862,11 +122143,15 @@ static Bytes_20(void) {
 	MakeWord	(0X523388);
 	MakeWord	(0X52338A);
 	MakeWord	(0X52338C);
+	MakeName	(0X52338C,	"tooltip_not_shown_ticks");
 	MakeWord	(0X52338E);
 	MakeWord	(0X523390);
+	MakeName	(0X523390,	"tool_windownumber");
 	MakeByte	(0X523392);
+	MakeName	(0X523392,	"tool_windowclass");
 	MakeByte	(0X523393);
 	MakeWord	(0X523394);
+	MakeName	(0X523394,	"tool_widget_index");
 	MakeWord	(0X523396);
 	MakeDword	(0X523398);
 	MakeDword	(0X52339C);
@@ -121882,22 +122167,31 @@ static Bytes_20(void) {
 	MakeDword	(0X5233B2);
 	MakeByte	(0X5233B6);
 	MakeDword	(0X5233B8);
+	MakeName	(0X5233B8,	"window_dpi_dst_ptr");
 	MakeDword	(0X5233BC);
+	MakeName	(0X5233BC,	"window_dpi_left");
 	MakeDword	(0X5233C0);
+	MakeName	(0X5233C0,	"window_dpi_width");
 	MakeDword	(0X5233C4);
+	MakeName	(0X5233C4,	"window_dpi_pitch");
 	MakeByte	(0X5233C8);
 	MakeArray	(0X5233C9,	0X3);
 	MakeByte	(0X5233CC);
+	MakeName	(0X5234CC,	"ui__window_6___widgets");
 	MakeWord	(0X5234D0);
 	MakeArray	(0X5234D2,	0X2);
 	MakeWord	(0X5234D4);
+	MakeName	(0X5234E0,	"ui__window_7___widgets");
 	MakeByte	(0X5234E1);
 	MakeArray	(0X5234E2,	0X2);
 	MakeWord	(0X5234E4);
 	MakeArray	(0X5234E6,	0X2);
 	MakeWord	(0X5234E8);
+	MakeName	(0X5234F4,	"ui__window_30___widgets");
 	MakeDword	(0X523508);
 	MakeDword	(0X52350C);
+	MakeName	(0X52350C,	"ui__window_47___widgets");
+	MakeName	(0X523540,	"ui__text_input___widgets");
 	MakeByte	(0X523550);
 	MakeDword	(0X52355A);
 	MakeWord	(0X523582);
@@ -121995,6 +122289,7 @@ static Bytes_20(void) {
 	MakeDword	(0X524140);
 	MakeName	(0X524140,	"lpDD");
 	MakeDword	(0X524144);
+	MakeName	(0X524144,	"ddraw_psurface");
 	MakeDword	(0X524148);
 	MakeDword	(0X52414C);
 	MakeDword	(0X524150);
@@ -122004,6 +122299,7 @@ static Bytes_20(void) {
 	MakeDword	(0X524160);
 	MakeDword	(0X524164);
 	MakeDword	(0X524168);
+	MakeName	(0X524168,	"ddraw_num_display_modes");
 	MakeDword	(0X52416C);
 	MakeDword	(0X524170);
 	MakeDword	(0X524174);
@@ -122034,10 +122330,13 @@ static Bytes_20(void) {
 	MakeDword	(0X5251DC);
 	MakeName	(0X5251DC,	"ppDI");
 	MakeDword	(0X5251E0);
+	MakeName	(0X5251E0,	"dinput_device_mouse");
 	MakeDword	(0X5251E4);
+	MakeName	(0X5251E4,	"dinput_device_keyboard");
 	MakeDword	(0X5251E8);
 	MakeDword	(0X5251EC);
 	MakeDword	(0X5251F0);
+	MakeName	(0X5251F0,	"num_dsound_devices");
 	MakeDword	(0X5251F4);
 	MakeDword	(0X5251F8);
 	MakeDword	(0X5251FC);
@@ -122062,6 +122361,7 @@ static Bytes_20(void) {
 	MakeDword	(0X525244);
 	MakeDword	(0X525248);
 	MakeDword	(0X52524C);
+	MakeName	(0X52524C,	"video_interface_update_palette");
 	MakeDword	(0X525250);
 	MakeDword	(0X525254);
 	MakeDword	(0X525258);
@@ -122134,6 +122434,7 @@ static Bytes_20(void) {
 	MakeDword	(0X525390);
 	MakeName	(0X525390,	"hDlg");
 	MakeDword	(0X525394);
+	MakeName	(0X525394,	"input_queue_index");
 	MakeDword	(0X525398);
 	MakeDword	(0X52539C);
 	MakeName	(0X52539C,	"wParam");
@@ -122266,6 +122567,7 @@ static Bytes_20(void) {
 	MakeByte	(0X525E3C);
 	MakeByte	(0X525E3D);
 	MakeWord	(0X525E3E);
+	MakeName	(0X525E3E,	"sprites_next_index");
 	MakeWord	(0X525E40);
 	MakeWord	(0X525E42);
 	MakeWord	(0X525E46);
@@ -122278,8 +122580,10 @@ static Bytes_20(void) {
 	MakeDword	(0X525F5E);
 	MakeWord	(0X525F62);
 	MakeDword	(0X525F64);
+	MakeName	(0X525F64,	"scenario_ticks");
 	MakeDword	(0X525F68);
 	MakeWord	(0X525F6C);
+	MakeName	(0X525F6C,	"num_animated_objects");
 	MakeWord	(0X525F6E);
 	MakeWord	(0X525F70);
 	MakeByte	(0X525F72);
@@ -122370,6 +122674,7 @@ static Bytes_20(void) {
 	MakeByte	(0X53177C);
 	MakeByte	(0X53177E);
 	MakeByte	(0X531780);
+	MakeName	(0X531780,	"current_rain_level");
 	MakeArray	(0X531781,	0X3);
 	MakeWord	(0X531784);
 	MakeWord	(0X531786);
@@ -122541,6 +122846,7 @@ static Bytes_20(void) {
 	MakeWord	(0X9C68E2);
 	MakeWord	(0X9C68E4);
 	MakeWord	(0X9C68E6);
+	MakeName	(0X9C68E6,	"game_command_error_text");
 	MakeWord	(0X9C68E8);
 	MakeByte	(0X9C68EA);
 	MakeByte	(0X9C68EB);
@@ -122640,6 +122946,7 @@ static Bytes_20(void) {
 	MakeByte	(0X9D9CCD);
 	MakeByte	(0X9D9D4C);
 	MakeByte	(0X9D9D4D);
+	MakeName	(0X9D9D4D,	"write_chunk_encoding_type");
 	MakeDword	(0X9D9D4E);
 	MakeDword	(0X9D9D52);
 	MakeDword	(0X9D9D56);
@@ -122683,8 +122990,11 @@ static Bytes_20(void) {
 	MakeWord	(0X9E2420);
 	MakeWord	(0X9E2422);
 	MakeDword	(0X9E2424);
+	MakeName	(0X9E2424,	"g1_elements");
 	MakeDword	(0X9E2428);
+	MakeName	(0X9E2428,	"g1_elements_p4");
 	MakeDword	(0X9E242C);
+	MakeName	(0X9E242C,	"g1_elements_p8");
 	MakeDword	(0X9E2430);
 	MakeDword	(0X9E7214);
 	MakeWord	(0X9E7218);
@@ -122712,6 +123022,7 @@ static Bytes_20(void) {
 	MakeWord	(0X9E9C20);
 	MakeDword	(0X9EABB4);
 	MakeByte	(0XE025C4);
+	MakeName	(0XE025C4,	"screen_dirty_blocks");
 	MakeDword	(0XE04310);
 	MakeDword	(0XE04314);
 	MakeDword	(0XE04318);
@@ -122797,7 +123108,9 @@ static Bytes_20(void) {
 	MakeWord	(0XE0C3F2);
 	MakeDword	(0XE0C404);
 	MakeDword	(0XE0C408);
+	MakeName	(0XE0C408,	"paint_entry_2");
 	MakeDword	(0XE0C40C);
+	MakeName	(0XE0C40C,	"paint_entry");
 	MakeWord	(0XE3F090);
 	MakeWord	(0XE3F092);
 	MakeWord	(0XE3F094);
@@ -122817,13 +123130,18 @@ static Bytes_20(void) {
 	MakeDword	(0XE3F0B0);
 	MakeDword	(0XE3F0B4);
 	MakeDword	(0XE3F0B8);
+	MakeName	(0XE3F0B8,	"current_rotation");
 	MakeWord	(0XE3F0BC);
 	MakeArray	(0XE3F0BE,	0X2);
 	MakeDword	(0XE3F0C0);
 	MakeDword	(0XE400C0);
+	MakeName	(0XE400C0,	"_paintQuadrantBackIndex");
 	MakeDword	(0XE400C4);
+	MakeName	(0XE400C4,	"_paintQuadrantFrontIndex");
 	MakeDword	(0XE400C8);
+	MakeName	(0XE400C8,	"g_saved_ps_cur");
 	MakeDword	(0XE400CC);
+	MakeName	(0XE400CC,	"g_saved_ps_cur3");
 	MakeDword	(0XE400D0);
 	MakeDword	(0XE400D4);
 	MakeDword	(0XE400D8);
@@ -122852,6 +123170,7 @@ static Bytes_20(void) {
 	MakeWord	(0XE40130);
 	MakeByte	(0XE40132);
 	MakeDword	(0XE40134);
+	MakeName	(0XE40134,	"tile_map_element_pointers");
 	MakeDword	(0XF00134);
 	MakeDword	(0XF00138);
 	MakeDword	(0XF0013C);
@@ -122930,12 +123249,18 @@ static Bytes_20(void) {
 	MakeByte	(0XF00604);
 	MakeByte	(0XF00605);
 	MakeWord	(0XF24484);
+	MakeName	(0XF24484,	"map_selection_flags");
 	MakeWord	(0XF24486);
+	MakeName	(0XF24486,	"map_selection_a_x");
 	MakeWord	(0XF24488);
+	MakeName	(0XF24488,	"map_selection_b_x");
 	MakeWord	(0XF2448A);
+	MakeName	(0XF2448A,	"map_selection_a_y");
 	MakeWord	(0XF2448C);
+	MakeName	(0XF2448C,	"map_selection_b_y");
 	MakeWord	(0XF2448E);
 	MakeDword	(0XF24490);
+	MakeName	(0XF24490,	"map_selected_tiles");
 	MakeWord	(0XF24494);
 	MakeWord	(0XF24942);
 	MakeWord	(0XF24944);
@@ -122998,6 +123323,7 @@ static Bytes_20(void) {
 	MakeByte	(0XF2533D);
 	MakeByte	(0XF2533E);
 	MakeByte	(0XF2533F);
+	MakeName	(0XF2533F,	"gridlines_state");
 	MakeByte	(0XF25340);
 	MakeArray	(0XF25341,	0X3);
 	MakeDword	(0XF25344);
@@ -123437,13 +123763,16 @@ static Bytes_20(void) {
 	MakeWord	(0X112C81C);
 	MakeWord	(0X112C822);
 	MakeWord	(0X112C824);
+	MakeName	(0X112C824,	"current_font_flags");
 	MakeDword	(0X112C826);
+	MakeName	(0X112C826,	"common_format_args");
 	MakeDword	(0X112C82A);
 	MakeDword	(0X112C82E);
 	MakeDword	(0X112C832);
 	MakeWord	(0X112C836);
 	MakeWord	(0X112C838);
 	MakeWord	(0X112C876);
+	MakeName	(0X112C876,	"current_font_sprite_base");
 	MakeWord	(0X112C878);
 	MakeWord	(0X112C87A);
 	MakeWord	(0X112C87C);
@@ -123451,6 +123780,7 @@ static Bytes_20(void) {
 	MakeWord	(0X112C880);
 	MakeWord	(0X112C882);
 	MakeDword	(0X112C884);
+	MakeName	(0X112C884,	"font_character_widths");
 	MakeByte	(0X112C892);
 	MakeByte	(0X112CA44);
 	MakeByte	(0X112CBA7);
@@ -123463,6 +123793,7 @@ static Bytes_20(void) {
 	MakeWord	(0X112D404);
 	MakeArray	(0X112D406,	0X2);
 	MakeByte	(0X112D408);
+	MakeName	(0X112D408,	"character_bitmap_array");
 	MakeDword	(0X1135C28);
 	MakeDword	(0X1135C2C);
 	MakeDword	(0X1135C30);
@@ -123880,7 +124211,9 @@ static Bytes_20(void) {
 	MakeWord	(0X1136F90);
 	MakeWord	(0X1136F92);
 	MakeWord	(0X1136F94);
+	MakeName	(0X1136F94,	"window_dropdown_onpaint_cell_x");
 	MakeWord	(0X1136F96);
+	MakeName	(0X1136F96,	"window_dropdown_onpaint_cell_y");
 	MakeDword	(0X1136F98);
 	MakeDword	(0X1136F9C);
 	MakeWord	(0X1136FA0);
@@ -123892,10 +124225,14 @@ static Bytes_20(void) {
 	MakeByte	(0X11370A9);
 	MakeArray	(0X11370AA,	0X2);
 	MakeDword	(0X113D754);
+	MakeName	(0X113D754,	"new_window_pointer");
 	MakeDword	(0X113D820);
+	MakeName	(0X113D820,	"new_viewport_pointer");
 	MakeWord	(0X113D84C);
 	MakeWord	(0X113D84E);
+	MakeName	(0X113D84E,	"dropdown_highlighted_index");
 	MakeWord	(0X113D850);
+	MakeName	(0X113D850,	"dropdown_items_format");
 	MakeWord	(0X113D852);
 	MakeWord	(0X113D854);
 	MakeWord	(0X113D856);
@@ -123906,6 +124243,7 @@ static Bytes_20(void) {
 	MakeWord	(0X113D860);
 	MakeWord	(0X113D862);
 	MakeDword	(0X113D8A0);
+	MakeName	(0X113D8A0,	"dropdown_items_args");
 	MakeDword	(0X113D8A4);
 	MakeDword	(0X113D8A8);
 	MakeWord	(0X113D8AC);
@@ -123932,7 +124270,9 @@ static Bytes_20(void) {
 	MakeDword	(0X113DC60);
 	MakeDword	(0X113DC64);
 	MakeDword	(0X113DC68);
+	MakeName	(0X113DC68,	"dropdown_item_height");
 	MakeDword	(0X113DC6C);
+	MakeName	(0X113DC6C,	"dropdown_item_width");
 	MakeDword	(0X113DC70);
 	MakeDword	(0X113DC74);
 	MakeWord	(0X113DC78);
@@ -124074,6 +124414,7 @@ static Bytes_20(void) {
 	MakeDword	(0X113E0AC);
 	MakeName	(0X113E0AC,	"lpString");
 	MakeWord	(0X113E0B0);
+	MakeName	(0X113E0B0,	"os_time_month");
 	MakeArray	(0X113E0B2,	0X2);
 	MakeDword	(0X113E0B4);
 	MakeName	(0X113E0B4,	"hInstance");
@@ -124083,6 +124424,7 @@ static Bytes_20(void) {
 	MakeDword	(0X113E0C4);
 	MakeArray	(0X113E0C8,	0X18);
 	MakeWord	(0X113E1E0);
+	MakeName	(0X113E1E0,	"os_time_dayofweek");
 	MakeArray	(0X113E1E2,	0X2);
 	MakeDword	(0X113E1E4);
 	MakeArray	(0X113E1E8,	0X18);
@@ -124124,7 +124466,9 @@ static Bytes_20(void) {
 	MakeDword	(0X113E724);
 	MakeDword	(0X113E728);
 	MakeDword	(0X113E72C);
+	MakeName	(0X113E72C,	"ddwindow_cursor_x");
 	MakeDword	(0X113E730);
+	MakeName	(0X113E730,	"ddwindow_cursor_y");
 	MakeArray	(0X113E734,	0XC);
 	MakeByte	(0X113E740);
 	MakeArray	(0X113E740,	0X100);
@@ -124141,6 +124485,7 @@ static Bytes_20(void) {
 	MakeDword	(0X113E874);
 	MakeDword	(0X113E878);
 	MakeDword	(0X113E87C);
+	MakeName	(0X113E87C,	"error_location_detector");
 	MakeByte	(0X113E880);
 	MakeArray	(0X113E881,	0X1F);
 	MakeDword	(0X113E8A0);
@@ -124149,13 +124494,17 @@ static Bytes_20(void) {
 	MakeArray	(0X113E8C0,	0X104);
 	MakeName	(0X113E8C0,	"WindowName");
 	MakeWord	(0X113E9C4);
+	MakeName	(0X113E9C4,	"os_time_day");
 	MakeArray	(0X113E9C6,	0X2);
 	MakeDword	(0X113E9C8);
 	MakeDword	(0X113E9CC);
 	MakeDword	(0X113E9D0);
 	MakeDword	(0X113E9D4);
+	MakeName	(0X113E9D4,	"queue_cursor_x");
 	MakeDword	(0X113E9D8);
+	MakeName	(0X113E9D8,	"queue_cursor_y");
 	MakeWord	(0X113E9DC);
+	MakeName	(0X113E9DC,	"os_time_year");
 	MakeDword	(0X113ECE0);
 	MakeDword	(0X113ECE4);
 	MakeDword	(0X113ECE8);
@@ -124179,6 +124528,7 @@ static Bytes_20(void) {
 	MakeName	(0X113F128,	"dwPriorityClass");
 	MakeArray	(0X113F12C,	0X14);
 	MakeDword	(0X113FFE8);
+	MakeName	(0X113FFE8,	"current_dddisplaymode_index");
 	MakeDword	(0X113FFEC);
 	MakeDword	(0X113FFF0);
 	MakeDword	(0X113FFF4);
@@ -124189,8 +124539,11 @@ static Bytes_20(void) {
 	MakeDword	(0X1140008);
 	MakeArray	(0X114000C,	0X14);
 	MakeWord	(0X1140020);
+	MakeName	(0X1140020,	"dddisplaymodes_width");
 	MakeWord	(0X1140022);
+	MakeName	(0X1140022,	"dddisplaymodes_height");
 	MakeWord	(0X1140024);
+	MakeName	(0X1140024,	"dddisplaymodes_depth");
 	MakeDword	(0X1140620);
 	MakeDword	(0X1140624);
 	MakeDword	(0X1140628);
@@ -124700,7 +125053,7 @@ static Functions_0(void) {
 	MakeFunction    (0X404E3A,0X404E53);
 	SetFunctionFlags(0X404E3A,0x4400);
 	MakeFunction    (0X404E53,0X404E58);
-	SetFunctionFlags(0X404E53,0x4480);
+	SetFunctionFlags(0X404E53,0x44c0);
 	MakeFunction    (0X404E58,0X404E80);
 	SetFunctionFlags(0X404E58,0x4400);
 	MakeFunction    (0X404E80,0X404E8C);
@@ -132883,7 +133236,7 @@ static Functions_2(void) {
 	MakeFunction    (0X4CD00E,0X4CD015);
 	SetFunctionFlags(0X4CD00E,0x400);
 	MakeFunction    (0X4CD015,0X4CD01A);
-	SetFunctionFlags(0X4CD015,0x4480);
+	SetFunctionFlags(0X4CD015,0x44c0);
 	MakeFunction    (0X4CD01A,0X4CD01B);
 	SetFunctionFlags(0X4CD01A,0x4440);
 	MakeFunction    (0X4CD296,0X4CD320);
