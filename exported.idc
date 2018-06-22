@@ -195,7 +195,11 @@ static Enums_0(id) {
 	add_enum_member(id,"wtf_prompt_browse",	0X34,	0x3F);
 	add_enum_member(id,"wtf_prompt_okcancel",	0X36,	0x3F);
 	id = add_enum(-1,"widget_type",0);
-	add_enum_member(id,"widget_type_scroll",	0X1A,	-1);
+	add_enum_member(id,"widget_type_none",	0,	-1);
+	add_enum_member(id,"widget_type_panel",	0X1,	-1);
+	add_enum_member(id,"widget_type_frame",	0X2,	-1);
+	add_enum_member(id,"widget_type_viewport",	0X13,	-1);
+	add_enum_member(id,"widget_type_scrollview",	0X1A,	-1);
 	add_enum_member(id,"widget_end",	0X1E,	-1);
 	return id;
 }
@@ -469,11 +473,12 @@ static ApplyStrucTInfos_0(void) {
 	id = get_struc_id("town_t");
 	id = get_struc_id("industry_t");
 	id = get_struc_id("station_t");
-	id = get_struc_id("object_repository_item");
 	id = get_struc_id("entity_t");
 	id = get_struc_id("g1_element_t");
 	id = get_struc_id("str_32");
 	id = get_struc_id("dropdown_format_args_t");
+	id = get_struc_id("drawpixelinfo_t");
+	id = get_struc_id("pair_ptr");
 	return id;
 }
 
@@ -531,11 +536,12 @@ static Structures_0(id) {
 	id = add_struc(-1,"town_t",0);
 	id = add_struc(-1,"industry_t",0);
 	id = add_struc(-1,"station_t",0);
-	id = add_struc(-1,"object_repository_item",0);
 	id = add_struc(-1,"entity_t",0);
 	id = add_struc(-1,"g1_element_t",0);
 	id = add_struc(-1,"str_32",0);
 	id = add_struc(-1,"dropdown_format_args_t",0);
+	id = add_struc(-1,"drawpixelinfo_t",0);
+	id = add_struc(-1,"pair_ptr",0);
 	
 	id = get_struc_id("_SCOPETABLE_ENTRY");
 	mid = add_struc_member(id,"EnclosingLevel",	0,	0x20000400,	-1,	4);
@@ -859,7 +865,7 @@ static Structures_0(id) {
 	mid = add_struc_member(id,"event_8",	0X20,	0x20500400,	0,	4,	0XFFFFFFFFFFFFFFFF,	0,	0x000002);
 	mid = add_struc_member(id,"event_9",	0X24,	0x20500400,	0,	4,	0XFFFFFFFFFFFFFFFF,	0,	0x000002);
 	mid = add_struc_member(id,"event_10",	0X28,	0x20500400,	0,	4,	0XFFFFFFFFFFFFFFFF,	0,	0x000002);
-	mid = add_struc_member(id,"event_11",	0X2C,	0x20500400,	0,	4,	0XFFFFFFFFFFFFFFFF,	0,	0x000002);
+	mid = add_struc_member(id,"event_on_tool_down",	0X2C,	0x20500400,	0,	4,	0XFFFFFFFFFFFFFFFF,	0,	0x000002);
 	mid = add_struc_member(id,"event_12",	0X30,	0x20500400,	0,	4,	0XFFFFFFFFFFFFFFFF,	0,	0x000002);
 	mid = add_struc_member(id,"event_13",	0X34,	0x20500400,	0,	4,	0XFFFFFFFFFFFFFFFF,	0,	0x000002);
 	mid = add_struc_member(id,"event_tool_abort",	0X38,	0x20500400,	0,	4,	0XFFFFFFFFFFFFFFFF,	0,	0x000002);
@@ -867,16 +873,16 @@ static Structures_0(id) {
 	mid = add_struc_member(id,"event_get_scroll_size",	0X40,	0x20500400,	0,	4,	0XFFFFFFFFFFFFFFFF,	0,	0x000002);
 	mid = add_struc_member(id,"event_scroll_mouse_down",	0X44,	0x20500400,	0,	4,	0XFFFFFFFFFFFFFFFF,	0,	0x000002);
 	mid = add_struc_member(id,"event_18",	0X48,	0x20500400,	0,	4,	0XFFFFFFFFFFFFFFFF,	0,	0x000002);
-	mid = add_struc_member(id,"event_19",	0X4C,	0x20500400,	0,	4,	0XFFFFFFFFFFFFFFFF,	0,	0x000002);
+	mid = add_struc_member(id,"event_scroll_mouse_over",	0X4C,	0x20500400,	0,	4,	0XFFFFFFFFFFFFFFFF,	0,	0x000002);
 	mid = add_struc_member(id,"event_text_input",	0X50,	0x20500400,	0,	4,	0XFFFFFFFFFFFFFFFF,	0,	0x000002);
-	mid = add_struc_member(id,"event_21",	0X54,	0x20500400,	0,	4,	0XFFFFFFFFFFFFFFFF,	0,	0x000002);
+	mid = add_struc_member(id,"event_viewport_rotate",	0X54,	0x20500400,	0,	4,	0XFFFFFFFFFFFFFFFF,	0,	0x000002);
 	mid = add_struc_member(id,"event_22",	0X58,	0x20500400,	0,	4,	0XFFFFFFFFFFFFFFFF,	0,	0x000002);
 	mid = add_struc_member(id,"event_tooltip",	0X5C,	0x20500400,	0,	4,	0XFFFFFFFFFFFFFFFF,	0,	0x000002);
 	mid = add_struc_member(id,"event_cursor",	0X60,	0x20500400,	0,	4,	0XFFFFFFFFFFFFFFFF,	0,	0x000002);
-	mid = add_struc_member(id,"event_25",	0X64,	0x20500400,	0,	4,	0XFFFFFFFFFFFFFFFF,	0,	0x000002);
-	mid = add_struc_member(id,"event_invalidate",	0X68,	0x20500400,	0,	4,	0XFFFFFFFFFFFFFFFF,	0,	0x000002);
+	mid = add_struc_member(id,"event_on_move",	0X64,	0x20500400,	0,	4,	0XFFFFFFFFFFFFFFFF,	0,	0x000002);
+	mid = add_struc_member(id,"event_prepare_draw",	0X68,	0x20500400,	0,	4,	0XFFFFFFFFFFFFFFFF,	0,	0x000002);
 	mid = add_struc_member(id,"event_draw",	0X6C,	0x20500400,	0,	4,	0XFFFFFFFFFFFFFFFF,	0,	0x000002);
-	mid = add_struc_member(id,"event_scroll_paint",	0X70,	0x20500400,	0,	4,	0XFFFFFFFFFFFFFFFF,	0,	0x000002);
+	mid = add_struc_member(id,"event_draw_scroll",	0X70,	0x20500400,	0,	4,	0XFFFFFFFFFFFFFFFF,	0,	0x000002);
 	
 	id = get_struc_id("widget_t");
 	mid = add_struc_member(id,"type",	0,	0x000400,	-1,	1);
@@ -890,13 +896,13 @@ static Structures_0(id) {
 	
 	id = get_struc_id("scroll_t");
 	mid = add_struc_member(id,"flags",	0,	0x10000400,	-1,	2);
-	mid = add_struc_member(id,"var_002",	0X2,	0x10000400,	-1,	2);
-	mid = add_struc_member(id,"var_004",	0X4,	0x10000400,	-1,	2);
-	mid = add_struc_member(id,"var_006",	0X6,	0x10000400,	-1,	2);
-	mid = add_struc_member(id,"var_008",	0X8,	0x10000400,	-1,	2);
-	mid = add_struc_member(id,"var_00A",	0XA,	0x10000400,	-1,	2);
-	mid = add_struc_member(id,"var_00C",	0XC,	0x10000400,	-1,	2);
-	mid = add_struc_member(id,"var_00E",	0XE,	0x10000400,	-1,	2);
+	mid = add_struc_member(id,"h_left",	0X2,	0x10000400,	-1,	2);
+	mid = add_struc_member(id,"h_right",	0X4,	0x10000400,	-1,	2);
+	mid = add_struc_member(id,"h_thumb_left",	0X6,	0x10000400,	-1,	2);
+	mid = add_struc_member(id,"h_thumb_right",	0X8,	0x10000400,	-1,	2);
+	mid = add_struc_member(id,"v_top",	0XA,	0x10000400,	-1,	2);
+	mid = add_struc_member(id,"v_bottom",	0XC,	0x10000400,	-1,	2);
+	mid = add_struc_member(id,"v_thumb_top",	0XE,	0x10000400,	-1,	2);
 	mid = add_struc_member(id,"end",	0X11,	0x000400,	-1,	1);
 	
 	id = get_struc_id("viewport_config_t");
@@ -957,9 +963,6 @@ static Structures_0(id) {
 	id = get_struc_id("station_t");
 	mid = add_struc_member(id,"end",	0X3D1,	0x000400,	-1,	1);
 	
-	id = get_struc_id("object_repository_item");
-	mid = add_struc_member(id,"end",	0X7,	0x000400,	-1,	1);
-	
 	id = get_struc_id("entity_t");
 	mid = add_struc_member(id,"end",	0X7F,	0x000400,	-1,	1);
 	
@@ -977,6 +980,19 @@ static Structures_0(id) {
 	
 	id = get_struc_id("dropdown_format_args_t");
 	mid = add_struc_member(id,"end",	0X7,	0x000400,	-1,	1);
+	
+	id = get_struc_id("drawpixelinfo_t");
+	mid = add_struc_member(id,"bits",	0,	0x20000400,	-1,	4);
+	mid = add_struc_member(id,"x",	0X4,	0x10000400,	-1,	2);
+	mid = add_struc_member(id,"y",	0X6,	0x10000400,	-1,	2);
+	mid = add_struc_member(id,"width",	0X8,	0x10000400,	-1,	2);
+	mid = add_struc_member(id,"height",	0XA,	0x10000400,	-1,	2);
+	mid = add_struc_member(id,"pitch",	0XC,	0x10000400,	-1,	2);
+	mid = add_struc_member(id,"end",	0XF,	0x000400,	-1,	1);
+	
+	id = get_struc_id("pair_ptr");
+	mid = add_struc_member(id,"a",	0,	0x20500400,	0,	4,	0XFFFFFFFFFFFFFFFF,	0,	0x000002);
+	mid = add_struc_member(id,"b",	0X4,	0x20500400,	0,	4,	0XFFFFFFFFFFFFFFFF,	0,	0x000002);
 	return id;
 }
 
@@ -2389,10 +2405,6 @@ static Bytes_0(void) {
 	create_insn	(0X4028CF);
 	create_insn	(0X4028D7);
 	create_insn	(0X40291C);
-	create_insn	(x=0X40292E);
-	op_stkvar	(x,	1);
-	create_insn	(x=0X40293C);
-	op_stkvar	(x,	1);
 	create_insn	(0X40295A);
 	create_insn	(x=0X40295D);
 	op_hex		(x,	1);
@@ -3456,27 +3468,13 @@ static Bytes_0(void) {
 	set_cmt	(0X403FAE,	"hDC",	0);
 	set_cmt	(0X403FAF,	"hWnd",	0);
 	create_insn	(0X403FBF);
-	create_insn	(x=0X403FCF);
-	op_stkvar	(x,	1);
-	create_insn	(x=0X403FDB);
-	op_stkvar	(x,	1);
-	set_cmt	(0X403FE7,	"hWnd",	0);
-	set_cmt	(0X404002,	"bForceBkgd",	0);
-	set_cmt	(0X404003,	"hPal",	0);
-	set_cmt	(0X40401B,	"hdc",	0);
 	create_insn	(x=0X40402C);
 	op_plain_offset	(x,	0,	0);
 	op_plain_offset	(x,	128,	0);
 	create_insn	(x=0X404042);
 	op_hex		(x,	1);
-	set_cmt	(0X404045,	"hdc",	0);
 	create_insn	(0X404056);
 	create_insn	(0X40405B);
-	set_cmt	(0X404064,	"bForceBkgd",	0);
-	set_cmt	(0X404066,	"hPal",	0);
-	set_cmt	(0X40406C,	"hdc",	0);
-	set_cmt	(0X404073,	"hDC",	0);
-	set_cmt	(0X404079,	"hWnd",	0);
 	create_insn	(x=0X404085);
 	op_hex		(x,	1);
 	create_insn	(x=0X40408C);
@@ -3540,12 +3538,8 @@ static Bytes_0(void) {
 	set_cmt	(0X40416F,	"uExitCode",	0);
 	create_insn	(0X40417B);
 	create_insn	(0X40417F);
-	set_cmt	(0X404188,	"ho",	0);
 	create_insn	(x=0X40418F);
 	op_hex		(x,	1);
-	set_cmt	(0X4041A2,	"lpMem",	0);
-	set_cmt	(0X4041AE,	"lpMem",	0);
-	set_cmt	(0X4041CB,	"hWnd",	0);
 	create_insn	(x=0X4041D2);
 	op_hex		(x,	1);
 	create_insn	(0X4041DA);
@@ -6241,15 +6235,6 @@ static Bytes_0(void) {
 	op_stkvar	(x,	0);
 	create_insn	(0X407FFD);
 	set_name	(0X407FFD,	"check_mutex");
-}
-
-//------------------------------------------------------------------------
-// Information about bytes
-
-static Bytes_1(void) {
-        auto x;
-#define id x
-
 	create_insn	(x=0X408000);
 	op_hex		(x,	1);
 	create_insn	(x=0X408006);
@@ -6274,6 +6259,15 @@ static Bytes_1(void) {
 	set_cmt	(0X408053,	"lpName",	0);
 	set_cmt	(0X408054,	"bInitialOwner",	0);
 	set_cmt	(0X408056,	"lpMutexAttributes",	0);
+}
+
+//------------------------------------------------------------------------
+// Information about bytes
+
+static Bytes_1(void) {
+        auto x;
+#define id x
+
 	create_insn	(0X408062);
 	create_insn	(x=0X408065);
 	op_hex		(x,	1);
@@ -8959,8 +8953,6 @@ static Bytes_1(void) {
 	op_hex		(x,	1);
 	create_insn	(x=0X4125CB);
 	op_hex		(x,	1);
-	create_byte	(0X4125D6);
-	make_array	(0X4125D6,	0X2);
 	create_insn	(0X4125D8);
 	create_insn	(x=0X4125DD);
 	op_hex		(x,	1);
@@ -13298,9 +13290,12 @@ static Bytes_1(void) {
 	create_insn	(x=0X428672);
 	op_plain_offset	(x,	1,	0);
 	op_plain_offset	(x,	129,	0);
+	set_cmt	(0X4286AB,	"widgetIndex",	0);
+	set_cmt	(0X4286BC,	"window",	0);
 	create_insn	(x=0X4286BC);
 	op_plain_offset	(x,	1,	0);
 	op_plain_offset	(x,	129,	0);
+	set_cmt	(0X428703,	"widget",	0);
 	create_insn	(x=0X428703);
 	op_plain_offset	(x,	1,	0);
 	op_plain_offset	(x,	129,	0);
@@ -13316,15 +13311,6 @@ static Bytes_1(void) {
 	create_insn	(x=0X42874E);
 	op_plain_offset	(x,	1,	0);
 	op_plain_offset	(x,	129,	0);
-}
-
-//------------------------------------------------------------------------
-// Information about bytes
-
-static Bytes_2(void) {
-        auto x;
-#define id x
-
 	create_insn	(x=0X428760);
 	op_plain_offset	(x,	1,	0);
 	op_plain_offset	(x,	129,	0);
@@ -13355,6 +13341,15 @@ static Bytes_2(void) {
 	create_insn	(x=0X428809);
 	op_plain_offset	(x,	1,	0);
 	op_plain_offset	(x,	129,	0);
+}
+
+//------------------------------------------------------------------------
+// Information about bytes
+
+static Bytes_2(void) {
+        auto x;
+#define id x
+
 	create_insn	(x=0X428816);
 	op_plain_offset	(x,	1,	0);
 	op_plain_offset	(x,	129,	0);
@@ -13693,11 +13688,13 @@ static Bytes_2(void) {
 	op_stroff	(x,	0,	GetStrucIdByName("window_t"),	0);
 	create_insn	(0X4291FF);
 	create_insn	(0X429209);
+	set_cmt	(0X42920E,	"widgetIndex",	0);
 	create_insn	(x=0X42922A);
 	op_plain_offset	(x,	1,	0);
 	op_plain_offset	(x,	129,	0);
 	create_insn	(x=0X429234);
 	op_hex		(x,	1);
+	set_cmt	(0X429244,	"widget",	0);
 	create_insn	(0X429264);
 	create_insn	(x=0X42926A);
 	op_plain_offset	(x,	1,	0);
@@ -13786,11 +13783,13 @@ static Bytes_2(void) {
 	create_insn	(0X429486);
 	create_insn	(x=0X42948E);
 	op_hex		(x,	1);
+	set_cmt	(0X4294B7,	"widgetIndex",	0);
 	create_insn	(x=0X4294D3);
 	op_plain_offset	(x,	1,	0);
 	op_plain_offset	(x,	129,	0);
 	create_insn	(x=0X4294DD);
 	op_hex		(x,	1);
+	set_cmt	(0X4294ED,	"widget",	0);
 	create_insn	(0X42950D);
 	create_insn	(x=0X429513);
 	op_plain_offset	(x,	1,	0);
@@ -13891,6 +13890,7 @@ static Bytes_2(void) {
 	op_plain_offset	(x,	129,	0);
 	create_insn	(x=0X429783);
 	op_hex		(x,	1);
+	set_cmt	(0X4297A1,	"window",	0);
 	create_insn	(x=0X4297B3);
 	op_hex		(x,	1);
 	create_insn	(x=0X4297BF);
@@ -13912,6 +13912,7 @@ static Bytes_2(void) {
 	create_insn	(0X429862);
 	create_insn	(x=0X429886);
 	op_stkvar	(x,	1);
+	set_cmt	(0X4298A0,	"window",	0);
 	create_insn	(x=0X4298A9);
 	op_plain_offset	(x,	1,	0);
 	op_plain_offset	(x,	129,	0);
@@ -13919,6 +13920,7 @@ static Bytes_2(void) {
 	op_hex		(x,	1);
 	create_insn	(x=0X4298D7);
 	op_hex		(x,	1);
+	set_cmt	(0X429916,	"window",	0);
 	create_insn	(x=0X429938);
 	op_hex		(x,	1);
 	create_insn	(x=0X429944);
@@ -13940,6 +13942,7 @@ static Bytes_2(void) {
 	create_insn	(0X4299E7);
 	create_insn	(x=0X4299FB);
 	op_stkvar	(x,	1);
+	set_cmt	(0X429A15,	"window",	0);
 	create_insn	(x=0X429A1E);
 	op_plain_offset	(x,	1,	0);
 	op_plain_offset	(x,	129,	0);
@@ -13947,6 +13950,7 @@ static Bytes_2(void) {
 	op_hex		(x,	1);
 	create_insn	(x=0X429A4C);
 	op_hex		(x,	1);
+	set_cmt	(0X429A8F,	"window",	0);
 	set_cmt	(0X429AB5,	"left",	0);
 	set_cmt	(0X429AB9,	"top",	0);
 	set_cmt	(0X429ABD,	"right",	0);
@@ -13965,6 +13969,7 @@ static Bytes_2(void) {
 	op_hex		(x,	1);
 	create_insn	(x=0X429B8D);
 	op_hex		(x,	1);
+	set_cmt	(0X429BA8,	"window",	0);
 	create_insn	(0X429BB7);
 	set_name	(0X429BB7,	"ui::window_36::_widgets_0::event_on_mouse_up");
 	create_insn	(0X429BCE);
@@ -13979,6 +13984,7 @@ static Bytes_2(void) {
 	op_plain_offset	(x,	129,	0);
 	create_insn	(x=0X429C31);
 	op_hex		(x,	1);
+	set_cmt	(0X429C49,	"widgetIndex",	0);
 	create_insn	(0X429C57);
 	create_insn	(0X429C5F);
 	create_insn	(0X429C67);
@@ -14006,7 +14012,7 @@ static Bytes_2(void) {
 	create_insn	(x=0X429D5A);
 	op_hex		(x,	1);
 	create_insn	(0X429DA2);
-	set_name	(0X429DA2,	"ui::window_36::_widgets_0::event_21");
+	set_name	(0X429DA2,	"ui::window_36::_widgets_0::event_viewport_rotate");
 	create_insn	(0X429DA8);
 	set_name	(0X429DA8,	"nullsub_429da8");
 	create_insn	(0X429DA9);
@@ -14179,13 +14185,13 @@ static Bytes_2(void) {
 	op_plain_offset	(x,	1,	0);
 	op_plain_offset	(x,	129,	0);
 	create_insn	(0X42A545);
-	set_name	(0X42A545,	"ui::messages::event_1_invalidate");
+	set_name	(0X42A545,	"ui::messages::event_1_prepare_draw");
 	create_insn	(x=0X42A563);
 	op_hex		(x,	1);
 	create_insn	(0X42A5CC);
 	set_name	(0X42A5CC,	"ui::messages::event_1_draw");
 	create_insn	(0X42A5D7);
-	set_name	(0X42A5D7,	"ui::messages::event_1_scroll_paint");
+	set_name	(0X42A5D7,	"ui::messages::event_1_draw_scroll");
 	create_insn	(x=0X42A5E9);
 	op_hex		(x,	1);
 	create_insn	(x=0X42A5EE);
@@ -14289,7 +14295,7 @@ static Bytes_2(void) {
 	set_name	(0X42A871,	"ui::messages::event_1_get_scroll_size");
 	create_insn	(x=0X42A87C);
 	op_hex		(x,	1);
-	set_name	(0X42A87C,	"ui::messages::event_1_19");
+	set_name	(0X42A87C,	"ui::messages::event_1_scroll_mouse_over");
 	create_insn	(0X42A8B9);
 	set_name	(0X42A8B9,	"ui::messages::event_1_scroll_mouse_down");
 	create_insn	(x=0X42A8E6);
@@ -14313,7 +14319,7 @@ static Bytes_2(void) {
 	create_insn	(0X42A98D);
 	set_name	(0X42A98D,	"nullsub_42a98d");
 	create_insn	(0X42A98E);
-	set_name	(0X42A98E,	"ui::messages::event_2_invalidate");
+	set_name	(0X42A98E,	"ui::messages::event_2_prepare_draw");
 	create_insn	(x=0X42A9AC);
 	op_hex		(x,	1);
 	create_insn	(0X42AA02);
@@ -14554,6 +14560,7 @@ static Bytes_2(void) {
 	create_insn	(0X42C585);
 	create_insn	(0X42C58B);
 	create_insn	(0X42C5A0);
+	set_name	(0X42C5A0,	"obj_bridge");
 	create_insn	(0X42C5EE);
 	create_insn	(0X42C619);
 	create_insn	(0X42C632);
@@ -15090,6 +15097,7 @@ static Bytes_2(void) {
 	op_hex		(x,	1);
 	create_insn	(0X42DBD1);
 	create_insn	(0X42DBD2);
+	set_name	(0X42DBD2,	"obj_building");
 	create_insn	(x=0X42DC05);
 	op_hex		(x,	1);
 	create_insn	(x=0X42DC7C);
@@ -15107,6 +15115,7 @@ static Bytes_2(void) {
 	create_insn	(0X42DE3B);
 	create_insn	(0X42DE82);
 	create_insn	(0X42DECE);
+	set_name	(0X42DECE,	"obj_scaffolding");
 	create_insn	(0X42DEFE);
 	create_insn	(0X42DF0B);
 	create_insn	(0X42DF0E);
@@ -15882,6 +15891,7 @@ static Bytes_2(void) {
 	op_plain_offset	(x,	1,	0);
 	op_plain_offset	(x,	129,	0);
 	create_insn	(0X42F4C6);
+	set_name	(0X42F4C6,	"obj_cargo");
 	create_insn	(0X42F514);
 	create_insn	(0X42F533);
 	create_insn	(0X42F545);
@@ -16811,7 +16821,7 @@ static Bytes_2(void) {
 	op_hex		(x,	1);
 	create_insn	(x=0X431EBB);
 	op_stroff	(x,	1,	GetStrucIdByName("window_t"),	0);
-	set_name	(0X431EBB,	"ui::company::event_1_invalidate");
+	set_name	(0X431EBB,	"ui::company::event_1_prepare_draw");
 	create_insn	(x=0X431EC9);
 	op_stroff	(x,	1,	GetStrucIdByName("window_t"),	0);
 	create_insn	(x=0X431ECE);
@@ -16938,6 +16948,7 @@ static Bytes_2(void) {
 	create_insn	(x=0X432223);
 	op_plain_offset	(x,	1,	0);
 	op_plain_offset	(x,	129,	0);
+	set_cmt	(0X43222D,	"window",	0);
 	create_insn	(x=0X43222E);
 	op_stroff	(x,	0,	GetStrucIdByName("window_t"),	0);
 	create_insn	(0X432244);
@@ -17164,12 +17175,12 @@ static Bytes_2(void) {
 	op_stroff	(x,	1,	GetStrucIdByName("window_t"),	0);
 	create_insn	(x=0X432798);
 	op_stroff	(x,	1,	GetStrucIdByName("window_t"),	0);
-	set_name	(0X4327C8,	"ui::company::event_1_21");
+	set_name	(0X4327C8,	"ui::company::event_1_viewport_rotate");
 	create_insn	(0X4327CE);
 	set_name	(0X4327CE,	"nullsub_4327ce");
 	create_insn	(x=0X4327CF);
 	op_stroff	(x,	1,	GetStrucIdByName("window_t"),	0);
-	set_name	(0X4327CF,	"ui::company::event_2_invalidate");
+	set_name	(0X4327CF,	"ui::company::event_2_prepare_draw");
 	create_insn	(x=0X4327DD);
 	op_stroff	(x,	1,	GetStrucIdByName("window_t"),	0);
 	create_insn	(x=0X4327E2);
@@ -17297,6 +17308,7 @@ static Bytes_2(void) {
 	op_stroff	(x,	1,	GetStrucIdByName("window_t"),	0);
 	create_insn	(x=0X432BA4);
 	op_stroff	(x,	1,	GetStrucIdByName("window_t"),	0);
+	set_cmt	(0X432BC5,	"window",	0);
 	create_insn	(x=0X432BC7);
 	op_stroff	(x,	0,	GetStrucIdByName("window_t"),	0);
 	create_insn	(0X432BDD);
@@ -17332,7 +17344,7 @@ static Bytes_2(void) {
 	op_hex		(x,	1);
 	create_insn	(0X432D3E);
 	create_insn	(0X432D45);
-	set_name	(0X432D45,	"ui::company::event_2_11");
+	set_name	(0X432D45,	"ui::company::event_2_on_tool_down");
 	create_insn	(0X432D7A);
 	set_name	(0X432D7A,	"ui::company::event_2_tool_abort");
 	create_insn	(x=0X432D85);
@@ -17383,12 +17395,12 @@ static Bytes_2(void) {
 	op_stroff	(x,	1,	GetStrucIdByName("window_t"),	0);
 	create_insn	(x=0X432E04);
 	op_stroff	(x,	0,	GetStrucIdByName("window_t"),	0);
-	set_name	(0X432E08,	"ui::company::event_2_21");
+	set_name	(0X432E08,	"ui::company::event_2_viewport_rotate");
 	create_insn	(0X432E0E);
 	set_name	(0X432E0E,	"nullsub_432e0e");
 	create_insn	(x=0X432E0F);
 	op_stroff	(x,	1,	GetStrucIdByName("window_t"),	0);
-	set_name	(0X432E0F,	"ui::company::event_3_invalidate");
+	set_name	(0X432E0F,	"ui::company::event_3_prepare_draw");
 	create_insn	(x=0X432E1D);
 	op_stroff	(x,	1,	GetStrucIdByName("window_t"),	0);
 	create_insn	(x=0X432E22);
@@ -17538,7 +17550,7 @@ static Bytes_2(void) {
 	create_insn	(0X4332E3);
 	set_name	(0X4332E3,	"nullsub_4332e3");
 	create_insn	(0X4332E4);
-	set_name	(0X4332E4,	"ui::company::event_4_invalidate");
+	set_name	(0X4332E4,	"ui::company::event_4_prepare_draw");
 	create_insn	(x=0X433302);
 	op_hex		(x,	1);
 	create_insn	(x=0X433322);
@@ -17610,7 +17622,7 @@ static Bytes_2(void) {
 	op_plain_offset	(x,	1,	0);
 	op_plain_offset	(x,	129,	0);
 	create_insn	(0X43361E);
-	set_name	(0X43361E,	"ui::company::event_4_scroll_paint");
+	set_name	(0X43361E,	"ui::company::event_4_draw_scroll");
 	create_insn	(x=0X433645);
 	op_hex		(x,	1);
 	set_cmt	(0X43364F,	"top",	0);
@@ -17684,7 +17696,7 @@ static Bytes_2(void) {
 	create_insn	(0X433A21);
 	set_name	(0X433A21,	"nullsub_433a21");
 	create_insn	(0X433A22);
-	set_name	(0X433A22,	"ui::company::event_5_invalidate");
+	set_name	(0X433A22,	"ui::company::event_5_prepare_draw");
 	create_insn	(x=0X433A40);
 	op_hex		(x,	1);
 	create_insn	(x=0X433A60);
@@ -17746,7 +17758,7 @@ static Bytes_2(void) {
 	create_insn	(0X433D38);
 	set_name	(0X433D38,	"nullsub_433d38");
 	create_insn	(0X433D39);
-	set_name	(0X433D39,	"ui::company::event_6_invalidate");
+	set_name	(0X433D39,	"ui::company::event_6_prepare_draw");
 	create_insn	(x=0X433D57);
 	op_hex		(x,	1);
 	create_insn	(x=0X433D77);
@@ -18211,6 +18223,7 @@ static Bytes_2(void) {
 	create_insn	(0X434C36);
 	create_insn	(0X434C6E);
 	create_insn	(0X434C8E);
+	set_name	(0X434C8E,	"obj_competitors");
 	create_insn	(0X434D08);
 	create_insn	(x=0X434D24);
 	op_hex		(x,	1);
@@ -18284,7 +18297,7 @@ static Bytes_2(void) {
 	op_hex		(x,	1);
 	create_insn	(0X434FD0);
 	create_insn	(0X434FE8);
-	set_name	(0X434FE8,	"ui::company_face_selection::event_invalidate");
+	set_name	(0X434FE8,	"ui::company_face_selection::event_prepare_draw");
 	create_insn	(x=0X434FF5);
 	op_plain_offset	(x,	1,	0);
 	op_plain_offset	(x,	129,	0);
@@ -18307,7 +18320,7 @@ static Bytes_2(void) {
 	create_insn	(x=0X435147);
 	op_hex		(x,	1);
 	create_insn	(0X435152);
-	set_name	(0X435152,	"ui::company_face_selection::event_scroll_paint");
+	set_name	(0X435152,	"ui::company_face_selection::event_draw_scroll");
 	create_insn	(x=0X435164);
 	op_hex		(x,	1);
 	create_insn	(x=0X435169);
@@ -18349,7 +18362,7 @@ static Bytes_2(void) {
 	create_insn	(0X4352BB);
 	set_name	(0X4352BB,	"ui::company_face_selection::event_get_scroll_size");
 	create_insn	(0X4352C7);
-	set_name	(0X4352C7,	"ui::company_face_selection::event_19");
+	set_name	(0X4352C7,	"ui::company_face_selection::event_scroll_mouse_over");
 	create_insn	(x=0X4352D1);
 	op_hex		(x,	1);
 	create_insn	(0X435314);
@@ -18509,6 +18522,15 @@ static Bytes_2(void) {
 	set_cmt	(0X4358EF,	"colour",	0);
 	set_cmt	(0X4358F9,	"bottom",	0);
 	set_cmt	(0X435901,	"top",	0);
+}
+
+//------------------------------------------------------------------------
+// Information about bytes
+
+static Bytes_3(void) {
+        auto x;
+#define id x
+
 	set_cmt	(0X435904,	"left",	0);
 	set_cmt	(0X435908,	"right",	0);
 	set_cmt	(0X43590C,	"colour",	0);
@@ -18519,15 +18541,6 @@ static Bytes_2(void) {
 	set_cmt	(0X435929,	"colour",	0);
 	set_cmt	(0X43593B,	"left",	0);
 	set_cmt	(0X43593D,	"top",	0);
-}
-
-//------------------------------------------------------------------------
-// Information about bytes
-
-static Bytes_3(void) {
-        auto x;
-#define id x
-
 	set_cmt	(0X43593F,	"bottom",	0);
 	set_cmt	(0X435942,	"right",	0);
 	set_cmt	(0X435945,	"colour",	0);
@@ -18631,7 +18644,7 @@ static Bytes_3(void) {
 	op_plain_offset	(x,	129,	0);
 	create_insn	(x=0X435D07);
 	op_stroff	(x,	1,	GetStrucIdByName("window_t"),	0);
-	set_name	(0X435D07,	"ui::company_list::event_1_invalidate");
+	set_name	(0X435D07,	"ui::company_list::event_1_prepare_draw");
 	create_insn	(x=0X435D15);
 	op_stroff	(x,	1,	GetStrucIdByName("window_t"),	0);
 	create_insn	(x=0X435D1A);
@@ -18661,7 +18674,7 @@ static Bytes_3(void) {
 	op_plain_offset	(x,	1,	0);
 	op_plain_offset	(x,	129,	0);
 	create_insn	(0X435EA7);
-	set_name	(0X435EA7,	"ui::company_list::event_1_scroll_paint");
+	set_name	(0X435EA7,	"ui::company_list::event_1_draw_scroll");
 	create_insn	(x=0X435EA8);
 	op_stroff	(x,	1,	GetStrucIdByName("window_t"),	0);
 	create_insn	(x=0X435EB9);
@@ -18785,7 +18798,7 @@ static Bytes_3(void) {
 	set_name	(0X43632C,	"ui::company_list::event_1_cursor");
 	create_insn	(x=0X436361);
 	op_hex		(x,	1);
-	set_name	(0X436361,	"ui::company_list::event_1_19");
+	set_name	(0X436361,	"ui::company_list::event_1_scroll_mouse_over");
 	create_insn	(0X4363A0);
 	set_name	(0X4363A0,	"ui::company_list::event_1_scroll_mouse_down");
 	set_cmt	(0X4363C1,	"company_idx",	0);
@@ -18794,7 +18807,7 @@ static Bytes_3(void) {
 	create_insn	(0X436418);
 	set_name	(0X436418,	"nullsub_436418");
 	create_insn	(0X436419);
-	set_name	(0X436419,	"ui::company_list::event_2_invalidate");
+	set_name	(0X436419,	"ui::company_list::event_2_prepare_draw");
 	create_insn	(x=0X436437);
 	op_hex		(x,	1);
 	create_insn	(0X436490);
@@ -18834,7 +18847,7 @@ static Bytes_3(void) {
 	create_insn	(0X43673C);
 	set_name	(0X43673C,	"nullsub_43673c");
 	create_insn	(0X43673D);
-	set_name	(0X43673D,	"ui::company_list::event_3_invalidate");
+	set_name	(0X43673D,	"ui::company_list::event_3_prepare_draw");
 	create_insn	(x=0X43675B);
 	op_hex		(x,	1);
 	create_insn	(0X4367B4);
@@ -18874,7 +18887,7 @@ static Bytes_3(void) {
 	create_insn	(0X436A60);
 	set_name	(0X436A60,	"nullsub_436a60");
 	create_insn	(0X436A61);
-	set_name	(0X436A61,	"ui::company_list::event_4_invalidate");
+	set_name	(0X436A61,	"ui::company_list::event_4_prepare_draw");
 	create_insn	(x=0X436A7F);
 	op_hex		(x,	1);
 	create_insn	(0X436AD8);
@@ -18914,7 +18927,7 @@ static Bytes_3(void) {
 	create_insn	(0X436D84);
 	set_name	(0X436D84,	"nullsub_436d84");
 	create_insn	(0X436D85);
-	set_name	(0X436D85,	"ui::company_list::event_5_invalidate");
+	set_name	(0X436D85,	"ui::company_list::event_5_prepare_draw");
 	create_insn	(x=0X436DA3);
 	op_hex		(x,	1);
 	create_insn	(0X436DFC);
@@ -18954,7 +18967,7 @@ static Bytes_3(void) {
 	create_insn	(0X4370A8);
 	set_name	(0X4370A8,	"nullsub_4370a8");
 	create_insn	(0X4370A9);
-	set_name	(0X4370A9,	"ui::company_list::event_6_invalidate");
+	set_name	(0X4370A9,	"ui::company_list::event_6_prepare_draw");
 	create_insn	(x=0X4370C7);
 	op_hex		(x,	1);
 	create_insn	(0X437120);
@@ -18994,7 +19007,7 @@ static Bytes_3(void) {
 	create_insn	(0X4373E2);
 	set_name	(0X4373E2,	"nullsub_4373e2");
 	create_insn	(0X4373E3);
-	set_name	(0X4373E3,	"ui::company_list::event_7_invalidate");
+	set_name	(0X4373E3,	"ui::company_list::event_7_prepare_draw");
 	create_insn	(x=0X437401);
 	op_hex		(x,	1);
 	create_insn	(0X43745A);
@@ -19973,7 +19986,7 @@ static Bytes_3(void) {
 	create_insn	(x=0X438DFE);
 	op_stroff	(x,	0,	GetStrucIdByName("window_t"),	0);
 	create_insn	(0X438E0B);
-	set_name	(0X438E0B,	"ui::title_menu::_widgets::event_invalidate");
+	set_name	(0X438E0B,	"ui::title_menu::_widgets::event_prepare_draw");
 	create_insn	(x=0X438E0D);
 	op_stroff	(x,	0,	GetStrucIdByName("window_t"),	0);
 	create_insn	(x=0X438E6D);
@@ -20152,7 +20165,7 @@ static Bytes_3(void) {
 	create_insn	(x=0X4393CC);
 	op_enum		(x,	1,	GetEnum("windowtype"),0);
 	create_insn	(0X4393E7);
-	set_name	(0X4393E7,	"ui::toolbar_player_info::_widgets::event_invalidate");
+	set_name	(0X4393E7,	"ui::toolbar_player_info::_widgets::event_prepare_draw");
 	create_insn	(0X4393EF);
 	set_name	(0X4393EF,	"ui::toolbar_player_info::_widgets::event_draw");
 	set_cmt	(0X43940B,	"left",	0);
@@ -20168,6 +20181,7 @@ static Bytes_3(void) {
 	create_insn	(x=0X439417);
 	op_stroff	(x,	1,	GetStrucIdByName("window_t"),	0);
 	set_cmt	(0X43941B,	"colour",	0);
+	set_cmt	(0X439425,	"window",	0);
 	set_cmt	(0X43944F,	"left",	0);
 	set_cmt	(0X439453,	"right",	0);
 	set_cmt	(0X439457,	"top",	0);
@@ -20258,7 +20272,7 @@ static Bytes_3(void) {
 	create_insn	(0X4396A3);
 	set_name	(0X4396A3,	"nullsub_4396a3");
 	create_insn	(0X4396A4);
-	set_name	(0X4396A4,	"ui::toolbar_time::_widgets::event_invalidate");
+	set_name	(0X4396A4,	"ui::toolbar_time::_widgets::event_prepare_draw");
 	create_insn	(0X4396E8);
 	create_insn	(0X4396FD);
 	create_insn	(0X439712);
@@ -20272,6 +20286,7 @@ static Bytes_3(void) {
 	set_cmt	(0X4397E2,	"top",	0);
 	set_cmt	(0X4397E6,	"bottom",	0);
 	set_cmt	(0X4397EA,	"colour",	0);
+	set_cmt	(0X4397F4,	"window",	0);
 	set_cmt	(0X43981E,	"left",	0);
 	set_cmt	(0X439822,	"right",	0);
 	set_cmt	(0X439826,	"top",	0);
@@ -20340,7 +20355,7 @@ static Bytes_3(void) {
 	create_insn	(0X439B3C);
 	set_name	(0X439B3C,	"nullsub_439b3c");
 	create_insn	(0X439B3D);
-	set_name	(0X439B3D,	"ui::tutorial::_widgets::event_invalidate");
+	set_name	(0X439B3D,	"ui::tutorial::_widgets::event_prepare_draw");
 	create_insn	(0X439B4A);
 	set_name	(0X439B4A,	"ui::tutorial::_widgets::event_draw");
 	create_insn	(x=0X439B59);
@@ -20355,7 +20370,7 @@ static Bytes_3(void) {
 	op_enum		(x,	1,	GetEnum("windowtype"),0);
 	create_insn	(0X439BCA);
 	create_insn	(0X439BCB);
-	set_name	(0X439BCB,	"ui::toolbar_top::_widgets::event_invalidate");
+	set_name	(0X439BCB,	"ui::toolbar_top::_widgets::event_prepare_draw");
 	create_insn	(x=0X439BD7);
 	op_hex		(x,	1);
 	create_insn	(x=0X439BE8);
@@ -20769,7 +20784,7 @@ static Bytes_3(void) {
 	create_insn	(0X43B594);
 	set_name	(0X43B594,	"ui::about_atari::_widgets::event_draw");
 	create_insn	(0X43B59A);
-	set_name	(0X43B59A,	"ui::about_atari::_widgets::event_scroll_paint");
+	set_name	(0X43B59A,	"ui::about_atari::_widgets::event_draw_scroll");
 	create_insn	(0X43B89D);
 	set_name	(0X43B89D,	"ui::about_atari::_widgets::event_on_mouse_up");
 	create_insn	(0X43B8A8);
@@ -20781,7 +20796,7 @@ static Bytes_3(void) {
 	create_insn	(0X43B8B8);
 	set_name	(0X43B8B8,	"ui::about_music::_widgets::event_draw");
 	create_insn	(0X43B8BE);
-	set_name	(0X43B8BE,	"ui::about_music::_widgets::event_scroll_paint");
+	set_name	(0X43B8BE,	"ui::about_music::_widgets::event_draw_scroll");
 	create_insn	(0X43BFB0);
 	set_name	(0X43BFB0,	"ui::about_music::_widgets::event_on_mouse_up");
 	create_insn	(0X43BFBB);
@@ -21016,6 +21031,7 @@ static Bytes_3(void) {
 	op_plain_offset	(x,	1,	0);
 	op_plain_offset	(x,	129,	0);
 	create_insn	(0X43C823);
+	set_name	(0X43C823,	"obj_interface_skin");
 	create_insn	(0X43C853);
 	create_insn	(0X43C860);
 	create_insn	(0X43C863);
@@ -21033,6 +21049,7 @@ static Bytes_3(void) {
 	create_insn	(x=0X43C918);
 	op_enum		(x,	1,	GetEnum("windowtype"),0);
 	create_insn	(0X43CA76);
+	set_name	(0X43CA76,	"obj_region");
 	create_insn	(x=0X43CAF2);
 	op_stkvar	(x,	1);
 	create_insn	(x=0X43CAF5);
@@ -21111,7 +21128,7 @@ static Bytes_3(void) {
 	create_insn	(x=0X43CDA8);
 	op_enum		(x,	1,	GetEnum("windowtype"),0);
 	create_insn	(0X43CE21);
-	set_name	(0X43CE21,	"ui::window_4::_widgets::event_invalidate");
+	set_name	(0X43CE21,	"ui::window_4::_widgets::event_prepare_draw");
 	create_insn	(0X43CE47);
 	create_insn	(0X43CE56);
 	create_insn	(0X43CE65);
@@ -21126,6 +21143,7 @@ static Bytes_3(void) {
 	set_cmt	(0X43CEC9,	"top",	0);
 	set_cmt	(0X43CECD,	"bottom",	0);
 	set_cmt	(0X43CED1,	"colour",	0);
+	set_cmt	(0X43CEDB,	"window",	0);
 	set_cmt	(0X43CF0E,	"left",	0);
 	set_cmt	(0X43CF12,	"right",	0);
 	set_cmt	(0X43CF16,	"top",	0);
@@ -21217,7 +21235,7 @@ static Bytes_3(void) {
 	create_insn	(0X43D2F2);
 	set_name	(0X43D2F2,	"nullsub_43d2f2");
 	create_insn	(0X43D2F3);
-	set_name	(0X43D2F3,	"ui::toolbar_top_alt::_widgets::event_invalidate");
+	set_name	(0X43D2F3,	"ui::toolbar_top_alt::_widgets::event_prepare_draw");
 	create_insn	(x=0X43D3CD);
 	op_hex		(x,	1);
 	create_insn	(x=0X43D3DE);
@@ -21344,7 +21362,7 @@ static Bytes_3(void) {
 	op_plain_offset	(x,	1,	0);
 	op_plain_offset	(x,	129,	0);
 	create_insn	(0X43DB76);
-	set_name	(0X43DB76,	"ui::landscape_generation::event_1_invalidate");
+	set_name	(0X43DB76,	"ui::landscape_generation::event_1_prepare_draw");
 	create_insn	(x=0X43DB94);
 	op_hex		(x,	1);
 	create_insn	(x=0X43DBFF);
@@ -21391,7 +21409,7 @@ static Bytes_3(void) {
 	create_insn	(0X43DEBE);
 	set_name	(0X43DEBE,	"nullsub_43debe");
 	create_insn	(0X43DEBF);
-	set_name	(0X43DEBF,	"ui::landscape_generation::event_2_invalidate");
+	set_name	(0X43DEBF,	"ui::landscape_generation::event_2_prepare_draw");
 	create_insn	(x=0X43DEDD);
 	op_hex		(x,	1);
 	create_insn	(x=0X43DF70);
@@ -21403,7 +21421,7 @@ static Bytes_3(void) {
 	create_insn	(0X43DF89);
 	set_name	(0X43DF89,	"ui::landscape_generation::event_2_draw");
 	create_insn	(0X43E01C);
-	set_name	(0X43E01C,	"ui::landscape_generation::event_2_scroll_paint");
+	set_name	(0X43E01C,	"ui::landscape_generation::event_2_draw_scroll");
 	create_insn	(x=0X43E061);
 	op_plain_offset	(x,	1,	0);
 	op_plain_offset	(x,	129,	0);
@@ -21474,7 +21492,7 @@ static Bytes_3(void) {
 	create_insn	(0X43E441);
 	create_insn	(0X43E449);
 	create_insn	(0X43E44F);
-	set_name	(0X43E44F,	"ui::landscape_generation::event_3_invalidate");
+	set_name	(0X43E44F,	"ui::landscape_generation::event_3_prepare_draw");
 	create_insn	(x=0X43E46D);
 	op_hex		(x,	1);
 	create_insn	(0X43E53A);
@@ -21511,7 +21529,7 @@ static Bytes_3(void) {
 	create_insn	(0X43E90C);
 	set_name	(0X43E90C,	"nullsub_43e90c");
 	create_insn	(0X43E90D);
-	set_name	(0X43E90D,	"ui::landscape_generation::event_4_invalidate");
+	set_name	(0X43E90D,	"ui::landscape_generation::event_4_prepare_draw");
 	create_insn	(x=0X43E92B);
 	op_hex		(x,	1);
 	create_insn	(0X43E9A3);
@@ -21538,7 +21556,7 @@ static Bytes_3(void) {
 	create_insn	(0X43EAEA);
 	set_name	(0X43EAEA,	"nullsub_43eaea");
 	create_insn	(0X43EAEB);
-	set_name	(0X43EAEB,	"ui::landscape_generation::event_5_invalidate");
+	set_name	(0X43EAEB,	"ui::landscape_generation::event_5_prepare_draw");
 	create_insn	(x=0X43EB09);
 	op_hex		(x,	1);
 	create_insn	(x=0X43EB75);
@@ -21605,6 +21623,7 @@ static Bytes_3(void) {
 	op_enum		(x,	1,	GetEnum("windowtype"),0);
 	set_cmt	(0X43EDB7,	"number",	0);
 	create_insn	(0X43EDD9);
+	set_name	(0X43EDD9,	"obj_scenario_text");
 	create_insn	(0X43EE0B);
 	create_insn	(0X43EE17);
 	create_insn	(0X43EE1A);
@@ -21651,7 +21670,7 @@ static Bytes_3(void) {
 	op_plain_offset	(x,	1,	0);
 	op_plain_offset	(x,	129,	0);
 	create_insn	(0X43EF8B);
-	set_name	(0X43EF8B,	"ui::scenario_options::event_4_invalidate");
+	set_name	(0X43EF8B,	"ui::scenario_options::event_4_prepare_draw");
 	create_insn	(x=0X43EFA9);
 	op_hex		(x,	1);
 	create_insn	(0X43F004);
@@ -21735,7 +21754,7 @@ static Bytes_3(void) {
 	create_insn	(0X43F40B);
 	set_name	(0X43F40B,	"nullsub_43f40b");
 	create_insn	(0X43F40C);
-	set_name	(0X43F40C,	"ui::scenario_options::event_2_invalidate");
+	set_name	(0X43F40C,	"ui::scenario_options::event_2_prepare_draw");
 	create_insn	(x=0X43F42A);
 	op_hex		(x,	1);
 	create_insn	(x=0X43F4C5);
@@ -21778,7 +21797,7 @@ static Bytes_3(void) {
 	create_insn	(0X43F8CE);
 	set_name	(0X43F8CE,	"nullsub_43f8ce");
 	create_insn	(0X43F8CF);
-	set_name	(0X43F8CF,	"ui::scenario_options::event_3_invalidate");
+	set_name	(0X43F8CF,	"ui::scenario_options::event_3_prepare_draw");
 	create_insn	(x=0X43F8ED);
 	op_hex		(x,	1);
 	create_insn	(x=0X43F94D);
@@ -21809,9 +21828,10 @@ static Bytes_3(void) {
 	create_insn	(0X43FB0B);
 	set_name	(0X43FB0B,	"nullsub_43fb0b");
 	create_insn	(0X43FB0C);
-	set_name	(0X43FB0C,	"ui::scenario_options::event_1_invalidate");
+	set_name	(0X43FB0C,	"ui::scenario_options::event_1_prepare_draw");
 	create_insn	(x=0X43FB2A);
 	op_hex		(x,	1);
+	set_cmt	(0X43FB37,	"widgetIndex",	0);
 	create_insn	(0X43FBB5);
 	create_insn	(0X43FBCB);
 	create_insn	(0X43FBE1);
@@ -22154,6 +22174,7 @@ static Bytes_3(void) {
 	create_insn	(0X440C3F);
 	create_insn	(0X440C6B);
 	create_insn	(0X440C97);
+	set_name	(0X440C97,	"obj_steam");
 	create_insn	(0X440CE0);
 	create_insn	(0X440CF8);
 	create_insn	(x=0X440D46);
@@ -23014,6 +23035,15 @@ static Bytes_3(void) {
 	create_insn	(x=0X442923);
 	op_hex		(x,	1);
 	create_insn	(0X44293C);
+}
+
+//------------------------------------------------------------------------
+// Information about bytes
+
+static Bytes_4(void) {
+        auto x;
+#define id x
+
 	set_cmt	(0X442950,	"hObject",	0);
 	create_insn	(x=0X44295B);
 	op_hex		(x,	1);
@@ -23054,15 +23084,6 @@ static Bytes_3(void) {
 	op_plain_offset	(x,	129,	0);
 	create_insn	(0X442AC8);
 	set_cmt	(0X442AD2,	"hObject",	0);
-}
-
-//------------------------------------------------------------------------
-// Information about bytes
-
-static Bytes_4(void) {
-        auto x;
-#define id x
-
 	create_insn	(x=0X442ADD);
 	op_hex		(x,	1);
 	create_insn	(0X442AFC);
@@ -23099,6 +23120,7 @@ static Bytes_4(void) {
 	create_insn	(x=0X442BF8);
 	op_plain_offset	(x,	1,	0);
 	op_plain_offset	(x,	129,	0);
+	set_cmt	(0X442C07,	"window",	0);
 	create_insn	(0X442C17);
 	set_cmt	(0X442C29,	"nNumberOfBytesToWrite",	0);
 	set_cmt	(0X442C2B,	"lpBuffer",	0);
@@ -23232,6 +23254,7 @@ static Bytes_4(void) {
 	set_cmt	(0X443179,	"hFile",	0);
 	create_insn	(x=0X443184);
 	op_hex		(x,	1);
+	set_cmt	(0X443191,	"window",	0);
 	create_insn	(0X4431A6);
 	set_cmt	(0X4431B6,	"nNumberOfBytesToRead",	0);
 	set_cmt	(0X4431B7,	"lpBuffer",	0);
@@ -23427,7 +23450,7 @@ static Bytes_4(void) {
 	op_hex		(x,	1);
 	create_insn	(0X44397B);
 	create_insn	(0X443995);
-	set_name	(0X443995,	"ui::scenario_select::_widgets::event_invalidate");
+	set_name	(0X443995,	"ui::scenario_select::_widgets::event_prepare_draw");
 	create_insn	(x=0X443998);
 	op_hex		(x,	1);
 	create_insn	(0X4439AF);
@@ -23438,6 +23461,7 @@ static Bytes_4(void) {
 	set_cmt	(0X4439CA,	"right",	0);
 	set_cmt	(0X4439CC,	"colour",	0);
 	set_cmt	(0X4439D3,	"flags",	0);
+	set_cmt	(0X4439DB,	"window",	0);
 	create_insn	(x=0X4439EB);
 	op_plain_offset	(x,	1,	0);
 	op_plain_offset	(x,	129,	0);
@@ -23495,7 +23519,7 @@ static Bytes_4(void) {
 	op_plain_offset	(x,	129,	0);
 	create_insn	(x=0X443D02);
 	op_stroff	(x,	1,	GetStrucIdByName("window_t"),	0);
-	set_name	(0X443D02,	"ui::scenario_select::_widgets::event_scroll_paint");
+	set_name	(0X443D02,	"ui::scenario_select::_widgets::event_draw_scroll");
 	create_insn	(x=0X443D13);
 	op_hex		(x,	1);
 	create_insn	(x=0X443D18);
@@ -23569,7 +23593,7 @@ static Bytes_4(void) {
 	op_hex		(x,	1);
 	create_insn	(0X443FA1);
 	create_insn	(0X443FB2);
-	set_name	(0X443FB2,	"ui::scenario_select::_widgets::event_19");
+	set_name	(0X443FB2,	"ui::scenario_select::_widgets::event_scroll_mouse_over");
 	create_insn	(x=0X443FD1);
 	op_hex		(x,	1);
 	create_insn	(0X443FEC);
@@ -24236,7 +24260,7 @@ static Bytes_4(void) {
 	create_insn	(x=0X445C8F);
 	op_plain_offset	(x,	1,	0);
 	op_plain_offset	(x,	129,	0);
-	set_name	(0X445C8F,	"ui::prompt_browse::_widgets::event_invalidate");
+	set_name	(0X445C8F,	"ui::prompt_browse::_widgets::event_prepare_draw");
 	create_insn	(x=0X445C94);
 	op_plain_offset	(x,	1,	0);
 	op_plain_offset	(x,	129,	0);
@@ -24378,7 +24402,7 @@ static Bytes_4(void) {
 	op_stkvar	(x,	1);
 	set_cmt	(0X446304,	"colour",	0);
 	create_insn	(0X446314);
-	set_name	(0X446314,	"ui::prompt_browse::_widgets::event_scroll_paint");
+	set_name	(0X446314,	"ui::prompt_browse::_widgets::event_draw_scroll");
 	create_insn	(x=0X446325);
 	op_hex		(x,	1);
 	create_insn	(x=0X44632A);
@@ -24419,7 +24443,13 @@ static Bytes_4(void) {
 	create_insn	(0X4464A1);
 	set_name	(0X4464A1,	"ui::prompt_browse::_widgets::event_get_scroll_size");
 	create_insn	(0X4464B1);
-	set_name	(0X4464B1,	"ui::prompt_browse::_widgets::event_19");
+	set_name	(0X4464B1,	"ui::prompt_browse::_widgets::event_scroll_mouse_over");
+	create_insn	(x=0X4464C3);
+	op_stroff	(x,	1,	GetStrucIdByName("window_t"),	0);
+	create_insn	(x=0X4464D9);
+	op_stroff	(x,	1,	GetStrucIdByName("window_t"),	0);
+	create_insn	(x=0X4464E6);
+	op_stroff	(x,	0,	GetStrucIdByName("window_t"),	0);
 	create_insn	(0X4464F7);
 	set_name	(0X4464F7,	"ui::prompt_browse::_widgets::event_scroll_mouse_down");
 	create_insn	(x=0X446516);
@@ -24755,7 +24785,7 @@ static Bytes_4(void) {
 	create_insn	(x=0X447086);
 	op_hex		(x,	1);
 	create_insn	(0X447093);
-	set_name	(0X447093,	"ui::prompt_ok_cancel::_widgets::event_invalidate");
+	set_name	(0X447093,	"ui::prompt_ok_cancel::_widgets::event_prepare_draw");
 	create_insn	(x=0X447099);
 	op_plain_offset	(x,	1,	0);
 	op_plain_offset	(x,	129,	0);
@@ -28145,7 +28175,7 @@ static Bytes_4(void) {
 	create_insn	(x=0X455AB9);
 	op_hex		(x,	1);
 	create_insn	(0X455ADD);
-	set_name	(0X455ADD,	"ui::industry::event_1_invalidate");
+	set_name	(0X455ADD,	"ui::industry::event_1_prepare_draw");
 	create_insn	(x=0X455AFB);
 	op_hex		(x,	1);
 	create_insn	(x=0X455B1B);
@@ -28225,11 +28255,11 @@ static Bytes_4(void) {
 	set_name	(0X455F1A,	"ui::industry::event_1_on_resize");
 	create_insn	(x=0X455F91);
 	op_hex		(x,	1);
-	set_name	(0X455FD2,	"ui::industry::event_1_21");
+	set_name	(0X455FD2,	"ui::industry::event_1_viewport_rotate");
 	create_insn	(0X455FD8);
 	set_name	(0X455FD8,	"nullsub_455fd8");
 	create_insn	(0X455FD9);
-	set_name	(0X455FD9,	"ui::industry::event_2_invalidate");
+	set_name	(0X455FD9,	"ui::industry::event_2_prepare_draw");
 	create_insn	(x=0X455FF7);
 	op_hex		(x,	1);
 	create_insn	(x=0X456017);
@@ -28307,7 +28337,7 @@ static Bytes_4(void) {
 	create_insn	(x=0X456236);
 	op_stkvar	(x,	1);
 	create_insn	(0X45626F);
-	set_name	(0X45626F,	"ui::industry::event_3_invalidate");
+	set_name	(0X45626F,	"ui::industry::event_3_prepare_draw");
 	create_insn	(x=0X45628D);
 	op_hex		(x,	1);
 	create_insn	(x=0X4562AD);
@@ -28419,7 +28449,7 @@ static Bytes_4(void) {
 	create_insn	(0X456664);
 	set_name	(0X456664,	"nullsub_456664");
 	create_insn	(0X456665);
-	set_name	(0X456665,	"ui::industry::event_4_invalidate");
+	set_name	(0X456665,	"ui::industry::event_4_prepare_draw");
 	create_insn	(x=0X456683);
 	op_hex		(x,	1);
 	create_insn	(x=0X4566A3);
@@ -28926,6 +28956,15 @@ static Bytes_4(void) {
 	op_hex		(x,	1);
 	create_insn	(x=0X457735);
 	op_hex		(x,	1);
+}
+
+//------------------------------------------------------------------------
+// Information about bytes
+
+static Bytes_5(void) {
+        auto x;
+#define id x
+
 	create_insn	(x=0X45773B);
 	op_hex		(x,	1);
 	create_insn	(x=0X45773E);
@@ -28976,15 +29015,6 @@ static Bytes_4(void) {
 	set_cmt	(0X45788C,	"windowtype",	0);
 	create_insn	(x=0X45788C);
 	op_enum		(x,	1,	GetEnum("windowtype32"),0);
-}
-
-//------------------------------------------------------------------------
-// Information about bytes
-
-static Bytes_5(void) {
-        auto x;
-#define id x
-
 	create_insn	(x=0X457891);
 	op_plain_offset	(x,	1,	0);
 	op_plain_offset	(x,	129,	0);
@@ -29004,10 +29034,12 @@ static Bytes_5(void) {
 	create_insn	(x=0X457988);
 	op_plain_offset	(x,	1,	0);
 	op_plain_offset	(x,	129,	0);
+	set_cmt	(0X457991,	"widgetIndex",	0);
 	create_insn	(0X457991);
 	create_insn	(x=0X457993);
 	op_plain_offset	(x,	1,	0);
 	op_plain_offset	(x,	129,	0);
+	set_cmt	(0X457998,	"widget",	0);
 	create_insn	(x=0X4579A4);
 	op_hex		(x,	1);
 	create_insn	(x=0X4579E5);
@@ -29070,7 +29102,7 @@ static Bytes_5(void) {
 	create_insn	(x=0X457B8C);
 	op_hex		(x,	1);
 	create_insn	(0X457B94);
-	set_name	(0X457B94,	"ui::industry_list::event_1_invalidate");
+	set_name	(0X457B94,	"ui::industry_list::event_1_prepare_draw");
 	create_insn	(x=0X457BB2);
 	op_hex		(x,	1);
 	create_insn	(x=0X457CB5);
@@ -29084,7 +29116,7 @@ static Bytes_5(void) {
 	op_plain_offset	(x,	1,	0);
 	op_plain_offset	(x,	129,	0);
 	create_insn	(0X457D2A);
-	set_name	(0X457D2A,	"ui::industry_list::event_1_scroll_paint");
+	set_name	(0X457D2A,	"ui::industry_list::event_1_draw_scroll");
 	create_insn	(x=0X457D3C);
 	op_hex		(x,	1);
 	create_insn	(x=0X457D41);
@@ -29192,7 +29224,7 @@ static Bytes_5(void) {
 	set_name	(0X458113,	"ui::industry_list::event_1_cursor");
 	create_insn	(x=0X458140);
 	op_hex		(x,	1);
-	set_name	(0X458140,	"ui::industry_list::event_1_19");
+	set_name	(0X458140,	"ui::industry_list::event_1_scroll_mouse_over");
 	create_insn	(0X458172);
 	set_name	(0X458172,	"ui::industry_list::event_1_scroll_mouse_down");
 	create_insn	(0X45819D);
@@ -29200,7 +29232,7 @@ static Bytes_5(void) {
 	create_insn	(0X45819E);
 	set_name	(0X45819E,	"nullsub_45819e");
 	create_insn	(0X45819F);
-	set_name	(0X45819F,	"ui::industry_list::event_2_invalidate");
+	set_name	(0X45819F,	"ui::industry_list::event_2_prepare_draw");
 	create_insn	(x=0X4581BD);
 	op_hex		(x,	1);
 	create_insn	(x=0X458239);
@@ -29220,7 +29252,7 @@ static Bytes_5(void) {
 	op_stkvar	(x,	1);
 	create_insn	(0X45833D);
 	create_insn	(0X458352);
-	set_name	(0X458352,	"ui::industry_list::event_2_scroll_paint");
+	set_name	(0X458352,	"ui::industry_list::event_2_draw_scroll");
 	create_insn	(x=0X458375);
 	op_stkvar	(x,	1);
 	set_cmt	(0X4583B3,	"left",	0);
@@ -29247,7 +29279,7 @@ static Bytes_5(void) {
 	op_stkvar	(x,	1);
 	create_insn	(0X458518);
 	create_insn	(0X45851F);
-	set_name	(0X45851F,	"ui::industry_list::event_2_11");
+	set_name	(0X45851F,	"ui::industry_list::event_2_on_tool_down");
 	create_insn	(x=0X458587);
 	op_hex		(x,	1);
 	create_insn	(x=0X45858A);
@@ -29274,7 +29306,7 @@ static Bytes_5(void) {
 	create_insn	(x=0X458712);
 	op_stroff	(x,	0,	GetStrucIdByName("window_t"),	0);
 	create_insn	(0X458721);
-	set_name	(0X458721,	"ui::industry_list::event_2_19");
+	set_name	(0X458721,	"ui::industry_list::event_2_scroll_mouse_over");
 	create_insn	(0X458757);
 	create_insn	(x=0X4587BB);
 	op_plain_offset	(x,	1,	0);
@@ -29339,6 +29371,7 @@ static Bytes_5(void) {
 	op_hex		(x,	1);
 	create_insn	(0X458CC2);
 	create_insn	(0X458CC3);
+	set_name	(0X458CC3,	"obj_industry");
 	create_insn	(x=0X458D38);
 	op_hex		(x,	1);
 	create_insn	(0X458D60);
@@ -32210,6 +32243,7 @@ static Bytes_5(void) {
 	create_insn	(0X463B65);
 	set_name	(0X463B65,	"nullsub_5");
 	create_insn	(0X463B66);
+	set_name	(0X463B66,	"obj_hill_shapes");
 	create_insn	(0X463B9F);
 	create_insn	(0X463BB3);
 	create_insn	(0X463BB6);
@@ -34054,12 +34088,14 @@ static Bytes_5(void) {
 	op_plain_offset	(x,	0,	0);
 	op_plain_offset	(x,	128,	0);
 	create_insn	(0X4697BF);
+	set_name	(0X4697BF,	"obj_tunnel");
 	create_insn	(0X4697EF);
 	create_insn	(0X4697FC);
 	create_insn	(0X4697FF);
 	create_insn	(0X469801);
 	create_insn	(0X469824);
 	create_insn	(0X469826);
+	set_name	(0X469826,	"obj_land");
 	create_insn	(x=0X46989A);
 	op_stkvar	(x,	1);
 	create_insn	(x=0X4698B4);
@@ -34072,12 +34108,14 @@ static Bytes_5(void) {
 	create_insn	(0X4699A3);
 	create_insn	(0X4699BD);
 	create_insn	(0X4699BF);
+	set_name	(0X4699BF,	"obj_rock");
 	create_insn	(0X4699EF);
 	create_insn	(0X4699FC);
 	create_insn	(0X4699FF);
 	create_insn	(0X469A01);
 	create_insn	(0X469A29);
 	create_insn	(0X469A2B);
+	set_name	(0X469A2B,	"obj_snow");
 	create_insn	(0X469A5E);
 	create_insn	(0X469A6B);
 	create_insn	(0X469A6E);
@@ -34695,17 +34733,18 @@ static Bytes_5(void) {
 	op_plain_offset	(x,	129,	0);
 	create_insn	(0X46B69C);
 	create_insn	(0X46B6BF);
-	set_name	(0X46B6BF,	"ui::map::event_invalidate");
+	set_name	(0X46B6BF,	"ui::map::event_prepare_draw");
 	create_insn	(x=0X46B6D3);
 	op_hex		(x,	1);
 	create_insn	(0X46B779);
 	set_name	(0X46B779,	"ui::map::event_draw");
+	set_cmt	(0X46B7A6,	"window",	0);
 	create_insn	(x=0X46B7FA);
 	op_plain_offset	(x,	1,	0);
 	op_plain_offset	(x,	129,	0);
 	create_insn	(x=0X46B806);
 	op_hex		(x,	1);
-	set_name	(0X46B806,	"ui::map::event_scroll_paint");
+	set_name	(0X46B806,	"ui::map::event_draw_scroll");
 	create_insn	(x=0X46B821);
 	op_plain_offset	(x,	1,	0);
 	op_plain_offset	(x,	129,	0);
@@ -34714,6 +34753,7 @@ static Bytes_5(void) {
 	create_insn	(x=0X46B884);
 	op_plain_offset	(x,	1,	0);
 	op_plain_offset	(x,	129,	0);
+	set_cmt	(0X46B8A4,	"window",	0);
 	create_insn	(x=0X46B8A4);
 	op_stkvar	(x,	1);
 	create_insn	(x=0X46B8BA);
@@ -34771,6 +34811,7 @@ static Bytes_5(void) {
 	set_cmt	(0X46BA6B,	"windowtype",	0);
 	create_insn	(x=0X46BA6B);
 	op_enum		(x,	1,	GetEnum("windowtype"),0);
+	set_cmt	(0X46BAA8,	"window",	0);
 	create_insn	(0X46BAD4);
 	set_name	(0X46BAD4,	"nullsub_46bad4");
 	create_insn	(0X46BAD5);
@@ -35421,6 +35462,15 @@ static Bytes_5(void) {
 	create_insn	(x=0X46CFAC);
 	op_plain_offset	(x,	0,	0);
 	op_plain_offset	(x,	128,	0);
+}
+
+//------------------------------------------------------------------------
+// Information about bytes
+
+static Bytes_6(void) {
+        auto x;
+#define id x
+
 	create_insn	(x=0X46CFB6);
 	op_plain_offset	(x,	0,	0);
 	op_plain_offset	(x,	128,	0);
@@ -35520,15 +35570,6 @@ static Bytes_5(void) {
 	op_hex		(x,	1);
 	set_cmt	(0X46D295,	"left",	0);
 	set_cmt	(0X46D29C,	"top",	0);
-}
-
-//------------------------------------------------------------------------
-// Information about bytes
-
-static Bytes_6(void) {
-        auto x;
-#define id x
-
 	set_cmt	(0X46D2A2,	"right",	0);
 	set_cmt	(0X46D2A6,	"bottom",	0);
 	create_insn	(x=0X46D2E2);
@@ -35817,6 +35858,7 @@ static Bytes_6(void) {
 	create_insn	(0X46DF2E);
 	create_insn	(0X46DF3D);
 	create_insn	(0X46DF4C);
+	set_name	(0X46DF4C,	"obj_currency");
 	create_insn	(0X46DF90);
 	create_insn	(0X46DFA9);
 	create_insn	(0X46DFB8);
@@ -36054,7 +36096,7 @@ static Bytes_6(void) {
 	create_insn	(x=0X46E775);
 	op_stroff	(x,	0,	GetStrucIdByName("window_t"),	0);
 	create_insn	(0X46E77D);
-	set_name	(0X46E77D,	"ui::multiplayer::event_1_invalidate");
+	set_name	(0X46E77D,	"ui::multiplayer::event_1_prepare_draw");
 	create_insn	(x=0X46E79B);
 	op_hex		(x,	1);
 	create_insn	(0X46E87B);
@@ -36242,7 +36284,7 @@ static Bytes_6(void) {
 	create_insn	(0X46F179);
 	set_name	(0X46F179,	"nullsub_46f179");
 	create_insn	(0X46F17A);
-	set_name	(0X46F17A,	"ui::multiplayer::event_2_invalidate");
+	set_name	(0X46F17A,	"ui::multiplayer::event_2_prepare_draw");
 	create_insn	(x=0X46F198);
 	op_hex		(x,	1);
 	create_insn	(x=0X46F206);
@@ -38236,7 +38278,7 @@ static Bytes_6(void) {
 	create_insn	(0X47336B);
 	create_insn	(0X4733A1);
 	create_insn	(0X4733AC);
-	set_name	(0X4733AC,	"ui::object_selection::event_invalidate");
+	set_name	(0X4733AC,	"ui::object_selection::event_prepare_draw");
 	create_insn	(x=0X4733B8);
 	op_hex		(x,	1);
 	create_insn	(x=0X4733D1);
@@ -38249,6 +38291,7 @@ static Bytes_6(void) {
 	set_cmt	(0X473410,	"right",	0);
 	set_cmt	(0X473412,	"colour",	0);
 	set_cmt	(0X473419,	"flags",	0);
+	set_cmt	(0X473421,	"window",	0);
 	create_insn	(x=0X473439);
 	op_hex		(x,	1);
 	set_cmt	(0X47344E,	"colour",	0);
@@ -38279,7 +38322,7 @@ static Bytes_6(void) {
 	create_insn	(x=0X473612);
 	op_hex		(x,	1);
 	create_insn	(0X47361D);
-	set_name	(0X47361D,	"ui::object_selection::event_scroll_paint");
+	set_name	(0X47361D,	"ui::object_selection::event_draw_scroll");
 	create_insn	(x=0X47362F);
 	op_hex		(x,	1);
 	create_insn	(x=0X473634);
@@ -38349,7 +38392,7 @@ static Bytes_6(void) {
 	create_insn	(0X473900);
 	set_name	(0X473900,	"ui::object_selection::event_tooltip");
 	create_insn	(0X47390A);
-	set_name	(0X47390A,	"ui::object_selection::event_19");
+	set_name	(0X47390A,	"ui::object_selection::event_scroll_mouse_over");
 	create_insn	(0X473948);
 	set_name	(0X473948,	"ui::object_selection::event_scroll_mouse_down");
 	create_insn	(x=0X473976);
@@ -40084,6 +40127,7 @@ static Bytes_6(void) {
 	op_plain_offset	(x,	1,	0);
 	op_plain_offset	(x,	129,	0);
 	create_insn	(0X477BB9);
+	set_name	(0X477BB9,	"obj_road");
 	create_insn	(x=0X477C0C);
 	op_stkvar	(x,	0);
 	create_insn	(x=0X477C17);
@@ -40111,12 +40155,14 @@ static Bytes_6(void) {
 	create_insn	(0X477E14);
 	create_insn	(0X477E46);
 	create_insn	(0X477E48);
+	set_name	(0X477E48,	"obj_road_extra");
 	create_insn	(0X477E7E);
 	create_insn	(0X477E92);
 	create_insn	(0X477EB2);
 	create_insn	(0X477EB4);
 	create_insn	(0X477F0D);
 	create_insn	(0X477F0F);
+	set_name	(0X477F0F,	"obj_street_light");
 	create_insn	(0X477F52);
 	create_insn	(0X477F5F);
 	create_insn	(0X477F62);
@@ -40176,6 +40222,7 @@ static Bytes_6(void) {
 	op_hex		(x,	1);
 	create_insn	(0X4780DB);
 	create_insn	(0X4780DD);
+	set_name	(0X4780DD,	"obj_level_crossing");
 	create_insn	(0X47810D);
 	create_insn	(0X47811A);
 	create_insn	(0X47814F);
@@ -41728,6 +41775,15 @@ static Bytes_6(void) {
 	set_cmt	(0X47B421,	"switch jump",	0);
 	set_cmt	(0X47B428,	"jumptable 0047B421 case 0",	1);
 	create_insn	(0X47B428);
+}
+
+//------------------------------------------------------------------------
+// Information about bytes
+
+static Bytes_7(void) {
+        auto x;
+#define id x
+
 	set_cmt	(0X47B434,	"jumptable 0047B421 case 1",	1);
 	create_insn	(0X47B434);
 	set_cmt	(0X47B440,	"jumptable 0047B421 case 2",	1);
@@ -41848,15 +41904,6 @@ static Bytes_6(void) {
 	create_insn	(x=0X47B69D);
 	op_hex		(x,	1);
 	create_insn	(0X47B6A9);
-}
-
-//------------------------------------------------------------------------
-// Information about bytes
-
-static Bytes_7(void) {
-        auto x;
-#define id x
-
 	create_insn	(x=0X47B6AC);
 	op_hex		(x,	1);
 	create_insn	(x=0X47B6BC);
@@ -48689,6 +48736,7 @@ static Bytes_7(void) {
 	create_insn	(0X4898D5);
 	set_name	(0X4898D5,	"nullsub_8");
 	create_insn	(0X4898D6);
+	set_name	(0X4898D6,	"obj_track_signal");
 	create_insn	(0X489926);
 	create_insn	(0X48993F);
 	create_insn	(0X48995F);
@@ -48829,6 +48877,15 @@ static Bytes_7(void) {
 	set_cmt	(0X489FFE,	"windowtype",	0);
 	create_insn	(x=0X489FFE);
 	op_enum		(x,	1,	GetEnum("windowtype"),0);
+}
+
+//------------------------------------------------------------------------
+// Information about bytes
+
+static Bytes_8(void) {
+        auto x;
+#define id x
+
 	create_insn	(x=0X48A03D);
 	op_plain_offset	(x,	1,	0);
 	op_plain_offset	(x,	129,	0);
@@ -48947,15 +49004,6 @@ static Bytes_7(void) {
 	op_hex		(x,	1);
 	create_insn	(0X48A590);
 	set_cmt	(0X48A59B,	"windowtype",	0);
-}
-
-//------------------------------------------------------------------------
-// Information about bytes
-
-static Bytes_8(void) {
-        auto x;
-#define id x
-
 	create_insn	(x=0X48A5BE);
 	op_hex		(x,	1);
 	create_insn	(x=0X48A5F8);
@@ -49184,6 +49232,7 @@ static Bytes_8(void) {
 	create_insn	(x=0X48AF90);
 	op_hex		(x,	1);
 	create_insn	(0X48AFA5);
+	set_name	(0X48AFA5,	"obj_sound");
 	create_insn	(0X48AFE1);
 	create_insn	(0X48AFEE);
 	create_insn	(0X48AFF1);
@@ -49610,6 +49659,7 @@ static Bytes_8(void) {
 	create_insn	(x=0X48BE3E);
 	op_plain_offset	(x,	1,	0);
 	op_plain_offset	(x,	129,	0);
+	set_cmt	(0X48BE49,	"window",	0);
 	set_cmt	(0X48BE71,	"jumptable 0048BC6C case 4",	1);
 	create_insn	(0X48BE71);
 	set_cmt	(0X48BE7D,	"jumptable 0048BC6C case 5",	1);
@@ -49837,6 +49887,7 @@ static Bytes_8(void) {
 	op_hex		(x,	1);
 	create_insn	(x=0X48C4CE);
 	op_hex		(x,	1);
+	set_cmt	(0X48C4D4,	"widget",	0);
 	create_insn	(x=0X48C4DF);
 	op_hex		(x,	1);
 	set_cmt	(0X48C4E8,	"switch 4 cases ",	0);
@@ -49851,6 +49902,7 @@ static Bytes_8(void) {
 	create_insn	(0X48C50A);
 	set_cmt	(0X48C516,	"jumptable 0048BC6C case 11\njumptable 0048C4EB case 3",	1);
 	create_insn	(0X48C516);
+	set_cmt	(0X48C520,	"widgetIndex",	0);
 	set_cmt	(0X48C544,	"jumptable 0048BC6C case 12",	1);
 	create_insn	(0X48C544);
 	set_cmt	(0X48C550,	"jumptable 0048BC6C case 13",	1);
@@ -50039,6 +50091,7 @@ static Bytes_8(void) {
 	create_insn	(x=0X48CA99);
 	op_plain_offset	(x,	1,	0);
 	op_plain_offset	(x,	129,	0);
+	set_cmt	(0X48CAA4,	"window",	0);
 	set_cmt	(0X48CACC,	"jumptable 0048C8DF case 4",	1);
 	create_insn	(0X48CACC);
 	set_cmt	(0X48CAD8,	"jumptable 0048C8DF case 5",	1);
@@ -50347,6 +50400,7 @@ static Bytes_8(void) {
 	op_plain_offset	(x,	129,	0);
 	create_insn	(x=0X48D394);
 	op_hex		(x,	1);
+	set_cmt	(0X48D39A,	"widget",	0);
 	create_insn	(x=0X48D3A5);
 	op_hex		(x,	1);
 	set_cmt	(0X48D3AE,	"switch 4 cases ",	0);
@@ -50361,6 +50415,7 @@ static Bytes_8(void) {
 	create_insn	(0X48D3D0);
 	set_cmt	(0X48D3DC,	"jumptable 0048C8DF case 11\njumptable 0048D3B1 case 3",	1);
 	create_insn	(0X48D3DC);
+	set_cmt	(0X48D3E6,	"widgetIndex",	0);
 	set_cmt	(0X48D40A,	"jumptable 0048C8DF case 12",	1);
 	create_insn	(0X48D40A);
 	set_cmt	(0X48D416,	"jumptable 0048C8DF case 13",	1);
@@ -50611,14 +50666,17 @@ static Bytes_8(void) {
 	create_insn	(0X48DBC2);
 	create_insn	(x=0X48DBCC);
 	op_hex		(x,	1);
+	set_cmt	(0X48DBD2,	"window",	0);
 	create_insn	(x=0X48DBD2);
 	op_hex		(x,	1);
+	set_cmt	(0X48DBD5,	"widget",	0);
 	create_insn	(x=0X48DBE9);
 	op_stkvar	(x,	1);
 	create_insn	(x=0X48DBEE);
 	op_stkvar	(x,	1);
 	create_insn	(x=0X48DBF3);
 	op_stkvar	(x,	1);
+	set_cmt	(0X48DBF8,	"widgetIndex",	0);
 	create_insn	(x=0X48DBF8);
 	op_hex		(x,	1);
 	create_insn	(0X48DC03);
@@ -50651,10 +50709,13 @@ static Bytes_8(void) {
 	create_insn	(x=0X48DCAD);
 	op_plain_offset	(x,	1,	0);
 	op_plain_offset	(x,	129,	0);
+	set_cmt	(0X48DCBC,	"widget",	0);
 	create_insn	(x=0X48DCBD);
 	op_stkvar	(x,	1);
 	create_insn	(x=0X48DCC4);
 	op_hex		(x,	1);
+	set_cmt	(0X48DCD1,	"window",	0);
+	set_cmt	(0X48DCDC,	"widgetIndex",	0);
 	create_insn	(0X48DCED);
 	create_insn	(x=0X48DCF9);
 	op_hex		(x,	1);
@@ -50780,7 +50841,7 @@ static Bytes_8(void) {
 	create_insn	(x=0X48E34D);
 	op_hex		(x,	1);
 	create_insn	(0X48E352);
-	set_name	(0X48E352,	"ui::station::event_1_invalidate");
+	set_name	(0X48E352,	"ui::station::event_1_prepare_draw");
 	create_insn	(x=0X48E370);
 	op_hex		(x,	1);
 	create_insn	(x=0X48E38D);
@@ -50853,11 +50914,11 @@ static Bytes_8(void) {
 	op_enum		(x,	1,	GetEnum("windowtype"),0);
 	create_insn	(0X48E70B);
 	set_name	(0X48E70B,	"ui::station::event_1_on_resize");
-	set_name	(0X48E7B9,	"ui::station::event_1_21");
+	set_name	(0X48E7B9,	"ui::station::event_1_viewport_rotate");
 	create_insn	(0X48E7BF);
 	set_name	(0X48E7BF,	"nullsub_48e7bf");
 	create_insn	(0X48E7C0);
-	set_name	(0X48E7C0,	"ui::station::event_2_invalidate");
+	set_name	(0X48E7C0,	"ui::station::event_2_prepare_draw");
 	create_insn	(x=0X48E7DE);
 	op_hex		(x,	1);
 	create_insn	(x=0X48E7FB);
@@ -50890,7 +50951,7 @@ static Bytes_8(void) {
 	op_plain_offset	(x,	1,	0);
 	op_plain_offset	(x,	129,	0);
 	create_insn	(0X48E986);
-	set_name	(0X48E986,	"ui::station::event_2_scroll_paint");
+	set_name	(0X48E986,	"ui::station::event_2_draw_scroll");
 	create_insn	(x=0X48E998);
 	op_hex		(x,	1);
 	create_insn	(x=0X48E99D);
@@ -50960,7 +51021,7 @@ static Bytes_8(void) {
 	create_insn	(0X48EC3A);
 	set_name	(0X48EC3A,	"nullsub_48ec3a");
 	create_insn	(0X48EC3B);
-	set_name	(0X48EC3B,	"ui::station::event_3_invalidate");
+	set_name	(0X48EC3B,	"ui::station::event_3_prepare_draw");
 	create_insn	(x=0X48EC59);
 	op_hex		(x,	1);
 	create_insn	(x=0X48EC76);
@@ -50977,7 +51038,7 @@ static Bytes_8(void) {
 	create_insn	(0X48ED24);
 	set_name	(0X48ED24,	"ui::station::event_3_draw");
 	create_insn	(0X48ED2F);
-	set_name	(0X48ED2F,	"ui::station::event_3_scroll_paint");
+	set_name	(0X48ED2F,	"ui::station::event_3_draw_scroll");
 	create_insn	(x=0X48ED41);
 	op_hex		(x,	1);
 	create_insn	(x=0X48ED46);
@@ -51252,6 +51313,7 @@ static Bytes_8(void) {
 	op_plain_offset	(x,	0,	0);
 	op_plain_offset	(x,	128,	0);
 	op_hex		(x,	1);
+	set_cmt	(0X48F552,	"window",	0);
 	create_insn	(x=0X48F554);
 	op_plain_offset	(x,	1,	0);
 	op_plain_offset	(x,	129,	0);
@@ -51262,9 +51324,11 @@ static Bytes_8(void) {
 	op_hex		(x,	1);
 	create_insn	(x=0X48F575);
 	op_hex		(x,	1);
+	set_cmt	(0X48F578,	"widget",	0);
 	create_insn	(x=0X48F578);
 	op_plain_offset	(x,	1,	0);
 	op_plain_offset	(x,	129,	0);
+	set_cmt	(0X48F57E,	"widgetIndex",	0);
 	create_insn	(x=0X48F57E);
 	op_hex		(x,	1);
 	create_insn	(x=0X48F58A);
@@ -51706,8 +51770,10 @@ static Bytes_8(void) {
 	op_hex		(x,	1);
 	create_insn	(x=0X4903AE);
 	op_hex		(x,	1);
+	set_cmt	(0X4903B2,	"widget",	0);
 	create_insn	(x=0X4903B2);
 	op_hex		(x,	1);
+	set_cmt	(0X4903B6,	"window",	0);
 	create_insn	(x=0X4903B6);
 	op_hex		(x,	1);
 	create_insn	(0X4903C1);
@@ -51893,6 +51959,7 @@ static Bytes_8(void) {
 	create_insn	(0X4908DA);
 	set_name	(0X4908DA,	"nullsub_10");
 	create_insn	(0X4908DB);
+	set_name	(0X4908DB,	"obj_track_station");
 	create_insn	(0X490939);
 	create_insn	(0X49094B);
 	create_insn	(0X490966);
@@ -51908,6 +51975,7 @@ static Bytes_8(void) {
 	op_hex		(x,	1);
 	create_insn	(0X490A68);
 	create_insn	(0X490AA8);
+	set_name	(0X490AA8,	"obj_road_station");
 	create_insn	(x=0X490B03);
 	op_hex		(x,	1);
 	create_insn	(x=0X490B13);
@@ -51933,6 +52001,7 @@ static Bytes_8(void) {
 	op_hex		(x,	1);
 	create_insn	(0X490C59);
 	create_insn	(0X490C99);
+	set_name	(0X490C99,	"obj_airport");
 	create_insn	(x=0X490CCC);
 	op_hex		(x,	1);
 	create_insn	(x=0X490D3A);
@@ -51947,6 +52016,7 @@ static Bytes_8(void) {
 	create_insn	(0X490DCA);
 	create_insn	(0X490DE7);
 	create_insn	(0X490E33);
+	set_name	(0X490E33,	"obj_dock");
 	create_insn	(x=0X490E63);
 	op_hex		(x,	1);
 	create_insn	(x=0X490E9D);
@@ -52006,9 +52076,11 @@ static Bytes_8(void) {
 	create_insn	(x=0X491121);
 	op_plain_offset	(x,	1,	0);
 	op_plain_offset	(x,	129,	0);
+	set_cmt	(0X49112A,	"widgetIndex",	0);
 	create_insn	(x=0X49112C);
 	op_plain_offset	(x,	1,	0);
 	op_plain_offset	(x,	129,	0);
+	set_cmt	(0X491131,	"widget",	0);
 	create_insn	(x=0X491142);
 	op_hex		(x,	1);
 	create_insn	(x=0X49114F);
@@ -52067,7 +52139,7 @@ static Bytes_8(void) {
 	op_plain_offset	(x,	129,	0);
 	create_insn	(0X491342);
 	create_insn	(0X491344);
-	set_name	(0X491344,	"ui::station_list::event_5_invalidate");
+	set_name	(0X491344,	"ui::station_list::event_5_prepare_draw");
 	create_insn	(x=0X491362);
 	op_hex		(x,	1);
 	create_insn	(x=0X491382);
@@ -52095,7 +52167,7 @@ static Bytes_8(void) {
 	op_plain_offset	(x,	1,	0);
 	op_plain_offset	(x,	129,	0);
 	create_insn	(0X49157F);
-	set_name	(0X49157F,	"ui::station_list::event_5_scroll_paint");
+	set_name	(0X49157F,	"ui::station_list::event_5_draw_scroll");
 	create_insn	(x=0X491591);
 	op_hex		(x,	1);
 	create_insn	(x=0X491596);
@@ -52210,7 +52282,7 @@ static Bytes_8(void) {
 	set_name	(0X4919A4,	"ui::station_list::event_5_cursor");
 	create_insn	(x=0X4919D1);
 	op_hex		(x,	1);
-	set_name	(0X4919D1,	"ui::station_list::event_5_19");
+	set_name	(0X4919D1,	"ui::station_list::event_5_scroll_mouse_over");
 	create_insn	(0X491A0C);
 	set_name	(0X491A0C,	"ui::station_list::event_5_scroll_mouse_down");
 	create_insn	(0X491A37);
@@ -54314,6 +54386,7 @@ static Bytes_8(void) {
 	op_hex		(x,	1);
 	create_insn	(0X496ADB);
 	create_insn	(0X496AED);
+	set_name	(0X496AED,	"obj_climate");
 	create_insn	(0X496B15);
 	create_insn	(0X496B1B);
 	create_insn	(0X496B2C);
@@ -54815,6 +54888,15 @@ static Bytes_8(void) {
 	set_cmt	(0X497E35,	"windowtype",	0);
 	create_insn	(x=0X497E35);
 	op_enum		(x,	1,	GetEnum("windowtype"),0);
+}
+
+//------------------------------------------------------------------------
+// Information about bytes
+
+static Bytes_9(void) {
+        auto x;
+#define id x
+
 	set_cmt	(0X497E37,	"number",	0);
 	create_insn	(x=0X497E37);
 	op_stkvar	(x,	1);
@@ -55003,15 +55085,6 @@ static Bytes_8(void) {
 	create_insn	(0X49839E);
 	set_cmt	(0X4983A5,	"jumptable 00498397 case 2",	1);
 	create_insn	(0X4983A5);
-}
-
-//------------------------------------------------------------------------
-// Information about bytes
-
-static Bytes_9(void) {
-        auto x;
-#define id x
-
 	set_cmt	(0X4983AD,	"jumptable 00498397 case 3",	1);
 	create_insn	(0X4983AD);
 	set_cmt	(0X4983B2,	"jumptable 00498397 case 0",	1);
@@ -55398,6 +55471,7 @@ static Bytes_9(void) {
 	op_hex		(x,	1);
 	create_insn	(0X498E0D);
 	create_insn	(0X498E13);
+	set_name	(0X498E13,	"obj_town_names");
 	create_insn	(0X498E3B);
 	create_insn	(0X498E41);
 	create_insn	(0X498E90);
@@ -55489,11 +55563,11 @@ static Bytes_9(void) {
 	set_name	(0X4993A5,	"ui::town::event_1_on_resize");
 	create_insn	(x=0X499421);
 	op_hex		(x,	1);
-	set_name	(0X499462,	"ui::town::event_1_21");
+	set_name	(0X499462,	"ui::town::event_1_viewport_rotate");
 	create_insn	(0X499468);
 	set_name	(0X499468,	"nullsub_499468");
 	create_insn	(0X499469);
-	set_name	(0X499469,	"ui::town::event_2_invalidate");
+	set_name	(0X499469,	"ui::town::event_2_prepare_draw");
 	create_insn	(x=0X499487);
 	op_hex		(x,	1);
 	create_insn	(x=0X4994A4);
@@ -55578,7 +55652,7 @@ static Bytes_9(void) {
 	create_insn	(0X499760);
 	set_name	(0X499760,	"nullsub_499760");
 	create_insn	(0X499761);
-	set_name	(0X499761,	"ui::town::event_3_invalidate");
+	set_name	(0X499761,	"ui::town::event_3_prepare_draw");
 	create_insn	(x=0X49977F);
 	op_hex		(x,	1);
 	create_insn	(x=0X49979C);
@@ -55726,10 +55800,12 @@ static Bytes_9(void) {
 	create_insn	(x=0X499E02);
 	op_plain_offset	(x,	1,	0);
 	op_plain_offset	(x,	129,	0);
+	set_cmt	(0X499E0B,	"widgetIndex",	0);
 	create_insn	(0X499E0B);
 	create_insn	(x=0X499E0D);
 	op_plain_offset	(x,	1,	0);
 	op_plain_offset	(x,	129,	0);
+	set_cmt	(0X499E12,	"widget",	0);
 	create_insn	(x=0X499E1E);
 	op_hex		(x,	1);
 	create_insn	(x=0X499E5C);
@@ -55770,7 +55846,7 @@ static Bytes_9(void) {
 	op_plain_offset	(x,	1,	0);
 	op_plain_offset	(x,	129,	0);
 	create_insn	(0X499F53);
-	set_name	(0X499F53,	"ui::town_list::event_1_invalidate");
+	set_name	(0X499F53,	"ui::town_list::event_1_prepare_draw");
 	create_insn	(x=0X499F71);
 	op_hex		(x,	1);
 	create_insn	(x=0X49A09B);
@@ -55782,7 +55858,7 @@ static Bytes_9(void) {
 	op_plain_offset	(x,	1,	0);
 	op_plain_offset	(x,	129,	0);
 	create_insn	(0X49A0F8);
-	set_name	(0X49A0F8,	"ui::town_list::event_1_scroll_paint");
+	set_name	(0X49A0F8,	"ui::town_list::event_1_draw_scroll");
 	create_insn	(x=0X49A10A);
 	op_hex		(x,	1);
 	create_insn	(x=0X49A10F);
@@ -55879,7 +55955,7 @@ static Bytes_9(void) {
 	set_name	(0X49A505,	"ui::town_list::event_1_cursor");
 	create_insn	(x=0X49A532);
 	op_hex		(x,	1);
-	set_name	(0X49A532,	"ui::town_list::event_1_19");
+	set_name	(0X49A532,	"ui::town_list::event_1_scroll_mouse_over");
 	create_insn	(0X49A56D);
 	set_name	(0X49A56D,	"ui::town_list::event_1_scroll_mouse_down");
 	create_insn	(0X49A598);
@@ -55887,7 +55963,7 @@ static Bytes_9(void) {
 	create_insn	(0X49A599);
 	set_name	(0X49A599,	"nullsub_49a599");
 	create_insn	(0X49A59A);
-	set_name	(0X49A59A,	"ui::town_list::event_2_invalidate");
+	set_name	(0X49A59A,	"ui::town_list::event_2_prepare_draw");
 	create_insn	(x=0X49A5B8);
 	op_hex		(x,	1);
 	create_insn	(0X49A627);
@@ -55907,7 +55983,7 @@ static Bytes_9(void) {
 	create_insn	(x=0X49A72C);
 	op_hex		(x,	1);
 	create_insn	(0X49A75E);
-	set_name	(0X49A75E,	"ui::town_list::event_2_11");
+	set_name	(0X49A75E,	"ui::town_list::event_2_on_tool_down");
 	create_insn	(0X49A7C1);
 	set_name	(0X49A7C1,	"ui::town_list::event_2_tool_abort");
 	create_insn	(0X49A7C7);
@@ -55926,7 +56002,7 @@ static Bytes_9(void) {
 	create_insn	(0X49A8A5);
 	set_name	(0X49A8A5,	"nullsub_49a8a5");
 	create_insn	(0X49A8A6);
-	set_name	(0X49A8A6,	"ui::town_list::event_4_invalidate");
+	set_name	(0X49A8A6,	"ui::town_list::event_4_prepare_draw");
 	create_insn	(x=0X49A8C4);
 	op_hex		(x,	1);
 	create_insn	(x=0X49A8E1);
@@ -55934,7 +56010,7 @@ static Bytes_9(void) {
 	create_insn	(0X49A9C2);
 	set_name	(0X49A9C2,	"ui::town_list::event_4_draw");
 	create_insn	(0X49AA1C);
-	set_name	(0X49AA1C,	"ui::town_list::event_4_scroll_paint");
+	set_name	(0X49AA1C,	"ui::town_list::event_4_draw_scroll");
 	create_insn	(x=0X49AA3F);
 	op_stkvar	(x,	1);
 	set_cmt	(0X49AA7D,	"left",	0);
@@ -55978,7 +56054,7 @@ static Bytes_9(void) {
 	op_stkvar	(x,	1);
 	create_insn	(0X49ACB6);
 	create_insn	(0X49ACBD);
-	set_name	(0X49ACBD,	"ui::town_list::event_4_11");
+	set_name	(0X49ACBD,	"ui::town_list::event_4_on_tool_down");
 	create_insn	(0X49AD46);
 	set_name	(0X49AD46,	"ui::town_list::event_4_tool_abort");
 	create_insn	(0X49AD51);
@@ -55996,7 +56072,7 @@ static Bytes_9(void) {
 	create_insn	(0X49AEA1);
 	set_name	(0X49AEA1,	"ui::town_list::event_4_8");
 	create_insn	(0X49AEBA);
-	set_name	(0X49AEBA,	"ui::town_list::event_4_19");
+	set_name	(0X49AEBA,	"ui::town_list::event_4_scroll_mouse_over");
 	create_insn	(0X49AEF0);
 	create_insn	(0X49AEFD);
 	set_name	(0X49AEFD,	"ui::town_list::event_4_scroll_mouse_down");
@@ -56317,6 +56393,7 @@ static Bytes_9(void) {
 	op_hex		(x,	1);
 	create_insn	(x=0X49BC37);
 	op_stkvar	(x,	1);
+	set_cmt	(0X49BC82,	"window",	0);
 	create_insn	(x=0X49BC8B);
 	op_hex		(x,	1);
 	create_insn	(x=0X49BC9A);
@@ -56978,7 +57055,7 @@ static Bytes_9(void) {
 	create_insn	(x=0X49CE72);
 	op_hex		(x,	1);
 	create_insn	(0X49CE79);
-	set_name	(0X49CE79,	"ui::construction::event_1_invalidate");
+	set_name	(0X49CE79,	"ui::construction::event_1_prepare_draw");
 	create_insn	(x=0X49CE97);
 	op_hex		(x,	1);
 	create_insn	(x=0X49CEB4);
@@ -56996,10 +57073,12 @@ static Bytes_9(void) {
 	op_hex		(x,	1);
 	create_insn	(x=0X49CFBE);
 	op_hex		(x,	1);
+	set_cmt	(0X49CFC8,	"context",	0);
 	create_insn	(x=0X49CFE1);
 	op_hex		(x,	1);
 	create_insn	(x=0X49CFE4);
 	op_hex		(x,	1);
+	set_cmt	(0X49D03F,	"window",	0);
 	create_insn	(0X49D05B);
 	create_insn	(x=0X49D063);
 	op_hex		(x,	1);
@@ -57054,6 +57133,7 @@ static Bytes_9(void) {
 	op_hex		(x,	1);
 	create_insn	(x=0X49D203);
 	op_hex		(x,	1);
+	set_cmt	(0X49D25E,	"window",	0);
 	create_insn	(0X49D27A);
 	create_insn	(x=0X49D282);
 	op_hex		(x,	1);
@@ -57261,7 +57341,7 @@ static Bytes_9(void) {
 	create_insn	(0X49DC8C);
 	set_name	(0X49DC8C,	"ui::construction::event_1_10");
 	create_insn	(0X49DC97);
-	set_name	(0X49DC97,	"ui::construction::event_1_11");
+	set_name	(0X49DC97,	"ui::construction::event_1_on_tool_down");
 	create_insn	(0X49DCA2);
 	set_name	(0X49DCA2,	"ui::construction::event_1_on_update");
 	set_cmt	(0X49DCAB,	"wtf_construction",	1);
@@ -57278,7 +57358,7 @@ static Bytes_9(void) {
 	create_insn	(0X49DD38);
 	set_name	(0X49DD38,	"nullsub_49dd38");
 	create_insn	(0X49DD39);
-	set_name	(0X49DD39,	"ui::construction::event_2_invalidate");
+	set_name	(0X49DD39,	"ui::construction::event_2_prepare_draw");
 	create_insn	(x=0X49DD57);
 	op_hex		(x,	1);
 	create_insn	(x=0X49DD74);
@@ -57444,7 +57524,7 @@ static Bytes_9(void) {
 	create_insn	(0X49E421);
 	set_name	(0X49E421,	"ui::construction::event_2_10");
 	create_insn	(0X49E42C);
-	set_name	(0X49E42C,	"ui::construction::event_2_11");
+	set_name	(0X49E42C,	"ui::construction::event_2_on_tool_down");
 	create_insn	(0X49E437);
 	set_name	(0X49E437,	"ui::construction::event_2_on_update");
 	set_cmt	(0X49E440,	"wtf_construction",	1);
@@ -57463,7 +57543,7 @@ static Bytes_9(void) {
 	create_insn	(0X49E498);
 	set_name	(0X49E498,	"nullsub_49e498");
 	create_insn	(0X49E499);
-	set_name	(0X49E499,	"ui::construction::event_3_invalidate");
+	set_name	(0X49E499,	"ui::construction::event_3_prepare_draw");
 	create_insn	(x=0X49E4B7);
 	op_hex		(x,	1);
 	create_insn	(0X49E501);
@@ -57510,7 +57590,7 @@ static Bytes_9(void) {
 	create_insn	(0X49E745);
 	set_name	(0X49E745,	"ui::construction::event_3_10");
 	create_insn	(0X49E75A);
-	set_name	(0X49E75A,	"ui::construction::event_3_11");
+	set_name	(0X49E75A,	"ui::construction::event_3_on_tool_down");
 	create_insn	(0X49E76F);
 	set_name	(0X49E76F,	"ui::construction::event_3_on_update");
 	set_cmt	(0X49E778,	"wtf_construction",	1);
@@ -57529,7 +57609,7 @@ static Bytes_9(void) {
 	create_insn	(0X49E7D2);
 	set_name	(0X49E7D2,	"nullsub_49e7d2");
 	create_insn	(0X49E7D3);
-	set_name	(0X49E7D3,	"ui::construction::event_4_invalidate");
+	set_name	(0X49E7D3,	"ui::construction::event_4_prepare_draw");
 	create_insn	(x=0X49E7F1);
 	op_hex		(x,	1);
 	create_insn	(x=0X49E80E);
@@ -57570,6 +57650,7 @@ static Bytes_9(void) {
 	set_name	(0X49EA3E,	"ui::construction::event_4_draw");
 	create_insn	(x=0X49EA4A);
 	op_hex		(x,	1);
+	set_cmt	(0X49EAA7,	"window",	0);
 	create_insn	(0X49EAC3);
 	create_insn	(x=0X49EACF);
 	op_hex		(x,	1);
@@ -57615,7 +57696,7 @@ static Bytes_9(void) {
 	create_insn	(0X49EC15);
 	set_name	(0X49EC15,	"ui::construction::event_4_10");
 	create_insn	(0X49EC20);
-	set_name	(0X49EC20,	"ui::construction::event_4_11");
+	set_name	(0X49EC20,	"ui::construction::event_4_on_tool_down");
 	create_insn	(0X49EC2B);
 	create_insn	(0X49EC38);
 	create_insn	(0X49EC98);
@@ -57805,7 +57886,6 @@ static Bytes_9(void) {
 	create_insn	(x=0X49F9AD);
 	op_hex		(x,	1);
 	create_insn	(0X49FA10);
-	set_cmt	(0X49FAAD,	"windowtype",	0);
 	create_insn	(x=0X49FAAD);
 	op_enum		(x,	1,	GetEnum("windowtype"),0);
 	create_insn	(x=0X49FAFD);
@@ -58797,7 +58877,6 @@ static Bytes_9(void) {
 	create_insn	(0X4A222B);
 	create_insn	(x=0X4A225A);
 	op_hex		(x,	1);
-	set_cmt	(0X4A22A5,	"windowtype",	0);
 	create_insn	(x=0X4A22A5);
 	op_enum		(x,	1,	GetEnum("windowtype"),0);
 	create_insn	(x=0X4A22B6);
@@ -58812,7 +58891,6 @@ static Bytes_9(void) {
 	create_insn	(x=0X4A230F);
 	op_stroff	(x,	0,	GetStrucIdByName("window_events_t"),	0);
 	create_insn	(0X4A232C);
-	set_cmt	(0X4A2334,	"windowtype",	0);
 	create_insn	(x=0X4A2334);
 	op_enum		(x,	1,	GetEnum("windowtype"),0);
 	create_insn	(0X4A2341);
@@ -58880,7 +58958,6 @@ static Bytes_9(void) {
 	create_insn	(0X4A24EB);
 	create_insn	(x=0X4A251A);
 	op_hex		(x,	1);
-	set_cmt	(0X4A2565,	"windowtype",	0);
 	create_insn	(x=0X4A2565);
 	op_enum		(x,	1,	GetEnum("windowtype"),0);
 	create_insn	(x=0X4A2576);
@@ -58895,7 +58972,6 @@ static Bytes_9(void) {
 	create_insn	(x=0X4A25CF);
 	op_stroff	(x,	0,	GetStrucIdByName("window_events_t"),	0);
 	create_insn	(0X4A25EC);
-	set_cmt	(0X4A25F4,	"windowtype",	0);
 	create_insn	(x=0X4A25F4);
 	op_enum		(x,	1,	GetEnum("windowtype"),0);
 	create_insn	(0X4A2601);
@@ -60735,6 +60811,7 @@ static Bytes_9(void) {
 	create_insn	(0X4A6A48);
 	set_name	(0X4A6A48,	"nullsub_20");
 	create_insn	(0X4A6A49);
+	set_name	(0X4A6A49,	"obj_track");
 	create_insn	(x=0X4A6A9C);
 	op_stkvar	(x,	0);
 	create_insn	(x=0X4A6AA7);
@@ -60766,6 +60843,7 @@ static Bytes_9(void) {
 	create_insn	(0X4A6CB5);
 	create_insn	(0X4A6CEC);
 	create_insn	(0X4A6CEE);
+	set_name	(0X4A6CEE,	"obj_track_extra");
 	create_insn	(0X4A6D24);
 	create_insn	(0X4A6D38);
 	create_insn	(0X4A6D58);
@@ -60867,6 +60945,15 @@ static Bytes_9(void) {
 	create_insn	(0X4A70BB);
 	create_insn	(x=0X4A70E3);
 	op_hex		(x,	1);
+}
+
+//------------------------------------------------------------------------
+// Information about bytes
+
+static Bytes_10(void) {
+        auto x;
+#define id x
+
 	create_insn	(x=0X4A70F3);
 	op_hex		(x,	1);
 	create_insn	(x=0X4A7101);
@@ -61086,15 +61173,6 @@ static Bytes_9(void) {
 	set_cmt	(0X4A7801,	"number",	0);
 	create_insn	(x=0X4A7801);
 	op_hex		(x,	1);
-}
-
-//------------------------------------------------------------------------
-// Information about bytes
-
-static Bytes_10(void) {
-        auto x;
-#define id x
-
 	create_insn	(x=0X4A7816);
 	op_plain_offset	(x,	1,	0);
 	op_plain_offset	(x,	129,	0);
@@ -61715,6 +61793,7 @@ static Bytes_10(void) {
 	op_hex		(x,	1);
 	create_insn	(x=0X4A884D);
 	op_hex		(x,	1);
+	set_cmt	(0X4A8850,	"window",	0);
 	create_insn	(x=0X4A8850);
 	op_plain_offset	(x,	1,	0);
 	op_plain_offset	(x,	129,	0);
@@ -63681,6 +63760,7 @@ static Bytes_10(void) {
 	op_hex		(x,	1);
 	create_insn	(x=0X4ACFF7);
 	op_hex		(x,	1);
+	set_cmt	(0X4AD001,	"window",	0);
 	create_insn	(x=0X4AD009);
 	op_hex		(x,	1);
 	create_insn	(x=0X4AD00C);
@@ -66544,7 +66624,7 @@ static Bytes_10(void) {
 	create_insn	(x=0X4B1EB0);
 	op_hex		(x,	1);
 	create_insn	(0X4B1EB5);
-	set_name	(0X4B1EB5,	"ui::vehicle::event_1_invalidate");
+	set_name	(0X4B1EB5,	"ui::vehicle::event_1_prepare_draw");
 	create_insn	(x=0X4B1ED3);
 	op_hex		(x,	1);
 	create_insn	(x=0X4B1EED);
@@ -66643,6 +66723,7 @@ static Bytes_10(void) {
 	create_insn	(x=0X4B23F6);
 	op_plain_offset	(x,	1,	0);
 	op_plain_offset	(x,	129,	0);
+	set_cmt	(0X4B2426,	"window",	0);
 	create_insn	(0X4B2441);
 	create_insn	(x=0X4B246A);
 	op_hex		(x,	1);
@@ -66667,7 +66748,7 @@ static Bytes_10(void) {
 	create_insn	(0X4B2545);
 	set_name	(0X4B2545,	"ui::vehicle::event_1_10");
 	create_insn	(0X4B2550);
-	set_name	(0X4B2550,	"ui::vehicle::event_1_11");
+	set_name	(0X4B2550,	"ui::vehicle::event_1_on_tool_down");
 	create_insn	(0X4B255B);
 	set_name	(0X4B255B,	"ui::vehicle::event_1_tool_abort");
 	create_insn	(0X4B2566);
@@ -66986,11 +67067,11 @@ static Bytes_10(void) {
 	create_insn	(x=0X4B32AC);
 	op_hex		(x,	1);
 	create_insn	(0X4B32F9);
-	set_name	(0X4B32F9,	"ui::vehicle::event_1_21");
+	set_name	(0X4B32F9,	"ui::vehicle::event_1_viewport_rotate");
 	create_insn	(0X4B32FF);
 	set_name	(0X4B32FF,	"nullsub_4b32ff");
 	create_insn	(0X4B3300);
-	set_name	(0X4B3300,	"ui::vehicle::event_2_invalidate");
+	set_name	(0X4B3300,	"ui::vehicle::event_2_prepare_draw");
 	create_insn	(x=0X4B331E);
 	op_hex		(x,	1);
 	create_insn	(x=0X4B3338);
@@ -67080,7 +67161,7 @@ static Bytes_10(void) {
 	op_plain_offset	(x,	1,	0);
 	op_plain_offset	(x,	129,	0);
 	create_insn	(0X4B36A3);
-	set_name	(0X4B36A3,	"ui::vehicle::event_2_scroll_paint");
+	set_name	(0X4B36A3,	"ui::vehicle::event_2_draw_scroll");
 	create_insn	(x=0X4B36B5);
 	op_hex		(x,	1);
 	create_insn	(x=0X4B36BA);
@@ -67147,7 +67228,7 @@ static Bytes_10(void) {
 	create_insn	(0X4B385F);
 	set_name	(0X4B385F,	"ui::vehicle::event_2_10");
 	create_insn	(0X4B386A);
-	set_name	(0X4B386A,	"ui::vehicle::event_2_11");
+	set_name	(0X4B386A,	"ui::vehicle::event_2_on_tool_down");
 	create_insn	(0X4B3875);
 	set_name	(0X4B3875,	"ui::vehicle::event_2_tool_abort");
 	create_insn	(0X4B3880);
@@ -67220,7 +67301,7 @@ static Bytes_10(void) {
 	op_plain_offset	(x,	129,	0);
 	create_insn	(0X4B3993);
 	create_insn	(0X4B399E);
-	set_name	(0X4B399E,	"ui::vehicle::event_2_19");
+	set_name	(0X4B399E,	"ui::vehicle::event_2_scroll_mouse_over");
 	create_insn	(x=0X4B39A7);
 	op_hex		(x,	1);
 	create_insn	(x=0X4B3A2B);
@@ -67328,7 +67409,7 @@ static Bytes_10(void) {
 	create_insn	(0X4B3DDD);
 	set_name	(0X4B3DDD,	"nullsub_4b3ddd");
 	create_insn	(0X4B3DDE);
-	set_name	(0X4B3DDE,	"ui::vehicle::event_3_invalidate");
+	set_name	(0X4B3DDE,	"ui::vehicle::event_3_prepare_draw");
 	create_insn	(x=0X4B3DFC);
 	op_hex		(x,	1);
 	create_insn	(x=0X4B3E16);
@@ -67366,7 +67447,7 @@ static Bytes_10(void) {
 	op_plain_offset	(x,	1,	0);
 	op_plain_offset	(x,	129,	0);
 	create_insn	(0X4B3F62);
-	set_name	(0X4B3F62,	"ui::vehicle::event_3_scroll_paint");
+	set_name	(0X4B3F62,	"ui::vehicle::event_3_draw_scroll");
 	create_insn	(x=0X4B3F74);
 	op_hex		(x,	1);
 	create_insn	(x=0X4B3F79);
@@ -67491,6 +67572,15 @@ static Bytes_10(void) {
 	create_insn	(x=0X4B423F);
 	op_plain_offset	(x,	1,	0);
 	op_plain_offset	(x,	129,	0);
+}
+
+//------------------------------------------------------------------------
+// Information about bytes
+
+static Bytes_11(void) {
+        auto x;
+#define id x
+
 	create_insn	(x=0X4B4249);
 	op_hex		(x,	1);
 	create_insn	(x=0X4B424C);
@@ -67560,7 +67650,7 @@ static Bytes_10(void) {
 	op_plain_offset	(x,	129,	0);
 	create_insn	(0X4B43F9);
 	create_insn	(0X4B4404);
-	set_name	(0X4B4404,	"ui::vehicle::event_3_19");
+	set_name	(0X4B4404,	"ui::vehicle::event_3_scroll_mouse_over");
 	create_insn	(x=0X4B440D);
 	op_hex		(x,	1);
 	create_insn	(x=0X4B4491);
@@ -67611,7 +67701,7 @@ static Bytes_10(void) {
 	create_insn	(0X4B468B);
 	set_name	(0X4B468B,	"nullsub_4b468b");
 	create_insn	(0X4B468C);
-	set_name	(0X4B468C,	"ui::vehicle::event_5_invalidate");
+	set_name	(0X4B468C,	"ui::vehicle::event_5_prepare_draw");
 	create_insn	(x=0X4B46AA);
 	op_hex		(x,	1);
 	create_insn	(x=0X4B46C4);
@@ -67632,7 +67722,7 @@ static Bytes_10(void) {
 	create_insn	(0X4B4866);
 	set_name	(0X4B4866,	"ui::vehicle::event_5_draw");
 	create_insn	(0X4B48BA);
-	set_name	(0X4B48BA,	"ui::vehicle::event_5_scroll_paint");
+	set_name	(0X4B48BA,	"ui::vehicle::event_5_draw_scroll");
 	create_insn	(x=0X4B48CC);
 	op_hex		(x,	1);
 	create_insn	(x=0X4B48D1);
@@ -67656,15 +67746,6 @@ static Bytes_10(void) {
 	create_insn	(x=0X4B492A);
 	op_plain_offset	(x,	1,	0);
 	op_plain_offset	(x,	129,	0);
-}
-
-//------------------------------------------------------------------------
-// Information about bytes
-
-static Bytes_11(void) {
-        auto x;
-#define id x
-
 	create_insn	(x=0X4B4934);
 	op_hex		(x,	1);
 	create_insn	(x=0X4B4948);
@@ -67684,6 +67765,7 @@ static Bytes_11(void) {
 	set_cmt	(0X4B49CE,	"left",	0);
 	set_cmt	(0X4B49D1,	"right",	0);
 	set_cmt	(0X4B49D5,	"colour",	0);
+	set_cmt	(0X4B49DF,	"window",	0);
 	create_insn	(x=0X4B49E7);
 	op_plain_offset	(x,	1,	0);
 	op_plain_offset	(x,	129,	0);
@@ -67905,7 +67987,7 @@ static Bytes_11(void) {
 	create_insn	(0X4B50CE);
 	set_name	(0X4B50CE,	"ui::vehicle::event_5_15");
 	create_insn	(0X4B50DE);
-	set_name	(0X4B50DE,	"ui::vehicle::event_5_11");
+	set_name	(0X4B50DE,	"ui::vehicle::event_5_on_tool_down");
 	create_insn	(0X4B5105);
 	create_insn	(x=0X4B5117);
 	op_hex		(x,	1);
@@ -68002,7 +68084,7 @@ static Bytes_11(void) {
 	op_hex		(x,	1);
 	create_insn	(x=0X4B530C);
 	op_hex		(x,	1);
-	set_name	(0X4B530C,	"ui::vehicle::event_5_19");
+	set_name	(0X4B530C,	"ui::vehicle::event_5_scroll_mouse_over");
 	create_insn	(0X4B5339);
 	set_name	(0X4B5339,	"ui::vehicle::event_5_cursor");
 	create_insn	(0X4B5369);
@@ -68117,7 +68199,7 @@ static Bytes_11(void) {
 	create_insn	(0X4B564E);
 	set_name	(0X4B564E,	"ui::vehicle::event_5_on_resize");
 	create_insn	(0X4B56B8);
-	set_name	(0X4B56B8,	"ui::vehicle::event_5_21");
+	set_name	(0X4B56B8,	"ui::vehicle::event_5_viewport_rotate");
 	create_insn	(x=0X4B56BD);
 	op_hex		(x,	1);
 	create_insn	(x=0X4B56C0);
@@ -68126,7 +68208,7 @@ static Bytes_11(void) {
 	create_insn	(0X4B56CD);
 	set_name	(0X4B56CD,	"nullsub_4b56cd");
 	create_insn	(0X4B56CE);
-	set_name	(0X4B56CE,	"ui::vehicle::event_4_invalidate");
+	set_name	(0X4B56CE,	"ui::vehicle::event_4_prepare_draw");
 	create_insn	(x=0X4B56EC);
 	op_hex		(x,	1);
 	create_insn	(x=0X4B5706);
@@ -68513,7 +68595,7 @@ static Bytes_11(void) {
 	create_insn	(0X4B6257);
 	create_insn	(0X4B6260);
 	create_insn	(0X4B6271);
-	set_name	(0X4B6271,	"ui::window_25::_widgets::event_25");
+	set_name	(0X4B6271,	"ui::window_25::_widgets::event_on_move");
 	create_insn	(0X4B62AC);
 	set_cmt	(0X4B62CD,	"windowtype",	0);
 	create_insn	(x=0X4B62CD);
@@ -71636,7 +71718,7 @@ static Bytes_11(void) {
 	create_insn	(0X4BB722);
 	create_insn	(0X4BB748);
 	create_insn	(0X4BB756);
-	set_name	(0X4BB756,	"ui::terraform::event_4_invalidate");
+	set_name	(0X4BB756,	"ui::terraform::event_4_prepare_draw");
 	create_insn	(x=0X4BB774);
 	op_hex		(x,	1);
 	create_insn	(x=0X4BB787);
@@ -71661,7 +71743,7 @@ static Bytes_11(void) {
 	create_insn	(x=0X4BB961);
 	op_stkvar	(x,	1);
 	create_insn	(0X4BB982);
-	set_name	(0X4BB982,	"ui::terraform::event_4_scroll_paint");
+	set_name	(0X4BB982,	"ui::terraform::event_4_draw_scroll");
 	create_insn	(x=0X4BB9A5);
 	op_stkvar	(x,	1);
 	set_cmt	(0X4BB9E3,	"left",	0);
@@ -71692,7 +71774,7 @@ static Bytes_11(void) {
 	create_insn	(0X4BBB15);
 	set_name	(0X4BBB15,	"ui::terraform::event_4_10");
 	create_insn	(0X4BBB20);
-	set_name	(0X4BBB20,	"ui::terraform::event_4_11");
+	set_name	(0X4BBB20,	"ui::terraform::event_4_on_tool_down");
 	create_insn	(0X4BBB2B);
 	create_insn	(0X4BBBC7);
 	create_insn	(0X4BBBF7);
@@ -71731,7 +71813,7 @@ static Bytes_11(void) {
 	create_insn	(x=0X4BBEE9);
 	op_stroff	(x,	0,	GetStrucIdByName("window_t"),	0);
 	create_insn	(0X4BBEF8);
-	set_name	(0X4BBEF8,	"ui::terraform::event_4_19");
+	set_name	(0X4BBEF8,	"ui::terraform::event_4_scroll_mouse_over");
 	create_insn	(0X4BBF2E);
 	create_insn	(0X4BBF3B);
 	set_name	(0X4BBF3B,	"ui::terraform::event_4_scroll_mouse_down");
@@ -71743,13 +71825,13 @@ static Bytes_11(void) {
 	create_insn	(0X4BC028);
 	set_name	(0X4BC028,	"nullsub_4bc028");
 	create_insn	(0X4BC029);
-	set_name	(0X4BC029,	"ui::terraform::event_5_invalidate");
+	set_name	(0X4BC029,	"ui::terraform::event_5_prepare_draw");
 	create_insn	(x=0X4BC047);
 	op_hex		(x,	1);
 	create_insn	(0X4BC0C2);
 	set_name	(0X4BC0C2,	"ui::terraform::event_5_draw");
 	create_insn	(0X4BC11C);
-	set_name	(0X4BC11C,	"ui::terraform::event_5_scroll_paint");
+	set_name	(0X4BC11C,	"ui::terraform::event_5_draw_scroll");
 	create_insn	(x=0X4BC13F);
 	op_stkvar	(x,	1);
 	set_cmt	(0X4BC174,	"left",	0);
@@ -71767,7 +71849,7 @@ static Bytes_11(void) {
 	create_insn	(0X4BC227);
 	set_name	(0X4BC227,	"ui::terraform::event_5_10");
 	create_insn	(0X4BC232);
-	set_name	(0X4BC232,	"ui::terraform::event_5_11");
+	set_name	(0X4BC232,	"ui::terraform::event_5_on_tool_down");
 	create_insn	(0X4BC23D);
 	set_name	(0X4BC23D,	"ui::terraform::event_5_on_update");
 	create_insn	(0X4BC30E);
@@ -71786,7 +71868,7 @@ static Bytes_11(void) {
 	create_insn	(x=0X4BC381);
 	op_stroff	(x,	0,	GetStrucIdByName("window_t"),	0);
 	create_insn	(0X4BC390);
-	set_name	(0X4BC390,	"ui::terraform::event_5_19");
+	set_name	(0X4BC390,	"ui::terraform::event_5_scroll_mouse_over");
 	create_insn	(0X4BC3C6);
 	create_insn	(0X4BC3D3);
 	set_name	(0X4BC3D3,	"ui::terraform::event_5_scroll_mouse_down");
@@ -71816,7 +71898,7 @@ static Bytes_11(void) {
 	op_plain_offset	(x,	1,	0);
 	op_plain_offset	(x,	129,	0);
 	create_insn	(0X4BC555);
-	set_name	(0X4BC555,	"ui::terraform::event_1_invalidate");
+	set_name	(0X4BC555,	"ui::terraform::event_1_prepare_draw");
 	create_insn	(x=0X4BC573);
 	op_hex		(x,	1);
 	create_insn	(0X4BC5E7);
@@ -71837,7 +71919,7 @@ static Bytes_11(void) {
 	create_insn	(0X4BC682);
 	set_name	(0X4BC682,	"ui::terraform::event_1_12");
 	create_insn	(0X4BC689);
-	set_name	(0X4BC689,	"ui::terraform::event_1_11");
+	set_name	(0X4BC689,	"ui::terraform::event_1_on_tool_down");
 	create_insn	(0X4BC690);
 	set_cmt	(0X4BC693,	"windowtype",	0);
 	create_insn	(x=0X4BC693);
@@ -71877,7 +71959,7 @@ static Bytes_11(void) {
 	create_insn	(0X4BC83A);
 	set_name	(0X4BC83A,	"nullsub_4bc83a");
 	create_insn	(0X4BC83B);
-	set_name	(0X4BC83B,	"ui::terraform::event_2_invalidate");
+	set_name	(0X4BC83B,	"ui::terraform::event_2_prepare_draw");
 	create_insn	(x=0X4BC859);
 	op_hex		(x,	1);
 	create_insn	(x=0X4BC8CE);
@@ -71905,7 +71987,7 @@ static Bytes_11(void) {
 	create_insn	(0X4BC9E2);
 	set_name	(0X4BC9E2,	"ui::terraform::event_2_12");
 	create_insn	(0X4BC9ED);
-	set_name	(0X4BC9ED,	"ui::terraform::event_2_11");
+	set_name	(0X4BC9ED,	"ui::terraform::event_2_on_tool_down");
 	create_insn	(x=0X4BC9F4);
 	op_hex		(x,	1);
 	create_insn	(x=0X4BCA04);
@@ -71944,7 +72026,7 @@ static Bytes_11(void) {
 	create_insn	(0X4BCC6C);
 	set_name	(0X4BCC6C,	"nullsub_4bcc6c");
 	create_insn	(0X4BCC6D);
-	set_name	(0X4BCC6D,	"ui::terraform::event_3_invalidate");
+	set_name	(0X4BCC6D,	"ui::terraform::event_3_prepare_draw");
 	create_insn	(x=0X4BCC8B);
 	op_hex		(x,	1);
 	create_insn	(0X4BCCFF);
@@ -71968,7 +72050,7 @@ static Bytes_11(void) {
 	create_insn	(0X4BCDBF);
 	set_name	(0X4BCDBF,	"ui::terraform::event_3_12");
 	create_insn	(0X4BCDCA);
-	set_name	(0X4BCDCA,	"ui::terraform::event_3_11");
+	set_name	(0X4BCDCA,	"ui::terraform::event_3_on_tool_down");
 	create_insn	(x=0X4BCDD1);
 	op_hex		(x,	1);
 	create_insn	(0X4BCDE8);
@@ -72577,6 +72659,7 @@ static Bytes_11(void) {
 	create_insn	(x=0X4BE10F);
 	op_hex		(x,	1);
 	create_insn	(0X4BE12E);
+	set_name	(0X4BE12E,	"obj_tree");
 	create_insn	(x=0X4BE186);
 	op_stkvar	(x,	1);
 	create_insn	(x=0X4BE1F8);
@@ -72698,7 +72781,7 @@ static Bytes_11(void) {
 	create_insn	(0X4BE726);
 	set_name	(0X4BE726,	"ui::keyboard_shortcuts::event_draw");
 	create_insn	(0X4BE72C);
-	set_name	(0X4BE72C,	"ui::keyboard_shortcuts::event_scroll_paint");
+	set_name	(0X4BE72C,	"ui::keyboard_shortcuts::event_draw_scroll");
 	create_insn	(x=0X4BE73E);
 	op_hex		(x,	1);
 	create_insn	(x=0X4BE743);
@@ -72722,7 +72805,7 @@ static Bytes_11(void) {
 	create_insn	(0X4BE84E);
 	set_name	(0X4BE84E,	"ui::keyboard_shortcuts::event_get_scroll_size");
 	create_insn	(0X4BE853);
-	set_name	(0X4BE853,	"ui::keyboard_shortcuts::event_19");
+	set_name	(0X4BE853,	"ui::keyboard_shortcuts::event_scroll_mouse_over");
 	create_insn	(0X4BE87B);
 	set_name	(0X4BE87B,	"ui::keyboard_shortcuts::event_scroll_mouse_down");
 	set_cmt	(0X4BE891,	"windowtype",	0);
@@ -73155,7 +73238,7 @@ static Bytes_11(void) {
 	create_insn	(x=0X4BF9CC);
 	op_hex		(x,	1);
 	create_insn	(0X4BFA04);
-	set_name	(0X4BFA04,	"ui::options::event_1_invalidate");
+	set_name	(0X4BFA04,	"ui::options::event_1_prepare_draw");
 	create_insn	(x=0X4BFA22);
 	op_hex		(x,	1);
 	create_insn	(x=0X4BFACC);
@@ -73244,13 +73327,22 @@ static Bytes_11(void) {
 	create_insn	(x=0X4C01FE);
 	op_stroff	(x,	0,	GetStrucIdByName("window_events_t"),	0);
 	set_cmt	(0X4C0201,	"number",	0);
+}
+
+//------------------------------------------------------------------------
+// Information about bytes
+
+static Bytes_12(void) {
+        auto x;
+#define id x
+
 	set_cmt	(0X4C0205,	"windowtype",	0);
 	create_insn	(x=0X4C0205);
 	op_enum		(x,	1,	GetEnum("windowtype"),0);
 	create_insn	(0X4C0216);
 	set_name	(0X4C0216,	"nullsub_4c0216");
 	create_insn	(0X4C0217);
-	set_name	(0X4C0217,	"ui::options::event_2_invalidate");
+	set_name	(0X4C0217,	"ui::options::event_2_prepare_draw");
 	create_insn	(x=0X4C0235);
 	op_hex		(x,	1);
 	create_insn	(0X4C02F5);
@@ -73288,7 +73380,7 @@ static Bytes_11(void) {
 	create_insn	(0X4C0501);
 	set_name	(0X4C0501,	"nullsub_4c0501");
 	create_insn	(0X4C0502);
-	set_name	(0X4C0502,	"ui::options::event_3_invalidate");
+	set_name	(0X4C0502,	"ui::options::event_3_prepare_draw");
 	create_insn	(x=0X4C0520);
 	op_hex		(x,	1);
 	create_insn	(x=0X4C05AB);
@@ -73375,7 +73467,7 @@ static Bytes_11(void) {
 	create_insn	(0X4C0A58);
 	set_name	(0X4C0A58,	"nullsub_4c0a58");
 	create_insn	(0X4C0A59);
-	set_name	(0X4C0A59,	"ui::options::event_4_invalidate");
+	set_name	(0X4C0A59,	"ui::options::event_4_prepare_draw");
 	create_insn	(x=0X4C0A77);
 	op_hex		(x,	1);
 	create_insn	(x=0X4C0AD3);
@@ -73392,15 +73484,6 @@ static Bytes_11(void) {
 	set_name	(0X4C0BEE,	"ui::options::event_4_on_mouse_up");
 	create_insn	(0X4C0C1D);
 	set_name	(0X4C0C1D,	"ui::options::event_4_on_mouse_down");
-}
-
-//------------------------------------------------------------------------
-// Information about bytes
-
-static Bytes_12(void) {
-        auto x;
-#define id x
-
 	create_insn	(0X4C0C42);
 	set_name	(0X4C0C42,	"ui::options::event_4_on_close");
 	create_insn	(0X4C0C4A);
@@ -73460,7 +73543,7 @@ static Bytes_12(void) {
 	create_insn	(0X4C10AB);
 	set_name	(0X4C10AB,	"nullsub_4c10ab");
 	create_insn	(0X4C10AC);
-	set_name	(0X4C10AC,	"ui::options::event_5_invalidate");
+	set_name	(0X4C10AC,	"ui::options::event_5_prepare_draw");
 	create_insn	(x=0X4C10CA);
 	op_hex		(x,	1);
 	create_insn	(0X4C113F);
@@ -73487,7 +73570,7 @@ static Bytes_12(void) {
 	create_insn	(0X4C11B6);
 	set_name	(0X4C11B6,	"nullsub_4c11b6");
 	create_insn	(0X4C11B7);
-	set_name	(0X4C11B7,	"ui::options::event_6_invalidate");
+	set_name	(0X4C11B7,	"ui::options::event_6_prepare_draw");
 	create_insn	(x=0X4C11D5);
 	op_hex		(x,	1);
 	create_insn	(x=0X4C1234);
@@ -73618,7 +73701,7 @@ static Bytes_12(void) {
 	create_insn	(0X4C165D);
 	set_name	(0X4C165D,	"ui::music_selection::event_draw");
 	create_insn	(0X4C1663);
-	set_name	(0X4C1663,	"ui::music_selection::event_scroll_paint");
+	set_name	(0X4C1663,	"ui::music_selection::event_draw_scroll");
 	create_insn	(x=0X4C1675);
 	op_hex		(x,	1);
 	create_insn	(x=0X4C167A);
@@ -73654,7 +73737,7 @@ static Bytes_12(void) {
 	create_insn	(0X4C176C);
 	set_name	(0X4C176C,	"ui::music_selection::event_get_scroll_size");
 	create_insn	(0X4C1771);
-	set_name	(0X4C1771,	"ui::music_selection::event_19");
+	set_name	(0X4C1771,	"ui::music_selection::event_scroll_mouse_over");
 	create_insn	(0X4C1799);
 	set_name	(0X4C1799,	"ui::music_selection::event_scroll_mouse_down");
 	create_insn	(x=0X4C17B1);
@@ -73934,6 +74017,7 @@ static Bytes_12(void) {
 	op_hex		(x,	1);
 	create_insn	(0X4C1D91);
 	create_insn	(0X4C1D92);
+	set_cmt	(0X4C1DA4,	"widget",	0);
 	create_insn	(x=0X4C1DB2);
 	op_hex		(x,	1);
 	create_insn	(x=0X4C1DB5);
@@ -74016,7 +74100,7 @@ static Bytes_12(void) {
 	op_plain_offset	(x,	129,	0);
 	create_insn	(0X4C1F86);
 	create_insn	(0X4C1F88);
-	set_name	(0X4C1F88,	"ui::vehicle_list::event_6_invalidate");
+	set_name	(0X4C1F88,	"ui::vehicle_list::event_6_prepare_draw");
 	create_insn	(x=0X4C1FA6);
 	op_hex		(x,	1);
 	create_insn	(x=0X4C1FC6);
@@ -74044,7 +74128,7 @@ static Bytes_12(void) {
 	op_plain_offset	(x,	1,	0);
 	op_plain_offset	(x,	129,	0);
 	create_insn	(0X4C21CD);
-	set_name	(0X4C21CD,	"ui::vehicle_list::event_6_scroll_paint");
+	set_name	(0X4C21CD,	"ui::vehicle_list::event_6_draw_scroll");
 	create_insn	(x=0X4C21DF);
 	op_hex		(x,	1);
 	create_insn	(x=0X4C21E4);
@@ -74182,7 +74266,7 @@ static Bytes_12(void) {
 	create_insn	(0X4C266D);
 	set_name	(0X4C266D,	"ui::vehicle_list::event_6_cursor");
 	create_insn	(0X4C26A4);
-	set_name	(0X4C26A4,	"ui::vehicle_list::event_6_19");
+	set_name	(0X4C26A4,	"ui::vehicle_list::event_6_scroll_mouse_over");
 	create_insn	(x=0X4C26AD);
 	op_hex		(x,	1);
 	create_insn	(x=0X4C2728);
@@ -74453,7 +74537,7 @@ static Bytes_12(void) {
 	op_plain_offset	(x,	128,	0);
 	create_insn	(0X4C2E5B);
 	create_insn	(0X4C2E5C);
-	set_name	(0X4C2E5C,	"ui::build_vehicle::event_6_invalidate");
+	set_name	(0X4C2E5C,	"ui::build_vehicle::event_6_prepare_draw");
 	create_insn	(x=0X4C2E7A);
 	op_hex		(x,	1);
 	create_insn	(x=0X4C2E80);
@@ -74508,7 +74592,7 @@ static Bytes_12(void) {
 	op_plain_offset	(x,	1,	0);
 	op_plain_offset	(x,	129,	0);
 	create_insn	(0X4C3307);
-	set_name	(0X4C3307,	"ui::build_vehicle::event_6_scroll_paint");
+	set_name	(0X4C3307,	"ui::build_vehicle::event_6_draw_scroll");
 	create_insn	(x=0X4C3322);
 	op_hex		(x,	1);
 	create_insn	(x=0X4C3327);
@@ -74649,7 +74733,7 @@ static Bytes_12(void) {
 	create_insn	(0X4C37CB);
 	set_name	(0X4C37CB,	"ui::build_vehicle::event_6_cursor");
 	create_insn	(0X4C3802);
-	set_name	(0X4C3802,	"ui::build_vehicle::event_6_19");
+	set_name	(0X4C3802,	"ui::build_vehicle::event_6_scroll_mouse_over");
 	create_insn	(0X4C384B);
 	set_name	(0X4C384B,	"ui::build_vehicle::event_6_scroll_mouse_down");
 	create_insn	(x=0X4C3874);
@@ -75216,6 +75300,7 @@ static Bytes_12(void) {
 	create_insn	(0X4C4AAC);
 	create_insn	(0X4C4AB4);
 	create_insn	(0X4C4AC0);
+	set_name	(0X4C4AC0,	"obj_wall");
 	create_insn	(0X4C4AF0);
 	create_insn	(0X4C4AFD);
 	create_insn	(0X4C4B00);
@@ -75544,6 +75629,7 @@ static Bytes_12(void) {
 	create_insn	(x=0X4C564F);
 	op_hex		(x,	1);
 	create_insn	(0X4C5672);
+	set_name	(0X4C5672,	"obj_water");
 	create_insn	(0X4C56A8);
 	create_insn	(0X4C56BC);
 	create_insn	(0X4C56CC);
@@ -76088,6 +76174,8 @@ static Bytes_12(void) {
 	create_insn	(x=0X4C6456);
 	op_stroff	(x,	0,	GetStrucIdByName("window_t"),	0);
 	set_name	(0X4C6456,	"viewports_update_position");
+	create_insn	(x=0X4C6462);
+	op_stroff	(x,	0,	GetStrucIdByName("window_events_t"),	0);
 	create_insn	(x=0X4C6465);
 	op_stroff	(x,	1,	GetStrucIdByName("window_t"),	0);
 	create_insn	(x=0X4C6470);
@@ -76148,8 +76236,11 @@ static Bytes_12(void) {
 	op_hex		(x,	1);
 	create_insn	(x=0X4C6612);
 	op_hex		(x,	1);
+	set_cmt	(0X4C662A,	"window",	0);
 	create_insn	(x=0X4C662B);
 	op_stroff	(x,	0,	GetStrucIdByName("window_t"),	0);
+	create_insn	(x=0X4C6637);
+	op_stroff	(x,	0,	GetStrucIdByName("window_events_t"),	0);
 	create_insn	(x=0X4C663A);
 	op_stroff	(x,	1,	GetStrucIdByName("window_t"),	0);
 	create_insn	(x=0X4C6645);
@@ -76291,6 +76382,7 @@ static Bytes_12(void) {
 	create_insn	(0X4C7145);
 	create_insn	(0X4C7174);
 	set_name	(0X4C7174,	"window_process_mouse_input");
+	set_cmt	(0X4C7185,	"window",	0);
 	create_insn	(x=0X4C719C);
 	op_stroff	(x,	1,	GetStrucIdByName("window_t"),	0);
 	set_cmt	(0X4C71B9,	"windowtype",	0);
@@ -76482,6 +76574,8 @@ static Bytes_12(void) {
 	op_hex		(x,	1);
 	create_insn	(x=0X4C7A0B);
 	op_stroff	(x,	0,	GetStrucIdByName("window_t"),	0);
+	create_insn	(x=0X4C7A18);
+	op_stroff	(x,	1,	GetStrucIdByName("widget_t"),	0);
 	create_insn	(x=0X4C7A1B);
 	op_stroff	(x,	1,	GetStrucIdByName("window_t"),	0);
 	create_insn	(x=0X4C7A1E);
@@ -76725,10 +76819,16 @@ static Bytes_12(void) {
 	create_insn	(x=0X4C84DC);
 	op_enum		(x,	1,	GetEnum("windowtype"),0);
 	set_cmt	(0X4C84E7,	"windowtype",	0);
+	create_insn	(x=0X4C8505);
+	op_stroff	(x,	1,	GetStrucIdByName("widget_t"),	0);
 	create_insn	(x=0X4C8553);
 	op_hex		(x,	1);
 	create_insn	(x=0X4C8556);
 	op_hex		(x,	1);
+	create_insn	(x=0X4C856B);
+	op_stroff	(x,	1,	GetStrucIdByName("widget_t"),	0);
+	create_insn	(x=0X4C856F);
+	op_stroff	(x,	1,	GetStrucIdByName("widget_t"),	0);
 	create_insn	(x=0X4C8573);
 	op_hex		(x,	1);
 	create_insn	(x=0X4C8576);
@@ -77095,12 +77195,22 @@ static Bytes_12(void) {
 	op_stroff	(x,	0,	GetStrucIdByName("window_events_t"),	0);
 	create_insn	(x=0X4C951E);
 	op_stroff	(x,	1,	GetStrucIdByName("window_t"),	0);
+	create_insn	(x=0X4C9530);
+	op_stroff	(x,	1,	GetStrucIdByName("widget_t"),	0);
+	create_insn	(x=0X4C9547);
+	op_stroff	(x,	1,	GetStrucIdByName("widget_t"),	0);
 	create_insn	(x=0X4C954B);
 	op_stroff	(x,	1,	GetStrucIdByName("window_t"),	0);
+	create_insn	(x=0X4C9554);
+	op_stroff	(x,	1,	GetStrucIdByName("widget_t"),	0);
 	create_insn	(x=0X4C9558);
 	op_stroff	(x,	1,	GetStrucIdByName("window_t"),	0);
+	create_insn	(x=0X4C9561);
+	op_stroff	(x,	1,	GetStrucIdByName("widget_t"),	0);
 	create_insn	(x=0X4C9565);
 	op_stroff	(x,	1,	GetStrucIdByName("window_t"),	0);
+	create_insn	(x=0X4C956E);
+	op_stroff	(x,	1,	GetStrucIdByName("widget_t"),	0);
 	create_insn	(x=0X4C9572);
 	op_stroff	(x,	1,	GetStrucIdByName("window_t"),	0);
 	create_insn	(x=0X4C957B);
@@ -77316,6 +77426,7 @@ static Bytes_12(void) {
 	create_insn	(x=0X4CA12B);
 	op_stroff	(x,	0,	GetStrucIdByName("window_events_t"),	0);
 	create_insn	(x=0X4CA138);
+	op_stroff	(x,	0,	GetStrucIdByName("widget_t"),	0);
 	op_hex		(x,	1);
 	create_insn	(x=0X4CA14F);
 	op_hex		(x,	1);
@@ -77482,6 +77593,7 @@ static Bytes_12(void) {
 	set_cmt	(0X4CA508,	"right",	0);
 	set_cmt	(0X4CA50A,	"bottom",	0);
 	set_cmt	(0X4CA50C,	"colour",	0);
+	set_cmt	(0X4CA516,	"window",	0);
 	create_insn	(x=0X4CA5C5);
 	op_stroff	(x,	1,	GetStrucIdByName("window_t"),	0);
 	create_insn	(x=0X4CA5CD);
@@ -77772,6 +77884,15 @@ static Bytes_12(void) {
 	set_cmt	(0X4CAA5B,	"right",	0);
 	set_cmt	(0X4CAA5E,	"top",	0);
 	set_cmt	(0X4CAA60,	"bottom",	0);
+}
+
+//------------------------------------------------------------------------
+// Information about bytes
+
+static Bytes_13(void) {
+        auto x;
+#define id x
+
 	create_insn	(x=0X4CAA62);
 	op_stkvar	(x,	1);
 	set_cmt	(0X4CAA65,	"colour",	0);
@@ -77950,15 +78071,6 @@ static Bytes_12(void) {
 	set_cmt	(0X4CADCF,	"colour",	0);
 	create_insn	(x=0X4CADE8);
 	op_stroff	(x,	1,	GetStrucIdByName("widget_t"),	0);
-}
-
-//------------------------------------------------------------------------
-// Information about bytes
-
-static Bytes_13(void) {
-        auto x;
-#define id x
-
 	create_insn	(x=0X4CADEC);
 	op_stroff	(x,	1,	GetStrucIdByName("widget_t"),	0);
 	create_insn	(x=0X4CADF0);
@@ -79318,7 +79430,7 @@ static Bytes_13(void) {
 	set_cmt	(0X4CE70B,	"windowtype",	0);
 	create_insn	(0X4CE720);
 	create_insn	(0X4CE726);
-	set_name	(0X4CE726,	"ui::text_input::_widgets::event_invalidate");
+	set_name	(0X4CE726,	"ui::text_input::_widgets::event_prepare_draw");
 	create_insn	(0X4CE75B);
 	set_name	(0X4CE75B,	"ui::text_input::_widgets::event_draw");
 	create_insn	(x=0X4CE76B);
@@ -79800,7 +79912,7 @@ static Bytes_13(void) {
 	create_insn	(x=0X4CF78A);
 	op_plain_offset	(x,	1,	0);
 	op_plain_offset	(x,	129,	0);
-	set_name	(0X4CF78A,	"ui::window_47::_widgets::event_invalidate");
+	set_name	(0X4CF78A,	"ui::window_47::_widgets::event_prepare_draw");
 	create_insn	(x=0X4CF78F);
 	op_plain_offset	(x,	1,	0);
 	op_plain_offset	(x,	129,	0);
@@ -82079,7 +82191,6 @@ static Bytes_13(void) {
 	create_insn	(x=0X4D1FE6);
 	op_hex		(x,	1);
 	set_cmt	(0X4D1FFB,	"NumberOfBytesWritten",	0);
-	create_insn	(0X4D2002);
 	create_insn	(x=0X4D2003);
 	op_stkvar	(x,	0);
 	create_insn	(x=0X4D202F);
@@ -82615,12 +82726,10 @@ static Bytes_13(void) {
 	create_insn	(0X4D2D12);
 	create_insn	(x=0X4D2D1E);
 	op_hex		(x,	1);
-	create_insn	(x=0X4D2D3F);
-	op_stkvar	(x,	1);
+	create_insn	(0X4D2D3F);
 	set_name	(0X4D2D3F,	"__cropzeros");
 	create_insn	(0X4D2D75);
-	create_insn	(x=0X4D2D8D);
-	op_stkvar	(x,	1);
+	create_insn	(0X4D2D8D);
 	set_name	(0X4D2D8D,	"__positive");
 	create_insn	(0X4D2DA2);
 	create_insn	(0X4D2DA5);
@@ -82859,6 +82968,15 @@ static Bytes_13(void) {
 	op_stkvar	(x,	0);
 	create_insn	(x=0X4D3251);
 	op_stkvar	(x,	0);
+}
+
+//------------------------------------------------------------------------
+// Information about bytes
+
+static Bytes_14(void) {
+        auto x;
+#define id x
+
 	create_insn	(x=0X4D325A);
 	op_stkvar	(x,	1);
 	create_insn	(x=0X4D3261);
@@ -83138,15 +83256,6 @@ static Bytes_13(void) {
 	create_insn	(x=0X4D36DD);
 	op_stkvar	(x,	0);
 	op_hex		(x,	1);
-}
-
-//------------------------------------------------------------------------
-// Information about bytes
-
-static Bytes_14(void) {
-        auto x;
-#define id x
-
 	create_insn	(x=0X4D36E1);
 	op_stkvar	(x,	0);
 	create_insn	(x=0X4D36EA);
@@ -88224,6 +88333,15 @@ static Bytes_14(void) {
 	create_dword	(x=0X4D7A70);
 	op_plain_offset	(x,	0,	0);
 	op_plain_offset	(x,	128,	0);
+}
+
+//------------------------------------------------------------------------
+// Information about bytes
+
+static Bytes_15(void) {
+        auto x;
+#define id x
+
 	create_dword	(x=0X4D7A74);
 	op_plain_offset	(x,	0,	0);
 	op_plain_offset	(x,	128,	0);
@@ -88500,15 +88618,6 @@ static Bytes_14(void) {
 	create_dword	(x=0X4D7BE0);
 	op_plain_offset	(x,	0,	0);
 	op_plain_offset	(x,	128,	0);
-}
-
-//------------------------------------------------------------------------
-// Information about bytes
-
-static Bytes_15(void) {
-        auto x;
-#define id x
-
 	create_dword	(x=0X4D7BE4);
 	op_plain_offset	(x,	0,	0);
 	op_plain_offset	(x,	128,	0);
@@ -93981,6 +94090,15 @@ static Bytes_15(void) {
 	create_dword	(x=0X4D9860);
 	op_plain_offset	(x,	0,	0);
 	op_plain_offset	(x,	128,	0);
+}
+
+//------------------------------------------------------------------------
+// Information about bytes
+
+static Bytes_16(void) {
+        auto x;
+#define id x
+
 	create_dword	(x=0X4D9864);
 	op_plain_offset	(x,	0,	0);
 	op_plain_offset	(x,	128,	0);
@@ -94257,15 +94375,6 @@ static Bytes_15(void) {
 	create_dword	(x=0X4D99D0);
 	op_plain_offset	(x,	0,	0);
 	op_plain_offset	(x,	128,	0);
-}
-
-//------------------------------------------------------------------------
-// Information about bytes
-
-static Bytes_16(void) {
-        auto x;
-#define id x
-
 	create_dword	(x=0X4D99D4);
 	op_plain_offset	(x,	0,	0);
 	op_plain_offset	(x,	128,	0);
@@ -96184,6 +96293,7 @@ static Bytes_16(void) {
 	create_dword	(x=0X4F73D8);
 	op_plain_offset	(x,	0,	0);
 	op_plain_offset	(x,	128,	0);
+	set_name	(0X4F73D8,	"widget");
 	create_dword	(x=0X4F73DC);
 	op_plain_offset	(x,	0,	0);
 	op_plain_offset	(x,	128,	0);
@@ -99404,6 +99514,15 @@ static Bytes_16(void) {
 	create_dword	(x=0X4FBCC0);
 	op_plain_offset	(x,	0,	0);
 	op_plain_offset	(x,	128,	0);
+}
+
+//------------------------------------------------------------------------
+// Information about bytes
+
+static Bytes_17(void) {
+        auto x;
+#define id x
+
 	create_dword	(x=0X4FBCC4);
 	op_plain_offset	(x,	0,	0);
 	op_plain_offset	(x,	128,	0);
@@ -99680,15 +99799,6 @@ static Bytes_16(void) {
 	create_dword	(x=0X4FBE30);
 	op_plain_offset	(x,	0,	0);
 	op_plain_offset	(x,	128,	0);
-}
-
-//------------------------------------------------------------------------
-// Information about bytes
-
-static Bytes_17(void) {
-        auto x;
-#define id x
-
 	create_dword	(x=0X4FBE34);
 	op_plain_offset	(x,	0,	0);
 	op_plain_offset	(x,	128,	0);
@@ -103585,9 +103695,21 @@ static Bytes_17(void) {
 	create_dword	(x=0X4FE0B4);
 	op_plain_offset	(x,	0,	0);
 	op_plain_offset	(x,	128,	0);
-	MakeStruct	(0X4FE0B8,	"object_repository_item");
-	make_array	(0X4FE0B8,	0X40);
-	set_name	(0X4FE0B8,	"entry_pointers");
+	MakeStruct	(0X4FE0B8,	"pair_ptr");
+	make_array	(0X4FE0B8,	0X22);
+	set_name	(0X4FE0B8,	"object_repository");
+	create_dword	(x=0X4FE1C8);
+	make_array	(x,	0X22);
+	op_plain_offset	(x,	0,	0);
+	op_plain_offset	(x,	128,	0);
+	op_plain_offset	(x,	1,	0);
+	op_plain_offset	(x,	129,	0);
+	set_name	(0X4FE1C8,	"paint_entry_table");
+	create_word	(0X4FE250);
+	make_array	(0X4FE250,	0X22);
+	set_name	(0X4FE250,	"object_entry_group_counts");
+	create_word	(0X4FE294);
+	make_array	(0X4FE294,	0X22);
 	create_byte	(0X4FE2D8);
 	create_dword	(x=0X4FE2D9);
 	op_plain_offset	(x,	0,	0);
@@ -103611,108 +103733,15 @@ static Bytes_17(void) {
 	op_plain_offset	(x,	0,	0);
 	op_plain_offset	(x,	128,	0);
 	create_dword	(x=0X4FE2FC);
+	make_array	(x,	0X22);
 	op_plain_offset	(x,	0,	0);
 	op_plain_offset	(x,	128,	0);
-	create_dword	(x=0X4FE300);
-	op_plain_offset	(x,	0,	0);
-	op_plain_offset	(x,	128,	0);
-	create_dword	(x=0X4FE304);
-	op_plain_offset	(x,	0,	0);
-	op_plain_offset	(x,	128,	0);
-	create_dword	(x=0X4FE308);
-	op_plain_offset	(x,	0,	0);
-	op_plain_offset	(x,	128,	0);
-	create_dword	(x=0X4FE30C);
-	op_plain_offset	(x,	0,	0);
-	op_plain_offset	(x,	128,	0);
-	create_dword	(x=0X4FE310);
-	op_plain_offset	(x,	0,	0);
-	op_plain_offset	(x,	128,	0);
-	create_dword	(x=0X4FE314);
-	op_plain_offset	(x,	0,	0);
-	op_plain_offset	(x,	128,	0);
-	create_dword	(x=0X4FE318);
-	op_plain_offset	(x,	0,	0);
-	op_plain_offset	(x,	128,	0);
-	create_dword	(x=0X4FE31C);
-	op_plain_offset	(x,	0,	0);
-	op_plain_offset	(x,	128,	0);
-	create_dword	(x=0X4FE320);
-	op_plain_offset	(x,	0,	0);
-	op_plain_offset	(x,	128,	0);
-	create_dword	(x=0X4FE324);
-	op_plain_offset	(x,	0,	0);
-	op_plain_offset	(x,	128,	0);
-	create_dword	(x=0X4FE328);
-	op_plain_offset	(x,	0,	0);
-	op_plain_offset	(x,	128,	0);
-	create_dword	(x=0X4FE32C);
-	op_plain_offset	(x,	0,	0);
-	op_plain_offset	(x,	128,	0);
-	create_dword	(x=0X4FE330);
-	op_plain_offset	(x,	0,	0);
-	op_plain_offset	(x,	128,	0);
-	create_dword	(x=0X4FE334);
-	op_plain_offset	(x,	0,	0);
-	op_plain_offset	(x,	128,	0);
-	create_dword	(x=0X4FE338);
-	op_plain_offset	(x,	0,	0);
-	op_plain_offset	(x,	128,	0);
-	create_dword	(x=0X4FE33C);
-	op_plain_offset	(x,	0,	0);
-	op_plain_offset	(x,	128,	0);
-	create_dword	(x=0X4FE340);
-	op_plain_offset	(x,	0,	0);
-	op_plain_offset	(x,	128,	0);
-	create_dword	(x=0X4FE344);
-	op_plain_offset	(x,	0,	0);
-	op_plain_offset	(x,	128,	0);
-	create_dword	(x=0X4FE348);
-	op_plain_offset	(x,	0,	0);
-	op_plain_offset	(x,	128,	0);
-	create_dword	(x=0X4FE34C);
-	op_plain_offset	(x,	0,	0);
-	op_plain_offset	(x,	128,	0);
-	create_dword	(x=0X4FE350);
-	op_plain_offset	(x,	0,	0);
-	op_plain_offset	(x,	128,	0);
-	create_dword	(x=0X4FE354);
-	op_plain_offset	(x,	0,	0);
-	op_plain_offset	(x,	128,	0);
-	create_dword	(x=0X4FE358);
-	op_plain_offset	(x,	0,	0);
-	op_plain_offset	(x,	128,	0);
-	create_dword	(x=0X4FE35C);
-	op_plain_offset	(x,	0,	0);
-	op_plain_offset	(x,	128,	0);
-	create_dword	(x=0X4FE360);
-	op_plain_offset	(x,	0,	0);
-	op_plain_offset	(x,	128,	0);
-	create_dword	(x=0X4FE364);
-	op_plain_offset	(x,	0,	0);
-	op_plain_offset	(x,	128,	0);
-	create_dword	(x=0X4FE368);
-	op_plain_offset	(x,	0,	0);
-	op_plain_offset	(x,	128,	0);
-	create_dword	(x=0X4FE36C);
-	op_plain_offset	(x,	0,	0);
-	op_plain_offset	(x,	128,	0);
-	create_dword	(x=0X4FE370);
-	op_plain_offset	(x,	0,	0);
-	op_plain_offset	(x,	128,	0);
-	create_dword	(x=0X4FE374);
-	op_plain_offset	(x,	0,	0);
-	op_plain_offset	(x,	128,	0);
-	create_dword	(x=0X4FE378);
-	op_plain_offset	(x,	0,	0);
-	op_plain_offset	(x,	128,	0);
-	create_dword	(x=0X4FE37C);
-	op_plain_offset	(x,	0,	0);
-	op_plain_offset	(x,	128,	0);
-	create_dword	(x=0X4FE380);
-	op_plain_offset	(x,	0,	0);
-	op_plain_offset	(x,	128,	0);
-	create_byte	(0X4FE384);
+	op_plain_offset	(x,	1,	0);
+	op_plain_offset	(x,	129,	0);
+	create_byte	(x=0X4FE384);
+	make_array	(x,	0X22);
+	op_bin		(x,	0);
+	op_bin		(x,	1);
 	create_byte	(0X4FE3A6);
 	set_name	(0X4FE3A6,	"window_editor_object_selection_default_objects_flags");
 	MakeStruct	(0X4FE3C8,	"window_events_t");
@@ -105085,6 +105114,15 @@ static Bytes_17(void) {
 	create_dword	(x=0X4FFC58);
 	op_plain_offset	(x,	0,	0);
 	op_plain_offset	(x,	128,	0);
+}
+
+//------------------------------------------------------------------------
+// Information about bytes
+
+static Bytes_18(void) {
+        auto x;
+#define id x
+
 	create_dword	(x=0X4FFC5C);
 	op_plain_offset	(x,	0,	0);
 	op_plain_offset	(x,	128,	0);
@@ -105267,15 +105305,6 @@ static Bytes_17(void) {
 	create_dword	(x=0X4FFF10);
 	op_plain_offset	(x,	0,	0);
 	op_plain_offset	(x,	128,	0);
-}
-
-//------------------------------------------------------------------------
-// Information about bytes
-
-static Bytes_18(void) {
-        auto x;
-#define id x
-
 	create_dword	(x=0X4FFF14);
 	op_plain_offset	(x,	0,	0);
 	op_plain_offset	(x,	128,	0);
@@ -106974,30 +107003,25 @@ static Bytes_18(void) {
 	set_name	(0X508C8C,	"ui::window_36::_widgets_1::_widgets");
 	create_byte	(x=0X508CEC);
 	op_enum		(x,	0,	GetEnum("widget_type"),0);
-	make_array	(0X508CED,	0X3);
 	MakeStruct	(0X508CF0,	"widget_t");
 	make_array	(0X508CF0,	0X6);
 	set_name	(0X508CF0,	"ui::window_36::_widgets_0::_widgets");
 	create_byte	(x=0X508D50);
 	op_enum		(x,	0,	GetEnum("widget_type"),0);
-	make_array	(0X508D51,	0X3);
 	MakeStruct	(0X508D54,	"widget_t");
 	set_name	(0X508D54,	"ui::window_36::_widgets_2::_widgets");
 	create_byte	(x=0X508D64);
 	op_enum		(x,	0,	GetEnum("widget_type"),0);
-	make_array	(0X508D65,	0X3);
 	MakeStruct	(0X508D68,	"widget_t");
 	make_array	(0X508D68,	0X7);
 	set_name	(0X508D68,	"ui::messages::_widgets_1");
 	create_byte	(x=0X508DD8);
 	op_enum		(x,	0,	GetEnum("widget_type"),0);
-	make_array	(0X508DD9,	0X3);
 	MakeStruct	(0X508DDC,	"widget_t");
 	make_array	(0X508DDC,	0X12);
 	set_name	(0X508DDC,	"ui::messages::_widgets_2");
 	create_byte	(x=0X508EFC);
 	op_enum		(x,	0,	GetEnum("widget_type"),0);
-	make_array	(0X508EFD,	0X3);
 	create_dword	(0X508F00);
 	create_dword	(0X508F04);
 	create_byte	(0X508F08);
@@ -107025,171 +107049,142 @@ static Bytes_18(void) {
 	set_name	(0X508F1C,	"ui::window_12::_widgets_0::_widgets");
 	create_byte	(x=0X508F2C);
 	op_enum		(x,	0,	GetEnum("widget_type"),0);
-	make_array	(0X508F2D,	0X3);
 	MakeStruct	(0X508F30,	"widget_t");
 	make_array	(0X508F30,	0X2);
 	set_name	(0X508F30,	"ui::window_12::_widgets_1::_widgets");
 	create_byte	(x=0X508F50);
 	op_enum		(x,	0,	GetEnum("widget_type"),0);
-	make_array	(0X508F51,	0X3);
 	MakeStruct	(0X508F54,	"widget_t");
 	make_array	(0X508F54,	0X3);
 	set_name	(0X508F54,	"ui::window_46::_widgets");
 	create_byte	(x=0X508F84);
 	op_enum		(x,	0,	GetEnum("widget_type"),0);
-	make_array	(0X508F85,	0X3);
 	MakeStruct	(0X508F88,	"widget_t");
 	make_array	(0X508F88,	0X10);
 	set_name	(0X508F88,	"ui::company::_widgets_1");
 	create_byte	(x=0X509088);
 	op_enum		(x,	0,	GetEnum("widget_type"),0);
-	make_array	(0X509089,	0X3);
 	MakeStruct	(0X50908C,	"widget_t");
 	make_array	(0X50908C,	0XE);
 	set_name	(0X50908C,	"ui::company::_widgets_2");
 	create_byte	(x=0X50916C);
 	op_enum		(x,	0,	GetEnum("widget_type"),0);
-	make_array	(0X50916D,	0X3);
 	MakeStruct	(0X509170,	"widget_t");
 	make_array	(0X509170,	0XF);
 	set_name	(0X509170,	"ui::company::_widgets_4");
 	create_byte	(x=0X509260);
 	op_enum		(x,	0,	GetEnum("widget_type"),0);
-	make_array	(0X509261,	0X3);
 	MakeStruct	(0X509264,	"widget_t");
 	make_array	(0X509264,	0XB);
 	set_name	(0X509264,	"ui::company::_widgets_5");
 	create_byte	(x=0X509314);
 	op_enum		(x,	0,	GetEnum("widget_type"),0);
-	make_array	(0X509315,	0X3);
 	MakeStruct	(0X509318,	"widget_t");
 	make_array	(0X509318,	0X2B);
 	set_name	(0X509318,	"ui::company::_widgets_3");
 	create_byte	(x=0X5095C8);
 	op_enum		(x,	0,	GetEnum("widget_type"),0);
-	make_array	(0X5095C9,	0X3);
 	MakeStruct	(0X5095CC,	"widget_t");
 	make_array	(0X5095CC,	0XB);
 	set_name	(0X5095CC,	"ui::company::_widgets_6");
 	create_byte	(x=0X50967C);
 	op_enum		(x,	0,	GetEnum("widget_type"),0);
-	make_array	(0X50967D,	0X3);
 	MakeStruct	(0X509680,	"widget_t");
 	make_array	(0X509680,	0X6);
 	set_name	(0X509680,	"ui::company_face_selection::_widgets");
 	create_byte	(x=0X5096E0);
 	op_enum		(x,	0,	GetEnum("widget_type"),0);
-	make_array	(0X5096E1,	0X3);
 	MakeStruct	(0X5096E4,	"widget_t");
 	make_array	(0X5096E4,	0X10);
 	set_name	(0X5096E4,	"ui::company_list::_widgets_1");
 	create_byte	(x=0X5097E4);
 	op_enum		(x,	0,	GetEnum("widget_type"),0);
-	make_array	(0X5097E5,	0X3);
 	MakeStruct	(0X5097E8,	"widget_t");
 	make_array	(0X5097E8,	0XB);
 	set_name	(0X5097E8,	"ui::company_list::_widgets_2");
 	create_byte	(x=0X509898);
 	op_enum		(x,	0,	GetEnum("widget_type"),0);
-	make_array	(0X509899,	0X3);
 	MakeStruct	(0X50989C,	"widget_t");
 	make_array	(0X50989C,	0XB);
 	set_name	(0X50989C,	"ui::company_list::_widgets_3");
 	create_byte	(x=0X50994C);
 	op_enum		(x,	0,	GetEnum("widget_type"),0);
-	make_array	(0X50994D,	0X3);
 	MakeStruct	(0X509950,	"widget_t");
 	make_array	(0X509950,	0XB);
 	set_name	(0X509950,	"ui::company_list::_widgets_4");
 	create_byte	(x=0X509A00);
 	op_enum		(x,	0,	GetEnum("widget_type"),0);
-	make_array	(0X509A01,	0X3);
 	MakeStruct	(0X509A04,	"widget_t");
 	make_array	(0X509A04,	0XB);
 	set_name	(0X509A04,	"ui::company_list::_widgets_5");
 	create_byte	(x=0X509AB4);
 	op_enum		(x,	0,	GetEnum("widget_type"),0);
-	make_array	(0X509AB5,	0X3);
 	MakeStruct	(0X509AB8,	"widget_t");
 	make_array	(0X509AB8,	0XB);
 	set_name	(0X509AB8,	"ui::company_list::_widgets_6");
 	create_byte	(x=0X509B68);
 	op_enum		(x,	0,	GetEnum("widget_type"),0);
-	make_array	(0X509B69,	0X3);
 	MakeStruct	(0X509B6C,	"widget_t");
 	make_array	(0X509B6C,	0XB);
 	set_name	(0X509B6C,	"ui::company_list::_widgets_7");
 	create_byte	(x=0X509C1C);
 	op_enum		(x,	0,	GetEnum("widget_type"),0);
-	make_array	(0X509C1D,	0X3);
 	MakeStruct	(0X509C20,	"widget_t");
 	set_name	(0X509C20,	"ui::window_0::_widgets::_widgets");
 	create_byte	(x=0X509C30);
 	op_enum		(x,	0,	GetEnum("widget_type"),0);
-	make_array	(0X509C31,	0X3);
 	MakeStruct	(0X509C34,	"widget_t");
 	make_array	(0X509C34,	0XD);
 	set_name	(0X509C34,	"ui::toolbar_top::_widgets::_widgets");
 	create_byte	(x=0X509D04);
 	op_enum		(x,	0,	GetEnum("widget_type"),0);
-	make_array	(0X509D05,	0X3);
 	MakeStruct	(0X509D08,	"widget_t");
 	make_array	(0X509D08,	0X5);
 	set_name	(0X509D08,	"ui::toolbar_player_info::_widgets::_widgets");
 	create_byte	(x=0X509D58);
 	op_enum		(x,	0,	GetEnum("widget_type"),0);
-	make_array	(0X509D59,	0X3);
 	MakeStruct	(0X509D5C,	"widget_t");
 	make_array	(0X509D5C,	0X8);
 	set_name	(0X509D5C,	"ui::toolbar_time::_widgets::_widgets");
 	create_byte	(x=0X509DDC);
 	op_enum		(x,	0,	GetEnum("widget_type"),0);
-	make_array	(0X509DDD,	0X3);
 	MakeStruct	(0X509DE0,	"widget_t");
 	set_name	(0X509DE0,	"ui::tutorial::_widgets::_widgets");
 	create_byte	(x=0X509DF0);
 	op_enum		(x,	0,	GetEnum("widget_type"),0);
-	make_array	(0X509DF1,	0X3);
 	MakeStruct	(0X509DF4,	"widget_t");
 	make_array	(0X509DF4,	0X6);
 	set_name	(0X509DF4,	"ui::title_menu::_widgets::_widgets");
 	create_byte	(x=0X509E54);
 	op_enum		(x,	0,	GetEnum("widget_type"),0);
-	make_array	(0X509E55,	0X3);
 	MakeStruct	(0X509E58,	"widget_t");
 	set_name	(0X509E58,	"ui::title_exit::_widgets::_widgets");
 	create_byte	(x=0X509E68);
 	op_enum		(x,	0,	GetEnum("widget_type"),0);
-	make_array	(0X509E69,	0X3);
 	MakeStruct	(0X509E6C,	"widget_t");
 	set_name	(0X509E6C,	"ui::title_logo::_widgets::_widgets");
 	create_byte	(x=0X509E7C);
 	op_enum		(x,	0,	GetEnum("widget_type"),0);
-	make_array	(0X509E7D,	0X3);
 	MakeStruct	(0X509E80,	"widget_t");
 	make_array	(0X509E80,	0X6);
 	set_name	(0X509E80,	"ui::about::_widgets::_widgets");
 	create_byte	(x=0X509EE0);
 	op_enum		(x,	0,	GetEnum("widget_type"),0);
-	make_array	(0X509EE1,	0X3);
 	MakeStruct	(0X509EE4,	"widget_t");
 	make_array	(0X509EE4,	0X5);
 	set_name	(0X509EE4,	"ui::about_atari::_widgets::_widgets");
 	create_byte	(x=0X509F34);
 	op_enum		(x,	0,	GetEnum("widget_type"),0);
-	make_array	(0X509F35,	0X3);
 	MakeStruct	(0X509F38,	"widget_t");
 	make_array	(0X509F38,	0X5);
 	set_name	(0X509F38,	"ui::about_music::_widgets::_widgets");
 	create_byte	(x=0X509F88);
 	op_enum		(x,	0,	GetEnum("widget_type"),0);
-	make_array	(0X509F89,	0X3);
 	MakeStruct	(0X509F8C,	"widget_t");
 	make_array	(0X509F8C,	0X7);
 	set_name	(0X509F8C,	"ui::prompt_save_game::_widgets::_widgets");
 	create_byte	(x=0X509FFC);
 	op_enum		(x,	0,	GetEnum("widget_type"),0);
-	make_array	(0X509FFD,	0X3);
 	create_word	(0X50A000);
 	create_word	(0X50A002);
 	create_word	(0X50A004);
@@ -107209,92 +107204,77 @@ static Bytes_18(void) {
 	set_name	(0X50A044,	"ui::window_0_alt::_widgets::_widgets");
 	create_byte	(x=0X50A054);
 	op_enum		(x,	0,	GetEnum("widget_type"),0);
-	make_array	(0X50A055,	0X3);
 	MakeStruct	(0X50A058,	"widget_t");
 	make_array	(0X50A058,	0XD);
 	set_name	(0X50A058,	"ui::toolbar_top_alt::_widgets::_widgets");
 	create_byte	(x=0X50A128);
 	op_enum		(x,	0,	GetEnum("widget_type"),0);
-	make_array	(0X50A129,	0X3);
 	MakeStruct	(0X50A12C,	"widget_t");
 	make_array	(0X50A12C,	0X4);
 	set_name	(0X50A12C,	"ui::window_4::_widgets::_widgets");
 	create_byte	(x=0X50A16C);
 	op_enum		(x,	0,	GetEnum("widget_type"),0);
-	make_array	(0X50A16D,	0X3);
 	MakeStruct	(0X50A170,	"widget_t");
 	make_array	(0X50A170,	0XE);
 	set_name	(0X50A170,	"ui::landscape_generation::_widgets_1");
 	create_byte	(x=0X50A250);
 	op_enum		(x,	0,	GetEnum("widget_type"),0);
-	make_array	(0X50A251,	0X3);
 	MakeStruct	(0X50A254,	"widget_t");
 	make_array	(0X50A254,	0X16);
 	set_name	(0X50A254,	"ui::landscape_generation::_widgets_2");
 	create_byte	(x=0X50A3B4);
 	op_enum		(x,	0,	GetEnum("widget_type"),0);
-	make_array	(0X50A3B5,	0X3);
 	MakeStruct	(0X50A3B8,	"widget_t");
 	make_array	(0X50A3B8,	0X21);
 	set_name	(0X50A3B8,	"ui::landscape_generation::_widgets_3");
 	create_byte	(x=0X50A5C8);
 	op_enum		(x,	0,	GetEnum("widget_type"),0);
-	make_array	(0X50A5C9,	0X3);
 	MakeStruct	(0X50A5CC,	"widget_t");
 	make_array	(0X50A5CC,	0XE);
 	set_name	(0X50A5CC,	"ui::landscape_generation::_widgets_4");
 	create_byte	(x=0X50A6AC);
 	op_enum		(x,	0,	GetEnum("widget_type"),0);
-	make_array	(0X50A6AD,	0X3);
 	MakeStruct	(0X50A6B0,	"widget_t");
 	make_array	(0X50A6B0,	0XD);
 	set_name	(0X50A6B0,	"ui::landscape_generation::_widgets_5");
 	create_byte	(x=0X50A780);
 	op_enum		(x,	0,	GetEnum("widget_type"),0);
-	make_array	(0X50A781,	0X3);
 	MakeStruct	(0X50A784,	"widget_t");
 	make_array	(0X50A784,	0XB);
 	set_name	(0X50A784,	"ui::scenario_options::_widgets_4");
 	create_byte	(x=0X50A834);
 	op_enum		(x,	0,	GetEnum("widget_type"),0);
-	make_array	(0X50A835,	0X3);
 	MakeStruct	(0X50A838,	"widget_t");
 	make_array	(0X50A838,	0X1F);
 	set_name	(0X50A838,	"ui::scenario_options::_widgets_2");
 	create_byte	(x=0X50AA28);
 	op_enum		(x,	0,	GetEnum("widget_type"),0);
-	make_array	(0X50AA29,	0X3);
 	MakeStruct	(0X50AA2C,	"widget_t");
 	make_array	(0X50AA2C,	0X10);
 	set_name	(0X50AA2C,	"ui::scenario_options::_widgets_3");
 	create_byte	(x=0X50AB2C);
 	op_enum		(x,	0,	GetEnum("widget_type"),0);
-	make_array	(0X50AB2D,	0X3);
 	MakeStruct	(0X50AB30,	"widget_t");
 	make_array	(0X50AB30,	0X14);
 	set_name	(0X50AB30,	"ui::scenario_options::_widgets_1");
 	create_byte	(x=0X50AC70);
 	op_enum		(x,	0,	GetEnum("widget_type"),0);
-	make_array	(0X50AC71,	0X3);
 	create_byte	(0X50AC74);
 	MakeStruct	(0X50ACB4,	"widget_t");
 	make_array	(0X50ACB4,	0XA);
 	set_name	(0X50ACB4,	"ui::scenario_select::_widgets::_widgets");
 	create_byte	(x=0X50AD54);
 	op_enum		(x,	0,	GetEnum("widget_type"),0);
-	make_array	(0X50AD55,	0X3);
 	MakeStruct	(0X50AD58,	"widget_t");
 	make_array	(0X50AD58,	0X8);
 	set_name	(0X50AD58,	"ui::prompt_browse::_widgets::_widgets");
 	create_byte	(x=0X50ADD8);
 	op_enum		(x,	0,	GetEnum("widget_type"),0);
-	make_array	(0X50ADD9,	0X3);
 	MakeStruct	(0X50ADDC,	"widget_t");
 	make_array	(0X50ADDC,	0X2);
 	set_name	(0X50ADDC,	"ui::window_53::_widgets::_widgets");
 	create_byte	(x=0X50ADFC);
 	op_enum		(x,	0,	GetEnum("widget_type"),0);
-	make_array	(0X50ADFD,	0X3);
 	MakeStruct	(0X50AE00,	"widget_t");
 	make_array	(0X50AE00,	0X5);
 	set_name	(0X50AE00,	"ui::prompt_ok_cancel::_widgets::_widgets");
@@ -107510,19 +107490,8 @@ static Bytes_18(void) {
 	create_word	(0X50B87E);
 	create_word	(0X50B880);
 	make_array	(0X50B882,	0X2);
-	create_dword	(0X50B884);
+	MakeStruct	(0X50B884,	"drawpixelinfo_t");
 	set_name	(0X50B884,	"screen_dpi");
-	create_word	(0X50B888);
-	set_name	(0X50B888,	"screen_dpi_left");
-	create_word	(0X50B88A);
-	set_name	(0X50B88A,	"screen_dpi_top");
-	create_word	(0X50B88C);
-	set_name	(0X50B88C,	"screen_dpi_width");
-	create_word	(0X50B88E);
-	set_name	(0X50B88E,	"screen_dpi_height");
-	create_word	(0X50B890);
-	set_name	(0X50B890,	"screen_dpi_pitch");
-	create_word	(0X50B892);
 	create_word	(0X50B894);
 	set_name	(0X50B894,	"ui_width");
 	create_word	(0X50B896);
@@ -107580,31 +107549,26 @@ static Bytes_18(void) {
 	set_name	(0X50BC74,	"ui::industry::_widgets_1");
 	create_byte	(x=0X50BD34);
 	op_enum		(x,	0,	GetEnum("widget_type"),0);
-	make_array	(0X50BD35,	0X3);
 	MakeStruct	(0X50BD38,	"widget_t");
 	make_array	(0X50BD38,	0X8);
 	set_name	(0X50BD38,	"ui::industry::_widgets_3");
 	create_byte	(x=0X50BDB8);
 	op_enum		(x,	0,	GetEnum("widget_type"),0);
-	make_array	(0X50BDB9,	0X3);
 	MakeStruct	(0X50BDBC,	"widget_t");
 	make_array	(0X50BDBC,	0X8);
 	set_name	(0X50BDBC,	"ui::industry::_widgets_4");
 	create_byte	(x=0X50BE3C);
 	op_enum		(x,	0,	GetEnum("widget_type"),0);
-	make_array	(0X50BE3D,	0X3);
 	MakeStruct	(0X50BE40,	"widget_t");
 	make_array	(0X50BE40,	0XA);
 	set_name	(0X50BE40,	"ui::industry_list::_widgets_1");
 	create_byte	(x=0X50BEE0);
 	op_enum		(x,	0,	GetEnum("widget_type"),0);
-	make_array	(0X50BEE1,	0X3);
 	MakeStruct	(0X50BEE4,	"widget_t");
 	make_array	(0X50BEE4,	0X7);
 	set_name	(0X50BEE4,	"ui::industry_list::_widgets_2");
 	create_byte	(x=0X50BF54);
 	op_enum		(x,	0,	GetEnum("widget_type"),0);
-	make_array	(0X50BF55,	0X3);
 	create_dword	(0X50BF58);
 	set_name	(0X50BF58,	"colour");
 	create_byte	(0X50BF68);
@@ -107672,23 +107636,20 @@ static Bytes_18(void) {
 	set_name	(0X50C1B4,	"ui::map::_widgets");
 	create_byte	(x=0X50C264);
 	op_enum		(x,	0,	GetEnum("widget_type"),0);
-	make_array	(0X50C265,	0X3);
 	MakeStruct	(0X50C268,	"widget_t");
 	make_array	(0X50C268,	0XC);
 	set_name	(0X50C268,	"ui::multiplayer::_widgets_1");
 	create_byte	(x=0X50C328);
 	op_enum		(x,	0,	GetEnum("widget_type"),0);
-	make_array	(0X50C329,	0X3);
 	MakeStruct	(0X50C32C,	"widget_t");
 	make_array	(0X50C32C,	0XA);
 	set_name	(0X50C32C,	"ui::multiplayer::_widgets_2");
 	create_byte	(x=0X50C3CC);
 	op_enum		(x,	0,	GetEnum("widget_type"),0);
-	make_array	(0X50C3CD,	0X3);
 	create_dword	(x=0X50C3D0);
 	op_plain_offset	(x,	1,	0);
 	op_plain_offset	(x,	129,	0);
-	set_name	(0X50C3D0,	"_interfaceObjects");
+	set_name	(0X50C3D0,	"_interfaceSkinObjects");
 	create_dword	(x=0X50C3D4);
 	make_array	(x,	0X80);
 	op_plain_offset	(x,	1,	0);
@@ -107735,7 +107696,7 @@ static Bytes_18(void) {
 	make_array	(x,	0X10);
 	op_plain_offset	(x,	1,	0);
 	op_plain_offset	(x,	129,	0);
-	set_name	(0X50C800,	"_trainSignalObjects");
+	set_name	(0X50C800,	"_trackSignalObjects");
 	create_dword	(x=0X50C840);
 	make_array	(x,	0X4);
 	op_plain_offset	(x,	1,	0);
@@ -107759,7 +107720,7 @@ static Bytes_18(void) {
 	make_array	(x,	0X10);
 	op_plain_offset	(x,	1,	0);
 	op_plain_offset	(x,	129,	0);
-	set_name	(0X50C8B4,	"_trainStationObjects");
+	set_name	(0X50C8B4,	"_trackStationObjects");
 	create_dword	(x=0X50C8F4);
 	make_array	(x,	0X8);
 	op_plain_offset	(x,	1,	0);
@@ -107816,7 +107777,7 @@ static Bytes_18(void) {
 	create_dword	(x=0X50CE6C);
 	op_plain_offset	(x,	1,	0);
 	op_plain_offset	(x,	129,	0);
-	set_name	(0X50CE6C,	"_hillShapeObjects");
+	set_name	(0X50CE6C,	"_hillShapesObjects");
 	create_dword	(x=0X50CE70);
 	make_array	(x,	0X80);
 	op_plain_offset	(x,	1,	0);
@@ -107863,7 +107824,6 @@ static Bytes_18(void) {
 	set_name	(0X50D164,	"ui::object_selection::_widgets");
 	create_byte	(x=0X50D1E4);
 	op_enum		(x,	0,	GetEnum("widget_type"),0);
-	make_array	(0X50D1E5,	0X3);
 	create_dword	(0X50D1E8);
 	set_name	(0X50D1E8,	"current_sound_device");
 	create_dword	(0X50D1EC);
@@ -107889,25 +107849,21 @@ static Bytes_18(void) {
 	set_name	(0X50D5BC,	"ui::station::_widgets_1");
 	create_byte	(x=0X50D65C);
 	op_enum		(x,	0,	GetEnum("widget_type"),0);
-	make_array	(0X50D65D,	0X3);
 	MakeStruct	(0X50D660,	"widget_t");
 	make_array	(0X50D660,	0XA);
 	set_name	(0X50D660,	"ui::station::_widgets_2");
 	create_byte	(x=0X50D700);
 	op_enum		(x,	0,	GetEnum("widget_type"),0);
-	make_array	(0X50D701,	0X3);
 	MakeStruct	(0X50D704,	"widget_t");
 	make_array	(0X50D704,	0X9);
 	set_name	(0X50D704,	"ui::station::_widgets_3");
 	create_byte	(x=0X50D794);
 	op_enum		(x,	0,	GetEnum("widget_type"),0);
-	make_array	(0X50D795,	0X3);
 	MakeStruct	(0X50D798,	"widget_t");
 	make_array	(0X50D798,	0XF);
 	set_name	(0X50D798,	"ui::station_list::_widgets_5");
 	create_byte	(x=0X50D888);
 	op_enum		(x,	0,	GetEnum("widget_type"),0);
-	make_array	(0X50D889,	0X3);
 	create_strlit	(0X50D88C,	0X50D88D);
 	set_name	(0X50D88C,	"_str0000");
 	create_strlit	(0X50D88D,	0X50D88F);
@@ -109100,6 +109056,15 @@ static Bytes_18(void) {
 	set_name	(0X510305,	"_str0594");
 	create_strlit	(0X510311,	0X510324);
 	set_name	(0X510311,	"_str0595");
+}
+
+//------------------------------------------------------------------------
+// Information about bytes
+
+static Bytes_19(void) {
+        auto x;
+#define id x
+
 	create_strlit	(0X510324,	0X510334);
 	set_name	(0X510324,	"_str0596");
 	create_strlit	(0X510334,	0X51034B);
@@ -109152,15 +109117,6 @@ static Bytes_18(void) {
 	set_name	(0X510470,	"_str0620");
 	create_strlit	(0X510475,	0X510480);
 	set_name	(0X510475,	"_str0621");
-}
-
-//------------------------------------------------------------------------
-// Information about bytes
-
-static Bytes_19(void) {
-        auto x;
-#define id x
-
 	create_strlit	(0X510480,	0X510496);
 	set_name	(0X510480,	"_str0622");
 	create_strlit	(0X510496,	0X5104B8);
@@ -112183,55 +112139,46 @@ static Bytes_19(void) {
 	set_name	(0X521840,	"ui::town::_widgets_1");
 	create_byte	(x=0X521900);
 	op_enum		(x,	0,	GetEnum("widget_type"),0);
-	make_array	(0X521901,	0X3);
 	MakeStruct	(0X521904,	"widget_t");
 	make_array	(0X521904,	0X7);
 	set_name	(0X521904,	"ui::town::_widgets_2");
 	create_byte	(x=0X521974);
 	op_enum		(x,	0,	GetEnum("widget_type"),0);
-	make_array	(0X521975,	0X3);
 	MakeStruct	(0X521978,	"widget_t");
 	make_array	(0X521978,	0X7);
 	set_name	(0X521978,	"ui::town::_widgets_3");
 	create_byte	(x=0X5219E8);
 	op_enum		(x,	0,	GetEnum("widget_type"),0);
-	make_array	(0X5219E9,	0X3);
 	MakeStruct	(0X5219EC,	"widget_t");
 	make_array	(0X5219EC,	0XD);
 	set_name	(0X5219EC,	"ui::town_list::_widgets_1");
 	create_byte	(x=0X521ABC);
 	op_enum		(x,	0,	GetEnum("widget_type"),0);
-	make_array	(0X521ABD,	0X3);
 	MakeStruct	(0X521AC0,	"widget_t");
 	make_array	(0X521AC0,	0XA);
 	set_name	(0X521AC0,	"ui::town_list::_widgets_2");
 	create_byte	(x=0X521B60);
 	op_enum		(x,	0,	GetEnum("widget_type"),0);
-	make_array	(0X521B61,	0X3);
 	MakeStruct	(0X521B64,	"widget_t");
 	make_array	(0X521B64,	0XB);
 	set_name	(0X521B64,	"ui::town_list::_widgets_4");
 	create_byte	(x=0X521C14);
 	op_enum		(x,	0,	GetEnum("widget_type"),0);
-	make_array	(0X521C15,	0X3);
 	MakeStruct	(0X521C18,	"widget_t");
 	make_array	(0X521C18,	0X1F);
 	set_name	(0X521C18,	"ui::construction::_widgets_1");
 	create_byte	(x=0X521E08);
 	op_enum		(x,	0,	GetEnum("widget_type"),0);
-	make_array	(0X521E09,	0X3);
 	MakeStruct	(0X521E0C,	"widget_t");
 	make_array	(0X521E0C,	0XC);
 	set_name	(0X521E0C,	"ui::construction::_widgets_2");
 	create_byte	(x=0X521ECC);
 	op_enum		(x,	0,	GetEnum("widget_type"),0);
-	make_array	(0X521ECD,	0X3);
 	MakeStruct	(0X521ED0,	"widget_t");
 	make_array	(0X521ED0,	0XC);
 	set_name	(0X521ED0,	"ui::construction::_widgets_3");
 	create_byte	(x=0X521F90);
 	op_enum		(x,	0,	GetEnum("widget_type"),0);
-	make_array	(0X521F91,	0X3);
 	MakeStruct	(0X521F94,	"widget_t");
 	make_array	(0X521F94,	0XF);
 	set_name	(0X521F94,	"ui::construction::_widgets_4");
@@ -112264,132 +112211,110 @@ static Bytes_19(void) {
 	set_name	(0X5220C0,	"ui::vehicle::_widgets_1");
 	create_byte	(x=0X5221D0);
 	op_enum		(x,	0,	GetEnum("widget_type"),0);
-	make_array	(0X5221D1,	0X3);
 	MakeStruct	(0X5221D4,	"widget_t");
 	make_array	(0X5221D4,	0XD);
 	set_name	(0X5221D4,	"ui::vehicle::_widgets_2");
 	create_byte	(x=0X5222A4);
 	op_enum		(x,	0,	GetEnum("widget_type"),0);
-	make_array	(0X5222A5,	0X3);
 	MakeStruct	(0X5222A8,	"widget_t");
 	make_array	(0X5222A8,	0XB);
 	set_name	(0X5222A8,	"ui::vehicle::_widgets_3");
 	create_byte	(x=0X522358);
 	op_enum		(x,	0,	GetEnum("widget_type"),0);
-	make_array	(0X522359,	0X3);
 	MakeStruct	(0X52235C,	"widget_t");
 	make_array	(0X52235C,	0X11);
 	set_name	(0X52235C,	"ui::vehicle::_widgets_5");
 	create_byte	(x=0X52246C);
 	op_enum		(x,	0,	GetEnum("widget_type"),0);
-	make_array	(0X52246D,	0X3);
 	MakeStruct	(0X522470,	"widget_t");
 	make_array	(0X522470,	0X9);
 	set_name	(0X522470,	"ui::vehicle::_widgets_4");
 	create_byte	(x=0X522500);
 	op_enum		(x,	0,	GetEnum("widget_type"),0);
-	make_array	(0X522501,	0X3);
 	MakeStruct	(0X522504,	"widget_t");
 	set_name	(0X522504,	"ui::window_25::_widgets::_widgets");
 	create_byte	(x=0X522514);
 	op_enum		(x,	0,	GetEnum("widget_type"),0);
-	make_array	(0X522515,	0X3);
 	MakeStruct	(0X522518,	"widget_t");
 	make_array	(0X522518,	0XC);
 	set_name	(0X522518,	"ui::terraform::_widgets_1");
 	create_byte	(x=0X5225D8);
 	op_enum		(x,	0,	GetEnum("widget_type"),0);
-	make_array	(0X5225D9,	0X3);
 	MakeStruct	(0X5225DC,	"widget_t");
 	make_array	(0X5225DC,	0XD);
 	set_name	(0X5225DC,	"ui::terraform::_widgets_2");
 	create_byte	(x=0X5226AC);
 	op_enum		(x,	0,	GetEnum("widget_type"),0);
-	make_array	(0X5226AD,	0X3);
 	MakeStruct	(0X5226B0,	"widget_t");
 	make_array	(0X5226B0,	0XC);
 	set_name	(0X5226B0,	"ui::terraform::_widgets_3");
 	create_byte	(x=0X522770);
 	op_enum		(x,	0,	GetEnum("widget_type"),0);
-	make_array	(0X522771,	0X3);
 	MakeStruct	(0X522774,	"widget_t");
 	make_array	(0X522774,	0XE);
 	set_name	(0X522774,	"ui::terraform::_widgets_4");
 	create_byte	(x=0X522854);
 	op_enum		(x,	0,	GetEnum("widget_type"),0);
-	make_array	(0X522855,	0X3);
 	MakeStruct	(0X522858,	"widget_t");
 	make_array	(0X522858,	0XA);
 	set_name	(0X522858,	"ui::terraform::_widgets_5");
 	create_byte	(x=0X5228F8);
 	op_enum		(x,	0,	GetEnum("widget_type"),0);
-	make_array	(0X5228F9,	0X3);
 	MakeStruct	(0X5228FC,	"widget_t");
 	make_array	(0X5228FC,	0X6);
 	set_name	(0X5228FC,	"ui::keyboard_shortcuts::_widgets");
 	create_byte	(x=0X52295C);
 	op_enum		(x,	0,	GetEnum("widget_type"),0);
-	make_array	(0X52295D,	0X3);
 	MakeStruct	(0X522960,	"widget_t");
 	make_array	(0X522960,	0X4);
 	set_name	(0X522960,	"ui::keyboard_shortcuts_edit::_widgets");
 	create_byte	(x=0X5229A0);
 	op_enum		(x,	0,	GetEnum("widget_type"),0);
-	make_array	(0X5229A1,	0X3);
 	MakeStruct	(0X5229A4,	"widget_t");
 	make_array	(0X5229A4,	0X5);
 	set_name	(0X5229A4,	"ui::music_selection::_widgets");
 	create_byte	(x=0X5229F4);
 	op_enum		(x,	0,	GetEnum("widget_type"),0);
-	make_array	(0X5229F5,	0X3);
 	MakeStruct	(0X5229F8,	"widget_t");
 	make_array	(0X5229F8,	0X14);
 	set_name	(0X5229F8,	"ui::options::_widgets_1");
 	create_byte	(x=0X522B38);
 	op_enum		(x,	0,	GetEnum("widget_type"),0);
-	make_array	(0X522B39,	0X3);
 	MakeStruct	(0X522B3C,	"widget_t");
 	make_array	(0X522B3C,	0XF);
 	set_name	(0X522B3C,	"ui::options::_widgets_2");
 	create_byte	(x=0X522C2C);
 	op_enum		(x,	0,	GetEnum("widget_type"),0);
-	make_array	(0X522C2D,	0X3);
 	MakeStruct	(0X522C30,	"widget_t");
 	make_array	(0X522C30,	0X13);
 	set_name	(0X522C30,	"ui::options::_widgets_3");
 	create_byte	(x=0X522D60);
 	op_enum		(x,	0,	GetEnum("widget_type"),0);
-	make_array	(0X522D61,	0X3);
 	MakeStruct	(0X522D64,	"widget_t");
 	make_array	(0X522D64,	0X14);
 	set_name	(0X522D64,	"ui::options::_widgets_4");
 	create_byte	(x=0X522EA4);
 	op_enum		(x,	0,	GetEnum("widget_type"),0);
-	make_array	(0X522EA5,	0X3);
 	MakeStruct	(0X522EA8,	"widget_t");
 	make_array	(0X522EA8,	0XC);
 	set_name	(0X522EA8,	"ui::options::_widgets_5");
 	create_byte	(x=0X522F68);
 	op_enum		(x,	0,	GetEnum("widget_type"),0);
-	make_array	(0X522F69,	0X3);
 	MakeStruct	(0X522F6C,	"widget_t");
 	make_array	(0X522F6C,	0XD);
 	set_name	(0X522F6C,	"ui::options::_widgets_6");
 	create_byte	(x=0X52303C);
 	op_enum		(x,	0,	GetEnum("widget_type"),0);
-	make_array	(0X52303D,	0X3);
 	MakeStruct	(0X523040,	"widget_t");
 	make_array	(0X523040,	0X5);
 	set_name	(0X523040,	"ui::window_44::_widgets");
 	create_byte	(x=0X523090);
 	op_enum		(x,	0,	GetEnum("widget_type"),0);
-	make_array	(0X523091,	0X3);
 	MakeStruct	(0X523094,	"widget_t");
 	make_array	(0X523094,	0X3);
 	set_name	(0X523094,	"ui::prompt_confirm_display_mode::_widgets");
 	create_byte	(x=0X5230C4);
 	op_enum		(x,	0,	GetEnum("widget_type"),0);
-	make_array	(0X5230C5,	0X3);
 	create_dword	(0X5230C8);
 	set_name	(0X5230C8,	"map_elements");
 	MakeStruct	(0X5230CC,	"widget_t");
@@ -112397,13 +112322,11 @@ static Bytes_19(void) {
 	set_name	(0X5230CC,	"ui::vehicle_list::_widgets_6");
 	create_byte	(x=0X5231CC);
 	op_enum		(x,	0,	GetEnum("widget_type"),0);
-	make_array	(0X5231CD,	0X3);
 	MakeStruct	(0X5231D0,	"widget_t");
 	make_array	(0X5231D0,	0X14);
 	set_name	(0X5231D0,	"ui::build_vehicle::_widgets_6");
 	create_byte	(x=0X523310);
 	op_enum		(x,	0,	GetEnum("widget_type"),0);
-	make_array	(0X523311,	0X3);
 	create_dword	(0X523314);
 	create_word	(0X523318);
 	create_word	(0X52331A);
@@ -112445,6 +112368,15 @@ static Bytes_19(void) {
 	create_byte	(0X52336C);
 	create_byte	(0X52336D);
 	set_name	(0X52336D,	"input_state");
+}
+
+//------------------------------------------------------------------------
+// Information about bytes
+
+static Bytes_20(void) {
+        auto x;
+#define id x
+
 	create_byte	(0X52336E);
 	create_byte	(x=0X52336F);
 	op_enum		(x,	0,	GetEnum("windowtype"),0);
@@ -112468,15 +112400,6 @@ static Bytes_19(void) {
 	set_name	(0X52337F,	"_dragWidgetIndex");
 	create_byte	(0X523380);
 	set_name	(0X523380,	"_dragScrollIndex");
-}
-
-//------------------------------------------------------------------------
-// Information about bytes
-
-static Bytes_20(void) {
-        auto x;
-#define id x
-
 	create_byte	(0X523381);
 	set_name	(0X523381,	"_tooltipWindowType");
 	create_word	(0X523382);
@@ -112525,14 +112448,8 @@ static Bytes_20(void) {
 	create_byte	(x=0X5233B6);
 	op_enum		(x,	0,	GetEnum("windowtype"),0);
 	set_name	(0X5233B6,	"modal_window_type");
-	create_dword	(0X5233B8);
-	set_name	(0X5233B8,	"window_dpi_dst_ptr");
-	create_dword	(0X5233BC);
-	set_name	(0X5233BC,	"window_dpi_left");
-	create_dword	(0X5233C0);
-	set_name	(0X5233C0,	"window_dpi_width");
-	create_dword	(0X5233C4);
-	set_name	(0X5233C4,	"window_dpi_pitch");
+	MakeStruct	(0X5233B8,	"drawpixelinfo_t");
+	set_name	(0X5233B8,	"window_dpi");
 	create_byte	(0X5233C8);
 	make_array	(0X5233C9,	0X3);
 	create_byte	(0X5233CC);
@@ -112540,30 +112457,25 @@ static Bytes_20(void) {
 	set_name	(0X5234CC,	"ui::tooltip::_widgets::_widgets");
 	create_byte	(x=0X5234DC);
 	op_enum		(x,	0,	GetEnum("widget_type"),0);
-	make_array	(0X5234DD,	0X3);
 	MakeStruct	(0X5234E0,	"widget_t");
 	set_name	(0X5234E0,	"ui::dropdown::_widgets::_widgets");
 	create_byte	(x=0X5234F0);
 	op_enum		(x,	0,	GetEnum("widget_type"),0);
-	make_array	(0X5234F1,	0X3);
 	MakeStruct	(0X5234F4,	"widget_t");
 	set_name	(0X5234F4,	"ui::window_30::_widgets::_widgets");
 	create_byte	(x=0X523504);
 	op_enum		(x,	0,	GetEnum("widget_type"),0);
-	make_array	(0X523505,	0X3);
 	create_dword	(0X523508);
 	MakeStruct	(0X52350C,	"widget_t");
 	make_array	(0X52350C,	0X3);
 	set_name	(0X52350C,	"ui::window_47::_widgets::_widgets");
 	create_byte	(x=0X52353C);
 	op_enum		(x,	0,	GetEnum("widget_type"),0);
-	make_array	(0X52353D,	0X3);
 	MakeStruct	(0X523540,	"widget_t");
 	make_array	(0X523540,	0X6);
 	set_name	(0X523540,	"ui::text_input::_widgets::_widgets");
 	create_byte	(x=0X5235A0);
 	op_enum		(x,	0,	GetEnum("widget_type"),0);
-	make_array	(0X5235A1,	0XF);
 	create_dword	(x=0X5235B8);
 	op_plain_offset	(x,	0,	0);
 	op_plain_offset	(x,	128,	0);
@@ -112666,7 +112578,7 @@ static Bytes_20(void) {
 	set_name	(0X524580,	"plpal");
 	create_dword	(0X524984);
 	create_dword	(0X52498C);
-	set_name	(0X52498C,	"ho");
+	set_name	(0X52498C,	"hPal");
 	create_dword	(0X524990);
 	set_name	(0X524990,	"hdc");
 	create_dword	(0X524994);
@@ -113176,7 +113088,6 @@ static Bytes_20(void) {
 	create_dword	(0X9D0D6E);
 	create_byte	(0X9D0E73);
 	make_array	(0X9D0E73,	0X101);
-	set_name	(0X9D0E73,	"FileName");
 	create_byte	(0X9D0F74);
 	make_array	(0X9D0F74,	0X104);
 	create_dword	(0X9D1078);
@@ -113652,29 +113563,199 @@ static Bytes_20(void) {
 	create_dword	(0X10E7D5C);
 	create_dword	(0X10E7D60);
 	create_dword	(0X10E7D64);
+	create_byte	(0X1125A90);
+	make_array	(0X1125A90,	0X14);
+	set_name	(0X1125A90,	"_interfaceSkinMeta");
+	create_byte	(0X1125AA4);
+	make_array	(0X1125AA4,	0XA00);
+	set_name	(0X1125AA4,	"_soundMeta");
+	create_byte	(0X11264A4);
+	make_array	(0X11264A4,	0X14);
+	set_name	(0X11264A4,	"_currencyMeta");
+	create_byte	(0X11264B8);
+	make_array	(0X11264B8,	0X280);
+	set_name	(0X11264B8,	"_steamMeta");
+	create_byte	(0X1126738);
+	make_array	(0X1126738,	0XA0);
+	set_name	(0X1126738,	"_rockMeta");
+	create_byte	(0X11267D8);
+	make_array	(0X11267D8,	0X14);
+	set_name	(0X11267D8,	"_waterMeta");
+	create_byte	(0X11267EC);
+	make_array	(0X11267EC,	0X280);
+	set_name	(0X11267EC,	"_landMeta");
+	create_byte	(0X1126A6C);
+	make_array	(0X1126A6C,	0X14);
+	set_name	(0X1126A6C,	"_townNamesMeta");
+	create_byte	(0X1126A80);
+	make_array	(0X1126A80,	0X280);
+	set_name	(0X1126A80,	"_cargoMeta");
+	create_byte	(0X1126D00);
+	make_array	(0X1126D00,	0X280);
+	set_name	(0X1126D00,	"_wallMeta");
+	create_byte	(0X1126F80);
+	make_array	(0X1126F80,	0X140);
+	set_name	(0X1126F80,	"_trackSignalMeta");
+	create_byte	(0X11270C0);
+	make_array	(0X11270C0,	0X50);
+	set_name	(0X11270C0,	"_levelCrossingMeta");
+	create_byte	(0X1127110);
+	make_array	(0X1127110,	0X14);
+	set_name	(0X1127110,	"_streetLightMeta");
+	create_byte	(0X1127124);
+	make_array	(0X1127124,	0X140);
+	set_name	(0X1127124,	"_tunnelMeta");
+	create_byte	(0X1127264);
+	make_array	(0X1127264,	0XA0);
+	set_name	(0X1127264,	"_bridgeMeta");
+	create_byte	(0X1127304);
+	make_array	(0X1127304,	0X140);
+	set_name	(0X1127304,	"_trackStationMeta");
+	create_byte	(0X1127444);
+	make_array	(0X1127444,	0XA0);
+	set_name	(0X1127444,	"_trackExtraMeta");
+	create_byte	(0X11274E4);
+	make_array	(0X11274E4,	0XA0);
+	set_name	(0X11274E4,	"_trackMeta");
+	create_byte	(0X1127584);
+	make_array	(0X1127584,	0X140);
+	set_name	(0X1127584,	"_roadStationMeta");
+	create_byte	(0X11276C4);
+	make_array	(0X11276C4,	0X50);
+	set_name	(0X11276C4,	"_roadExtraMeta");
+	create_byte	(0X1127714);
+	make_array	(0X1127714,	0XA0);
+	set_name	(0X1127714,	"_roadMeta");
+	create_byte	(0X11277B4);
+	make_array	(0X11277B4,	0XA0);
+	set_name	(0X11277B4,	"_airportMeta");
+	create_byte	(0X1127854);
+	make_array	(0X1127854,	0XA0);
+	set_name	(0X1127854,	"_dockMeta");
+	create_byte	(0X11278F4);
+	make_array	(0X11278F4,	0X1180);
+	set_name	(0X11278F4,	"_vehicleMeta");
+	create_byte	(0X1128A74);
+	make_array	(0X1128A74,	0X500);
+	set_name	(0X1128A74,	"_treeMeta");
+	create_byte	(0X1128F74);
+	make_array	(0X1128F74,	0X14);
+	set_name	(0X1128F74,	"_snowMeta");
+	create_byte	(0X1128F88);
+	make_array	(0X1128F88,	0X14);
+	set_name	(0X1128F88,	"_climateMeta");
+	create_byte	(0X1128F9C);
+	make_array	(0X1128F9C,	0X14);
+	set_name	(0X1128F9C,	"_hillShapesMeta");
+	create_byte	(0X1128FB0);
+	make_array	(0X1128FB0,	0XA00);
+	set_name	(0X1128FB0,	"_buildingMeta");
+	create_byte	(0X11299B0);
+	make_array	(0X11299B0,	0X14);
+	set_name	(0X11299B0,	"_scaffoldingMeta");
+	create_byte	(0X11299C4);
+	make_array	(0X11299C4,	0X140);
+	set_name	(0X11299C4,	"_industryMeta");
+	create_byte	(0X1129B04);
+	make_array	(0X1129B04,	0X14);
+	set_name	(0X1129B04,	"_regionMeta");
+	create_byte	(0X1129B18);
+	make_array	(0X1129B18,	0X280);
+	set_name	(0X1129B18,	"_competitorsMeta");
+	create_byte	(0X1129D98);
+	make_array	(0X1129D98,	0X14);
+	set_name	(0X1129D98,	"_scenarioTextMeta");
+	create_byte	(0X1129DAC);
+	set_name	(0X1129DAC,	"_unk1_interface_skin");
+	create_byte	(0X1129DAD);
+	make_array	(0X1129DAD,	0X80);
+	set_name	(0X1129DAD,	"_unk1_sound");
+	create_byte	(0X1129E2D);
+	set_name	(0X1129E2D,	"_unk1_currency");
+	create_byte	(0X1129E2E);
+	make_array	(0X1129E2E,	0X20);
+	set_name	(0X1129E2E,	"_unk1_steam");
+	create_byte	(0X1129E4E);
+	make_array	(0X1129E4E,	0X8);
+	set_name	(0X1129E4E,	"_unk1_rock");
+	create_byte	(0X1129E56);
+	set_name	(0X1129E56,	"_unk1_water");
 	create_byte	(0X1129E57);
+	make_array	(0X1129E57,	0X20);
+	set_name	(0X1129E57,	"_unk1_land");
+	create_byte	(0X1129E77);
+	set_name	(0X1129E77,	"_unk1_town_names");
+	create_byte	(0X1129E78);
+	make_array	(0X1129E78,	0X20);
+	set_name	(0X1129E78,	"_unk1_cargo");
 	create_byte	(0X1129E98);
+	make_array	(0X1129E98,	0X20);
+	set_name	(0X1129E98,	"_unk1_wall");
 	create_byte	(0X1129EB8);
+	make_array	(0X1129EB8,	0X10);
+	set_name	(0X1129EB8,	"_unk1_track_signal");
 	create_byte	(0X1129EC8);
+	set_name	(0X1129EC8,	"_unk1_level_crossing");
 	make_array	(0X1129EC9,	0X3);
 	create_byte	(0X1129ECC);
+	set_name	(0X1129ECC,	"_unk1_street_light");
+	create_byte	(0X1129ECD);
+	make_array	(0X1129ECD,	0X10);
+	set_name	(0X1129ECD,	"_unk1_tunnel");
 	create_byte	(0X1129EDD);
+	make_array	(0X1129EDD,	0X8);
+	set_name	(0X1129EDD,	"_unk1_bridge");
 	create_byte	(0X1129EE5);
+	make_array	(0X1129EE5,	0X10);
+	set_name	(0X1129EE5,	"_unk1_track_station");
 	create_byte	(0X1129EF5);
+	make_array	(0X1129EF5,	0X8);
+	set_name	(0X1129EF5,	"_unk1_track_extra");
 	create_byte	(0X1129EFD);
+	make_array	(0X1129EFD,	0X8);
+	set_name	(0X1129EFD,	"_unk1_track");
 	create_byte	(0X1129F05);
+	make_array	(0X1129F05,	0X10);
+	set_name	(0X1129F05,	"_unk1_road_station");
 	create_byte	(0X1129F15);
+	make_array	(0X1129F15,	0X4);
+	set_name	(0X1129F15,	"_unk1_road_extra");
 	create_byte	(0X1129F19);
+	make_array	(0X1129F19,	0X8);
+	set_name	(0X1129F19,	"_unk1_road");
 	create_byte	(0X1129F21);
+	make_array	(0X1129F21,	0X8);
+	set_name	(0X1129F21,	"_unk1_airport");
 	create_byte	(0X1129F29);
+	make_array	(0X1129F29,	0X8);
+	set_name	(0X1129F29,	"_unk1_dock");
 	create_byte	(0X1129F31);
+	make_array	(0X1129F31,	0XE0);
+	set_name	(0X1129F31,	"_unk1_vehicle");
 	create_byte	(0X112A011);
+	make_array	(0X112A011,	0X40);
+	set_name	(0X112A011,	"_unk1_tree");
 	create_byte	(0X112A051);
+	set_name	(0X112A051,	"_unk1_snow");
+	create_byte	(0X112A052);
+	set_name	(0X112A052,	"_unk1_climate");
+	create_byte	(0X112A053);
+	set_name	(0X112A053,	"_unk1_hill_shapes");
 	create_byte	(0X112A054);
+	make_array	(0X112A054,	0X80);
+	set_name	(0X112A054,	"_unk1_building");
 	create_byte	(0X112A0D4);
+	set_name	(0X112A0D4,	"_unk1_scaffolding");
 	create_byte	(0X112A0D5);
+	make_array	(0X112A0D5,	0X10);
+	set_name	(0X112A0D5,	"_unk1_industry");
 	create_byte	(0X112A0E5);
+	set_name	(0X112A0E5,	"_unk1_region");
 	create_byte	(0X112A0E6);
+	make_array	(0X112A0E6,	0X20);
+	set_name	(0X112A0E6,	"_unk1_competitors");
+	create_byte	(0X112A106);
+	set_name	(0X112A106,	"_unk1_scenario_text");
 	create_dword	(0X112A108);
 	create_dword	(0X112A10C);
 	create_dword	(0X112A110);
@@ -114032,10 +114113,8 @@ static Bytes_20(void) {
 	create_byte	(0X112C892);
 	create_byte	(0X112CA44);
 	create_byte	(0X112CBA7);
-	create_dword	(0X112CC04);
+	MakeStruct	(0X112CC04,	"widget_t");
 	set_name	(0X112CC04,	"buffer_string_format");
-	create_word	(0X112CC09);
-	make_array	(0X112CC0B,	0X5);
 	create_word	(0X112CE04);
 	create_dword	(0X112CE06);
 	create_word	(0X112D404);
@@ -114553,7 +114632,6 @@ static Bytes_20(void) {
 	create_dword	(0X113DE00);
 	set_name	(0X113DE00,	"cursor_pointer");
 	create_dword	(0X113DE04);
-	set_name	(0X113DE04,	"hCursor");
 	create_dword	(0X113DE08);
 	create_dword	(0X113DE0C);
 	create_dword	(0X113DE10);
@@ -115072,12 +115150,6 @@ static Functions_0(void) {
 	add_func    (0X4028D7,0X40291C);
 	set_func_flags(0X4028D7,0x4400);
 	set_frame_size(0X4028D7, 0, 0, 0);
-	add_func    (0X40291C,0X40295D);
-	set_func_flags(0X40291C,0x4400);
-	set_frame_size(0X40291C, 0, 0, 0);
-	add_func    (0X40295D,0X40296C);
-	set_func_flags(0X40295D,0x4400);
-	set_frame_size(0X40295D, 0, 0, 0);
 	add_func    (0X40296C,0X402A27);
 	set_func_flags(0X40296C,0x4410);
 	set_frame_size(0X40296C, 0X20, 4, 0);
@@ -115226,12 +115298,6 @@ static Functions_0(void) {
 	add_func    (0X403F70,0X403FBF);
 	set_func_flags(0X403F70,0x4400);
 	set_frame_size(0X403F70, 0X4, 0, 0);
-	add_func    (0X403FBF,0X40405B);
-	set_func_flags(0X403FBF,0x4400);
-	set_frame_size(0X403FBF, 0X8, 0, 0);
-	add_func    (0X40405B,0X40409B);
-	set_func_flags(0X40405B,0x4400);
-	set_frame_size(0X40405B, 0, 0, 0);
 	add_func    (0X40409B,0X40410E);
 	set_func_flags(0X40409B,0x4410);
 	SetType(0X40409B, "int __cdecl sub_40409B(int xDest, int);");
@@ -115243,9 +115309,6 @@ static Functions_0(void) {
 	set_frame_size(0X40410E, 0X4, 0, 0);
 	define_local_var(0X40410E, 0X40417F, "[bp+0X8]", "xDest");
 	define_local_var(0X40410E, 0X40417F, "[bp+0XC]", "yDest");
-	add_func    (0X40417F,0X4041DA);
-	set_func_flags(0X40417F,0x4400);
-	set_frame_size(0X40417F, 0, 0, 0);
 	add_func    (0X4041F1,0X4041F5);
 	set_func_flags(0X4041F1,0x4400);
 	set_frame_size(0X4041F1, 0, 0, 0);
@@ -115339,9 +115402,6 @@ static Functions_0(void) {
 	add_func    (0X404E58,0X404E80);
 	set_func_flags(0X404E58,0x4400);
 	set_frame_size(0X404E58, 0, 0, 0);
-	add_func    (0X404E80,0X404E8C);
-	set_func_flags(0X404E80,0x4400);
-	set_frame_size(0X404E80, 0, 0, 0X10);
 	add_func    (0X404E8C,0X404EAC);
 	set_func_flags(0X404E8C,0x4400);
 	set_frame_size(0X404E8C, 0, 0, 0);
@@ -117918,10 +117978,6 @@ static Functions_0(void) {
 	add_func    (0X421962,0X4219A1);
 	set_func_flags(0X421962,0x4400);
 	set_frame_size(0X421962, 0, 0, 0);
-}
-
-static Functions_1(void) {
-
 	add_func    (0X4219A1,0X4219E0);
 	set_func_flags(0X4219A1,0x4400);
 	set_frame_size(0X4219A1, 0, 0, 0);
@@ -117940,6 +117996,10 @@ static Functions_1(void) {
 	add_func    (0X421ADC,0X421B1B);
 	set_func_flags(0X421ADC,0x4400);
 	set_frame_size(0X421ADC, 0, 0, 0);
+}
+
+static Functions_1(void) {
+
 	add_func    (0X421B1B,0X421B5A);
 	set_func_flags(0X421B1B,0x4400);
 	set_frame_size(0X421B1B, 0, 0, 0);
@@ -118833,21 +118893,26 @@ static Functions_1(void) {
 	set_frame_size(0X42A4A8, 0, 0, 0);
 	add_func    (0X42A545,0X42A5CC);
 	set_func_flags(0X42A545,0x4400);
+	SetType(0X42A545, "void __usercall ui__messages__event_1_prepare_draw(window_t *window@<esi>);");
 	set_frame_size(0X42A545, 0, 0, 0);
 	add_func    (0X42A5CC,0X42A5D7);
 	set_func_flags(0X42A5CC,0x4400);
+	SetType(0X42A5CC, "void __usercall ui__messages__event_1_draw(window_t *window@<esi>, drawpixelinfo_t *context@<edi>);");
 	set_frame_size(0X42A5CC, 0, 0, 0);
 	add_func    (0X42A5D7,0X42A6F5);
 	set_func_flags(0X42A5D7,0x4400);
+	SetType(0X42A5D7, "void __usercall ui__messages__event_1_draw_scroll(window_t *window@<esi>, drawpixelinfo_t *context@<edi>, __int32 scrollIndex@<eax>);");
 	set_frame_size(0X42A5D7, 0X4, 0, 0);
 	add_func    (0X42A6F5,0X42A7B9);
 	set_func_flags(0X42A6F5,0x4400);
+	SetType(0X42A6F5, "void __usercall ui__messages__event_1_on_mouse_up(window_t *window@<esi>, __int32 widgetIndex@<edx>, widget_t *widget@<edi>);");
 	set_frame_size(0X42A6F5, 0, 0, 0);
 	add_func    (0X42A7B9,0X42A826);
 	set_func_flags(0X42A7B9,0x4400);
 	set_frame_size(0X42A7B9, 0, 0, 0);
 	add_func    (0X42A826,0X42A847);
 	set_func_flags(0X42A826,0x4400);
+	SetType(0X42A826, "void __usercall ui__messages__event_1_on_update(window_t *window@<esi>);");
 	set_frame_size(0X42A826, 0, 0, 0);
 	add_func    (0X42A847,0X42A84F);
 	set_func_flags(0X42A847,0x4400);
@@ -118857,33 +118922,42 @@ static Functions_1(void) {
 	set_frame_size(0X42A84F, 0, 0, 0);
 	add_func    (0X42A871,0X42A87C);
 	set_func_flags(0X42A871,0x4400);
+	SetType(0X42A871, "void __usercall ui__messages__event_1_get_scroll_size(window_t *window@<esi>, __int32 scrollIndex@<eax>, __int16 width@<cx>, __int16 height@<dx>);");
 	set_frame_size(0X42A871, 0, 0, 0);
 	add_func    (0X42A87C,0X42A8B9);
 	set_func_flags(0X42A87C,0x4400);
+	SetType(0X42A87C, "void __usercall ui__messages__event_1_scroll_mouse_over(window_t *window@<esi>);");
 	set_frame_size(0X42A87C, 0, 0, 0);
 	add_func    (0X42A8B9,0X42A95A);
 	set_func_flags(0X42A8B9,0x4400);
+	SetType(0X42A8B9, "void __usercall ui__messages__event_1_scroll_mouse_down(window_t *window@<esi>);");
 	set_frame_size(0X42A8B9, 0, 0, 0);
 	add_func    (0X42A95A,0X42A98D);
 	set_func_flags(0X42A95A,0x4400);
+	SetType(0X42A95A, "void __usercall ui__messages__event_1_on_resize(window_t *window@<esi>);");
 	set_frame_size(0X42A95A, 0, 0, 0);
 	add_func    (0X42A98D,0X42A98E);
 	set_func_flags(0X42A98D,0x4440);
 	set_frame_size(0X42A98D, 0, 0, 0);
 	add_func    (0X42A98E,0X42AA02);
 	set_func_flags(0X42A98E,0x4400);
+	SetType(0X42A98E, "void __usercall ui__messages__event_2_prepare_draw(window_t *window@<esi>);");
 	set_frame_size(0X42A98E, 0, 0, 0);
 	add_func    (0X42AA02,0X42AA84);
 	set_func_flags(0X42AA02,0x4400);
+	SetType(0X42AA02, "void __usercall ui__messages__event_2_draw(window_t *window@<esi>, drawpixelinfo_t *context@<edi>);");
 	set_frame_size(0X42AA02, 0, 0, 0);
 	add_func    (0X42AA84,0X42AA9F);
 	set_func_flags(0X42AA84,0x4400);
+	SetType(0X42AA84, "void __usercall ui__messages__event_2_on_mouse_up(window_t *window@<esi>, __int32 widgetIndex@<edx>, widget_t *widget@<edi>);");
 	set_frame_size(0X42AA84, 0, 0, 0);
 	add_func    (0X42AA9F,0X42AB6A);
 	set_func_flags(0X42AA9F,0x4400);
+	SetType(0X42AA9F, "void __usercall ui__messages__event_2_on_mouse_down(window_t *window@<esi>, __int32 widgetIndex@<edx>, widget_t *widget@<edi>);");
 	set_frame_size(0X42AA9F, 0, 0, 0);
 	add_func    (0X42AB6A,0X42AB8B);
 	set_func_flags(0X42AB6A,0x4400);
+	SetType(0X42AB6A, "void __usercall ui__messages__event_2_on_update(window_t *window@<esi>);");
 	set_frame_size(0X42AB6A, 0, 0, 0);
 	add_func    (0X42AB8B,0X42AB8C);
 	set_func_flags(0X42AB8B,0x4440);
@@ -119238,6 +119312,7 @@ static Functions_1(void) {
 	set_frame_size(0X431A8A, 0, 0, 0);
 	add_func    (0X431C05,0X431E1A);
 	set_func_flags(0X431C05,0x4400);
+	SetType(0X431C05, "void __usercall ui__window_12___widgets_1__event_draw(window_t *window@<esi>, drawpixelinfo_t *context@<edi>);");
 	set_frame_size(0X431C05, 0, 0, 0);
 	add_func    (0X431E1B,0X431E31);
 	set_func_flags(0X431E1B,0x4400);
@@ -119259,33 +119334,41 @@ static Functions_1(void) {
 	set_frame_size(0X431E9B, 0, 0, 0);
 	add_func    (0X431EBB,0X432055);
 	set_func_flags(0X431EBB,0x4400);
+	SetType(0X431EBB, "void __usercall ui__company__event_1_prepare_draw(window_t *window@<esi>);");
 	set_frame_size(0X431EBB, 0, 0, 0);
 	add_func    (0X432055,0X432244);
 	set_func_flags(0X432055,0x4400);
+	SetType(0X432055, "void __usercall ui__company__event_1_draw(window_t *window@<esi>, drawpixelinfo_t *context@<edi>);");
 	set_frame_size(0X432055, 0X4, 0, 0);
 	add_func    (0X432244,0X4323BF);
 	set_func_flags(0X432244,0x4400);
+	SetType(0X432244, "void __usercall ui__company__event_1_on_mouse_up(window_t *window@<esi>, __int32 widgetIndex@<edx>, widget_t *widget@<edi>);");
 	set_frame_size(0X432244, 0X4, 0, 0);
 	add_func    (0X4323BF,0X4324D2);
 	set_func_flags(0X4323BF,0x4400);
 	set_frame_size(0X4323BF, 0, 0, 0);
 	add_func    (0X43270A,0X432724);
 	set_func_flags(0X43270A,0x4400);
+	SetType(0X43270A, "void __usercall ui__company__event_1_on_update(window_t *window@<esi>);");
 	set_frame_size(0X43270A, 0, 0, 0);
 	add_func    (0X432724,0X4327CE);
 	set_func_flags(0X432724,0x4400);
+	SetType(0X432724, "void __usercall ui__company__event_1_on_resize(window_t *window@<esi>);");
 	set_frame_size(0X432724, 0, 0, 0);
 	add_func    (0X4327CE,0X4327CF);
 	set_func_flags(0X4327CE,0x4440);
 	set_frame_size(0X4327CE, 0, 0, 0);
 	add_func    (0X4327CF,0X432919);
 	set_func_flags(0X4327CF,0x4400);
+	SetType(0X4327CF, "void __usercall ui__company__event_2_prepare_draw(window_t *window@<esi>);");
 	set_frame_size(0X4327CF, 0, 0, 0);
 	add_func    (0X432919,0X432BDD);
 	set_func_flags(0X432919,0x4400);
+	SetType(0X432919, "void __usercall ui__company__event_2_draw(window_t *window@<esi>, drawpixelinfo_t *context@<edi>);");
 	set_frame_size(0X432919, 0, 0, 0);
 	add_func    (0X432BDD,0X432CA1);
 	set_func_flags(0X432BDD,0x4400);
+	SetType(0X432BDD, "void __usercall ui__company__event_2_on_mouse_up(window_t *window@<esi>, __int32 widgetIndex@<edx>, widget_t *widget@<edi>);");
 	set_frame_size(0X432BDD, 0, 0, 0);
 	add_func    (0X432CA1,0X432D45);
 	set_func_flags(0X432CA1,0x4400);
@@ -119295,102 +119378,131 @@ static Functions_1(void) {
 	set_frame_size(0X432D45, 0, 0, 0);
 	add_func    (0X432D7A,0X432D85);
 	set_func_flags(0X432D7A,0x4400);
+	SetType(0X432D7A, "void __usercall ui__company__event_2_tool_abort(window_t *window@<esi>);");
 	set_frame_size(0X432D7A, 0, 0, 0);
 	add_func    (0X432D85,0X432D9F);
 	set_func_flags(0X432D85,0x4400);
+	SetType(0X432D85, "void __usercall ui__company__event_2_on_update(window_t *window@<esi>);");
 	set_frame_size(0X432D85, 0, 0, 0);
 	add_func    (0X432D9F,0X432E0E);
 	set_func_flags(0X432D9F,0x4400);
+	SetType(0X432D9F, "void __usercall ui__company__event_2_on_resize(window_t *window@<esi>);");
 	set_frame_size(0X432D9F, 0, 0, 0);
 	add_func    (0X432E0E,0X432E0F);
 	set_func_flags(0X432E0E,0x4440);
 	set_frame_size(0X432E0E, 0, 0, 0);
 	add_func    (0X432E0F,0X432F9A);
 	set_func_flags(0X432E0F,0x4400);
+	SetType(0X432E0F, "void __usercall ui__company__event_3_prepare_draw(window_t *window@<esi>);");
 	set_frame_size(0X432E0F, 0, 0, 0);
 	add_func    (0X432F9A,0X433032);
 	set_func_flags(0X432F9A,0x4400);
+	SetType(0X432F9A, "void __usercall ui__company__event_3_draw(window_t *window@<esi>, drawpixelinfo_t *context@<edi>);");
 	set_frame_size(0X432F9A, 0, 0, 0);
 	add_func    (0X433032,0X43325F);
 	set_func_flags(0X433032,0x4400);
+	SetType(0X433032, "void __usercall ui__company__event_3_on_mouse_up(window_t *window@<esi>, __int32 widgetIndex@<edx>, widget_t *widget@<edi>);");
 	set_frame_size(0X433032, 0, 0, 0);
 	add_func    (0X43325F,0X433279);
 	set_func_flags(0X43325F,0x4400);
+	SetType(0X43325F, "void __usercall ui__company__event_3_on_update(window_t *window@<esi>);");
 	set_frame_size(0X43325F, 0, 0, 0);
 	add_func    (0X433279,0X4332E3);
 	set_func_flags(0X433279,0x4400);
+	SetType(0X433279, "void __usercall ui__company__event_3_on_resize(window_t *window@<esi>);");
 	set_frame_size(0X433279, 0, 0, 0);
 	add_func    (0X4332E3,0X4332E4);
 	set_func_flags(0X4332E3,0x4440);
 	set_frame_size(0X4332E3, 0, 0, 0);
 	add_func    (0X4332E4,0X4333D0);
 	set_func_flags(0X4332E4,0x4400);
+	SetType(0X4332E4, "void __usercall ui__company__event_4_prepare_draw(window_t *window@<esi>);");
 	set_frame_size(0X4332E4, 0, 0, 0);
 	add_func    (0X4333D0,0X43361E);
 	set_func_flags(0X4333D0,0x4400);
+	SetType(0X4333D0, "void __usercall ui__company__event_4_draw(window_t *window@<esi>, drawpixelinfo_t *context@<edi>);");
 	set_frame_size(0X4333D0, 0, 0, 0);
 	add_func    (0X43361E,0X433819);
 	set_func_flags(0X43361E,0x4400);
+	SetType(0X43361E, "void __usercall ui__company__event_4_draw_scroll(window_t *window@<esi>, drawpixelinfo_t *context@<edi>, __int32 scrollIndex@<eax>);");
 	set_frame_size(0X43361E, 0X8, 0, 0);
 	add_func    (0X433819,0X43383E);
 	set_func_flags(0X433819,0x4400);
+	SetType(0X433819, "void __usercall ui__company__event_4_on_mouse_up(window_t *window@<esi>, __int32 widgetIndex@<edx>, widget_t *widget@<edi>);");
 	set_frame_size(0X433819, 0, 0, 0);
 	add_func    (0X43383E,0X43399D);
 	set_func_flags(0X43383E,0x4400);
+	SetType(0X43383E, "void __usercall ui__company__event_4_on_mouse_down(window_t *window@<esi>, __int32 widgetIndex@<edx>, widget_t *widget@<edi>);");
 	set_frame_size(0X43383E, 0, 0, 0);
 	add_func    (0X43399D,0X4339B7);
 	set_func_flags(0X43399D,0x4400);
+	SetType(0X43399D, "void __usercall ui__company__event_4_on_update(window_t *window@<esi>);");
 	set_frame_size(0X43399D, 0, 0, 0);
 	add_func    (0X4339B7,0X433A21);
 	set_func_flags(0X4339B7,0x4400);
+	SetType(0X4339B7, "void __usercall ui__company__event_4_on_resize(window_t *window@<esi>);");
 	set_frame_size(0X4339B7, 0, 0, 0);
 	add_func    (0X433A21,0X433A22);
 	set_func_flags(0X433A21,0x4440);
 	set_frame_size(0X433A21, 0, 0, 0);
 	add_func    (0X433A22,0X433ACD);
 	set_func_flags(0X433A22,0x4400);
+	SetType(0X433A22, "void __usercall ui__company__event_5_prepare_draw(window_t *window@<esi>);");
 	set_frame_size(0X433A22, 0, 0, 0);
 	add_func    (0X433ACD,0X433BE6);
 	set_func_flags(0X433ACD,0x4400);
+	SetType(0X433ACD, "void __usercall ui__company__event_5_draw(window_t *window@<esi>, drawpixelinfo_t *context@<edi>);");
 	set_frame_size(0X433ACD, 0, 0, 0);
 	add_func    (0X433BE6,0X433C0B);
 	set_func_flags(0X433BE6,0x4400);
+	SetType(0X433BE6, "void __usercall ui__company__event_5_on_mouse_up(window_t *window@<esi>, __int32 widgetIndex@<edx>, widget_t *widget@<edi>);");
 	set_frame_size(0X433BE6, 0, 0, 0);
 	add_func    (0X433C0B,0X433C16);
 	set_func_flags(0X433C0B,0x4400);
+	SetType(0X433C0B, "void __usercall ui__company__event_5_on_mouse_down(window_t *window@<esi>, __int32 widgetIndex@<edx>, widget_t *widget@<edi>);");
 	set_frame_size(0X433C0B, 0, 0, 0);
 	add_func    (0X433C16,0X433C21);
 	set_func_flags(0X433C16,0x4400);
+	SetType(0X433C16, "void __usercall ui__company__event_5_text_input(window_t *window@<esi>);");
 	set_frame_size(0X433C16, 0, 0, 0);
 	add_func    (0X433C21,0X433C7D);
 	set_func_flags(0X433C21,0x4400);
+	SetType(0X433C21, "void __usercall ui__company__event_5_on_dropdown(window_t *window@<esi>, __int32 widgetIndex@<edx>, __int16 itemIndex@<ax>);");
 	set_frame_size(0X433C21, 0, 0, 0);
 	add_func    (0X433C7D,0X433C97);
 	set_func_flags(0X433C7D,0x4400);
+	SetType(0X433C7D, "void __usercall ui__company__event_5_on_update(window_t *window@<esi>);");
 	set_frame_size(0X433C7D, 0, 0, 0);
 	add_func    (0X433C97,0X433D38);
 	set_func_flags(0X433C97,0x4400);
+	SetType(0X433C97, "void __usercall ui__company__event_5_on_resize(window_t *window@<esi>);");
 	set_frame_size(0X433C97, 0, 0, 0);
 	add_func    (0X433D38,0X433D39);
 	set_func_flags(0X433D38,0x4440);
 	set_frame_size(0X433D38, 0, 0, 0);
 	add_func    (0X433D39,0X433DEB);
 	set_func_flags(0X433D39,0x4400);
+	SetType(0X433D39, "void __usercall ui__company__event_6_prepare_draw(window_t *window@<esi>);");
 	set_frame_size(0X433D39, 0, 0, 0);
 	add_func    (0X433DEB,0X433FFE);
 	set_func_flags(0X433DEB,0x4400);
+	SetType(0X433DEB, "void __usercall ui__company__event_6_draw(window_t *window@<esi>, drawpixelinfo_t *context@<edi>);");
 	set_frame_size(0X433DEB, 0, 0, 0);
 	add_func    (0X433FFE,0X434023);
 	set_func_flags(0X433FFE,0x4400);
+	SetType(0X433FFE, "void __usercall ui__company__event_6_on_mouse_up(window_t *window@<esi>, __int32 widgetIndex@<edx>, widget_t *widget@<edi>);");
 	set_frame_size(0X433FFE, 0, 0, 0);
 	add_func    (0X434023,0X43402E);
 	set_func_flags(0X434023,0x4400);
+	SetType(0X434023, "void __usercall ui__company__event_6_text_input(window_t *window@<esi>);");
 	set_frame_size(0X434023, 0, 0, 0);
 	add_func    (0X43402E,0X434048);
 	set_func_flags(0X43402E,0x4400);
+	SetType(0X43402E, "void __usercall ui__company__event_6_on_update(window_t *window@<esi>);");
 	set_frame_size(0X43402E, 0, 0, 0);
 	add_func    (0X434048,0X4340B2);
 	set_func_flags(0X434048,0x4400);
+	SetType(0X434048, "void __usercall ui__company__event_6_on_resize(window_t *window@<esi>);");
 	set_frame_size(0X434048, 0, 0, 0);
 	add_func    (0X4340B2,0X4340B3);
 	set_func_flags(0X4340B2,0x4440);
@@ -119464,6 +119576,7 @@ static Functions_1(void) {
 	set_frame_size(0X434F52, 0, 0, 0);
 	add_func    (0X434FE8,0X435003);
 	set_func_flags(0X434FE8,0x4400);
+	SetType(0X434FE8, "void __usercall ui__company_face_selection__event_prepare_draw(window_t *window@<esi>);");
 	set_frame_size(0X434FE8, 0, 0, 0);
 	add_func    (0X435003,0X435152);
 	set_func_flags(0X435003,0x4400);
@@ -119471,24 +119584,31 @@ static Functions_1(void) {
 	set_frame_size(0X435003, 0, 0, 0);
 	add_func    (0X435152,0X435299);
 	set_func_flags(0X435152,0x4400);
+	SetType(0X435152, "void __usercall ui__company_face_selection__event_draw_scroll(window_t *window@<esi>, drawpixelinfo_t *context@<edi>, __int32 scrollIndex@<eax>);");
 	set_frame_size(0X435152, 0X4, 0, 0);
 	add_func    (0X435299,0X4352A4);
 	set_func_flags(0X435299,0x4400);
+	SetType(0X435299, "void __usercall ui__company_face_selection__event_on_mouse_up(window_t *window@<esi>, __int32 widgetIndex@<edx>, widget_t *widget@<edi>);");
 	set_frame_size(0X435299, 0, 0, 0);
 	add_func    (0X4352A4,0X4352B1);
 	set_func_flags(0X4352A4,0x4400);
+	SetType(0X4352A4, "void __usercall ui__company_face_selection__event_on_close(window_t *window@<esi>);");
 	set_frame_size(0X4352A4, 0X4, 0, 0);
 	add_func    (0X4352B1,0X4352BB);
 	set_func_flags(0X4352B1,0x4400);
+	SetType(0X4352B1, "__int16 __usercall ui__company_face_selection__event_tooltip@<ax>(window_t *window@<esi>, __int16 widgetIndex@<ax>);");
 	set_frame_size(0X4352B1, 0, 0, 0);
 	add_func    (0X4352BB,0X4352C7);
 	set_func_flags(0X4352BB,0x4400);
+	SetType(0X4352BB, "void __usercall ui__company_face_selection__event_get_scroll_size(window_t *window@<esi>, __int32 scrollIndex@<eax>, __int16 width@<cx>, __int16 height@<dx>);");
 	set_frame_size(0X4352BB, 0, 0, 0);
 	add_func    (0X4352C7,0X435314);
 	set_func_flags(0X4352C7,0x4400);
+	SetType(0X4352C7, "void __usercall ui__company_face_selection__event_scroll_mouse_over(window_t *window@<esi>);");
 	set_frame_size(0X4352C7, 0, 0, 0);
 	add_func    (0X435314,0X435380);
 	set_func_flags(0X435314,0x4400);
+	SetType(0X435314, "void __usercall ui__company_face_selection__event_scroll_mouse_down(window_t *window@<esi>);");
 	set_frame_size(0X435314, 0, 0, 0);
 	add_func    (0X435380,0X435381);
 	set_func_flags(0X435380,0x4440);
@@ -119513,12 +119633,15 @@ static Functions_1(void) {
 	set_frame_size(0X4356D8, 0, 0, 0);
 	add_func    (0X435858,0X435AA5);
 	set_func_flags(0X435858,0x4400);
+	SetType(0X435858, "void __usercall ui__window_46__event_draw(window_t *window@<esi>, drawpixelinfo_t *context@<edi>);");
 	set_frame_size(0X435858, 0, 0, 0);
 	add_func    (0X435AA5,0X435AB4);
 	set_func_flags(0X435AA5,0x4400);
+	SetType(0X435AA5, "void __usercall ui__window_46__event_on_mouse_up(window_t *window@<esi>, __int32 widgetIndex@<edx>, widget_t *widget@<edi>);");
 	set_frame_size(0X435AA5, 0, 0, 0);
 	add_func    (0X435AB4,0X435ACB);
 	set_func_flags(0X435AB4,0x4400);
+	SetType(0X435AB4, "void __usercall ui__window_46__event_on_update(window_t *window@<esi>);");
 	set_frame_size(0X435AB4, 0, 0, 0);
 	add_func    (0X435ACB,0X435ACC);
 	set_func_flags(0X435ACB,0x4440);
@@ -119540,24 +119663,30 @@ static Functions_1(void) {
 	set_frame_size(0X435C79, 0, 0, 0);
 	add_func    (0X435D07,0X435E56);
 	set_func_flags(0X435D07,0x4400);
+	SetType(0X435D07, "void __usercall ui__company_list__event_1_prepare_draw(window_t *window@<esi>);");
 	set_frame_size(0X435D07, 0, 0, 0);
 	add_func    (0X435E56,0X435EA7);
 	set_func_flags(0X435E56,0x4400);
+	SetType(0X435E56, "void __usercall ui__company_list__event_1_draw(window_t *window@<esi>, drawpixelinfo_t *context@<edi>);");
 	set_frame_size(0X435E56, 0, 0, 0);
 	add_func    (0X435EA7,0X4360A2);
 	set_func_flags(0X435EA7,0x4400);
+	SetType(0X435EA7, "void __usercall ui__company_list__event_1_draw_scroll(window_t *window@<esi>, drawpixelinfo_t *context@<edi>, __int32 scrollIndex@<eax>);");
 	set_frame_size(0X435EA7, 0X14, 0, 0);
 	add_func    (0X4360A2,0X436198);
 	set_func_flags(0X4360A2,0x4400);
+	SetType(0X4360A2, "void __usercall ui__company_list__event_1_on_mouse_up(window_t *window@<esi>, __int32 widgetIndex@<edx>, widget_t *widget@<edi>);");
 	set_frame_size(0X4360A2, 0, 0, 0);
 	add_func    (0X436198,0X4362B6);
 	set_func_flags(0X436198,0x4400);
 	set_frame_size(0X436198, 0, 0, 0);
 	add_func    (0X4362B6,0X4362C0);
 	set_func_flags(0X4362B6,0x4400);
+	SetType(0X4362B6, "__int16 __usercall ui__company_list__event_1_tooltip@<ax>(window_t *window@<esi>, __int16 widgetIndex@<ax>);");
 	set_frame_size(0X4362B6, 0, 0, 0);
 	add_func    (0X4362C0,0X4362F7);
 	set_func_flags(0X4362C0,0x4400);
+	SetType(0X4362C0, "void __usercall ui__company_list__event_1_on_update(window_t *window@<esi>);");
 	set_frame_size(0X4362C0, 0, 0, 0);
 	add_func    (0X4362F7,0X4362FF);
 	set_func_flags(0X4362F7,0x4400);
@@ -119567,126 +119696,161 @@ static Functions_1(void) {
 	set_frame_size(0X4362FF, 0, 0, 0);
 	add_func    (0X436321,0X43632C);
 	set_func_flags(0X436321,0x4400);
+	SetType(0X436321, "void __usercall ui__company_list__event_1_get_scroll_size(window_t *window@<esi>, __int32 scrollIndex@<eax>, __int16 width@<cx>, __int16 height@<dx>);");
 	set_frame_size(0X436321, 0, 0, 0);
 	add_func    (0X43632C,0X436361);
 	set_func_flags(0X43632C,0x4400);
+	SetType(0X43632C, "void __usercall ui__company_list__event_1_cursor(window_t *window@<esi>);");
 	set_frame_size(0X43632C, 0, 0, 0);
 	add_func    (0X436361,0X4363A0);
 	set_func_flags(0X436361,0x4400);
+	SetType(0X436361, "void __usercall ui__company_list__event_1_scroll_mouse_over(window_t *window@<esi>);");
 	set_frame_size(0X436361, 0, 0, 0);
 	add_func    (0X4363A0,0X4363CB);
 	set_func_flags(0X4363A0,0x4400);
+	SetType(0X4363A0, "void __usercall ui__company_list__event_1_scroll_mouse_down(window_t *window@<esi>);");
 	set_frame_size(0X4363A0, 0, 0, 0);
 	add_func    (0X4363CB,0X436418);
 	set_func_flags(0X4363CB,0x4400);
+	SetType(0X4363CB, "void __usercall ui__company_list__event_1_on_resize(window_t *window@<esi>);");
 	set_frame_size(0X4363CB, 0, 0, 0);
 	add_func    (0X436418,0X436419);
 	set_func_flags(0X436418,0x4440);
 	set_frame_size(0X436418, 0, 0, 0);
 	add_func    (0X436419,0X436490);
 	set_func_flags(0X436419,0x4400);
+	SetType(0X436419, "void __usercall ui__company_list__event_2_prepare_draw(window_t *window@<esi>);");
 	set_frame_size(0X436419, 0, 0, 0);
 	add_func    (0X436490,0X43667B);
 	set_func_flags(0X436490,0x4400);
+	SetType(0X436490, "void __usercall ui__company_list__event_2_draw(window_t *window@<esi>, drawpixelinfo_t *context@<edi>);");
 	set_frame_size(0X436490, 0, 0, 0);
 	add_func    (0X43667B,0X436696);
 	set_func_flags(0X43667B,0x4400);
+	SetType(0X43667B, "void __usercall ui__company_list__event_2_on_mouse_up(window_t *window@<esi>, __int32 widgetIndex@<edx>, widget_t *widget@<edi>);");
 	set_frame_size(0X43667B, 0, 0, 0);
 	add_func    (0X436696,0X4366D7);
 	set_func_flags(0X436696,0x4400);
+	SetType(0X436696, "void __usercall ui__company_list__event_2_on_update(window_t *window@<esi>);");
 	set_frame_size(0X436696, 0, 0, 0);
 	add_func    (0X4366D7,0X43673C);
 	set_func_flags(0X4366D7,0x4400);
+	SetType(0X4366D7, "void __usercall ui__company_list__event_2_on_resize(window_t *window@<esi>);");
 	set_frame_size(0X4366D7, 0, 0, 0);
 	add_func    (0X43673C,0X43673D);
 	set_func_flags(0X43673C,0x4440);
 	set_frame_size(0X43673C, 0, 0, 0);
 	add_func    (0X43673D,0X4367B4);
 	set_func_flags(0X43673D,0x4400);
+	SetType(0X43673D, "void __usercall ui__company_list__event_3_prepare_draw(window_t *window@<esi>);");
 	set_frame_size(0X43673D, 0, 0, 0);
 	add_func    (0X4367B4,0X43699F);
 	set_func_flags(0X4367B4,0x4400);
+	SetType(0X4367B4, "void __usercall ui__company_list__event_3_draw(window_t *window@<esi>, drawpixelinfo_t *context@<edi>);");
 	set_frame_size(0X4367B4, 0, 0, 0);
 	add_func    (0X43699F,0X4369BA);
 	set_func_flags(0X43699F,0x4400);
+	SetType(0X43699F, "void __usercall ui__company_list__event_3_on_mouse_up(window_t *window@<esi>, __int32 widgetIndex@<edx>, widget_t *widget@<edi>);");
 	set_frame_size(0X43699F, 0, 0, 0);
 	add_func    (0X4369BA,0X4369FB);
 	set_func_flags(0X4369BA,0x4400);
+	SetType(0X4369BA, "void __usercall ui__company_list__event_3_on_update(window_t *window@<esi>);");
 	set_frame_size(0X4369BA, 0, 0, 0);
 	add_func    (0X4369FB,0X436A60);
 	set_func_flags(0X4369FB,0x4400);
+	SetType(0X4369FB, "void __usercall ui__company_list__event_3_on_resize(window_t *window@<esi>);");
 	set_frame_size(0X4369FB, 0, 0, 0);
 	add_func    (0X436A60,0X436A61);
 	set_func_flags(0X436A60,0x4440);
 	set_frame_size(0X436A60, 0, 0, 0);
 	add_func    (0X436A61,0X436AD8);
 	set_func_flags(0X436A61,0x4400);
+	SetType(0X436A61, "void __usercall ui__company_list__event_4_prepare_draw(window_t *window@<esi>);");
 	set_frame_size(0X436A61, 0, 0, 0);
 	add_func    (0X436AD8,0X436CC3);
 	set_func_flags(0X436AD8,0x4400);
+	SetType(0X436AD8, "void __usercall ui__company_list__event_4_draw(window_t *window@<esi>, drawpixelinfo_t *context@<edi>);");
 	set_frame_size(0X436AD8, 0, 0, 0);
 	add_func    (0X436CC3,0X436CDE);
 	set_func_flags(0X436CC3,0x4400);
+	SetType(0X436CC3, "void __usercall ui__company_list__event_4_on_mouse_up(window_t *window@<esi>, __int32 widgetIndex@<edx>, widget_t *widget@<edi>);");
 	set_frame_size(0X436CC3, 0, 0, 0);
 	add_func    (0X436CDE,0X436D1F);
 	set_func_flags(0X436CDE,0x4400);
+	SetType(0X436CDE, "void __usercall ui__company_list__event_4_on_update(window_t *window@<esi>);");
 	set_frame_size(0X436CDE, 0, 0, 0);
 	add_func    (0X436D1F,0X436D84);
 	set_func_flags(0X436D1F,0x4400);
+	SetType(0X436D1F, "void __usercall ui__company_list__event_4_on_resize(window_t *window@<esi>);");
 	set_frame_size(0X436D1F, 0, 0, 0);
 	add_func    (0X436D84,0X436D85);
 	set_func_flags(0X436D84,0x4440);
 	set_frame_size(0X436D84, 0, 0, 0);
 	add_func    (0X436D85,0X436DFC);
 	set_func_flags(0X436D85,0x4400);
+	SetType(0X436D85, "void __usercall ui__company_list__event_5_prepare_draw(window_t *window@<esi>);");
 	set_frame_size(0X436D85, 0, 0, 0);
 	add_func    (0X436DFC,0X436FE7);
 	set_func_flags(0X436DFC,0x4400);
+	SetType(0X436DFC, "void __usercall ui__company_list__event_5_draw(window_t *window@<esi>, drawpixelinfo_t *context@<edi>);");
 	set_frame_size(0X436DFC, 0, 0, 0);
 	add_func    (0X436FE7,0X437002);
 	set_func_flags(0X436FE7,0x4400);
+	SetType(0X436FE7, "void __usercall ui__company_list__event_5_on_mouse_up(window_t *window@<esi>, __int32 widgetIndex@<edx>, widget_t *widget@<edi>);");
 	set_frame_size(0X436FE7, 0, 0, 0);
 	add_func    (0X437002,0X437043);
 	set_func_flags(0X437002,0x4400);
+	SetType(0X437002, "void __usercall ui__company_list__event_5_on_update(window_t *window@<esi>);");
 	set_frame_size(0X437002, 0, 0, 0);
 	add_func    (0X437043,0X4370A8);
 	set_func_flags(0X437043,0x4400);
+	SetType(0X437043, "void __usercall ui__company_list__event_5_on_resize(window_t *window@<esi>);");
 	set_frame_size(0X437043, 0, 0, 0);
 	add_func    (0X4370A8,0X4370A9);
 	set_func_flags(0X4370A8,0x4440);
 	set_frame_size(0X4370A8, 0, 0, 0);
 	add_func    (0X4370A9,0X437120);
 	set_func_flags(0X4370A9,0x4400);
+	SetType(0X4370A9, "void __usercall ui__company_list__event_6_prepare_draw(window_t *window@<esi>);");
 	set_frame_size(0X4370A9, 0, 0, 0);
 	add_func    (0X437120,0X437321);
 	set_func_flags(0X437120,0x4400);
+	SetType(0X437120, "void __usercall ui__company_list__event_6_draw(window_t *window@<esi>, drawpixelinfo_t *context@<edi>);");
 	set_frame_size(0X437120, 0, 0, 0);
 	add_func    (0X437321,0X43733C);
 	set_func_flags(0X437321,0x4400);
+	SetType(0X437321, "void __usercall ui__company_list__event_6_on_mouse_up(window_t *window@<esi>, __int32 widgetIndex@<edx>, widget_t *widget@<edi>);");
 	set_frame_size(0X437321, 0, 0, 0);
 	add_func    (0X43733C,0X43737D);
 	set_func_flags(0X43733C,0x4400);
+	SetType(0X43733C, "void __usercall ui__company_list__event_6_on_update(window_t *window@<esi>);");
 	set_frame_size(0X43733C, 0, 0, 0);
 	add_func    (0X43737D,0X4373E2);
 	set_func_flags(0X43737D,0x4400);
+	SetType(0X43737D, "void __usercall ui__company_list__event_6_on_resize(window_t *window@<esi>);");
 	set_frame_size(0X43737D, 0, 0, 0);
 	add_func    (0X4373E2,0X4373E3);
 	set_func_flags(0X4373E2,0x4440);
 	set_frame_size(0X4373E2, 0, 0, 0);
 	add_func    (0X4373E3,0X43745A);
 	set_func_flags(0X4373E3,0x4400);
+	SetType(0X4373E3, "void __usercall ui__company_list__event_7_prepare_draw(window_t *window@<esi>);");
 	set_frame_size(0X4373E3, 0, 0, 0);
 	add_func    (0X43745A,0X437555);
 	set_func_flags(0X43745A,0x4400);
+	SetType(0X43745A, "void __usercall ui__company_list__event_7_draw(window_t *window@<esi>, drawpixelinfo_t *context@<edi>);");
 	set_frame_size(0X43745A, 0, 0, 0);
 	add_func    (0X437555,0X437570);
 	set_func_flags(0X437555,0x4400);
+	SetType(0X437555, "void __usercall ui__company_list__event_7_on_mouse_up(window_t *window@<esi>, __int32 widgetIndex@<edx>, widget_t *widget@<edi>);");
 	set_frame_size(0X437555, 0, 0, 0);
 	add_func    (0X437570,0X437591);
 	set_func_flags(0X437570,0x4400);
+	SetType(0X437570, "void __usercall ui__company_list__event_7_on_update(window_t *window@<esi>);");
 	set_frame_size(0X437570, 0, 0, 0);
 	add_func    (0X437591,0X4375F6);
 	set_func_flags(0X437591,0x4400);
+	SetType(0X437591, "void __usercall ui__company_list__event_7_on_resize(window_t *window@<esi>);");
 	set_frame_size(0X437591, 0, 0, 0);
 	add_func    (0X4375F6,0X4375F7);
 	set_func_flags(0X4375F6,0x4440);
@@ -119789,15 +119953,19 @@ static Functions_1(void) {
 	set_frame_size(0X438A6C, 0, 0, 0);
 	add_func    (0X438E0B,0X438EC7);
 	set_func_flags(0X438E0B,0x4400);
+	SetType(0X438E0B, "void __usercall ui__title_menu___widgets__event_prepare_draw(window_t *window@<esi>);");
 	set_frame_size(0X438E0B, 0, 0, 0);
 	add_func    (0X438EC7,0X439094);
 	set_func_flags(0X438EC7,0x4400);
+	SetType(0X438EC7, "void __usercall ui__title_menu___widgets__event_draw(window_t *window@<esi>, drawpixelinfo_t *context@<edi>);");
 	set_frame_size(0X438EC7, 0, 0, 0);
 	add_func    (0X439094,0X4391F6);
 	set_func_flags(0X439094,0x4400);
+	SetType(0X439094, "void __usercall ui__title_menu___widgets__event_on_mouse_up(window_t *window@<esi>, __int32 widgetIndex@<edx>, widget_t *widget@<edi>);");
 	set_frame_size(0X439094, 0, 0, 0);
 	add_func    (0X4391F6,0X439234);
 	set_func_flags(0X4391F6,0x4400);
+	SetType(0X4391F6, "void __usercall ui__title_menu___widgets__event_on_update(window_t *window@<esi>);");
 	set_frame_size(0X4391F6, 0, 0, 0);
 	add_func    (0X439234,0X439235);
 	set_func_flags(0X439234,0x4440);
@@ -119807,18 +119975,22 @@ static Functions_1(void) {
 	set_frame_size(0X439235, 0, 0, 0);
 	add_func    (0X439236,0X439268);
 	set_func_flags(0X439236,0x4400);
+	SetType(0X439236, "void __usercall ui__title_exit___widgets__event_draw(window_t *window@<esi>, drawpixelinfo_t *context@<edi>);");
 	set_frame_size(0X439236, 0, 0, 0);
 	add_func    (0X439268,0X439297);
 	set_func_flags(0X439268,0x4400);
+	SetType(0X439268, "void __usercall ui__title_exit___widgets__event_on_mouse_up(window_t *window@<esi>, __int32 widgetIndex@<edx>, widget_t *widget@<edi>);");
 	set_frame_size(0X439268, 0, 0, 0);
 	add_func    (0X439297,0X439298);
 	set_func_flags(0X439297,0x4440);
 	set_frame_size(0X439297, 0, 0, 0);
 	add_func    (0X439298,0X4392AD);
 	set_func_flags(0X439298,0x4400);
+	SetType(0X439298, "void __usercall ui__title_logo___widgets__event_draw(window_t *window@<esi>, drawpixelinfo_t *context@<edi>);");
 	set_frame_size(0X439298, 0X4, 0, 0);
 	add_func    (0X4392AD,0X4392BC);
 	set_func_flags(0X4392AD,0x4400);
+	SetType(0X4392AD, "void __usercall ui__title_logo___widgets__event_on_mouse_up(window_t *window@<esi>, __int32 widgetIndex@<edx>, widget_t *widget@<edi>);");
 	set_frame_size(0X4392AD, 0, 0, 0);
 	add_func    (0X4392BC,0X4392BD);
 	set_func_flags(0X4392BC,0x4440);
@@ -119828,18 +120000,23 @@ static Functions_1(void) {
 	set_frame_size(0X4392BD, 0, 0, 0);
 	add_func    (0X4393E7,0X4393EF);
 	set_func_flags(0X4393E7,0x4400);
+	SetType(0X4393E7, "void __usercall ui__toolbar_player_info___widgets__event_prepare_draw(window_t *window@<esi>);");
 	set_frame_size(0X4393E7, 0, 0, 0);
 	add_func    (0X4393EF,0X4395A4);
 	set_func_flags(0X4393EF,0x4400);
+	SetType(0X4393EF, "void __usercall ui__toolbar_player_info___widgets__event_draw(window_t *window@<esi>, drawpixelinfo_t *context@<edi>);");
 	set_frame_size(0X4393EF, 0X4, 0, 0);
 	add_func    (0X4395A4,0X4395B1);
 	set_func_flags(0X4395A4,0x4400);
+	SetType(0X4395A4, "void __usercall ui__toolbar_player_info___widgets__event_on_mouse_up(window_t *window@<esi>, __int32 widgetIndex@<edx>, widget_t *widget@<edi>);");
 	set_frame_size(0X4395A4, 0, 0, 0);
 	add_func    (0X4395B1,0X4395BC);
 	set_func_flags(0X4395B1,0x4400);
+	SetType(0X4395B1, "void __usercall ui__toolbar_player_info___widgets__event_on_mouse_down(window_t *window@<esi>, __int32 widgetIndex@<edx>, widget_t *widget@<edi>);");
 	set_frame_size(0X4395B1, 0, 0, 0);
 	add_func    (0X4395BC,0X4395C7);
 	set_func_flags(0X4395BC,0x4400);
+	SetType(0X4395BC, "void __usercall ui__toolbar_player_info___widgets__event_on_dropdown(window_t *window@<esi>, __int32 widgetIndex@<edx>, __int16 itemIndex@<ax>);");
 	set_frame_size(0X4395BC, 0, 0, 0);
 	add_func    (0X4395C7,0X4395D6);
 	set_func_flags(0X4395C7,0x4400);
@@ -119849,33 +120026,41 @@ static Functions_1(void) {
 	set_frame_size(0X4395D6, 0X4, 0, 0);
 	add_func    (0X4395DE,0X4395F5);
 	set_func_flags(0X4395DE,0x4400);
+	SetType(0X4395DE, "void __usercall ui__toolbar_player_info___widgets__event_cursor(window_t *window@<esi>);");
 	set_frame_size(0X4395DE, 0, 0, 0);
 	add_func    (0X4395F5,0X439670);
 	set_func_flags(0X4395F5,0x4400);
+	SetType(0X4395F5, "__int16 __usercall ui__toolbar_player_info___widgets__event_tooltip@<ax>(window_t *window@<esi>, __int16 widgetIndex@<ax>);");
 	set_frame_size(0X4395F5, 0, 0, 0);
 	add_func    (0X439670,0X4396A3);
 	set_func_flags(0X439670,0x4400);
+	SetType(0X439670, "void __usercall ui__toolbar_player_info___widgets__event_on_update(window_t *window@<esi>);");
 	set_frame_size(0X439670, 0, 0, 0);
 	add_func    (0X4396A3,0X4396A4);
 	set_func_flags(0X4396A3,0x4440);
 	set_frame_size(0X4396A3, 0, 0, 0);
 	add_func    (0X4396A4,0X4398FB);
 	set_func_flags(0X4396A4,0x4400);
+	SetType(0X4396A4, "void __usercall ui__toolbar_time___widgets__event_prepare_draw(window_t *window@<esi>);");
 	set_frame_size(0X4396A4, 0, 0, 0);
 	add_func    (0X4398FB,0X439AD9);
 	set_func_flags(0X4398FB,0x4400);
+	SetType(0X4398FB, "void __usercall ui__toolbar_time___widgets__event_on_mouse_up(window_t *window@<esi>, __int32 widgetIndex@<edx>, widget_t *widget@<edi>);");
 	set_frame_size(0X4398FB, 0, 0, 0);
 	add_func    (0X439AD9,0X439B3C);
 	set_func_flags(0X439AD9,0x4400);
+	SetType(0X439AD9, "void __usercall ui__toolbar_time___widgets__event_on_update(window_t *window@<esi>);");
 	set_frame_size(0X439AD9, 0, 0, 0);
 	add_func    (0X439B3C,0X439B3D);
 	set_func_flags(0X439B3C,0x4440);
 	set_frame_size(0X439B3C, 0, 0, 0);
 	add_func    (0X439B3D,0X439B4A);
 	set_func_flags(0X439B3D,0x4400);
+	SetType(0X439B3D, "void __usercall ui__tutorial___widgets__event_prepare_draw(window_t *window@<esi>);");
 	set_frame_size(0X439B3D, 0, 0, 0);
 	add_func    (0X439B4A,0X439BA4);
 	set_func_flags(0X439B4A,0x4400);
+	SetType(0X439B4A, "void __usercall ui__tutorial___widgets__event_draw(window_t *window@<esi>, drawpixelinfo_t *context@<edi>);");
 	set_frame_size(0X439B4A, 0X4, 0, 0);
 	add_func    (0X439BA4,0X439BA5);
 	set_func_flags(0X439BA4,0x4440);
@@ -119885,24 +120070,30 @@ static Functions_1(void) {
 	set_frame_size(0X439BA5, 0, 0, 0);
 	add_func    (0X439BCB,0X439DE4);
 	set_func_flags(0X439BCB,0x4400);
+	SetType(0X439BCB, "void __usercall ui__toolbar_top___widgets__event_prepare_draw(window_t *window@<esi>);");
 	set_frame_size(0X439BCB, 0, 0, 0);
 	add_func    (0X439DE4,0X43A070);
 	set_func_flags(0X439DE4,0x4400);
+	SetType(0X439DE4, "void __usercall ui__toolbar_top___widgets__event_draw(window_t *window@<esi>, drawpixelinfo_t *context@<edi>);");
 	set_frame_size(0X439DE4, 0, 0, 0);
 	add_func    (0X43A070,0X43A071);
 	set_func_flags(0X43A070,0x4440);
 	set_frame_size(0X43A070, 0, 0, 0);
 	add_func    (0X43A071,0X43A0F4);
 	set_func_flags(0X43A071,0x4400);
+	SetType(0X43A071, "void __usercall ui__toolbar_top___widgets__event_on_mouse_down(window_t *window@<esi>, __int32 widgetIndex@<edx>, widget_t *widget@<edi>);");
 	set_frame_size(0X43A071, 0, 0, 0);
 	add_func    (0X43A0F4,0X43A177);
 	set_func_flags(0X43A0F4,0x4400);
+	SetType(0X43A0F4, "void __usercall ui__toolbar_top___widgets__event_on_dropdown(window_t *window@<esi>, __int32 widgetIndex@<edx>, __int16 itemIndex@<ax>);");
 	set_frame_size(0X43A0F4, 0, 0, 0);
 	add_func    (0X43A177,0X43A17E);
 	set_func_flags(0X43A177,0x4400);
+	SetType(0X43A177, "void __usercall ui__toolbar_top___widgets__event_on_update(window_t *window@<esi>);");
 	set_frame_size(0X43A177, 0, 0, 0);
 	add_func    (0X43A17E,0X43A19D);
 	set_func_flags(0X43A17E,0x4400);
+	SetType(0X43A17E, "void __usercall ui__toolbar_top___widgets__event_on_resize(window_t *window@<esi>);");
 	set_frame_size(0X43A17E, 0X4, 0, 0);
 	add_func    (0X43A19D,0X43A19E);
 	set_func_flags(0X43A19D,0x4440);
@@ -119918,45 +120109,57 @@ static Functions_1(void) {
 	set_frame_size(0X43B26C, 0, 0, 0);
 	add_func    (0X43B2E4,0X43B498);
 	set_func_flags(0X43B2E4,0x4400);
+	SetType(0X43B2E4, "void __usercall ui__about___widgets__event_draw(window_t *window@<esi>, drawpixelinfo_t *context@<edi>);");
 	set_frame_size(0X43B2E4, 0, 0, 0);
 	add_func    (0X43B498,0X43B593);
 	set_func_flags(0X43B498,0x4400);
+	SetType(0X43B498, "void __usercall ui__about___widgets__event_on_mouse_up(window_t *window@<esi>, __int32 widgetIndex@<edx>, widget_t *widget@<edi>);");
 	set_frame_size(0X43B498, 0, 0, 0);
 	add_func    (0X43B593,0X43B594);
 	set_func_flags(0X43B593,0x4440);
 	set_frame_size(0X43B593, 0, 0, 0);
 	add_func    (0X43B594,0X43B59A);
 	set_func_flags(0X43B594,0x4400);
+	SetType(0X43B594, "void __usercall ui__about_atari___widgets__event_draw(window_t *window@<esi>, drawpixelinfo_t *context@<edi>);");
 	set_frame_size(0X43B594, 0, 0, 0);
 	add_func    (0X43B59A,0X43B89D);
 	set_func_flags(0X43B59A,0x4400);
+	SetType(0X43B59A, "void __usercall ui__about_atari___widgets__event_draw_scroll(window_t *window@<esi>, drawpixelinfo_t *context@<edi>, __int32 scrollIndex@<eax>);");
 	set_frame_size(0X43B59A, 0X4, 0, 0);
 	add_func    (0X43B89D,0X43B8A8);
 	set_func_flags(0X43B89D,0x4400);
+	SetType(0X43B89D, "void __usercall ui__about_atari___widgets__event_on_mouse_up(window_t *window@<esi>, __int32 widgetIndex@<edx>, widget_t *widget@<edi>);");
 	set_frame_size(0X43B89D, 0, 0, 0);
 	add_func    (0X43B8A8,0X43B8AD);
 	set_func_flags(0X43B8A8,0x4400);
+	SetType(0X43B8A8, "void __usercall ui__about_atari___widgets__event_get_scroll_size(window_t *window@<esi>, __int32 scrollIndex@<eax>, __int16 width@<cx>, __int16 height@<dx>);");
 	set_frame_size(0X43B8A8, 0, 0, 0);
 	add_func    (0X43B8AD,0X43B8B7);
 	set_func_flags(0X43B8AD,0x4400);
+	SetType(0X43B8AD, "__int16 __usercall ui__about_atari___widgets__event_tooltip@<ax>(window_t *window@<esi>, __int16 widgetIndex@<ax>);");
 	set_frame_size(0X43B8AD, 0, 0, 0);
 	add_func    (0X43B8B7,0X43B8B8);
 	set_func_flags(0X43B8B7,0x4440);
 	set_frame_size(0X43B8B7, 0, 0, 0);
 	add_func    (0X43B8B8,0X43B8BE);
 	set_func_flags(0X43B8B8,0x4400);
+	SetType(0X43B8B8, "void __usercall ui__about_music___widgets__event_draw(window_t *window@<esi>, drawpixelinfo_t *context@<edi>);");
 	set_frame_size(0X43B8B8, 0, 0, 0);
 	add_func    (0X43B8BE,0X43BFB0);
 	set_func_flags(0X43B8BE,0x4400);
+	SetType(0X43B8BE, "void __usercall ui__about_music___widgets__event_draw_scroll(window_t *window@<esi>, drawpixelinfo_t *context@<edi>, __int32 scrollIndex@<eax>);");
 	set_frame_size(0X43B8BE, 0X4, 0, 0);
 	add_func    (0X43BFB0,0X43BFBB);
 	set_func_flags(0X43BFB0,0x4400);
+	SetType(0X43BFB0, "void __usercall ui__about_music___widgets__event_on_mouse_up(window_t *window@<esi>, __int32 widgetIndex@<edx>, widget_t *widget@<edi>);");
 	set_frame_size(0X43BFB0, 0, 0, 0);
 	add_func    (0X43BFBB,0X43BFC0);
 	set_func_flags(0X43BFBB,0x4400);
+	SetType(0X43BFBB, "void __usercall ui__about_music___widgets__event_get_scroll_size(window_t *window@<esi>, __int32 scrollIndex@<eax>, __int16 width@<cx>, __int16 height@<dx>);");
 	set_frame_size(0X43BFBB, 0, 0, 0);
 	add_func    (0X43BFC0,0X43BFCA);
 	set_func_flags(0X43BFC0,0x4400);
+	SetType(0X43BFC0, "__int16 __usercall ui__about_music___widgets__event_tooltip@<ax>(window_t *window@<esi>, __int16 widgetIndex@<ax>);");
 	set_frame_size(0X43BFC0, 0, 0, 0);
 	add_func    (0X43BFCA,0X43BFCB);
 	set_func_flags(0X43BFCA,0x4440);
@@ -119966,9 +120169,11 @@ static Functions_1(void) {
 	set_frame_size(0X43BFCB, 0, 0, 0);
 	add_func    (0X43C3F4,0X43C577);
 	set_func_flags(0X43C3F4,0x4400);
+	SetType(0X43C3F4, "void __usercall ui__prompt_save_game___widgets__event_on_mouse_up(window_t *window@<esi>, __int32 widgetIndex@<edx>, widget_t *widget@<edi>);");
 	set_frame_size(0X43C3F4, 0, 0, 0);
 	add_func    (0X43C577,0X43C58F);
 	set_func_flags(0X43C577,0x4400);
+	SetType(0X43C577, "void __usercall ui__prompt_save_game___widgets__event_on_close(window_t *window@<esi>);");
 	set_frame_size(0X43C577, 0, 0, 0);
 	add_func    (0X43C58F,0X43C590);
 	set_func_flags(0X43C58F,0x4440);
@@ -120011,12 +120216,15 @@ static Functions_1(void) {
 	set_frame_size(0X43CD35, 0, 0, 0);
 	add_func    (0X43CE21,0X43CE56);
 	set_func_flags(0X43CE21,0x4400);
+	SetType(0X43CE21, "void __usercall ui__window_4___widgets__event_prepare_draw(window_t *window@<esi>);");
 	set_frame_size(0X43CE21, 0, 0, 0);
 	add_func    (0X43CE65,0X43D0ED);
 	set_func_flags(0X43CE65,0x4400);
+	SetType(0X43CE65, "void __usercall ui__window_4___widgets__event_draw(window_t *window@<esi>, drawpixelinfo_t *context@<edi>);");
 	set_frame_size(0X43CE65, 0, 0, 0);
 	add_func    (0X43D0ED,0X43D108);
 	set_func_flags(0X43D0ED,0x4400);
+	SetType(0X43D0ED, "void __usercall ui__window_4___widgets__event_on_mouse_up(window_t *window@<esi>, __int32 widgetIndex@<edx>, widget_t *widget@<edi>);");
 	set_frame_size(0X43D0ED, 0, 0, 0);
 	add_func    (0X43D118,0X43D119);
 	set_func_flags(0X43D118,0x4440);
@@ -120038,30 +120246,37 @@ static Functions_1(void) {
 	set_frame_size(0X43D2F2, 0, 0, 0);
 	add_func    (0X43D2F3,0X43D474);
 	set_func_flags(0X43D2F3,0x4400);
+	SetType(0X43D2F3, "void __usercall ui__toolbar_top_alt___widgets__event_prepare_draw(window_t *window@<esi>);");
 	set_frame_size(0X43D2F3, 0, 0, 0);
 	add_func    (0X43D474,0X43D540);
 	set_func_flags(0X43D474,0x4400);
+	SetType(0X43D474, "void __usercall ui__toolbar_top_alt___widgets__event_draw(window_t *window@<esi>, drawpixelinfo_t *context@<edi>);");
 	set_frame_size(0X43D474, 0, 0, 0);
 	add_func    (0X43D540,0X43D541);
 	set_func_flags(0X43D540,0x4440);
 	set_frame_size(0X43D540, 0, 0, 0);
 	add_func    (0X43D541,0X43D5A6);
 	set_func_flags(0X43D541,0x4400);
+	SetType(0X43D541, "void __usercall ui__toolbar_top_alt___widgets__event_on_mouse_down(window_t *window@<esi>, __int32 widgetIndex@<edx>, widget_t *widget@<edi>);");
 	set_frame_size(0X43D541, 0, 0, 0);
 	add_func    (0X43D5A6,0X43D60B);
 	set_func_flags(0X43D5A6,0x4400);
+	SetType(0X43D5A6, "void __usercall ui__toolbar_top_alt___widgets__event_on_dropdown(window_t *window@<esi>, __int32 widgetIndex@<edx>, __int16 itemIndex@<ax>);");
 	set_frame_size(0X43D5A6, 0, 0, 0);
 	add_func    (0X43D60B,0X43D612);
 	set_func_flags(0X43D60B,0x4400);
+	SetType(0X43D60B, "void __usercall ui__toolbar_top_alt___widgets__event_on_update(window_t *window@<esi>);");
 	set_frame_size(0X43D60B, 0, 0, 0);
 	add_func    (0X43D612,0X43D631);
 	set_func_flags(0X43D612,0x4400);
+	SetType(0X43D612, "void __usercall ui__toolbar_top_alt___widgets__event_on_resize(window_t *window@<esi>);");
 	set_frame_size(0X43D612, 0X4, 0, 0);
 	add_func    (0X43D631,0X43D632);
 	set_func_flags(0X43D631,0x4440);
 	set_frame_size(0X43D631, 0, 0, 0);
 	add_func    (0X43D632,0X43D637);
 	set_func_flags(0X43D632,0x44c0);
+	SetType(0X43D632, "void __usercall ui__window_0_alt___widgets__event_draw(window_t *window@<esi>, drawpixelinfo_t *context@<edi>);");
 	set_frame_size(0X43D632, 0, 0, 0);
 	add_func    (0X43D637,0X43D638);
 	set_func_flags(0X43D637,0x4440);
@@ -120080,36 +120295,45 @@ static Functions_1(void) {
 	set_frame_size(0X43DAEA, 0, 0, 0);
 	add_func    (0X43DB76,0X43DC2B);
 	set_func_flags(0X43DB76,0x4400);
+	SetType(0X43DB76, "void __usercall ui__landscape_generation__event_1_prepare_draw(window_t *window@<esi>);");
 	set_frame_size(0X43DB76, 0, 0, 0);
 	add_func    (0X43DC2B,0X43DC58);
 	set_func_flags(0X43DC2B,0x4400);
+	SetType(0X43DC2B, "void __usercall ui__landscape_generation__event_1_draw(window_t *window@<esi>, drawpixelinfo_t *context@<edi>);");
 	set_frame_size(0X43DC2B, 0, 0, 0);
 	add_func    (0X43DC58,0X43DD50);
 	set_func_flags(0X43DC58,0x4400);
+	SetType(0X43DC58, "void __usercall ui__landscape_generation__event_1_on_mouse_up(window_t *window@<esi>, __int32 widgetIndex@<edx>, widget_t *widget@<edi>);");
 	set_frame_size(0X43DC58, 0, 0, 0);
 	add_func    (0X43DD50,0X43DE29);
 	set_func_flags(0X43DD50,0x4400);
 	set_frame_size(0X43DD50, 0, 0, 0);
 	add_func    (0X43DE9D,0X43DEBE);
 	set_func_flags(0X43DE9D,0x4400);
+	SetType(0X43DE9D, "void __usercall ui__landscape_generation__event_1_on_update(window_t *window@<esi>);");
 	set_frame_size(0X43DE9D, 0, 0, 0);
 	add_func    (0X43DEBE,0X43DEBF);
 	set_func_flags(0X43DEBE,0x4440);
 	set_frame_size(0X43DEBE, 0, 0, 0);
 	add_func    (0X43DEBF,0X43DF89);
 	set_func_flags(0X43DEBF,0x4400);
+	SetType(0X43DEBF, "void __usercall ui__landscape_generation__event_2_prepare_draw(window_t *window@<esi>);");
 	set_frame_size(0X43DEBF, 0, 0, 0);
 	add_func    (0X43DF89,0X43E01C);
 	set_func_flags(0X43DF89,0x4400);
+	SetType(0X43DF89, "void __usercall ui__landscape_generation__event_2_draw(window_t *window@<esi>, drawpixelinfo_t *context@<edi>);");
 	set_frame_size(0X43DF89, 0, 0, 0);
 	add_func    (0X43E01C,0X43E14E);
 	set_func_flags(0X43E01C,0x4400);
+	SetType(0X43E01C, "void __usercall ui__landscape_generation__event_2_draw_scroll(window_t *window@<esi>, drawpixelinfo_t *context@<edi>, __int32 scrollIndex@<eax>);");
 	set_frame_size(0X43E01C, 0X4, 0, 0);
 	add_func    (0X43E14E,0X43E3D9);
 	set_func_flags(0X43E14E,0x4400);
+	SetType(0X43E14E, "void __usercall ui__landscape_generation__event_2_on_mouse_up(window_t *window@<esi>, __int32 widgetIndex@<edx>, widget_t *widget@<edi>);");
 	set_frame_size(0X43E14E, 0, 0, 0);
 	add_func    (0X43E3D9,0X43E420);
 	set_func_flags(0X43E3D9,0x4400);
+	SetType(0X43E3D9, "void __usercall ui__landscape_generation__event_2_on_update(window_t *window@<esi>);");
 	set_frame_size(0X43E3D9, 0, 0, 0);
 	add_func    (0X43E420,0X43E421);
 	set_func_flags(0X43E420,0x4440);
@@ -120119,51 +120343,65 @@ static Functions_1(void) {
 	set_frame_size(0X43E421, 0, 0, 0);
 	add_func    (0X43E44F,0X43E53A);
 	set_func_flags(0X43E44F,0x4400);
+	SetType(0X43E44F, "void __usercall ui__landscape_generation__event_3_prepare_draw(window_t *window@<esi>);");
 	set_frame_size(0X43E44F, 0, 0, 0);
 	add_func    (0X43E53A,0X43E655);
 	set_func_flags(0X43E53A,0x4400);
+	SetType(0X43E53A, "void __usercall ui__landscape_generation__event_3_draw(window_t *window@<esi>, drawpixelinfo_t *context@<edi>);");
 	set_frame_size(0X43E53A, 0, 0, 0);
 	add_func    (0X43E655,0X43E670);
 	set_func_flags(0X43E655,0x4400);
+	SetType(0X43E655, "void __usercall ui__landscape_generation__event_3_on_mouse_up(window_t *window@<esi>, __int32 widgetIndex@<edx>, widget_t *widget@<edi>);");
 	set_frame_size(0X43E655, 0, 0, 0);
 	add_func    (0X43E670,0X43E8EB);
 	set_func_flags(0X43E670,0x4400);
+	SetType(0X43E670, "void __usercall ui__landscape_generation__event_3_on_mouse_down(window_t *window@<esi>, __int32 widgetIndex@<edx>, widget_t *widget@<edi>);");
 	set_frame_size(0X43E670, 0, 0, 0);
 	add_func    (0X43E8EB,0X43E90C);
 	set_func_flags(0X43E8EB,0x4400);
+	SetType(0X43E8EB, "void __usercall ui__landscape_generation__event_3_on_update(window_t *window@<esi>);");
 	set_frame_size(0X43E8EB, 0, 0, 0);
 	add_func    (0X43E90C,0X43E90D);
 	set_func_flags(0X43E90C,0x4440);
 	set_frame_size(0X43E90C, 0, 0, 0);
 	add_func    (0X43E90D,0X43E9A3);
 	set_func_flags(0X43E90D,0x4400);
+	SetType(0X43E90D, "void __usercall ui__landscape_generation__event_4_prepare_draw(window_t *window@<esi>);");
 	set_frame_size(0X43E90D, 0, 0, 0);
 	add_func    (0X43E9A3,0X43E9F2);
 	set_func_flags(0X43E9A3,0x4400);
+	SetType(0X43E9A3, "void __usercall ui__landscape_generation__event_4_draw(window_t *window@<esi>, drawpixelinfo_t *context@<edi>);");
 	set_frame_size(0X43E9A3, 0, 0, 0);
 	add_func    (0X43E9F2,0X43EA0D);
 	set_func_flags(0X43E9F2,0x4400);
+	SetType(0X43E9F2, "void __usercall ui__landscape_generation__event_4_on_mouse_up(window_t *window@<esi>, __int32 widgetIndex@<edx>, widget_t *widget@<edi>);");
 	set_frame_size(0X43E9F2, 0, 0, 0);
 	add_func    (0X43EA0D,0X43EAC9);
 	set_func_flags(0X43EA0D,0x4400);
+	SetType(0X43EA0D, "void __usercall ui__landscape_generation__event_4_on_mouse_down(window_t *window@<esi>, __int32 widgetIndex@<edx>, widget_t *widget@<edi>);");
 	set_frame_size(0X43EA0D, 0, 0, 0);
 	add_func    (0X43EAC9,0X43EAEA);
 	set_func_flags(0X43EAC9,0x4400);
+	SetType(0X43EAC9, "void __usercall ui__landscape_generation__event_4_on_update(window_t *window@<esi>);");
 	set_frame_size(0X43EAC9, 0, 0, 0);
 	add_func    (0X43EAEA,0X43EAEB);
 	set_func_flags(0X43EAEA,0x4440);
 	set_frame_size(0X43EAEA, 0, 0, 0);
 	add_func    (0X43EAEB,0X43EB9D);
 	set_func_flags(0X43EAEB,0x4400);
+	SetType(0X43EAEB, "void __usercall ui__landscape_generation__event_5_prepare_draw(window_t *window@<esi>);");
 	set_frame_size(0X43EAEB, 0, 0, 0);
 	add_func    (0X43EB9D,0X43EBCA);
 	set_func_flags(0X43EB9D,0x4400);
+	SetType(0X43EB9D, "void __usercall ui__landscape_generation__event_5_draw(window_t *window@<esi>, drawpixelinfo_t *context@<edi>);");
 	set_frame_size(0X43EB9D, 0, 0, 0);
 	add_func    (0X43EBCA,0X43EC82);
 	set_func_flags(0X43EBCA,0x4400);
+	SetType(0X43EBCA, "void __usercall ui__landscape_generation__event_5_on_mouse_up(window_t *window@<esi>, __int32 widgetIndex@<edx>, widget_t *widget@<edi>);");
 	set_frame_size(0X43EBCA, 0, 0, 0);
 	add_func    (0X43EC82,0X43ECA3);
 	set_func_flags(0X43EC82,0x4400);
+	SetType(0X43EC82, "void __usercall ui__landscape_generation__event_5_on_update(window_t *window@<esi>);");
 	set_frame_size(0X43EC82, 0, 0, 0);
 	add_func    (0X43ECA3,0X43ECA4);
 	set_func_flags(0X43ECA3,0x4440);
@@ -120191,69 +120429,86 @@ static Functions_1(void) {
 	set_frame_size(0X43EEFF, 0, 0, 0);
 	add_func    (0X43EF8B,0X43F004);
 	set_func_flags(0X43EF8B,0x4400);
+	SetType(0X43EF8B, "void __usercall ui__scenario_options__event_4_prepare_draw(window_t *window@<esi>);");
 	set_frame_size(0X43EF8B, 0, 0, 0);
 	add_func    (0X43F004,0X43F11F);
 	set_func_flags(0X43F004,0x4400);
+	SetType(0X43F004, "void __usercall ui__scenario_options__event_4_draw(window_t *window@<esi>, drawpixelinfo_t *context@<edi>);");
 	set_frame_size(0X43F004, 0, 0, 0);
 	add_func    (0X43F11F,0X43F224);
 	set_func_flags(0X43F11F,0x4400);
+	SetType(0X43F11F, "void __usercall ui__scenario_options__event_4_on_mouse_up(window_t *window@<esi>, __int32 widgetIndex@<edx>, widget_t *widget@<edi>);");
 	set_frame_size(0X43F11F, 0, 0, 0);
 	add_func    (0X43F224,0X43F2D4);
 	set_func_flags(0X43F224,0x4400);
 	set_frame_size(0X43F224, 0, 0, 0);
 	add_func    (0X43F3EA,0X43F40B);
 	set_func_flags(0X43F3EA,0x4400);
+	SetType(0X43F3EA, "void __usercall ui__scenario_options__event_4_on_update(window_t *window@<esi>);");
 	set_frame_size(0X43F3EA, 0, 0, 0);
 	add_func    (0X43F40B,0X43F40C);
 	set_func_flags(0X43F40B,0x4440);
 	set_frame_size(0X43F40B, 0, 0, 0);
 	add_func    (0X43F40C,0X43F4EB);
 	set_func_flags(0X43F40C,0x4400);
+	SetType(0X43F40C, "void __usercall ui__scenario_options__event_2_prepare_draw(window_t *window@<esi>);");
 	set_frame_size(0X43F40C, 0, 0, 0);
 	add_func    (0X43F4EB,0X43F60C);
 	set_func_flags(0X43F4EB,0x4400);
+	SetType(0X43F4EB, "void __usercall ui__scenario_options__event_2_draw(window_t *window@<esi>, drawpixelinfo_t *context@<edi>);");
 	set_frame_size(0X43F4EB, 0, 0, 0);
 	add_func    (0X43F60C,0X43F8AD);
 	set_func_flags(0X43F60C,0x4400);
+	SetType(0X43F60C, "void __usercall ui__scenario_options__event_2_on_mouse_up(window_t *window@<esi>, __int32 widgetIndex@<edx>, widget_t *widget@<edi>);");
 	set_frame_size(0X43F60C, 0, 0, 0);
 	add_func    (0X43F8AD,0X43F8CE);
 	set_func_flags(0X43F8AD,0x4400);
+	SetType(0X43F8AD, "void __usercall ui__scenario_options__event_2_on_update(window_t *window@<esi>);");
 	set_frame_size(0X43F8AD, 0, 0, 0);
 	add_func    (0X43F8CE,0X43F8CF);
 	set_func_flags(0X43F8CE,0x4440);
 	set_frame_size(0X43F8CE, 0, 0, 0);
 	add_func    (0X43F8CF,0X43F97D);
 	set_func_flags(0X43F8CF,0x4400);
+	SetType(0X43F8CF, "void __usercall ui__scenario_options__event_3_prepare_draw(window_t *window@<esi>);");
 	set_frame_size(0X43F8CF, 0, 0, 0);
 	add_func    (0X43F97D,0X43F9EE);
 	set_func_flags(0X43F97D,0x4400);
+	SetType(0X43F97D, "void __usercall ui__scenario_options__event_3_draw(window_t *window@<esi>, drawpixelinfo_t *context@<edi>);");
 	set_frame_size(0X43F97D, 0, 0, 0);
 	add_func    (0X43F9EE,0X43F9FF);
 	set_func_flags(0X43F9EE,0x4400);
+	SetType(0X43F9EE, "void __usercall ui__scenario_options__event_3_on_mouse_up(window_t *window@<esi>, __int32 widgetIndex@<edx>, widget_t *widget@<edi>);");
 	set_frame_size(0X43F9EE, 0, 0, 0);
 	add_func    (0X43F9FF,0X43FAEA);
 	set_func_flags(0X43F9FF,0x4400);
+	SetType(0X43F9FF, "void __usercall ui__scenario_options__event_3_on_mouse_down(window_t *window@<esi>, __int32 widgetIndex@<edx>, widget_t *widget@<edi>);");
 	set_frame_size(0X43F9FF, 0, 0, 0);
 	add_func    (0X43FAEA,0X43FB0B);
 	set_func_flags(0X43FAEA,0x4400);
+	SetType(0X43FAEA, "void __usercall ui__scenario_options__event_3_on_update(window_t *window@<esi>);");
 	set_frame_size(0X43FAEA, 0, 0, 0);
 	add_func    (0X43FB0B,0X43FB0C);
 	set_func_flags(0X43FB0B,0x4440);
 	set_frame_size(0X43FB0B, 0, 0, 0);
 	add_func    (0X43FB0C,0X43FBB5);
 	set_func_flags(0X43FB0C,0x4400);
+	SetType(0X43FB0C, "void __usercall ui__scenario_options__event_1_prepare_draw(window_t *window@<esi>);");
 	set_frame_size(0X43FB0C, 0, 0, 0);
 	add_func    (0X43FBB5,0X43FC91);
 	set_func_flags(0X43FBB5,0x4400);
 	set_frame_size(0X43FBB5, 0, 0, 0);
 	add_func    (0X43FC91,0X43FCED);
 	set_func_flags(0X43FC91,0x4400);
+	SetType(0X43FC91, "void __usercall ui__scenario_options__event_1_draw(window_t *window@<esi>, drawpixelinfo_t *context@<edi>);");
 	set_frame_size(0X43FC91, 0, 0, 0);
 	add_func    (0X43FCED,0X440082);
 	set_func_flags(0X43FCED,0x4400);
+	SetType(0X43FCED, "void __usercall ui__scenario_options__event_1_on_mouse_up(window_t *window@<esi>, __int32 widgetIndex@<edx>, widget_t *widget@<edi>);");
 	set_frame_size(0X43FCED, 0, 0, 0);
 	add_func    (0X440082,0X4400A3);
 	set_func_flags(0X440082,0x4400);
+	SetType(0X440082, "void __usercall ui__scenario_options__event_1_on_update(window_t *window@<esi>);");
 	set_frame_size(0X440082, 0, 0, 0);
 	add_func    (0X4400A3,0X4400A4);
 	set_func_flags(0X4400A3,0x4440);
@@ -120419,30 +120674,39 @@ static Functions_1(void) {
 	set_frame_size(0X443946, 0, 0, 0);
 	add_func    (0X443995,0X4439AF);
 	set_func_flags(0X443995,0x4400);
+	SetType(0X443995, "void __usercall ui__scenario_select___widgets__event_prepare_draw(window_t *window@<esi>);");
 	set_frame_size(0X443995, 0, 0, 0);
 	add_func    (0X4439AF,0X443D02);
 	set_func_flags(0X4439AF,0x4400);
+	SetType(0X4439AF, "void __usercall ui__scenario_select___widgets__event_draw(window_t *window@<esi>, drawpixelinfo_t *context@<edi>);");
 	set_frame_size(0X4439AF, 0, 0, 0);
 	add_func    (0X443D02,0X443E9B);
 	set_func_flags(0X443D02,0x4400);
+	SetType(0X443D02, "void __usercall ui__scenario_select___widgets__event_draw_scroll(window_t *window@<esi>, drawpixelinfo_t *context@<edi>, __int32 scrollIndex@<eax>);");
 	set_frame_size(0X443D02, 0XC, 0, 0);
 	add_func    (0X443E9B,0X443EA6);
 	set_func_flags(0X443E9B,0x4400);
+	SetType(0X443E9B, "void __usercall ui__scenario_select___widgets__event_on_mouse_up(window_t *window@<esi>, __int32 widgetIndex@<edx>, widget_t *widget@<edi>);");
 	set_frame_size(0X443E9B, 0, 0, 0);
 	add_func    (0X443EA6,0X443EF6);
 	set_func_flags(0X443EA6,0x4400);
+	SetType(0X443EA6, "void __usercall ui__scenario_select___widgets__event_on_mouse_down(window_t *window@<esi>, __int32 widgetIndex@<edx>, widget_t *widget@<edi>);");
 	set_frame_size(0X443EA6, 0, 0, 0);
 	add_func    (0X443EF6,0X443F32);
 	set_func_flags(0X443EF6,0x4400);
+	SetType(0X443EF6, "void __usercall ui__scenario_select___widgets__event_get_scroll_size(window_t *window@<esi>, __int32 scrollIndex@<eax>, __int16 width@<cx>, __int16 height@<dx>);");
 	set_frame_size(0X443EF6, 0, 0, 0);
 	add_func    (0X443F32,0X443FB2);
 	set_func_flags(0X443F32,0x4400);
+	SetType(0X443F32, "void __usercall ui__scenario_select___widgets__event_scroll_mouse_down(window_t *window@<esi>);");
 	set_frame_size(0X443F32, 0, 0, 0);
 	add_func    (0X443FB2,0X444001);
 	set_func_flags(0X443FB2,0x4400);
+	SetType(0X443FB2, "void __usercall ui__scenario_select___widgets__event_scroll_mouse_over(window_t *window@<esi>);");
 	set_frame_size(0X443FB2, 0, 0, 0);
 	add_func    (0X444001,0X44400B);
 	set_func_flags(0X444001,0x4400);
+	SetType(0X444001, "__int16 __usercall ui__scenario_select___widgets__event_tooltip@<ax>(window_t *window@<esi>, __int16 widgetIndex@<ax>);");
 	set_frame_size(0X444001, 0, 0, 0);
 	add_func    (0X44400B,0X44400C);
 	set_func_flags(0X44400B,0x4440);
@@ -120515,36 +120779,47 @@ static Functions_1(void) {
 	set_frame_size(0X445AB9, 0X4, 0, 0);
 	add_func    (0X445C8F,0X445E38);
 	set_func_flags(0X445C8F,0x4400);
+	SetType(0X445C8F, "void __usercall ui__prompt_browse___widgets__event_prepare_draw(window_t *window@<esi>);");
 	set_frame_size(0X445C8F, 0X4, 0, 0);
 	add_func    (0X445E38,0X446314);
 	set_func_flags(0X445E38,0x4400);
+	SetType(0X445E38, "void __usercall ui__prompt_browse___widgets__event_draw(window_t *window@<esi>, drawpixelinfo_t *context@<edi>);");
 	set_frame_size(0X445E38, 0X8, 0, 0);
 	add_func    (0X446314,0X446465);
 	set_func_flags(0X446314,0x4400);
+	SetType(0X446314, "void __usercall ui__prompt_browse___widgets__event_draw_scroll(window_t *window@<esi>, drawpixelinfo_t *context@<edi>, __int32 scrollIndex@<eax>);");
 	set_frame_size(0X446314, 0X4, 0, 0);
 	add_func    (0X446465,0X44647C);
 	set_func_flags(0X446465,0x4400);
+	SetType(0X446465, "void __usercall ui__prompt_browse___widgets__event_on_mouse_up(window_t *window@<esi>, __int32 widgetIndex@<edx>, widget_t *widget@<edi>);");
 	set_frame_size(0X446465, 0, 0, 0);
 	add_func    (0X44647C,0X446489);
 	set_func_flags(0X44647C,0x4400);
+	SetType(0X44647C, "void __usercall ui__prompt_browse___widgets__event_on_close(window_t *window@<esi>);");
 	set_frame_size(0X44647C, 0X4, 0, 0);
 	add_func    (0X4464A1,0X4464B1);
 	set_func_flags(0X4464A1,0x4400);
+	SetType(0X4464A1, "void __usercall ui__prompt_browse___widgets__event_get_scroll_size(window_t *window@<esi>, __int32 scrollIndex@<eax>, __int16 width@<cx>, __int16 height@<dx>);");
 	set_frame_size(0X4464A1, 0, 0, 0);
 	add_func    (0X4464B1,0X4464F7);
 	set_func_flags(0X4464B1,0x4400);
+	SetType(0X4464B1, "void __usercall ui__prompt_browse___widgets__event_scroll_mouse_over(window_t *window@<esi>);");
 	set_frame_size(0X4464B1, 0, 0, 0);
 	add_func    (0X4464F7,0X446574);
-	set_func_flags(0X4464F7,0x400);
+	set_func_flags(0X4464F7,0x4400);
+	SetType(0X4464F7, "void __usercall ui__prompt_browse___widgets__event_scroll_mouse_down(window_t *window@<esi>);");
 	set_frame_size(0X4464F7, 0X4, 0, 0);
 	add_func    (0X4467D7,0X4467E1);
 	set_func_flags(0X4467D7,0x4400);
+	SetType(0X4467D7, "__int16 __usercall ui__prompt_browse___widgets__event_tooltip@<ax>(window_t *window@<esi>, __int16 widgetIndex@<ax>);");
 	set_frame_size(0X4467D7, 0, 0, 0);
 	add_func    (0X4467E1,0X4467F6);
 	set_func_flags(0X4467E1,0x4400);
+	SetType(0X4467E1, "void __usercall ui__prompt_browse___widgets__event_on_update(window_t *window@<esi>);");
 	set_frame_size(0X4467E1, 0, 0, 0);
 	add_func    (0X4467F6,0X44685B);
 	set_func_flags(0X4467F6,0x4400);
+	SetType(0X4467F6, "void __usercall ui__prompt_browse___widgets__event_on_resize(window_t *window@<esi>);");
 	set_frame_size(0X4467F6, 0, 0, 0);
 	add_func    (0X44685B,0X44685C);
 	set_func_flags(0X44685B,0x4440);
@@ -120578,12 +120853,15 @@ static Functions_1(void) {
 	set_frame_size(0X446F6B, 0X428, 0, 0);
 	add_func    (0X447093,0X4470AA);
 	set_func_flags(0X447093,0x4400);
+	SetType(0X447093, "void __usercall ui__prompt_ok_cancel___widgets__event_prepare_draw(window_t *window@<esi>);");
 	set_frame_size(0X447093, 0, 0, 0);
 	add_func    (0X4470AA,0X4470FD);
 	set_func_flags(0X4470AA,0x4400);
+	SetType(0X4470AA, "void __usercall ui__prompt_ok_cancel___widgets__event_draw(window_t *window@<esi>, drawpixelinfo_t *context@<edi>);");
 	set_frame_size(0X4470AA, 0, 0, 0);
 	add_func    (0X4470FD,0X447124);
 	set_func_flags(0X4470FD,0x4400);
+	SetType(0X4470FD, "void __usercall ui__prompt_ok_cancel___widgets__event_on_mouse_up(window_t *window@<esi>, __int32 widgetIndex@<edx>, widget_t *widget@<edi>);");
 	set_frame_size(0X4470FD, 0, 0, 0);
 	add_func    (0X447124,0X447125);
 	set_func_flags(0X447124,0x4440);
@@ -120810,12 +121088,15 @@ static Functions_1(void) {
 	set_frame_size(0X455A5C, 0, 0, 0);
 	add_func    (0X455ADD,0X455C22);
 	set_func_flags(0X455ADD,0x4400);
+	SetType(0X455ADD, "void __usercall ui__industry__event_1_prepare_draw(window_t *window@<esi>);");
 	set_frame_size(0X455ADD, 0, 0, 0);
 	add_func    (0X455C22,0X455C86);
 	set_func_flags(0X455C22,0x4400);
+	SetType(0X455C22, "void __usercall ui__industry__event_1_draw(window_t *window@<esi>, drawpixelinfo_t *context@<edi>);");
 	set_frame_size(0X455C22, 0, 0, 0);
 	add_func    (0X455C86,0X455EFE);
 	set_func_flags(0X455C86,0x4400);
+	SetType(0X455C86, "void __usercall ui__industry__event_1_on_mouse_up(window_t *window@<esi>, __int32 widgetIndex@<edx>, widget_t *widget@<edi>);");
 	set_frame_size(0X455C86, 0, 0, 0);
 	add_func    (0X455EFE,0X455EFF);
 	set_func_flags(0X455EFE,0x4440);
@@ -120825,76 +121106,96 @@ static Functions_1(void) {
 	set_frame_size(0X455EFF, 0, 0, 0);
 	add_func    (0X455F00,0X455F1A);
 	set_func_flags(0X455F00,0x4400);
+	SetType(0X455F00, "void __usercall ui__industry__event_1_on_update(window_t *window@<esi>);");
 	set_frame_size(0X455F00, 0, 0, 0);
 	add_func    (0X455F1A,0X455FD8);
 	set_func_flags(0X455F1A,0x4400);
+	SetType(0X455F1A, "void __usercall ui__industry__event_1_on_resize(window_t *window@<esi>);");
 	set_frame_size(0X455F1A, 0, 0, 0);
 	add_func    (0X455FD8,0X455FD9);
 	set_func_flags(0X455FD8,0x4440);
 	set_frame_size(0X455FD8, 0, 0, 0);
 	add_func    (0X455FD9,0X456079);
 	set_func_flags(0X455FD9,0x4400);
+	SetType(0X455FD9, "void __usercall ui__industry__event_2_prepare_draw(window_t *window@<esi>);");
 	set_frame_size(0X455FD9, 0, 0, 0);
 	add_func    (0X456079,0X45626F);
 	set_func_flags(0X456079,0x4400);
+	SetType(0X456079, "void __usercall ui__industry__event_2_draw(window_t *window@<esi>, drawpixelinfo_t *context@<edi>);");
 	set_frame_size(0X456079, 0X14, 0, 0);
 	define_local_var(0X456079, 0X45626F, "[bp-0XC]", "top");
 	define_local_var(0X456079, 0X45626F, "[bp-0X8]", "left");
 	add_func    (0X45626F,0X45630F);
 	set_func_flags(0X45626F,0x4400);
+	SetType(0X45626F, "void __usercall ui__industry__event_3_prepare_draw(window_t *window@<esi>);");
 	set_frame_size(0X45626F, 0, 0, 0);
 	add_func    (0X45630F,0X456505);
 	set_func_flags(0X45630F,0x4400);
+	SetType(0X45630F, "void __usercall ui__industry__event_3_draw(window_t *window@<esi>, drawpixelinfo_t *context@<edi>);");
 	set_frame_size(0X45630F, 0X14, 0, 0);
 	define_local_var(0X45630F, 0X456505, "[bp-0XC]", "top");
 	define_local_var(0X45630F, 0X456505, "[bp-0X8]", "left");
 	add_func    (0X456505,0X45652A);
 	set_func_flags(0X456505,0x4400);
+	SetType(0X456505, "void __usercall ui__industry__event_2_on_mouse_up(window_t *window@<esi>, __int32 widgetIndex@<edx>, widget_t *widget@<edi>);");
 	set_frame_size(0X456505, 0, 0, 0);
 	add_func    (0X45652A,0X456535);
 	set_func_flags(0X45652A,0x4400);
+	SetType(0X45652A, "void __usercall ui__industry__event_2_text_input(window_t *window@<esi>);");
 	set_frame_size(0X45652A, 0, 0, 0);
 	add_func    (0X456535,0X45654F);
 	set_func_flags(0X456535,0x4400);
+	SetType(0X456535, "void __usercall ui__industry__event_2_on_update(window_t *window@<esi>);");
 	set_frame_size(0X456535, 0, 0, 0);
 	add_func    (0X45654F,0X4565B4);
 	set_func_flags(0X45654F,0x4400);
+	SetType(0X45654F, "void __usercall ui__industry__event_2_on_resize(window_t *window@<esi>);");
 	set_frame_size(0X45654F, 0, 0, 0);
 	add_func    (0X4565B4,0X4565B5);
 	set_func_flags(0X4565B4,0x4440);
 	set_frame_size(0X4565B4, 0, 0, 0);
 	add_func    (0X4565B5,0X4565DA);
 	set_func_flags(0X4565B5,0x4400);
+	SetType(0X4565B5, "void __usercall ui__industry__event_3_on_mouse_up(window_t *window@<esi>, __int32 widgetIndex@<edx>, widget_t *widget@<edi>);");
 	set_frame_size(0X4565B5, 0, 0, 0);
 	add_func    (0X4565DA,0X4565E5);
 	set_func_flags(0X4565DA,0x4400);
+	SetType(0X4565DA, "void __usercall ui__industry__event_3_text_input(window_t *window@<esi>);");
 	set_frame_size(0X4565DA, 0, 0, 0);
 	add_func    (0X4565E5,0X4565FF);
 	set_func_flags(0X4565E5,0x4400);
+	SetType(0X4565E5, "void __usercall ui__industry__event_3_on_update(window_t *window@<esi>);");
 	set_frame_size(0X4565E5, 0, 0, 0);
 	add_func    (0X4565FF,0X456664);
 	set_func_flags(0X4565FF,0x4400);
+	SetType(0X4565FF, "void __usercall ui__industry__event_3_on_resize(window_t *window@<esi>);");
 	set_frame_size(0X4565FF, 0, 0, 0);
 	add_func    (0X456664,0X456665);
 	set_func_flags(0X456664,0x4440);
 	set_frame_size(0X456664, 0, 0, 0);
 	add_func    (0X456665,0X456705);
 	set_func_flags(0X456665,0x4400);
+	SetType(0X456665, "void __usercall ui__industry__event_4_prepare_draw(window_t *window@<esi>);");
 	set_frame_size(0X456665, 0, 0, 0);
 	add_func    (0X456705,0X45695E);
 	set_func_flags(0X456705,0x4400);
+	SetType(0X456705, "void __usercall ui__industry__event_4_draw(window_t *window@<esi>, drawpixelinfo_t *context@<edi>);");
 	set_frame_size(0X456705, 0, 0, 0);
 	add_func    (0X45695E,0X456983);
 	set_func_flags(0X45695E,0x4400);
+	SetType(0X45695E, "void __usercall ui__industry__event_4_on_mouse_up(window_t *window@<esi>, __int32 widgetIndex@<edx>, widget_t *widget@<edi>);");
 	set_frame_size(0X45695E, 0, 0, 0);
 	add_func    (0X456983,0X45698E);
 	set_func_flags(0X456983,0x4400);
+	SetType(0X456983, "void __usercall ui__industry__event_4_text_input(window_t *window@<esi>);");
 	set_frame_size(0X456983, 0, 0, 0);
 	add_func    (0X45698E,0X4569C2);
 	set_func_flags(0X45698E,0x4400);
+	SetType(0X45698E, "void __usercall ui__industry__event_4_on_update(window_t *window@<esi>);");
 	set_frame_size(0X45698E, 0, 0, 0);
 	add_func    (0X4569C2,0X456A27);
 	set_func_flags(0X4569C2,0x4400);
+	SetType(0X4569C2, "void __usercall ui__industry__event_4_on_resize(window_t *window@<esi>);");
 	set_frame_size(0X4569C2, 0, 0, 0);
 	add_func    (0X456A27,0X456A28);
 	set_func_flags(0X456A27,0x4440);
@@ -120964,21 +121265,26 @@ static Functions_1(void) {
 	set_frame_size(0X457AF3, 0X4, 0, 0);
 	add_func    (0X457B94,0X457CD9);
 	set_func_flags(0X457B94,0x4400);
+	SetType(0X457B94, "void __usercall ui__industry_list__event_1_prepare_draw(window_t *window@<esi>);");
 	set_frame_size(0X457B94, 0, 0, 0);
 	add_func    (0X457CD9,0X457D2A);
 	set_func_flags(0X457CD9,0x4400);
+	SetType(0X457CD9, "void __usercall ui__industry_list__event_1_draw(window_t *window@<esi>, drawpixelinfo_t *context@<edi>);");
 	set_frame_size(0X457CD9, 0, 0, 0);
 	add_func    (0X457D2A,0X457EC4);
 	set_func_flags(0X457D2A,0x4400);
+	SetType(0X457D2A, "void __usercall ui__industry_list__event_1_draw_scroll(window_t *window@<esi>, drawpixelinfo_t *context@<edi>, __int32 scrollIndex@<eax>);");
 	set_frame_size(0X457D2A, 0X18, 0, 0);
 	add_func    (0X457EC4,0X457EE7);
 	set_func_flags(0X457EC4,0x4400);
+	SetType(0X457EC4, "void __usercall ui__industry_list__event_1_on_mouse_up(window_t *window@<esi>, __int32 widgetIndex@<edx>, widget_t *widget@<edi>);");
 	set_frame_size(0X457EC4, 0, 0, 0);
 	add_func    (0X457EE7,0X457EE8);
 	set_func_flags(0X457EE7,0x4440);
 	set_frame_size(0X457EE7, 0, 0, 0);
 	add_func    (0X457EE8,0X457EF2);
 	set_func_flags(0X457EE8,0x4400);
+	SetType(0X457EE8, "__int16 __usercall ui__industry_list__event_1_tooltip@<ax>(window_t *window@<esi>, __int16 widgetIndex@<ax>);");
 	set_frame_size(0X457EE8, 0, 0, 0);
 	add_func    (0X457FCA,0X457FFE);
 	set_func_flags(0X457FCA,0x400);
@@ -120987,6 +121293,7 @@ static Functions_1(void) {
 	set_frame_size(0X457FFE, 0, 0, 0);
 	add_func    (0X4580AE,0X4580DE);
 	set_func_flags(0X4580AE,0x4400);
+	SetType(0X4580AE, "void __usercall ui__industry_list__event_1_on_update(window_t *window@<esi>);");
 	set_frame_size(0X4580AE, 0, 0, 0);
 	add_func    (0X4580DE,0X4580E6);
 	set_func_flags(0X4580DE,0x4400);
@@ -120994,21 +121301,21 @@ static Functions_1(void) {
 	add_func    (0X4580E6,0X458108);
 	set_func_flags(0X4580E6,0x4400);
 	set_frame_size(0X4580E6, 0, 0, 0);
-}
-
-static Functions_2(void) {
-
 	add_func    (0X458108,0X458113);
 	set_func_flags(0X458108,0x4400);
+	SetType(0X458108, "void __usercall ui__industry_list__event_1_get_scroll_size(window_t *window@<esi>, __int32 scrollIndex@<eax>, __int16 width@<cx>, __int16 height@<dx>);");
 	set_frame_size(0X458108, 0, 0, 0);
 	add_func    (0X458113,0X458140);
 	set_func_flags(0X458113,0x4400);
+	SetType(0X458113, "void __usercall ui__industry_list__event_1_cursor(window_t *window@<esi>);");
 	set_frame_size(0X458113, 0, 0, 0);
 	add_func    (0X458140,0X458172);
 	set_func_flags(0X458140,0x4400);
+	SetType(0X458140, "void __usercall ui__industry_list__event_1_scroll_mouse_over(window_t *window@<esi>);");
 	set_frame_size(0X458140, 0, 0, 0);
 	add_func    (0X458172,0X45819D);
 	set_func_flags(0X458172,0x4400);
+	SetType(0X458172, "void __usercall ui__industry_list__event_1_scroll_mouse_down(window_t *window@<esi>);");
 	set_frame_size(0X458172, 0, 0, 0);
 	add_func    (0X45819D,0X45819E);
 	set_func_flags(0X45819D,0x4440);
@@ -121016,23 +121323,33 @@ static Functions_2(void) {
 	add_func    (0X45819E,0X45819F);
 	set_func_flags(0X45819E,0x4440);
 	set_frame_size(0X45819E, 0, 0, 0);
+}
+
+static Functions_2(void) {
+
 	add_func    (0X45819F,0X45826C);
 	set_func_flags(0X45819F,0x4400);
+	SetType(0X45819F, "void __usercall ui__industry_list__event_2_prepare_draw(window_t *window@<esi>);");
 	set_frame_size(0X45819F, 0, 0, 0);
 	add_func    (0X45826C,0X458352);
 	set_func_flags(0X45826C,0x4400);
+	SetType(0X45826C, "void __usercall ui__industry_list__event_2_draw(window_t *window@<esi>, drawpixelinfo_t *context@<edi>);");
 	set_frame_size(0X45826C, 0X4, 0, 0);
 	add_func    (0X458352,0X45843A);
 	set_func_flags(0X458352,0x4400);
+	SetType(0X458352, "void __usercall ui__industry_list__event_2_draw_scroll(window_t *window@<esi>, drawpixelinfo_t *context@<edi>, __int32 scrollIndex@<eax>);");
 	set_frame_size(0X458352, 0X4, 0, 0);
 	add_func    (0X45843A,0X458455);
 	set_func_flags(0X45843A,0x4400);
+	SetType(0X45843A, "void __usercall ui__industry_list__event_2_on_mouse_up(window_t *window@<esi>, __int32 widgetIndex@<edx>, widget_t *widget@<edi>);");
 	set_frame_size(0X45843A, 0, 0, 0);
 	add_func    (0X458455,0X45845F);
 	set_func_flags(0X458455,0x4400);
+	SetType(0X458455, "__int16 __usercall ui__industry_list__event_2_tooltip@<ax>(window_t *window@<esi>, __int16 widgetIndex@<ax>);");
 	set_frame_size(0X458455, 0, 0, 0);
 	add_func    (0X45845F,0X45848A);
 	set_func_flags(0X45845F,0x4400);
+	SetType(0X45845F, "void __usercall ui__industry_list__event_2_on_close(window_t *window@<esi>);");
 	set_frame_size(0X45845F, 0, 0, 0);
 	add_func    (0X45848A,0X45851F);
 	set_func_flags(0X45848A,0x4400);
@@ -121042,24 +121359,30 @@ static Functions_2(void) {
 	set_frame_size(0X45851F, 0, 0, 0);
 	add_func    (0X4585AD,0X4585B8);
 	set_func_flags(0X4585AD,0x4400);
+	SetType(0X4585AD, "void __usercall ui__industry_list__event_2_tool_abort(window_t *window@<esi>);");
 	set_frame_size(0X4585AD, 0, 0, 0);
 	add_func    (0X4585B8,0X4586EA);
 	set_func_flags(0X4585B8,0x4400);
+	SetType(0X4585B8, "void __usercall ui__industry_list__event_2_on_update(window_t *window@<esi>);");
 	set_frame_size(0X4585B8, 0, 0, 0);
 	add_func    (0X4586EA,0X458708);
 	set_func_flags(0X4586EA,0x4400);
+	SetType(0X4586EA, "void __usercall ui__industry_list__event_2_get_scroll_size(window_t *window@<esi>, __int32 scrollIndex@<eax>, __int16 width@<cx>, __int16 height@<dx>);");
 	set_frame_size(0X4586EA, 0, 0, 0);
 	add_func    (0X458708,0X458721);
 	set_func_flags(0X458708,0x4400);
 	set_frame_size(0X458708, 0, 0, 0);
 	add_func    (0X458721,0X458966);
 	set_func_flags(0X458721,0x4400);
+	SetType(0X458721, "void __usercall ui__industry_list__event_2_scroll_mouse_over(window_t *window@<esi>);");
 	set_frame_size(0X458721, 0, 0, 0);
 	add_func    (0X458966,0X4589E8);
 	set_func_flags(0X458966,0x4400);
+	SetType(0X458966, "void __usercall ui__industry_list__event_2_scroll_mouse_down(window_t *window@<esi>);");
 	set_frame_size(0X458966, 0, 0, 0);
 	add_func    (0X4589E8,0X458A53);
 	set_func_flags(0X4589E8,0x4400);
+	SetType(0X4589E8, "void __usercall ui__industry_list__event_2_on_resize(window_t *window@<esi>);");
 	set_frame_size(0X4589E8, 0, 0, 0);
 	add_func    (0X458A53,0X458A54);
 	set_func_flags(0X458A53,0x4440);
@@ -121120,6 +121443,7 @@ static Functions_2(void) {
 	set_frame_size(0X459E54, 0X8, 0, 0);
 	add_func    (0X45A0B3,0X45A0E7);
 	set_func_flags(0X45A0B3,0x4400);
+	SetType(0X45A0B3, "void __usercall ui__window_53___widgets__event_draw(window_t *window@<esi>, drawpixelinfo_t *context@<edi>);");
 	set_frame_size(0X45A0B3, 0X4, 0, 0);
 	add_func    (0X45A0E7,0X45A1A4);
 	set_func_flags(0X45A0E7,0x4400);
@@ -121787,24 +122111,32 @@ static Functions_2(void) {
 	set_frame_size(0X46B69C, 0, 0, 0);
 	add_func    (0X46B6BF,0X46B779);
 	set_func_flags(0X46B6BF,0x4400);
+	SetType(0X46B6BF, "void __usercall ui__map__event_prepare_draw(window_t *window@<esi>);");
 	set_frame_size(0X46B6BF, 0, 0, 0);
 	add_func    (0X46B779,0X46B806);
 	set_func_flags(0X46B779,0x4400);
+	SetType(0X46B779, "void __usercall ui__map__event_draw(window_t *window@<esi>, drawpixelinfo_t *context@<edi>);");
 	set_frame_size(0X46B779, 0, 0, 0);
 	add_func    (0X46B806,0X46B8CF);
 	set_func_flags(0X46B806,0x4400);
+	SetType(0X46B806, "void __usercall ui__map__event_draw_scroll(window_t *window@<esi>, drawpixelinfo_t *context@<edi>, __int32 scrollIndex@<eax>);");
 	set_frame_size(0X46B806, 0X4, 0, 0);
+	define_local_var(0X46B806, 0X46B8CF, "[bp-0X4]", "window");
 	add_func    (0X46B8CF,0X46B8E6);
 	set_func_flags(0X46B8CF,0x4400);
+	SetType(0X46B8CF, "void __usercall ui__map__event_on_mouse_up(window_t *window@<esi>, __int32 widgetIndex@<edx>, widget_t *widget@<edi>);");
 	set_frame_size(0X46B8CF, 0, 0, 0);
 	add_func    (0X46B8E6,0X46B946);
 	set_func_flags(0X46B8E6,0x4400);
+	SetType(0X46B8E6, "void __usercall ui__map__event_on_close(window_t *window@<esi>);");
 	set_frame_size(0X46B8E6, 0X4, 0, 0);
 	add_func    (0X46B946,0X46B950);
 	set_func_flags(0X46B946,0x4400);
+	SetType(0X46B946, "__int16 __usercall ui__map__event_tooltip@<ax>(window_t *window@<esi>, __int16 widgetIndex@<ax>);");
 	set_frame_size(0X46B946, 0, 0, 0);
 	add_func    (0X46B97C,0X46B9AE);
-	set_func_flags(0X46B97C,0x400);
+	set_func_flags(0X46B97C,0x4400);
+	SetType(0X46B97C, "void __usercall ui__map__event_18(window_t *window@<esi>);");
 	set_frame_size(0X46B97C, 0X4, 0, 0);
 	add_func    (0X46B9AE,0X46B9BA);
 	set_func_flags(0X46B9AE,0x400);
@@ -121817,12 +122149,15 @@ static Functions_2(void) {
 	set_frame_size(0X46B9D4, 0, 0, 0);
 	add_func    (0X46B9E7,0X46B9F7);
 	set_func_flags(0X46B9E7,0x4400);
+	SetType(0X46B9E7, "void __usercall ui__map__event_get_scroll_size(window_t *window@<esi>, __int32 scrollIndex@<eax>, __int16 width@<cx>, __int16 height@<dx>);");
 	set_frame_size(0X46B9E7, 0, 0, 0);
 	add_func    (0X46B9F7,0X46BA5B);
 	set_func_flags(0X46B9F7,0x4400);
+	SetType(0X46B9F7, "void __usercall ui__map__event_on_resize(window_t *window@<esi>);");
 	set_frame_size(0X46B9F7, 0, 0, 0);
 	add_func    (0X46BA5B,0X46BAD4);
 	set_func_flags(0X46BA5B,0x4400);
+	SetType(0X46BA5B, "void __usercall ui__map__event_on_update(window_t *window@<esi>);");
 	set_frame_size(0X46BA5B, 0, 0, 0);
 	add_func    (0X46BAD4,0X46BAD5);
 	set_func_flags(0X46BAD4,0x4440);
@@ -122047,36 +122382,46 @@ static Functions_2(void) {
 	set_frame_size(0X46E6FB, 0, 0, 0);
 	add_func    (0X46E77D,0X46E87B);
 	set_func_flags(0X46E77D,0x4400);
+	SetType(0X46E77D, "void __usercall ui__multiplayer__event_1_prepare_draw(window_t *window@<esi>);");
 	set_frame_size(0X46E77D, 0, 0, 0);
 	add_func    (0X46E87B,0X46EA4F);
 	set_func_flags(0X46E87B,0x4400);
+	SetType(0X46E87B, "void __usercall ui__multiplayer__event_1_draw(window_t *window@<esi>, drawpixelinfo_t *context@<edi>);");
 	set_frame_size(0X46E87B, 0, 0, 0);
 	add_func    (0X46EA4F,0X46EB52);
 	set_func_flags(0X46EA4F,0x4400);
+	SetType(0X46EA4F, "void __usercall ui__multiplayer__event_1_on_mouse_up(window_t *window@<esi>, __int32 widgetIndex@<edx>, widget_t *widget@<edi>);");
 	set_frame_size(0X46EA4F, 0, 0, 0);
 	add_func    (0X46EB52,0X46EB8F);
 	set_func_flags(0X46EB52,0x4400);
 	set_frame_size(0X46EB52, 0, 0, 0);
 	add_func    (0X46EC67,0X46F0E1);
 	set_func_flags(0X46EC67,0x4400);
+	SetType(0X46EC67, "void __usercall ui__multiplayer__event_1_on_update(window_t *window@<esi>);");
 	set_frame_size(0X46EC67, 0, 0, 0);
 	add_func    (0X46F0E1,0X46F17A);
 	set_func_flags(0X46F0E1,0x4400);
+	SetType(0X46F0E1, "void __usercall ui__multiplayer__event_1_on_close(window_t *window@<esi>);");
 	set_frame_size(0X46F0E1, 0, 0, 0);
 	add_func    (0X46F17A,0X46F218);
 	set_func_flags(0X46F17A,0x4400);
+	SetType(0X46F17A, "void __usercall ui__multiplayer__event_2_prepare_draw(window_t *window@<esi>);");
 	set_frame_size(0X46F17A, 0, 0, 0);
 	add_func    (0X46F218,0X46F245);
 	set_func_flags(0X46F218,0x4400);
+	SetType(0X46F218, "void __usercall ui__multiplayer__event_2_draw(window_t *window@<esi>, drawpixelinfo_t *context@<edi>);");
 	set_frame_size(0X46F218, 0, 0, 0);
 	add_func    (0X46F245,0X46F2DB);
 	set_func_flags(0X46F245,0x4400);
+	SetType(0X46F245, "void __usercall ui__multiplayer__event_2_on_mouse_up(window_t *window@<esi>, __int32 widgetIndex@<edx>, widget_t *widget@<edi>);");
 	set_frame_size(0X46F245, 0, 0, 0);
 	add_func    (0X46F2DB,0X46F2E0);
 	set_func_flags(0X46F2DB,0x44c0);
+	SetType(0X46F2DB, "void __usercall ui__multiplayer__event_2_on_close(window_t *window@<esi>);");
 	set_frame_size(0X46F2DB, 0, 0, 0);
 	add_func    (0X46F2E0,0X46F301);
 	set_func_flags(0X46F2E0,0x4400);
+	SetType(0X46F2E0, "void __usercall ui__multiplayer__event_2_on_update(window_t *window@<esi>);");
 	set_frame_size(0X46F2E0, 0, 0, 0);
 	add_func    (0X46F301,0X46F302);
 	set_func_flags(0X46F301,0x4440);
@@ -122301,30 +122646,39 @@ static Functions_2(void) {
 	set_frame_size(0X47328D, 0, 0, 0);
 	add_func    (0X4733AC,0X4733F5);
 	set_func_flags(0X4733AC,0x4400);
+	SetType(0X4733AC, "void __usercall ui__object_selection__event_prepare_draw(window_t *window@<esi>);");
 	set_frame_size(0X4733AC, 0, 0, 0);
 	add_func    (0X4733F5,0X47361D);
 	set_func_flags(0X4733F5,0x4400);
+	SetType(0X4733F5, "void __usercall ui__object_selection__event_draw(window_t *window@<esi>, drawpixelinfo_t *context@<edi>);");
 	set_frame_size(0X4733F5, 0, 0, 0);
 	add_func    (0X47361D,0X4737BA);
 	set_func_flags(0X47361D,0x4400);
+	SetType(0X47361D, "void __usercall ui__object_selection__event_draw_scroll(window_t *window@<esi>, drawpixelinfo_t *context@<edi>, __int32 scrollIndex@<eax>);");
 	set_frame_size(0X47361D, 0X4, 0, 0);
 	add_func    (0X4737BA,0X4738ED);
 	set_func_flags(0X4737BA,0x4400);
+	SetType(0X4737BA, "void __usercall ui__object_selection__event_on_mouse_up(window_t *window@<esi>, __int32 widgetIndex@<edx>, widget_t *widget@<edi>);");
 	set_frame_size(0X4737BA, 0, 0, 0);
 	add_func    (0X4738ED,0X473900);
 	set_func_flags(0X4738ED,0x4400);
+	SetType(0X4738ED, "void __usercall ui__object_selection__event_get_scroll_size(window_t *window@<esi>, __int32 scrollIndex@<eax>, __int16 width@<cx>, __int16 height@<dx>);");
 	set_frame_size(0X4738ED, 0, 0, 0);
 	add_func    (0X473900,0X47390A);
 	set_func_flags(0X473900,0x4400);
+	SetType(0X473900, "__int16 __usercall ui__object_selection__event_tooltip@<ax>(window_t *window@<esi>, __int16 widgetIndex@<ax>);");
 	set_frame_size(0X473900, 0, 0, 0);
 	add_func    (0X47390A,0X473948);
 	set_func_flags(0X47390A,0x4400);
+	SetType(0X47390A, "void __usercall ui__object_selection__event_scroll_mouse_over(window_t *window@<esi>);");
 	set_frame_size(0X47390A, 0, 0, 0);
 	add_func    (0X473948,0X4739DD);
 	set_func_flags(0X473948,0x4400);
+	SetType(0X473948, "void __usercall ui__object_selection__event_scroll_mouse_down(window_t *window@<esi>);");
 	set_frame_size(0X473948, 0, 0, 0);
 	add_func    (0X4739DD,0X473A13);
 	set_func_flags(0X4739DD,0x4400);
+	SetType(0X4739DD, "void __usercall ui__object_selection__event_on_close(window_t *window@<esi>);");
 	set_frame_size(0X4739DD, 0, 0, 0);
 	add_func    (0X473A13,0X473A95);
 	set_func_flags(0X473A13,0x4400);
@@ -123084,12 +123438,15 @@ static Functions_2(void) {
 	set_frame_size(0X48E32C, 0, 0, 0);
 	add_func    (0X48E352,0X48E470);
 	set_func_flags(0X48E352,0x4400);
+	SetType(0X48E352, "void __usercall ui__station__event_1_prepare_draw(window_t *window@<esi>);");
 	set_frame_size(0X48E352, 0, 0, 0);
 	add_func    (0X48E470,0X48E4D4);
 	set_func_flags(0X48E470,0x4400);
+	SetType(0X48E470, "void __usercall ui__station__event_1_draw(window_t *window@<esi>, drawpixelinfo_t *context@<edi>);");
 	set_frame_size(0X48E470, 0, 0, 0);
 	add_func    (0X48E4D4,0X48E6EF);
 	set_func_flags(0X48E4D4,0x4400);
+	SetType(0X48E4D4, "void __usercall ui__station__event_1_on_mouse_up(window_t *window@<esi>, __int32 widgetIndex@<edx>, widget_t *widget@<edi>);");
 	set_frame_size(0X48E4D4, 0, 0, 0);
 	add_func    (0X48E6EF,0X48E6F0);
 	set_func_flags(0X48E6EF,0x4440);
@@ -123099,72 +123456,93 @@ static Functions_2(void) {
 	set_frame_size(0X48E6F0, 0, 0, 0);
 	add_func    (0X48E6F1,0X48E70B);
 	set_func_flags(0X48E6F1,0x4400);
+	SetType(0X48E6F1, "void __usercall ui__station__event_1_on_update(window_t *window@<esi>);");
 	set_frame_size(0X48E6F1, 0, 0, 0);
 	add_func    (0X48E70B,0X48E7BF);
 	set_func_flags(0X48E70B,0x4400);
+	SetType(0X48E70B, "void __usercall ui__station__event_1_on_resize(window_t *window@<esi>);");
 	set_frame_size(0X48E70B, 0, 0, 0);
 	add_func    (0X48E7BF,0X48E7C0);
 	set_func_flags(0X48E7BF,0x4440);
 	set_frame_size(0X48E7BF, 0, 0, 0);
 	add_func    (0X48E7C0,0X48E8DE);
 	set_func_flags(0X48E7C0,0x4400);
+	SetType(0X48E7C0, "void __usercall ui__station__event_2_prepare_draw(window_t *window@<esi>);");
 	set_frame_size(0X48E7C0, 0, 0, 0);
 	add_func    (0X48E8DE,0X48E986);
 	set_func_flags(0X48E8DE,0x4400);
+	SetType(0X48E8DE, "void __usercall ui__station__event_2_draw(window_t *window@<esi>, drawpixelinfo_t *context@<edi>);");
 	set_frame_size(0X48E8DE, 0X4, 0, 0);
 	add_func    (0X48E986,0X48EB0B);
 	set_func_flags(0X48E986,0x4400);
+	SetType(0X48E986, "void __usercall ui__station__event_2_draw_scroll(window_t *window@<esi>, drawpixelinfo_t *context@<edi>, __int32 scrollIndex@<eax>);");
 	set_frame_size(0X48E986, 0X18, 0, 0);
 	add_func    (0X48EB0B,0X48EB4F);
 	set_func_flags(0X48EB0B,0x4400);
+	SetType(0X48EB0B, "void __usercall ui__station__event_2_on_mouse_up(window_t *window@<esi>, __int32 widgetIndex@<edx>, widget_t *widget@<edi>);");
 	set_frame_size(0X48EB0B, 0, 0, 0);
 	add_func    (0X48EB4F,0X48EB59);
 	set_func_flags(0X48EB4F,0x4400);
+	SetType(0X48EB4F, "__int16 __usercall ui__station__event_2_tooltip@<ax>(window_t *window@<esi>, __int16 widgetIndex@<ax>);");
 	set_frame_size(0X48EB4F, 0, 0, 0);
 	add_func    (0X48EB59,0X48EB64);
 	set_func_flags(0X48EB59,0x4400);
+	SetType(0X48EB59, "void __usercall ui__station__event_2_text_input(window_t *window@<esi>);");
 	set_frame_size(0X48EB59, 0, 0, 0);
 	add_func    (0X48EB64,0X48EB9D);
 	set_func_flags(0X48EB64,0x4400);
+	SetType(0X48EB64, "void __usercall ui__station__event_2_get_scroll_size(window_t *window@<esi>, __int32 scrollIndex@<eax>, __int16 width@<cx>, __int16 height@<dx>);");
 	set_frame_size(0X48EB64, 0, 0, 0);
 	add_func    (0X48EB9D,0X48EBB7);
 	set_func_flags(0X48EB9D,0x4400);
+	SetType(0X48EB9D, "void __usercall ui__station__event_2_on_update(window_t *window@<esi>);");
 	set_frame_size(0X48EB9D, 0, 0, 0);
 	add_func    (0X48EBB7,0X48EC21);
 	set_func_flags(0X48EBB7,0x4400);
+	SetType(0X48EBB7, "void __usercall ui__station__event_2_on_resize(window_t *window@<esi>);");
 	set_frame_size(0X48EBB7, 0, 0, 0);
 	add_func    (0X48EC21,0X48EC3A);
 	set_func_flags(0X48EC21,0x4400);
+	SetType(0X48EC21, "void __usercall ui__station__event_2_on_close(window_t *window@<esi>);");
 	set_frame_size(0X48EC21, 0, 0, 0);
 	add_func    (0X48EC3A,0X48EC3B);
 	set_func_flags(0X48EC3A,0x4440);
 	set_frame_size(0X48EC3A, 0, 0, 0);
 	add_func    (0X48EC3B,0X48ED24);
 	set_func_flags(0X48EC3B,0x4400);
+	SetType(0X48EC3B, "void __usercall ui__station__event_3_prepare_draw(window_t *window@<esi>);");
 	set_frame_size(0X48EC3B, 0, 0, 0);
 	add_func    (0X48ED24,0X48ED2F);
 	set_func_flags(0X48ED24,0x4400);
+	SetType(0X48ED24, "void __usercall ui__station__event_3_draw(window_t *window@<esi>, drawpixelinfo_t *context@<edi>);");
 	set_frame_size(0X48ED24, 0, 0, 0);
 	add_func    (0X48ED2F,0X48EE1A);
 	set_func_flags(0X48ED2F,0x4400);
+	SetType(0X48ED2F, "void __usercall ui__station__event_3_draw_scroll(window_t *window@<esi>, drawpixelinfo_t *context@<edi>, __int32 scrollIndex@<eax>);");
 	set_frame_size(0X48ED2F, 0X4, 0, 0);
 	add_func    (0X48EE1A,0X48EE3F);
 	set_func_flags(0X48EE1A,0x4400);
+	SetType(0X48EE1A, "void __usercall ui__station__event_3_on_mouse_up(window_t *window@<esi>, __int32 widgetIndex@<edx>, widget_t *widget@<edi>);");
 	set_frame_size(0X48EE1A, 0, 0, 0);
 	add_func    (0X48EE3F,0X48EE4A);
 	set_func_flags(0X48EE3F,0x4400);
+	SetType(0X48EE3F, "void __usercall ui__station__event_3_text_input(window_t *window@<esi>);");
 	set_frame_size(0X48EE3F, 0, 0, 0);
 	add_func    (0X48EE4A,0X48EE73);
 	set_func_flags(0X48EE4A,0x4400);
+	SetType(0X48EE4A, "void __usercall ui__station__event_3_get_scroll_size(window_t *window@<esi>, __int32 scrollIndex@<eax>, __int16 width@<cx>, __int16 height@<dx>);");
 	set_frame_size(0X48EE4A, 0, 0, 0);
 	add_func    (0X48EE73,0X48EE7D);
 	set_func_flags(0X48EE73,0x4400);
+	SetType(0X48EE73, "__int16 __usercall ui__station__event_3_tooltip@<ax>(window_t *window@<esi>, __int16 widgetIndex@<ax>);");
 	set_frame_size(0X48EE73, 0, 0, 0);
 	add_func    (0X48EE7D,0X48EE97);
 	set_func_flags(0X48EE7D,0x4400);
+	SetType(0X48EE7D, "void __usercall ui__station__event_3_on_update(window_t *window@<esi>);");
 	set_frame_size(0X48EE7D, 0, 0, 0);
 	add_func    (0X48EE97,0X48EF01);
 	set_func_flags(0X48EE97,0x4400);
+	SetType(0X48EE97, "void __usercall ui__station__event_3_on_resize(window_t *window@<esi>);");
 	set_frame_size(0X48EE97, 0, 0, 0);
 	add_func    (0X48EF01,0X48EF02);
 	set_func_flags(0X48EF01,0x4440);
@@ -123300,27 +123678,35 @@ static Functions_2(void) {
 	set_frame_size(0X4912BB, 0X4, 0, 0);
 	add_func    (0X491344,0X4914D8);
 	set_func_flags(0X491344,0x4400);
+	SetType(0X491344, "void __usercall ui__station_list__event_5_prepare_draw(window_t *window@<esi>);");
 	set_frame_size(0X491344, 0, 0, 0);
 	add_func    (0X4914D8,0X49157F);
 	set_func_flags(0X4914D8,0x4400);
+	SetType(0X4914D8, "void __usercall ui__station_list__event_5_draw(window_t *window@<esi>, drawpixelinfo_t *context@<edi>);");
 	set_frame_size(0X4914D8, 0, 0, 0);
 	add_func    (0X49157F,0X491785);
 	set_func_flags(0X49157F,0x4400);
+	SetType(0X49157F, "void __usercall ui__station_list__event_5_draw_scroll(window_t *window@<esi>, drawpixelinfo_t *context@<edi>, __int32 scrollIndex@<eax>);");
 	set_frame_size(0X49157F, 0X14, 0, 0);
 	add_func    (0X491785,0X4917B0);
 	set_func_flags(0X491785,0x4400);
+	SetType(0X491785, "void __usercall ui__station_list__event_5_on_mouse_up(window_t *window@<esi>, __int32 widgetIndex@<edx>, widget_t *widget@<edi>);");
 	set_frame_size(0X491785, 0, 0, 0);
 	add_func    (0X4917B0,0X4917BB);
 	set_func_flags(0X4917B0,0x4400);
+	SetType(0X4917B0, "void __usercall ui__station_list__event_5_on_mouse_down(window_t *window@<esi>, __int32 widgetIndex@<edx>, widget_t *widget@<edi>);");
 	set_frame_size(0X4917B0, 0, 0, 0);
 	add_func    (0X4917BB,0X491841);
 	set_func_flags(0X4917BB,0x4400);
+	SetType(0X4917BB, "void __usercall ui__station_list__event_5_on_dropdown(window_t *window@<esi>, __int32 widgetIndex@<edx>, __int16 itemIndex@<ax>);");
 	set_frame_size(0X4917BB, 0, 0, 0);
 	add_func    (0X491841,0X49184B);
 	set_func_flags(0X491841,0x4400);
+	SetType(0X491841, "__int16 __usercall ui__station_list__event_5_tooltip@<ax>(window_t *window@<esi>, __int16 widgetIndex@<ax>);");
 	set_frame_size(0X491841, 0, 0, 0);
 	add_func    (0X49193F,0X49196F);
 	set_func_flags(0X49193F,0x4400);
+	SetType(0X49193F, "void __usercall ui__station_list__event_5_on_update(window_t *window@<esi>);");
 	set_frame_size(0X49193F, 0, 0, 0);
 	add_func    (0X49196F,0X491977);
 	set_func_flags(0X49196F,0x4400);
@@ -123330,15 +123716,19 @@ static Functions_2(void) {
 	set_frame_size(0X491977, 0, 0, 0);
 	add_func    (0X491999,0X4919A4);
 	set_func_flags(0X491999,0x4400);
+	SetType(0X491999, "void __usercall ui__station_list__event_5_get_scroll_size(window_t *window@<esi>, __int32 scrollIndex@<eax>, __int16 width@<cx>, __int16 height@<dx>);");
 	set_frame_size(0X491999, 0, 0, 0);
 	add_func    (0X4919A4,0X4919D1);
 	set_func_flags(0X4919A4,0x4400);
+	SetType(0X4919A4, "void __usercall ui__station_list__event_5_cursor(window_t *window@<esi>);");
 	set_frame_size(0X4919A4, 0, 0, 0);
 	add_func    (0X4919D1,0X491A0C);
 	set_func_flags(0X4919D1,0x4400);
+	SetType(0X4919D1, "void __usercall ui__station_list__event_5_scroll_mouse_over(window_t *window@<esi>);");
 	set_frame_size(0X4919D1, 0, 0, 0);
 	add_func    (0X491A0C,0X491A37);
 	set_func_flags(0X491A0C,0x4400);
+	SetType(0X491A0C, "void __usercall ui__station_list__event_5_scroll_mouse_down(window_t *window@<esi>);");
 	set_frame_size(0X491A0C, 0, 0, 0);
 	add_func    (0X491A37,0X491A38);
 	set_func_flags(0X491A37,0x4440);
@@ -123793,12 +124183,15 @@ static Functions_2(void) {
 	set_frame_size(0X498E9B, 0, 0, 0);
 	add_func    (0X498EAF,0X498FFE);
 	set_func_flags(0X498EAF,0x4400);
+	SetType(0X498EAF, "void __usercall window_town_prepare_0(window_t *window@<esi>);");
 	set_frame_size(0X498EAF, 0, 0, 0);
 	add_func    (0X498FFE,0X499079);
 	set_func_flags(0X498FFE,0x4400);
+	SetType(0X498FFE, "void __usercall ui__town__event_1_draw(window_t *window@<esi>, drawpixelinfo_t *context@<edi>);");
 	set_frame_size(0X498FFE, 0, 0, 0);
 	add_func    (0X499079,0X499389);
 	set_func_flags(0X499079,0x4400);
+	SetType(0X499079, "void __usercall ui__town__event_1_on_mouse_up(window_t *window@<esi>, __int32 widgetIndex@<edx>, widget_t *widget@<edi>);");
 	set_frame_size(0X499079, 0, 0, 0);
 	add_func    (0X499389,0X49938A);
 	set_func_flags(0X499389,0x4440);
@@ -123808,53 +124201,67 @@ static Functions_2(void) {
 	set_frame_size(0X49938A, 0, 0, 0);
 	add_func    (0X49938B,0X4993A5);
 	set_func_flags(0X49938B,0x4400);
+	SetType(0X49938B, "void __usercall ui__town__event_1_on_update(window_t *window@<esi>);");
 	set_frame_size(0X49938B, 0, 0, 0);
 	add_func    (0X4993A5,0X499468);
 	set_func_flags(0X4993A5,0x4400);
+	SetType(0X4993A5, "void __usercall ui__town__event_1_on_resize(window_t *window@<esi>);");
 	set_frame_size(0X4993A5, 0, 0, 0);
 	add_func    (0X499468,0X499469);
 	set_func_flags(0X499468,0x4440);
 	set_frame_size(0X499468, 0, 0, 0);
 	add_func    (0X499469,0X4994F9);
 	set_func_flags(0X499469,0x4400);
+	SetType(0X499469, "void __usercall ui__town__event_2_prepare_draw(window_t *window@<esi>);");
 	set_frame_size(0X499469, 0, 0, 0);
 	add_func    (0X4994F9,0X4996AC);
 	set_func_flags(0X4994F9,0x4400);
+	SetType(0X4994F9, "void __usercall ui__town__event_2_draw(window_t *window@<esi>, drawpixelinfo_t *context@<edi>);");
 	set_frame_size(0X4994F9, 0X18, 0, 0);
 	define_local_var(0X4994F9, 0X4996AC, "[bp-0X10]", "top");
 	define_local_var(0X4994F9, 0X4996AC, "[bp-0XC]", "left");
 	add_func    (0X4996AC,0X4996D1);
 	set_func_flags(0X4996AC,0x4400);
+	SetType(0X4996AC, "void __usercall ui__town__event_2_on_mouse_up(window_t *window@<esi>, __int32 widgetIndex@<edx>, widget_t *widget@<edi>);");
 	set_frame_size(0X4996AC, 0, 0, 0);
 	add_func    (0X4996D1,0X4996DC);
 	set_func_flags(0X4996D1,0x4400);
+	SetType(0X4996D1, "void __usercall ui__town__event_2_text_input(window_t *window@<esi>);");
 	set_frame_size(0X4996D1, 0, 0, 0);
 	add_func    (0X4996DC,0X4996F6);
 	set_func_flags(0X4996DC,0x4400);
+	SetType(0X4996DC, "void __usercall ui__town__event_2_on_update(window_t *window@<esi>);");
 	set_frame_size(0X4996DC, 0, 0, 0);
 	add_func    (0X4996F6,0X499760);
 	set_func_flags(0X4996F6,0x4400);
+	SetType(0X4996F6, "void __usercall ui__town__event_2_on_resize(window_t *window@<esi>);");
 	set_frame_size(0X4996F6, 0, 0, 0);
 	add_func    (0X499760,0X499761);
 	set_func_flags(0X499760,0x4440);
 	set_frame_size(0X499760, 0, 0, 0);
 	add_func    (0X499761,0X4997F1);
 	set_func_flags(0X499761,0x4400);
+	SetType(0X499761, "void __usercall ui__town__event_3_prepare_draw(window_t *window@<esi>);");
 	set_frame_size(0X499761, 0, 0, 0);
 	add_func    (0X4997F1,0X4998E7);
 	set_func_flags(0X4997F1,0x4400);
+	SetType(0X4997F1, "void __usercall ui__town__event_3_draw(window_t *window@<esi>, drawpixelinfo_t *context@<edi>);");
 	set_frame_size(0X4997F1, 0, 0, 0);
 	add_func    (0X4998E7,0X49990C);
 	set_func_flags(0X4998E7,0x4400);
+	SetType(0X4998E7, "void __usercall ui__town__event_3_on_mouse_up(window_t *window@<esi>, __int32 widgetIndex@<edx>, widget_t *widget@<edi>);");
 	set_frame_size(0X4998E7, 0, 0, 0);
 	add_func    (0X49990C,0X499917);
 	set_func_flags(0X49990C,0x4400);
+	SetType(0X49990C, "void __usercall ui__town__event_3_text_input(window_t *window@<esi>);");
 	set_frame_size(0X49990C, 0, 0, 0);
 	add_func    (0X499917,0X499936);
 	set_func_flags(0X499917,0x4400);
+	SetType(0X499917, "void __usercall ui__town__event_3_on_update(window_t *window@<esi>);");
 	set_frame_size(0X499917, 0, 0, 0);
 	add_func    (0X499936,0X4999A0);
 	set_func_flags(0X499936,0x4400);
+	SetType(0X499936, "void __usercall ui__town__event_3_on_resize(window_t *window@<esi>);");
 	set_frame_size(0X499936, 0, 0, 0);
 	add_func    (0X4999A0,0X4999A1);
 	set_func_flags(0X4999A0,0x4440);
@@ -123912,21 +124319,26 @@ static Functions_2(void) {
 	set_frame_size(0X499F3B, 0X4, 0, 0);
 	add_func    (0X499F53,0X49A0A7);
 	set_func_flags(0X499F53,0x4400);
+	SetType(0X499F53, "void __usercall ui__town_list__event_1_prepare_draw(window_t *window@<esi>);");
 	set_frame_size(0X499F53, 0, 0, 0);
 	add_func    (0X49A0A7,0X49A0F8);
 	set_func_flags(0X49A0A7,0x4400);
+	SetType(0X49A0A7, "void __usercall ui__town_list__event_1_draw(window_t *window@<esi>, drawpixelinfo_t *context@<edi>);");
 	set_frame_size(0X49A0A7, 0, 0, 0);
 	add_func    (0X49A0F8,0X49A27F);
 	set_func_flags(0X49A0F8,0x4400);
+	SetType(0X49A0F8, "void __usercall ui__town_list__event_1_draw_scroll(window_t *window@<esi>, drawpixelinfo_t *context@<edi>, __int32 scrollIndex@<eax>);");
 	set_frame_size(0X49A0F8, 0X14, 0, 0);
 	add_func    (0X49A27F,0X49A2A2);
 	set_func_flags(0X49A27F,0x4400);
+	SetType(0X49A27F, "void __usercall ui__town_list__event_1_on_mouse_up(window_t *window@<esi>, __int32 widgetIndex@<edx>, widget_t *widget@<edi>);");
 	set_frame_size(0X49A27F, 0, 0, 0);
 	add_func    (0X49A2A2,0X49A2A3);
 	set_func_flags(0X49A2A2,0x4440);
 	set_frame_size(0X49A2A2, 0, 0, 0);
 	add_func    (0X49A2A3,0X49A2AD);
 	set_func_flags(0X49A2A3,0x4400);
+	SetType(0X49A2A3, "__int16 __usercall ui__town_list__event_1_tooltip@<ax>(window_t *window@<esi>, __int16 widgetIndex@<ax>);");
 	set_frame_size(0X49A2A3, 0, 0, 0);
 	add_func    (0X49A37E,0X49A3BE);
 	set_func_flags(0X49A37E,0x400);
@@ -123937,6 +124349,7 @@ static Functions_2(void) {
 	set_frame_size(0X49A3FF, 0, 0, 0);
 	add_func    (0X49A4A0,0X49A4D0);
 	set_func_flags(0X49A4A0,0x4400);
+	SetType(0X49A4A0, "void __usercall ui__town_list__event_1_on_update(window_t *window@<esi>);");
 	set_frame_size(0X49A4A0, 0, 0, 0);
 	add_func    (0X49A4D0,0X49A4D8);
 	set_func_flags(0X49A4D0,0x4400);
@@ -123946,15 +124359,19 @@ static Functions_2(void) {
 	set_frame_size(0X49A4D8, 0, 0, 0);
 	add_func    (0X49A4FA,0X49A505);
 	set_func_flags(0X49A4FA,0x4400);
+	SetType(0X49A4FA, "void __usercall ui__town_list__event_1_get_scroll_size(window_t *window@<esi>, __int32 scrollIndex@<eax>, __int16 width@<cx>, __int16 height@<dx>);");
 	set_frame_size(0X49A4FA, 0, 0, 0);
 	add_func    (0X49A505,0X49A532);
 	set_func_flags(0X49A505,0x4400);
+	SetType(0X49A505, "void __usercall ui__town_list__event_1_cursor(window_t *window@<esi>);");
 	set_frame_size(0X49A505, 0, 0, 0);
 	add_func    (0X49A532,0X49A56D);
 	set_func_flags(0X49A532,0x4400);
+	SetType(0X49A532, "void __usercall ui__town_list__event_1_scroll_mouse_over(window_t *window@<esi>);");
 	set_frame_size(0X49A532, 0, 0, 0);
 	add_func    (0X49A56D,0X49A598);
 	set_func_flags(0X49A56D,0x4400);
+	SetType(0X49A56D, "void __usercall ui__town_list__event_1_scroll_mouse_down(window_t *window@<esi>);");
 	set_frame_size(0X49A56D, 0, 0, 0);
 	add_func    (0X49A598,0X49A599);
 	set_func_flags(0X49A598,0x4440);
@@ -123964,18 +124381,23 @@ static Functions_2(void) {
 	set_frame_size(0X49A599, 0, 0, 0);
 	add_func    (0X49A59A,0X49A627);
 	set_func_flags(0X49A59A,0x4400);
+	SetType(0X49A59A, "void __usercall ui__town_list__event_2_prepare_draw(window_t *window@<esi>);");
 	set_frame_size(0X49A59A, 0, 0, 0);
 	add_func    (0X49A627,0X49A675);
 	set_func_flags(0X49A627,0x4400);
+	SetType(0X49A627, "void __usercall ui__town_list__event_2_draw(window_t *window@<esi>, drawpixelinfo_t *context@<edi>);");
 	set_frame_size(0X49A627, 0, 0, 0);
 	add_func    (0X49A675,0X49A690);
 	set_func_flags(0X49A675,0x4400);
+	SetType(0X49A675, "void __usercall ui__town_list__event_2_on_mouse_up(window_t *window@<esi>, __int32 widgetIndex@<edx>, widget_t *widget@<edi>);");
 	set_frame_size(0X49A675, 0, 0, 0);
 	add_func    (0X49A690,0X49A697);
 	set_func_flags(0X49A690,0x4400);
+	SetType(0X49A690, "void __usercall ui__town_list__event_2_on_mouse_down(window_t *window@<esi>, __int32 widgetIndex@<edx>, widget_t *widget@<edi>);");
 	set_frame_size(0X49A690, 0, 0, 0);
 	add_func    (0X49A697,0X49A710);
 	set_func_flags(0X49A697,0x4400);
+	SetType(0X49A697, "void __usercall ui__town_list__event_2_on_dropdown(window_t *window@<esi>, __int32 widgetIndex@<edx>, __int16 itemIndex@<ax>);");
 	set_frame_size(0X49A697, 0, 0, 0);
 	add_func    (0X49A710,0X49A75E);
 	set_func_flags(0X49A710,0x4400);
@@ -123985,42 +124407,54 @@ static Functions_2(void) {
 	set_frame_size(0X49A75E, 0X4, 0, 0);
 	add_func    (0X49A7C1,0X49A7C7);
 	set_func_flags(0X49A7C1,0x4400);
+	SetType(0X49A7C1, "void __usercall ui__town_list__event_2_tool_abort(window_t *window@<esi>);");
 	set_frame_size(0X49A7C1, 0, 0, 0);
 	add_func    (0X49A7C7,0X49A7F2);
 	set_func_flags(0X49A7C7,0x4400);
+	SetType(0X49A7C7, "void __usercall ui__town_list__event_2_on_close(window_t *window@<esi>);");
 	set_frame_size(0X49A7C7, 0, 0, 0);
 	add_func    (0X49A7F2,0X49A844);
 	set_func_flags(0X49A7F2,0x4400);
+	SetType(0X49A7F2, "void __usercall ui__town_list__event_2_on_update(window_t *window@<esi>);");
 	set_frame_size(0X49A7F2, 0, 0, 0);
 	add_func    (0X49A844,0X49A8A5);
 	set_func_flags(0X49A844,0x4400);
+	SetType(0X49A844, "void __usercall ui__town_list__event_2_on_resize(window_t *window@<esi>);");
 	set_frame_size(0X49A844, 0, 0, 0);
 	add_func    (0X49A8A5,0X49A8A6);
 	set_func_flags(0X49A8A5,0x4440);
 	set_frame_size(0X49A8A5, 0, 0, 0);
 	add_func    (0X49A8A6,0X49A9C2);
 	set_func_flags(0X49A8A6,0x4400);
+	SetType(0X49A8A6, "void __usercall ui__town_list__event_4_prepare_draw(window_t *window@<esi>);");
 	set_frame_size(0X49A8A6, 0, 0, 0);
 	add_func    (0X49A9C2,0X49AA1C);
 	set_func_flags(0X49A9C2,0x4400);
+	SetType(0X49A9C2, "void __usercall ui__town_list__event_4_draw(window_t *window@<esi>, drawpixelinfo_t *context@<edi>);");
 	set_frame_size(0X49A9C2, 0, 0, 0);
 	add_func    (0X49AA1C,0X49AB31);
 	set_func_flags(0X49AA1C,0x4400);
+	SetType(0X49AA1C, "void __usercall ui__town_list__event_4_draw_scroll(window_t *window@<esi>, drawpixelinfo_t *context@<edi>, __int32 scrollIndex@<eax>);");
 	set_frame_size(0X49AA1C, 0XC, 0, 0);
 	add_func    (0X49AB31,0X49AB52);
 	set_func_flags(0X49AB31,0x4400);
+	SetType(0X49AB31, "void __usercall ui__town_list__event_4_on_mouse_up(window_t *window@<esi>, __int32 widgetIndex@<edx>, widget_t *widget@<edi>);");
 	set_frame_size(0X49AB31, 0, 0, 0);
 	add_func    (0X49AB52,0X49AB59);
 	set_func_flags(0X49AB52,0x4400);
+	SetType(0X49AB52, "void __usercall ui__town_list__event_4_on_mouse_down(window_t *window@<esi>, __int32 widgetIndex@<edx>, widget_t *widget@<edi>);");
 	set_frame_size(0X49AB52, 0, 0, 0);
 	add_func    (0X49AB59,0X49ABBB);
 	set_func_flags(0X49AB59,0x4400);
+	SetType(0X49AB59, "void __usercall ui__town_list__event_4_on_dropdown(window_t *window@<esi>, __int32 widgetIndex@<edx>, __int16 itemIndex@<ax>);");
 	set_frame_size(0X49AB59, 0, 0, 0);
 	add_func    (0X49ABBB,0X49ABC5);
 	set_func_flags(0X49ABBB,0x4400);
+	SetType(0X49ABBB, "__int16 __usercall ui__town_list__event_4_tooltip@<ax>(window_t *window@<esi>, __int16 widgetIndex@<ax>);");
 	set_frame_size(0X49ABBB, 0, 0, 0);
 	add_func    (0X49ABC5,0X49ABF0);
 	set_func_flags(0X49ABC5,0x4400);
+	SetType(0X49ABC5, "void __usercall ui__town_list__event_4_on_close(window_t *window@<esi>);");
 	set_frame_size(0X49ABC5, 0, 0, 0);
 	add_func    (0X49ABF0,0X49ACBD);
 	set_func_flags(0X49ABF0,0x4400);
@@ -124030,23 +124464,29 @@ static Functions_2(void) {
 	set_frame_size(0X49ACBD, 0, 0, 0);
 	add_func    (0X49AD46,0X49AD51);
 	set_func_flags(0X49AD46,0x4400);
+	SetType(0X49AD46, "void __usercall ui__town_list__event_4_tool_abort(window_t *window@<esi>);");
 	set_frame_size(0X49AD46, 0, 0, 0);
 	add_func    (0X49AD51,0X49AE83);
 	set_func_flags(0X49AD51,0x4400);
+	SetType(0X49AD51, "void __usercall ui__town_list__event_4_on_update(window_t *window@<esi>);");
 	set_frame_size(0X49AD51, 0, 0, 0);
 	add_func    (0X49AE83,0X49AEA1);
 	set_func_flags(0X49AE83,0x4400);
+	SetType(0X49AE83, "void __usercall ui__town_list__event_4_get_scroll_size(window_t *window@<esi>, __int32 scrollIndex@<eax>, __int16 width@<cx>, __int16 height@<dx>);");
 	set_frame_size(0X49AE83, 0, 0, 0);
 	add_func    (0X49AEA1,0X49AEBA);
 	set_func_flags(0X49AEA1,0x4400);
 	set_frame_size(0X49AEA1, 0, 0, 0);
 	add_func    (0X49AEBA,0X49AEFD);
 	set_func_flags(0X49AEBA,0x4400);
+	SetType(0X49AEBA, "void __usercall ui__town_list__event_4_scroll_mouse_over(window_t *window@<esi>);");
 	set_frame_size(0X49AEBA, 0, 0, 0);
 	add_func    (0X49AEFD,0X49AF98);
-	set_func_flags(0X49AEFD,0x400);
+	set_func_flags(0X49AEFD,0x4400);
+	SetType(0X49AEFD, "void __usercall ui__town_list__event_4_scroll_mouse_down(window_t *window@<esi>);");
 	add_func    (0X49AF98,0X49B003);
 	set_func_flags(0X49AF98,0x4400);
+	SetType(0X49AF98, "void __usercall ui__town_list__event_4_on_resize(window_t *window@<esi>);");
 	set_frame_size(0X49AF98, 0, 0, 0);
 	add_func    (0X49B003,0X49B004);
 	set_func_flags(0X49B003,0x4440);
@@ -124107,25 +124547,23 @@ static Functions_2(void) {
 	set_frame_size(0X49B6BF, 0, 0, 0);
 	add_func    (0X49BB98,0X49C275);
 	set_func_flags(0X49BB98,0x4400);
-	set_frame_size(0X49BB98, 0X1C, 0, 0);
+	set_frame_size(0X49BB98, 0, 0, 0);
 	add_func    (0X49C275,0X49C7F2);
 	set_func_flags(0X49C275,0x4400);
 	set_frame_size(0X49C275, 0, 0, 0);
 	add_func    (0X49C7F2,0X49CE33);
 	set_func_flags(0X49C7F2,0x4400);
 	set_frame_size(0X49C7F2, 0X1C, 0, 0);
-}
-
-static Functions_3(void) {
-
 	add_func    (0X49CE33,0X49CE79);
 	set_func_flags(0X49CE33,0x4400);
 	set_frame_size(0X49CE33, 0, 0, 0);
 	add_func    (0X49CE79,0X49CF36);
 	set_func_flags(0X49CE79,0x4400);
+	SetType(0X49CE79, "void __usercall ui__construction__event_1_prepare_draw(window_t *window@<esi>);");
 	set_frame_size(0X49CE79, 0, 0, 0);
 	add_func    (0X49CF36,0X49D0B8);
 	set_func_flags(0X49CF36,0x4400);
+	SetType(0X49CF36, "void __usercall ui__construction__event_1_draw(window_t *window@<esi>, drawpixelinfo_t *context@<edi>);");
 	set_frame_size(0X49CF36, 0, 0, 0);
 	add_func    (0X49D0B8,0X49D1D7);
 	set_func_flags(0X49D0B8,0x4400);
@@ -124135,9 +124573,15 @@ static Functions_3(void) {
 	set_frame_size(0X49D2D7, 0, 0, 0);
 	add_func    (0X49D3F6,0X49DAA5);
 	set_func_flags(0X49D3F6,0x4400);
+	SetType(0X49D3F6, "void __usercall ui__construction__event_1_on_mouse_up(window_t *window@<esi>, __int32 widgetIndex@<edx>, widget_t *widget@<edi>);");
 	set_frame_size(0X49D3F6, 0, 0, 0);
+}
+
+static Functions_3(void) {
+
 	add_func    (0X49DAA5,0X49DAEC);
 	set_func_flags(0X49DAA5,0x4400);
+	SetType(0X49DAA5, "void __usercall ui__construction__event_1_on_resize(window_t *window@<esi>);");
 	set_frame_size(0X49DAA5, 0, 0, 0);
 	add_func    (0X49DAEC,0X49DAF3);
 	set_func_flags(0X49DAEC,0x4400);
@@ -124162,24 +124606,29 @@ static Functions_3(void) {
 	set_frame_size(0X49DC97, 0, 0, 0);
 	add_func    (0X49DCA2,0X49DD14);
 	set_func_flags(0X49DCA2,0x4400);
+	SetType(0X49DCA2, "void __usercall ui__construction__event_1_on_update(window_t *window@<esi>);");
 	set_frame_size(0X49DCA2, 0, 0, 0);
 	add_func    (0X49DD14,0X49DD38);
 	set_func_flags(0X49DD14,0x4400);
+	SetType(0X49DD14, "void __usercall ui__construction__event_1_on_close(window_t *window@<esi>);");
 	set_frame_size(0X49DD14, 0, 0, 0);
 	add_func    (0X49DD38,0X49DD39);
 	set_func_flags(0X49DD38,0x4440);
 	set_frame_size(0X49DD38, 0, 0, 0);
 	add_func    (0X49DD39,0X49DE40);
 	set_func_flags(0X49DD39,0x4400);
+	SetType(0X49DD39, "void __usercall ui__construction__event_2_prepare_draw(window_t *window@<esi>);");
 	set_frame_size(0X49DD39, 0, 0, 0);
 	add_func    (0X49DE40,0X49E1F1);
 	set_func_flags(0X49DE40,0x4400);
+	SetType(0X49DE40, "void __usercall ui__construction__event_2_draw(window_t *window@<esi>, drawpixelinfo_t *context@<edi>);");
 	set_frame_size(0X49DE40, 0X4, 0, 0);
 	add_func    (0X49E1F1,0X49E228);
 	set_func_flags(0X49E1F1,0x4400);
 	set_frame_size(0X49E1F1, 0, 0, 0);
 	add_func    (0X49E228,0X49E420);
 	set_func_flags(0X49E228,0x4400);
+	SetType(0X49E228, "void __usercall ui__construction__event_2_on_mouse_up(window_t *window@<esi>, __int32 widgetIndex@<edx>, widget_t *widget@<edi>);");
 	set_frame_size(0X49E228, 0, 0, 0);
 	add_func    (0X49E420,0X49E421);
 	set_func_flags(0X49E420,0x4440);
@@ -124192,24 +124641,30 @@ static Functions_3(void) {
 	set_frame_size(0X49E42C, 0, 0, 0);
 	add_func    (0X49E437,0X49E474);
 	set_func_flags(0X49E437,0x4400);
+	SetType(0X49E437, "void __usercall ui__construction__event_2_on_update(window_t *window@<esi>);");
 	set_frame_size(0X49E437, 0, 0, 0);
 	add_func    (0X49E474,0X49E498);
 	set_func_flags(0X49E474,0x4400);
+	SetType(0X49E474, "void __usercall ui__construction__event_2_on_close(window_t *window@<esi>);");
 	set_frame_size(0X49E474, 0, 0, 0);
 	add_func    (0X49E498,0X49E499);
 	set_func_flags(0X49E498,0x4440);
 	set_frame_size(0X49E498, 0, 0, 0);
 	add_func    (0X49E499,0X49E501);
 	set_func_flags(0X49E499,0x4400);
+	SetType(0X49E499, "void __usercall ui__construction__event_3_prepare_draw(window_t *window@<esi>);");
 	set_frame_size(0X49E499, 0, 0, 0);
 	add_func    (0X49E501,0X49E64E);
 	set_func_flags(0X49E501,0x4400);
+	SetType(0X49E501, "void __usercall ui__construction__event_3_draw(window_t *window@<esi>, drawpixelinfo_t *context@<edi>);");
 	set_frame_size(0X49E501, 0, 0, 0);
 	add_func    (0X49E64E,0X49E669);
 	set_func_flags(0X49E64E,0x4400);
+	SetType(0X49E64E, "void __usercall ui__construction__event_3_on_mouse_up(window_t *window@<esi>, __int32 widgetIndex@<edx>, widget_t *widget@<edi>);");
 	set_frame_size(0X49E64E, 0, 0, 0);
 	add_func    (0X49E669,0X49E744);
 	set_func_flags(0X49E669,0x4400);
+	SetType(0X49E669, "void __usercall ui__construction__event_3_on_mouse_down(window_t *window@<esi>, __int32 widgetIndex@<edx>, widget_t *widget@<edi>);");
 	set_frame_size(0X49E669, 0, 0, 0);
 	add_func    (0X49E744,0X49E745);
 	set_func_flags(0X49E744,0x4440);
@@ -124222,30 +124677,37 @@ static Functions_3(void) {
 	set_frame_size(0X49E75A, 0, 0, 0);
 	add_func    (0X49E76F,0X49E7AC);
 	set_func_flags(0X49E76F,0x4400);
+	SetType(0X49E76F, "void __usercall ui__construction__event_3_on_update(window_t *window@<esi>);");
 	set_frame_size(0X49E76F, 0, 0, 0);
 	add_func    (0X49E7AC,0X49E7D2);
 	set_func_flags(0X49E7AC,0x4400);
+	SetType(0X49E7AC, "void __usercall ui__construction__event_3_on_close(window_t *window@<esi>);");
 	set_frame_size(0X49E7AC, 0, 0, 0);
 	add_func    (0X49E7D2,0X49E7D3);
 	set_func_flags(0X49E7D2,0x4440);
 	set_frame_size(0X49E7D2, 0, 0, 0);
 	add_func    (0X49E7D3,0X49EA3E);
 	set_func_flags(0X49E7D3,0x4400);
+	SetType(0X49E7D3, "void __usercall ui__construction__event_4_prepare_draw(window_t *window@<esi>);");
 	set_frame_size(0X49E7D3, 0, 0, 0);
 	add_func    (0X49EA3E,0X49EAC3);
 	set_func_flags(0X49EA3E,0x4400);
+	SetType(0X49EA3E, "void __usercall ui__construction__event_4_draw(window_t *window@<esi>, drawpixelinfo_t *context@<edi>);");
 	set_frame_size(0X49EA3E, 0, 0, 0);
 	add_func    (0X49EAC3,0X49EBD1);
 	set_func_flags(0X49EAC3,0x4400);
 	set_frame_size(0X49EAC3, 0, 0, 0);
 	add_func    (0X49EBD1,0X49ECD1);
 	set_func_flags(0X49EBD1,0x4400);
+	SetType(0X49EBD1, "void __usercall ui__construction__event_4_on_mouse_up(window_t *window@<esi>, __int32 widgetIndex@<edx>, widget_t *widget@<edi>);");
 	set_frame_size(0X49EBD1, 0, 0, 0);
 	add_func    (0X49ECD1,0X49ED0E);
 	set_func_flags(0X49ECD1,0x4400);
+	SetType(0X49ECD1, "void __usercall ui__construction__event_4_on_update(window_t *window@<esi>);");
 	set_frame_size(0X49ECD1, 0, 0, 0);
 	add_func    (0X49ED0E,0X49ED32);
 	set_func_flags(0X49ED0E,0x4400);
+	SetType(0X49ED0E, "void __usercall ui__construction__event_4_on_close(window_t *window@<esi>);");
 	set_frame_size(0X49ED0E, 0, 0, 0);
 	add_func    (0X49ED32,0X49ED33);
 	set_func_flags(0X49ED32,0x4440);
@@ -124350,9 +124812,6 @@ static Functions_3(void) {
 	add_func    (0X4A2CE7,0X4A2D4C);
 	set_func_flags(0X4A2CE7,0x4400);
 	set_frame_size(0X4A2CE7, 0, 0, 0);
-	add_func    (0X4A2D4C,0X4A2D82);
-	set_func_flags(0X4A2D4C,0x4400);
-	set_frame_size(0X4A2D4C, 0, 0, 0);
 	add_func    (0X4A2DE4,0X4A2E46);
 	set_func_flags(0X4A2DE4,0x4400);
 	set_frame_size(0X4A2DE4, 0XC000, 0, 0);
@@ -124766,21 +125225,27 @@ static Functions_3(void) {
 	set_frame_size(0X4B1E94, 0, 0, 0);
 	add_func    (0X4B1EB5,0X4B226D);
 	set_func_flags(0X4B1EB5,0x4400);
+	SetType(0X4B1EB5, "void __usercall ui__vehicle__event_1_prepare_draw(window_t *window@<esi>);");
 	set_frame_size(0X4B1EB5, 0, 0, 0);
 	add_func    (0X4B226D,0X4B24D1);
 	set_func_flags(0X4B226D,0x4400);
+	SetType(0X4B226D, "void __usercall ui__vehicle__event_1_draw(window_t *window@<esi>, drawpixelinfo_t *context@<edi>);");
 	set_frame_size(0X4B226D, 0X4, 0, 0);
 	add_func    (0X4B24D1,0X4B251A);
 	set_func_flags(0X4B24D1,0x4400);
+	SetType(0X4B24D1, "void __usercall ui__vehicle__event_1_on_mouse_up(window_t *window@<esi>, __int32 widgetIndex@<edx>, widget_t *widget@<edi>);");
 	set_frame_size(0X4B24D1, 0, 0, 0);
 	add_func    (0X4B251A,0X4B252F);
 	set_func_flags(0X4B251A,0x4400);
+	SetType(0X4B251A, "void __usercall ui__vehicle__event_1_on_mouse_down(window_t *window@<esi>, __int32 widgetIndex@<edx>, widget_t *widget@<edi>);");
 	set_frame_size(0X4B251A, 0, 0, 0);
 	add_func    (0X4B252F,0X4B253A);
 	set_func_flags(0X4B252F,0x4400);
+	SetType(0X4B252F, "void __usercall ui__vehicle__event_1_text_input(window_t *window@<esi>);");
 	set_frame_size(0X4B252F, 0, 0, 0);
 	add_func    (0X4B253A,0X4B2545);
 	set_func_flags(0X4B253A,0x4400);
+	SetType(0X4B253A, "void __usercall ui__vehicle__event_1_on_dropdown(window_t *window@<esi>, __int32 widgetIndex@<edx>, __int16 itemIndex@<ax>);");
 	set_frame_size(0X4B253A, 0, 0, 0);
 	add_func    (0X4B2545,0X4B2550);
 	set_func_flags(0X4B2545,0x4400);
@@ -124790,32 +125255,41 @@ static Functions_3(void) {
 	set_frame_size(0X4B2550, 0, 0, 0);
 	add_func    (0X4B255B,0X4B3097);
 	set_func_flags(0X4B255B,0x4400);
+	SetType(0X4B255B, "void __usercall ui__vehicle__event_1_tool_abort(window_t *window@<esi>);");
 	set_frame_size(0X4B255B, 0, 0, 0);
 	add_func    (0X4B30F3,0X4B31F2);
 	set_func_flags(0X4B30F3,0x4400);
+	SetType(0X4B30F3, "void __usercall ui__vehicle__event_1_on_update(window_t *window@<esi>);");
 	set_frame_size(0X4B30F3, 0, 0, 0);
 	add_func    (0X4B31F2,0X4B3210);
 	set_func_flags(0X4B31F2,0x4400);
+	SetType(0X4B31F2, "__int16 __usercall ui__vehicle__event_1_tooltip@<ax>(window_t *window@<esi>, __int16 widgetIndex@<ax>);");
 	set_frame_size(0X4B31F2, 0, 0, 0);
 	add_func    (0X4B3210,0X4B32F9);
-	set_func_flags(0X4B3210,0x400);
+	set_func_flags(0X4B3210,0x4400);
+	SetType(0X4B3210, "void __usercall ui__vehicle__event_1_on_resize(window_t *window@<esi>);");
 	add_func    (0X4B32F9,0X4B32FF);
 	set_func_flags(0X4B32F9,0x4400);
+	SetType(0X4B32F9, "void __usercall ui__vehicle__event_1_viewport_rotate(window_t *window@<esi>);");
 	set_frame_size(0X4B32F9, 0, 0, 0);
 	add_func    (0X4B32FF,0X4B3300);
 	set_func_flags(0X4B32FF,0x4440);
 	set_frame_size(0X4B32FF, 0, 0, 0);
 	add_func    (0X4B3300,0X4B3542);
 	set_func_flags(0X4B3300,0x4400);
+	SetType(0X4B3300, "void __usercall ui__vehicle__event_2_prepare_draw(window_t *window@<esi>);");
 	set_frame_size(0X4B3300, 0, 0, 0);
 	add_func    (0X4B3542,0X4B36A3);
 	set_func_flags(0X4B3542,0x4400);
+	SetType(0X4B3542, "void __usercall ui__vehicle__event_2_draw(window_t *window@<esi>, drawpixelinfo_t *context@<edi>);");
 	set_frame_size(0X4B3542, 0X10, 0, 0);
 	add_func    (0X4B36A3,0X4B3823);
 	set_func_flags(0X4B36A3,0x4400);
+	SetType(0X4B36A3, "void __usercall ui__vehicle__event_2_draw_scroll(window_t *window@<esi>, drawpixelinfo_t *context@<edi>, __int32 scrollIndex@<eax>);");
 	set_frame_size(0X4B36A3, 0X8, 0, 0);
 	add_func    (0X4B3823,0X4B385E);
 	set_func_flags(0X4B3823,0x4400);
+	SetType(0X4B3823, "void __usercall ui__vehicle__event_2_on_mouse_up(window_t *window@<esi>, __int32 widgetIndex@<edx>, widget_t *widget@<edi>);");
 	set_frame_size(0X4B3823, 0, 0, 0);
 	add_func    (0X4B385E,0X4B385F);
 	set_func_flags(0X4B385E,0x4440);
@@ -124828,24 +125302,31 @@ static Functions_3(void) {
 	set_frame_size(0X4B386A, 0, 0, 0);
 	add_func    (0X4B3875,0X4B3880);
 	set_func_flags(0X4B3875,0x4400);
+	SetType(0X4B3875, "void __usercall ui__vehicle__event_2_tool_abort(window_t *window@<esi>);");
 	set_frame_size(0X4B3875, 0, 0, 0);
 	add_func    (0X4B3880,0X4B38A7);
 	set_func_flags(0X4B3880,0x4400);
+	SetType(0X4B3880, "__int16 __usercall ui__vehicle__event_2_tooltip@<ax>(window_t *window@<esi>, __int16 widgetIndex@<ax>);");
 	set_frame_size(0X4B3880, 0, 0, 0);
 	add_func    (0X4B38A7,0X4B38B2);
 	set_func_flags(0X4B38A7,0x4400);
+	SetType(0X4B38A7, "void __usercall ui__vehicle__event_2_text_input(window_t *window@<esi>);");
 	set_frame_size(0X4B38A7, 0, 0, 0);
 	add_func    (0X4B38FA,0X4B399E);
 	set_func_flags(0X4B38FA,0x4400);
+	SetType(0X4B38FA, "void __usercall ui__vehicle__event_2_get_scroll_size(window_t *window@<esi>, __int32 scrollIndex@<eax>, __int16 width@<cx>, __int16 height@<dx>);");
 	set_frame_size(0X4B38FA, 0, 0, 0);
 	add_func    (0X4B399E,0X4B3B18);
 	set_func_flags(0X4B399E,0x4400);
+	SetType(0X4B399E, "void __usercall ui__vehicle__event_2_scroll_mouse_over(window_t *window@<esi>);");
 	set_frame_size(0X4B399E, 0, 0, 0);
 	add_func    (0X4B3B18,0X4B3B54);
 	set_func_flags(0X4B3B18,0x4400);
+	SetType(0X4B3B18, "void __usercall ui__vehicle__event_2_cursor(window_t *window@<esi>);");
 	set_frame_size(0X4B3B18, 0, 0, 0);
 	add_func    (0X4B3B54,0X4B3C1B);
 	set_func_flags(0X4B3B54,0x4400);
+	SetType(0X4B3B54, "void __usercall ui__vehicle__event_2_scroll_mouse_down(window_t *window@<esi>);");
 	set_frame_size(0X4B3B54, 0, 0, 0);
 	add_func    (0X4B3C1B,0X4B3C23);
 	set_func_flags(0X4B3C1B,0x4400);
@@ -124855,42 +125336,54 @@ static Functions_3(void) {
 	set_frame_size(0X4B3C23, 0, 0, 0);
 	add_func    (0X4B3C45,0X4B3D73);
 	set_func_flags(0X4B3C45,0x4400);
+	SetType(0X4B3C45, "void __usercall ui__vehicle__event_2_on_update(window_t *window@<esi>);");
 	set_frame_size(0X4B3C45, 0, 0, 0);
 	add_func    (0X4B3D73,0X4B3DDD);
 	set_func_flags(0X4B3D73,0x4400);
+	SetType(0X4B3D73, "void __usercall ui__vehicle__event_2_on_resize(window_t *window@<esi>);");
 	set_frame_size(0X4B3D73, 0, 0, 0);
 	add_func    (0X4B3DDD,0X4B3DDE);
 	set_func_flags(0X4B3DDD,0x4440);
 	set_frame_size(0X4B3DDD, 0, 0, 0);
 	add_func    (0X4B3DDE,0X4B3F0D);
 	set_func_flags(0X4B3DDE,0x4400);
+	SetType(0X4B3DDE, "void __usercall ui__vehicle__event_3_prepare_draw(window_t *window@<esi>);");
 	set_frame_size(0X4B3DDE, 0, 0, 0);
 	add_func    (0X4B3F0D,0X4B3F62);
 	set_func_flags(0X4B3F0D,0x4400);
+	SetType(0X4B3F0D, "void __usercall ui__vehicle__event_3_draw(window_t *window@<esi>, drawpixelinfo_t *context@<edi>);");
 	set_frame_size(0X4B3F0D, 0X4, 0, 0);
 	add_func    (0X4B3F62,0X4B41BD);
 	set_func_flags(0X4B3F62,0x4400);
+	SetType(0X4B3F62, "void __usercall ui__vehicle__event_3_draw_scroll(window_t *window@<esi>, drawpixelinfo_t *context@<edi>, __int32 scrollIndex@<eax>);");
 	set_frame_size(0X4B3F62, 0X8, 0, 0);
 	add_func    (0X4B41BD,0X4B41E2);
 	set_func_flags(0X4B41BD,0x4400);
+	SetType(0X4B41BD, "void __usercall ui__vehicle__event_3_on_mouse_up(window_t *window@<esi>, __int32 widgetIndex@<edx>, widget_t *widget@<edi>);");
 	set_frame_size(0X4B41BD, 0, 0, 0);
 	add_func    (0X4B41E2,0X4B41E9);
 	set_func_flags(0X4B41E2,0x4400);
+	SetType(0X4B41E2, "void __usercall ui__vehicle__event_3_on_mouse_down(window_t *window@<esi>, __int32 widgetIndex@<edx>, widget_t *widget@<edi>);");
 	set_frame_size(0X4B41E2, 0, 0, 0);
 	add_func    (0X4B41E9,0X4B41F4);
 	set_func_flags(0X4B41E9,0x4400);
+	SetType(0X4B41E9, "void __usercall ui__vehicle__event_3_on_dropdown(window_t *window@<esi>, __int32 widgetIndex@<edx>, __int16 itemIndex@<ax>);");
 	set_frame_size(0X4B41E9, 0, 0, 0);
 	add_func    (0X4B41F4,0X4B41FF);
 	set_func_flags(0X4B41F4,0x4400);
+	SetType(0X4B41F4, "void __usercall ui__vehicle__event_3_text_input(window_t *window@<esi>);");
 	set_frame_size(0X4B41F4, 0, 0, 0);
 	add_func    (0X4B4339,0X4B4360);
 	set_func_flags(0X4B4339,0x4400);
+	SetType(0X4B4339, "__int16 __usercall ui__vehicle__event_3_tooltip@<ax>(window_t *window@<esi>, __int16 widgetIndex@<ax>);");
 	set_frame_size(0X4B4339, 0, 0, 0);
 	add_func    (0X4B4360,0X4B4404);
 	set_func_flags(0X4B4360,0x4400);
+	SetType(0X4B4360, "void __usercall ui__vehicle__event_3_get_scroll_size(window_t *window@<esi>, __int32 scrollIndex@<eax>, __int16 width@<cx>, __int16 height@<dx>);");
 	set_frame_size(0X4B4360, 0, 0, 0);
 	add_func    (0X4B4404,0X4B45DC);
 	set_func_flags(0X4B4404,0x4400);
+	SetType(0X4B4404, "void __usercall ui__vehicle__event_3_scroll_mouse_over(window_t *window@<esi>);");
 	set_frame_size(0X4B4404, 0, 0, 0);
 	add_func    (0X4B45DC,0X4B45DD);
 	set_func_flags(0X4B45DC,0x4440);
@@ -124903,21 +125396,26 @@ static Functions_3(void) {
 	set_frame_size(0X4B45E5, 0, 0, 0);
 	add_func    (0X4B4607,0X4B4621);
 	set_func_flags(0X4B4607,0x4400);
+	SetType(0X4B4607, "void __usercall ui__vehicle__event_3_on_update(window_t *window@<esi>);");
 	set_frame_size(0X4B4607, 0, 0, 0);
 	add_func    (0X4B4621,0X4B468B);
 	set_func_flags(0X4B4621,0x4400);
+	SetType(0X4B4621, "void __usercall ui__vehicle__event_3_on_resize(window_t *window@<esi>);");
 	set_frame_size(0X4B4621, 0, 0, 0);
 	add_func    (0X4B468B,0X4B468C);
 	set_func_flags(0X4B468B,0x4440);
 	set_frame_size(0X4B468B, 0, 0, 0);
 	add_func    (0X4B468C,0X4B4866);
 	set_func_flags(0X4B468C,0x4400);
+	SetType(0X4B468C, "void __usercall ui__vehicle__event_5_prepare_draw(window_t *window@<esi>);");
 	set_frame_size(0X4B468C, 0, 0, 0);
 	add_func    (0X4B4866,0X4B48BA);
 	set_func_flags(0X4B4866,0x4400);
+	SetType(0X4B4866, "void __usercall ui__vehicle__event_5_draw(window_t *window@<esi>, drawpixelinfo_t *context@<edi>);");
 	set_frame_size(0X4B4866, 0, 0, 0);
 	add_func    (0X4B48BA,0X4B49F8);
-	set_func_flags(0X4B48BA,0x400);
+	set_func_flags(0X4B48BA,0x4400);
+	SetType(0X4B48BA, "void __usercall ui__vehicle__event_5_draw_scroll(window_t *window@<esi>, drawpixelinfo_t *context@<edi>, __int32 scrollIndex@<eax>);");
 	set_frame_size(0X4B48BA, 0X4, 0, 0);
 	add_func    (0X4B49F8,0X4B4A31);
 	set_func_flags(0X4B49F8,0x400);
@@ -124928,30 +125426,38 @@ static Functions_3(void) {
 	set_frame_size(0X4B4A58, 0X4, 0, 0);
 	add_func    (0X4B4B43,0X4B4B8C);
 	set_func_flags(0X4B4B43,0x4400);
+	SetType(0X4B4B43, "void __usercall ui__vehicle__event_5_on_mouse_up(window_t *window@<esi>, __int32 widgetIndex@<edx>, widget_t *widget@<edi>);");
 	set_frame_size(0X4B4B43, 0, 0, 0);
 	add_func    (0X4B4B8C,0X4B4BA1);
 	set_func_flags(0X4B4B8C,0x4400);
+	SetType(0X4B4B8C, "void __usercall ui__vehicle__event_5_on_mouse_down(window_t *window@<esi>, __int32 widgetIndex@<edx>, widget_t *widget@<edi>);");
 	set_frame_size(0X4B4B8C, 0, 0, 0);
 	add_func    (0X4B4BA1,0X4B4BAC);
 	set_func_flags(0X4B4BA1,0x4400);
+	SetType(0X4B4BA1, "void __usercall ui__vehicle__event_5_text_input(window_t *window@<esi>);");
 	set_frame_size(0X4B4BA1, 0, 0, 0);
 	add_func    (0X4B4BAC,0X4B4BC1);
 	set_func_flags(0X4B4BAC,0x4400);
+	SetType(0X4B4BAC, "void __usercall ui__vehicle__event_5_on_dropdown(window_t *window@<esi>, __int32 widgetIndex@<edx>, __int16 itemIndex@<ax>);");
 	set_frame_size(0X4B4BAC, 0, 0, 0);
 	add_func    (0X4B4D74,0X4B4D9B);
 	set_func_flags(0X4B4D74,0x4400);
+	SetType(0X4B4D74, "__int16 __usercall ui__vehicle__event_5_tooltip@<ax>(window_t *window@<esi>, __int16 widgetIndex@<ax>);");
 	set_frame_size(0X4B4D74, 0, 0, 0);
 	add_func    (0X4B4D9B,0X4B4DC9);
 	set_func_flags(0X4B4D9B,0x4400);
+	SetType(0X4B4D9B, "void __usercall ui__vehicle__event_5_get_scroll_size(window_t *window@<esi>, __int32 scrollIndex@<eax>, __int16 width@<cx>, __int16 height@<dx>);");
 	set_frame_size(0X4B4D9B, 0, 0, 0);
 	add_func    (0X4B4ECB,0X4B4F51);
 	set_func_flags(0X4B4ECB,0x4400);
 	set_frame_size(0X4B4ECB, 0X4, 0, 0);
 	add_func    (0X4B5088,0X4B509B);
 	set_func_flags(0X4B5088,0x4400);
+	SetType(0X4B5088, "void __usercall track_design_save_reset_scenery(window_t *window@<esi>);");
 	set_frame_size(0X4B5088, 0, 0, 0);
 	add_func    (0X4B509B,0X4B50CD);
 	set_func_flags(0X4B509B,0x4400);
+	SetType(0X4B509B, "void __usercall ui__vehicle__event_5_on_close(window_t *window@<esi>);");
 	set_frame_size(0X4B509B, 0, 0, 0);
 	add_func    (0X4B50CD,0X4B50CE);
 	set_func_flags(0X4B50CD,0x4440);
@@ -124990,12 +125496,15 @@ static Functions_3(void) {
 	set_frame_size(0X4B5285, 0, 0, 0);
 	add_func    (0X4B530C,0X4B5339);
 	set_func_flags(0X4B530C,0x4400);
+	SetType(0X4B530C, "void __usercall ui__vehicle__event_5_scroll_mouse_over(window_t *window@<esi>);");
 	set_frame_size(0X4B530C, 0, 0, 0);
 	add_func    (0X4B5339,0X4B5369);
 	set_func_flags(0X4B5339,0x4400);
+	SetType(0X4B5339, "void __usercall ui__vehicle__event_5_cursor(window_t *window@<esi>);");
 	set_frame_size(0X4B5339, 0, 0, 0);
 	add_func    (0X4B5369,0X4B55A7);
 	set_func_flags(0X4B5369,0x4400);
+	SetType(0X4B5369, "void __usercall ui__vehicle__event_5_scroll_mouse_down(window_t *window@<esi>);");
 	set_frame_size(0X4B5369, 0, 0, 0);
 	add_func    (0X4B55A7,0X4B55AF);
 	set_func_flags(0X4B55A7,0x4400);
@@ -125005,42 +125514,52 @@ static Functions_3(void) {
 	set_frame_size(0X4B55AF, 0, 0, 0);
 	add_func    (0X4B55D1,0X4B564E);
 	set_func_flags(0X4B55D1,0x4400);
+	SetType(0X4B55D1, "void __usercall ui__vehicle__event_5_on_update(window_t *window@<esi>);");
 	set_frame_size(0X4B55D1, 0, 0, 0);
 	add_func    (0X4B564E,0X4B56B8);
 	set_func_flags(0X4B564E,0x4400);
+	SetType(0X4B564E, "void __usercall ui__vehicle__event_5_on_resize(window_t *window@<esi>);");
 	set_frame_size(0X4B564E, 0, 0, 0);
 	add_func    (0X4B56B8,0X4B56CD);
 	set_func_flags(0X4B56B8,0x4400);
+	SetType(0X4B56B8, "void __usercall ui__vehicle__event_5_viewport_rotate(window_t *window@<esi>);");
 	set_frame_size(0X4B56B8, 0X4, 0, 0);
 	add_func    (0X4B56CD,0X4B56CE);
 	set_func_flags(0X4B56CD,0x4440);
 	set_frame_size(0X4B56CD, 0, 0, 0);
 	add_func    (0X4B56CE,0X4B576C);
 	set_func_flags(0X4B56CE,0x4400);
+	SetType(0X4B56CE, "void __usercall ui__vehicle__event_4_prepare_draw(window_t *window@<esi>);");
 	set_frame_size(0X4B56CE, 0, 0, 0);
 	add_func    (0X4B576C,0X4B5945);
 	set_func_flags(0X4B576C,0x4400);
+	SetType(0X4B576C, "void __usercall ui__vehicle__event_4_draw(window_t *window@<esi>, drawpixelinfo_t *context@<edi>);");
 	set_frame_size(0X4B576C, 0, 0, 0);
 	add_func    (0X4B5945,0X4B596A);
 	set_func_flags(0X4B5945,0x4400);
+	SetType(0X4B5945, "void __usercall ui__vehicle__event_4_on_mouse_up(window_t *window@<esi>, __int32 widgetIndex@<edx>, widget_t *widget@<edi>);");
 	set_frame_size(0X4B5945, 0, 0, 0);
 	add_func    (0X4B596A,0X4B596B);
 	set_func_flags(0X4B596A,0x4440);
 	set_frame_size(0X4B596A, 0, 0, 0);
 	add_func    (0X4B596B,0X4B5976);
 	set_func_flags(0X4B596B,0x4400);
+	SetType(0X4B596B, "void __usercall ui__vehicle__event_4_text_input(window_t *window@<esi>);");
 	set_frame_size(0X4B596B, 0, 0, 0);
 	add_func    (0X4B5976,0X4B5977);
 	set_func_flags(0X4B5976,0x4440);
 	set_frame_size(0X4B5976, 0, 0, 0);
 	add_func    (0X4B5977,0X4B5995);
 	set_func_flags(0X4B5977,0x4400);
+	SetType(0X4B5977, "__int16 __usercall ui__vehicle__event_4_tooltip@<ax>(window_t *window@<esi>, __int16 widgetIndex@<ax>);");
 	set_frame_size(0X4B5977, 0, 0, 0);
 	add_func    (0X4B5995,0X4B59AF);
 	set_func_flags(0X4B5995,0x4400);
+	SetType(0X4B5995, "void __usercall ui__vehicle__event_4_on_update(window_t *window@<esi>);");
 	set_frame_size(0X4B5995, 0, 0, 0);
 	add_func    (0X4B59AF,0X4B5A19);
 	set_func_flags(0X4B59AF,0x4400);
+	SetType(0X4B59AF, "void __usercall ui__vehicle__event_4_on_resize(window_t *window@<esi>);");
 	set_frame_size(0X4B59AF, 0, 0, 0);
 	add_func    (0X4B5A19,0X4B5A1A);
 	set_func_flags(0X4B5A19,0x4440);
@@ -125080,15 +125599,18 @@ static Functions_3(void) {
 	set_frame_size(0X4B60DC, 0, 0, 0);
 	add_func    (0X4B6197,0X4B61C7);
 	set_func_flags(0X4B6197,0x4400);
+	SetType(0X4B6197, "void __usercall ui__window_25___widgets__event_draw(window_t *window@<esi>, drawpixelinfo_t *context@<edi>);");
 	set_frame_size(0X4B6197, 0X8, 0, 0);
 	add_func    (0X4B61C7,0X4B6271);
 	set_func_flags(0X4B61C7,0x4400);
 	set_frame_size(0X4B61C7, 0X8, 0, 0);
 	add_func    (0X4B6271,0X4B62FE);
 	set_func_flags(0X4B6271,0x4400);
+	SetType(0X4B6271, "void __usercall ui__window_25___widgets__event_on_move(window_t *window@<esi>, __int16 x@<cx>, __int16 y@<dx>);");
 	set_frame_size(0X4B6271, 0, 0, 0);
 	add_func    (0X4B62FE,0X4B6443);
 	set_func_flags(0X4B62FE,0x4400);
+	SetType(0X4B62FE, "void __usercall ui__window_25___widgets__event_cursor(window_t *window@<esi>);");
 	set_frame_size(0X4B62FE, 0, 0, 0);
 	add_func    (0X4B6443,0X4B6444);
 	set_func_flags(0X4B6443,0x4440);
@@ -125320,18 +125842,23 @@ static Functions_3(void) {
 	set_frame_size(0X4BB748, 0, 0, 0);
 	add_func    (0X4BB756,0X4BB8C9);
 	set_func_flags(0X4BB756,0x4400);
+	SetType(0X4BB756, "void __usercall ui__terraform__event_4_prepare_draw(window_t *window@<esi>);");
 	set_frame_size(0X4BB756, 0, 0, 0);
 	add_func    (0X4BB8C9,0X4BB982);
 	set_func_flags(0X4BB8C9,0x4400);
+	SetType(0X4BB8C9, "void __usercall ui__terraform__event_4_draw(window_t *window@<esi>, drawpixelinfo_t *context@<edi>);");
 	set_frame_size(0X4BB8C9, 0X4, 0, 0);
 	add_func    (0X4BB982,0X4BBAB5);
 	set_func_flags(0X4BB982,0x4400);
+	SetType(0X4BB982, "void __usercall ui__terraform__event_4_draw_scroll(window_t *window@<esi>, drawpixelinfo_t *context@<edi>, __int32 scrollIndex@<eax>);");
 	set_frame_size(0X4BB982, 0X4, 0, 0);
 	add_func    (0X4BBAB5,0X4BBB0A);
 	set_func_flags(0X4BBAB5,0x4400);
+	SetType(0X4BBAB5, "void __usercall ui__terraform__event_4_on_mouse_up(window_t *window@<esi>, __int32 widgetIndex@<edx>, widget_t *widget@<edi>);");
 	set_frame_size(0X4BBAB5, 0X4, 0, 0);
 	add_func    (0X4BBB0A,0X4BBB15);
 	set_func_flags(0X4BBB0A,0x4400);
+	SetType(0X4BBB0A, "void __usercall ui__terraform__event_4_on_close(window_t *window@<esi>);");
 	set_frame_size(0X4BBB0A, 0, 0, 0);
 	add_func    (0X4BBB15,0X4BBB20);
 	set_func_flags(0X4BBB15,0x4400);
@@ -125344,42 +125871,53 @@ static Functions_3(void) {
 	set_frame_size(0X4BBBC7, 0, 0, 0);
 	add_func    (0X4BBDA5,0X4BBEC1);
 	set_func_flags(0X4BBDA5,0x4400);
+	SetType(0X4BBDA5, "void __usercall ui__terraform__event_4_on_update(window_t *window@<esi>);");
 	set_frame_size(0X4BBDA5, 0, 0, 0);
 	add_func    (0X4BBEC1,0X4BBEDF);
 	set_func_flags(0X4BBEC1,0x4400);
+	SetType(0X4BBEC1, "void __usercall ui__terraform__event_4_get_scroll_size(window_t *window@<esi>, __int32 scrollIndex@<eax>, __int16 width@<cx>, __int16 height@<dx>);");
 	set_frame_size(0X4BBEC1, 0, 0, 0);
 	add_func    (0X4BBEDF,0X4BBEF8);
 	set_func_flags(0X4BBEDF,0x4400);
 	set_frame_size(0X4BBEDF, 0, 0, 0);
 	add_func    (0X4BBEF8,0X4BBF3B);
 	set_func_flags(0X4BBEF8,0x4400);
+	SetType(0X4BBEF8, "void __usercall ui__terraform__event_4_scroll_mouse_over(window_t *window@<esi>);");
 	set_frame_size(0X4BBEF8, 0, 0, 0);
 	add_func    (0X4BBF3B,0X4BBFBD);
 	set_func_flags(0X4BBF3B,0x4400);
+	SetType(0X4BBF3B, "void __usercall ui__terraform__event_4_scroll_mouse_down(window_t *window@<esi>);");
 	set_frame_size(0X4BBF3B, 0, 0, 0);
 	add_func    (0X4BBFBD,0X4BC028);
 	set_func_flags(0X4BBFBD,0x4400);
+	SetType(0X4BBFBD, "void __usercall ui__terraform__event_4_on_resize(window_t *window@<esi>);");
 	set_frame_size(0X4BBFBD, 0, 0, 0);
 	add_func    (0X4BC028,0X4BC029);
 	set_func_flags(0X4BC028,0x4440);
 	set_frame_size(0X4BC028, 0, 0, 0);
 	add_func    (0X4BC029,0X4BC0C2);
 	set_func_flags(0X4BC029,0x4400);
+	SetType(0X4BC029, "void __usercall ui__terraform__event_5_prepare_draw(window_t *window@<esi>);");
 	set_frame_size(0X4BC029, 0, 0, 0);
 	add_func    (0X4BC0C2,0X4BC11C);
 	set_func_flags(0X4BC0C2,0x4400);
+	SetType(0X4BC0C2, "void __usercall ui__terraform__event_5_draw(window_t *window@<esi>, drawpixelinfo_t *context@<edi>);");
 	set_frame_size(0X4BC0C2, 0, 0, 0);
 	add_func    (0X4BC11C,0X4BC1F7);
 	set_func_flags(0X4BC11C,0x4400);
+	SetType(0X4BC11C, "void __usercall ui__terraform__event_5_draw_scroll(window_t *window@<esi>, drawpixelinfo_t *context@<edi>, __int32 scrollIndex@<eax>);");
 	set_frame_size(0X4BC11C, 0X4, 0, 0);
 	add_func    (0X4BC1F7,0X4BC212);
 	set_func_flags(0X4BC1F7,0x4400);
+	SetType(0X4BC1F7, "void __usercall ui__terraform__event_5_on_mouse_up(window_t *window@<esi>, __int32 widgetIndex@<edx>, widget_t *widget@<edi>);");
 	set_frame_size(0X4BC1F7, 0, 0, 0);
 	add_func    (0X4BC212,0X4BC21C);
 	set_func_flags(0X4BC212,0x4400);
+	SetType(0X4BC212, "__int16 __usercall ui__terraform__event_5_tooltip@<ax>(window_t *window@<esi>, __int16 widgetIndex@<ax>);");
 	set_frame_size(0X4BC212, 0, 0, 0);
 	add_func    (0X4BC21C,0X4BC227);
 	set_func_flags(0X4BC21C,0x4400);
+	SetType(0X4BC21C, "void __usercall ui__terraform__event_5_on_close(window_t *window@<esi>);");
 	set_frame_size(0X4BC21C, 0, 0, 0);
 	add_func    (0X4BC227,0X4BC232);
 	set_func_flags(0X4BC227,0x4400);
@@ -125389,21 +125927,26 @@ static Functions_3(void) {
 	set_frame_size(0X4BC232, 0, 0, 0);
 	add_func    (0X4BC23D,0X4BC359);
 	set_func_flags(0X4BC23D,0x4400);
+	SetType(0X4BC23D, "void __usercall ui__terraform__event_5_on_update(window_t *window@<esi>);");
 	set_frame_size(0X4BC23D, 0, 0, 0);
 	add_func    (0X4BC359,0X4BC377);
 	set_func_flags(0X4BC359,0x4400);
+	SetType(0X4BC359, "void __usercall ui__terraform__event_5_get_scroll_size(window_t *window@<esi>, __int32 scrollIndex@<eax>, __int16 width@<cx>, __int16 height@<dx>);");
 	set_frame_size(0X4BC359, 0, 0, 0);
 	add_func    (0X4BC377,0X4BC390);
 	set_func_flags(0X4BC377,0x4400);
 	set_frame_size(0X4BC377, 0, 0, 0);
 	add_func    (0X4BC390,0X4BC3D3);
 	set_func_flags(0X4BC390,0x4400);
+	SetType(0X4BC390, "void __usercall ui__terraform__event_5_scroll_mouse_over(window_t *window@<esi>);");
 	set_frame_size(0X4BC390, 0, 0, 0);
 	add_func    (0X4BC3D3,0X4BC44B);
 	set_func_flags(0X4BC3D3,0x4400);
+	SetType(0X4BC3D3, "void __usercall ui__terraform__event_5_scroll_mouse_down(window_t *window@<esi>);");
 	set_frame_size(0X4BC3D3, 0, 0, 0);
 	add_func    (0X4BC44B,0X4BC4B6);
 	set_func_flags(0X4BC44B,0x4400);
+	SetType(0X4BC44B, "void __usercall ui__terraform__event_5_on_resize(window_t *window@<esi>);");
 	set_frame_size(0X4BC44B, 0, 0, 0);
 	add_func    (0X4BC4B6,0X4BC4B7);
 	set_func_flags(0X4BC4B6,0x4440);
@@ -125416,18 +125959,23 @@ static Functions_3(void) {
 	set_frame_size(0X4BC506, 0, 0, 0);
 	add_func    (0X4BC555,0X4BC5E7);
 	set_func_flags(0X4BC555,0x4400);
+	SetType(0X4BC555, "void __usercall ui__terraform__event_1_prepare_draw(window_t *window@<esi>);");
 	set_frame_size(0X4BC555, 0, 0, 0);
 	add_func    (0X4BC5E7,0X4BC641);
 	set_func_flags(0X4BC5E7,0x4400);
+	SetType(0X4BC5E7, "void __usercall ui__terraform__event_1_draw(window_t *window@<esi>, drawpixelinfo_t *context@<edi>);");
 	set_frame_size(0X4BC5E7, 0, 0, 0);
 	add_func    (0X4BC641,0X4BC65C);
 	set_func_flags(0X4BC641,0x4400);
+	SetType(0X4BC641, "void __usercall ui__terraform__event_1_on_mouse_up(window_t *window@<esi>, __int32 widgetIndex@<edx>, widget_t *widget@<edi>);");
 	set_frame_size(0X4BC641, 0, 0, 0);
 	add_func    (0X4BC65C,0X4BC671);
 	set_func_flags(0X4BC65C,0x4400);
+	SetType(0X4BC65C, "void __usercall ui__terraform__event_1_on_mouse_down(window_t *window@<esi>, __int32 widgetIndex@<edx>, widget_t *widget@<edi>);");
 	set_frame_size(0X4BC65C, 0, 0, 0);
 	add_func    (0X4BC671,0X4BC677);
 	set_func_flags(0X4BC671,0x4400);
+	SetType(0X4BC671, "void __usercall ui__terraform__event_1_on_close(window_t *window@<esi>);");
 	set_frame_size(0X4BC671, 0, 0, 0);
 	add_func    (0X4BC677,0X4BC682);
 	set_func_flags(0X4BC677,0x4400);
@@ -125443,30 +125991,38 @@ static Functions_3(void) {
 	set_frame_size(0X4BC701, 0, 0, 0);
 	add_func    (0X4BC78A,0X4BC7C6);
 	set_func_flags(0X4BC78A,0x4400);
+	SetType(0X4BC78A, "void __usercall ui__terraform__event_1_on_update(window_t *window@<esi>);");
 	set_frame_size(0X4BC78A, 0, 0, 0);
 	add_func    (0X4BC7C6,0X4BC83A);
 	set_func_flags(0X4BC7C6,0x4400);
+	SetType(0X4BC7C6, "void __usercall ui__terraform__event_1_on_resize(window_t *window@<esi>);");
 	set_frame_size(0X4BC7C6, 0, 0, 0);
 	add_func    (0X4BC83A,0X4BC83B);
 	set_func_flags(0X4BC83A,0x4440);
 	set_frame_size(0X4BC83A, 0, 0, 0);
 	add_func    (0X4BC83B,0X4BC909);
 	set_func_flags(0X4BC83B,0x4400);
+	SetType(0X4BC83B, "void __usercall ui__terraform__event_2_prepare_draw(window_t *window@<esi>);");
 	set_frame_size(0X4BC83B, 0, 0, 0);
 	add_func    (0X4BC909,0X4BC98C);
 	set_func_flags(0X4BC909,0x4400);
+	SetType(0X4BC909, "void __usercall ui__terraform__event_2_draw(window_t *window@<esi>, drawpixelinfo_t *context@<edi>);");
 	set_frame_size(0X4BC909, 0, 0, 0);
 	add_func    (0X4BC98C,0X4BC9A7);
 	set_func_flags(0X4BC98C,0x4400);
+	SetType(0X4BC98C, "void __usercall ui__terraform__event_2_on_mouse_up(window_t *window@<esi>, __int32 widgetIndex@<edx>, widget_t *widget@<edi>);");
 	set_frame_size(0X4BC98C, 0, 0, 0);
 	add_func    (0X4BC9A7,0X4BC9C6);
 	set_func_flags(0X4BC9A7,0x4400);
+	SetType(0X4BC9A7, "void __usercall ui__terraform__event_2_on_mouse_down(window_t *window@<esi>, __int32 widgetIndex@<edx>, widget_t *widget@<edi>);");
 	set_frame_size(0X4BC9A7, 0, 0, 0);
 	add_func    (0X4BC9C6,0X4BC9D1);
 	set_func_flags(0X4BC9C6,0x4400);
+	SetType(0X4BC9C6, "void __usercall ui__terraform__event_2_on_dropdown(window_t *window@<esi>, __int32 widgetIndex@<edx>, __int16 itemIndex@<ax>);");
 	set_frame_size(0X4BC9C6, 0, 0, 0);
 	add_func    (0X4BC9D1,0X4BC9D7);
 	set_func_flags(0X4BC9D1,0x4400);
+	SetType(0X4BC9D1, "void __usercall ui__terraform__event_2_on_close(window_t *window@<esi>);");
 	set_frame_size(0X4BC9D1, 0, 0, 0);
 	add_func    (0X4BC9D7,0X4BC9E2);
 	set_func_flags(0X4BC9D7,0x4400);
@@ -125482,27 +126038,34 @@ static Functions_3(void) {
 	set_frame_size(0X4BCA5D, 0, 0, 0);
 	add_func    (0X4BCB0B,0X4BCB47);
 	set_func_flags(0X4BCB0B,0x4400);
+	SetType(0X4BCB0B, "void __usercall ui__terraform__event_2_on_update(window_t *window@<esi>);");
 	set_frame_size(0X4BCB0B, 0, 0, 0);
 	add_func    (0X4BCBF8,0X4BCC6C);
 	set_func_flags(0X4BCBF8,0x4400);
+	SetType(0X4BCBF8, "void __usercall ui__terraform__event_2_on_resize(window_t *window@<esi>);");
 	set_frame_size(0X4BCBF8, 0, 0, 0);
 	add_func    (0X4BCC6C,0X4BCC6D);
 	set_func_flags(0X4BCC6C,0x4440);
 	set_frame_size(0X4BCC6C, 0, 0, 0);
 	add_func    (0X4BCC6D,0X4BCCFF);
 	set_func_flags(0X4BCC6D,0x4400);
+	SetType(0X4BCC6D, "void __usercall ui__terraform__event_3_prepare_draw(window_t *window@<esi>);");
 	set_frame_size(0X4BCC6D, 0, 0, 0);
 	add_func    (0X4BCCFF,0X4BCD82);
 	set_func_flags(0X4BCCFF,0x4400);
+	SetType(0X4BCCFF, "void __usercall ui__terraform__event_3_draw(window_t *window@<esi>, drawpixelinfo_t *context@<edi>);");
 	set_frame_size(0X4BCCFF, 0, 0, 0);
 	add_func    (0X4BCD82,0X4BCD9D);
 	set_func_flags(0X4BCD82,0x4400);
+	SetType(0X4BCD82, "void __usercall ui__terraform__event_3_on_mouse_up(window_t *window@<esi>, __int32 widgetIndex@<edx>, widget_t *widget@<edi>);");
 	set_frame_size(0X4BCD82, 0, 0, 0);
 	add_func    (0X4BCD9D,0X4BCDAE);
 	set_func_flags(0X4BCD9D,0x4400);
+	SetType(0X4BCD9D, "void __usercall ui__terraform__event_3_on_mouse_down(window_t *window@<esi>, __int32 widgetIndex@<edx>, widget_t *widget@<edi>);");
 	set_frame_size(0X4BCD9D, 0, 0, 0);
 	add_func    (0X4BCDAE,0X4BCDB4);
 	set_func_flags(0X4BCDAE,0x4400);
+	SetType(0X4BCDAE, "void __usercall ui__terraform__event_3_on_close(window_t *window@<esi>);");
 	set_frame_size(0X4BCDAE, 0, 0, 0);
 	add_func    (0X4BCDB4,0X4BCDBF);
 	set_func_flags(0X4BCDB4,0x4400);
@@ -125518,9 +126081,11 @@ static Functions_3(void) {
 	set_frame_size(0X4BCDE8, 0, 0, 0);
 	add_func    (0X4BCE78,0X4BCEB4);
 	set_func_flags(0X4BCE78,0x4400);
+	SetType(0X4BCE78, "void __usercall ui__terraform__event_3_on_update(window_t *window@<esi>);");
 	set_frame_size(0X4BCE78, 0, 0, 0);
 	add_func    (0X4BCEB4,0X4BCF28);
 	set_func_flags(0X4BCEB4,0x4400);
+	SetType(0X4BCEB4, "void __usercall ui__terraform__event_3_on_resize(window_t *window@<esi>);");
 	set_frame_size(0X4BCEB4, 0, 0, 0);
 	add_func    (0X4BCF28,0X4BCF29);
 	set_func_flags(0X4BCF28,0x4440);
@@ -125593,33 +126158,42 @@ static Functions_3(void) {
 	set_frame_size(0X4BE6C7, 0, 0, 0);
 	add_func    (0X4BE726,0X4BE72C);
 	set_func_flags(0X4BE726,0x4400);
+	SetType(0X4BE726, "void __usercall ui__keyboard_shortcuts__event_draw(window_t *window@<esi>, drawpixelinfo_t *context@<edi>);");
 	set_frame_size(0X4BE726, 0, 0, 0);
 	add_func    (0X4BE72C,0X4BE821);
 	set_func_flags(0X4BE72C,0x4400);
+	SetType(0X4BE72C, "void __usercall ui__keyboard_shortcuts__event_draw_scroll(window_t *window@<esi>, drawpixelinfo_t *context@<edi>, __int32 scrollIndex@<eax>);");
 	set_frame_size(0X4BE72C, 0X4, 0, 0);
 	add_func    (0X4BE821,0X4BE844);
 	set_func_flags(0X4BE821,0x4400);
+	SetType(0X4BE821, "void __usercall ui__keyboard_shortcuts__event_on_mouse_up(window_t *window@<esi>, __int32 widgetIndex@<edx>, widget_t *widget@<edi>);");
 	set_frame_size(0X4BE821, 0, 0, 0);
 	add_func    (0X4BE844,0X4BE84E);
 	set_func_flags(0X4BE844,0x4400);
+	SetType(0X4BE844, "__int16 __usercall ui__keyboard_shortcuts__event_tooltip@<ax>(window_t *window@<esi>, __int16 widgetIndex@<ax>);");
 	set_frame_size(0X4BE844, 0, 0, 0);
 	add_func    (0X4BE84E,0X4BE853);
 	set_func_flags(0X4BE84E,0x4400);
+	SetType(0X4BE84E, "void __usercall ui__keyboard_shortcuts__event_get_scroll_size(window_t *window@<esi>, __int32 scrollIndex@<eax>, __int16 width@<cx>, __int16 height@<dx>);");
 	set_frame_size(0X4BE84E, 0, 0, 0);
 	add_func    (0X4BE853,0X4BE87B);
 	set_func_flags(0X4BE853,0x4400);
+	SetType(0X4BE853, "void __usercall ui__keyboard_shortcuts__event_scroll_mouse_over(window_t *window@<esi>);");
 	set_frame_size(0X4BE853, 0, 0, 0);
 	add_func    (0X4BE87B,0X4BE8DE);
 	set_func_flags(0X4BE87B,0x4400);
+	SetType(0X4BE87B, "void __usercall ui__keyboard_shortcuts__event_scroll_mouse_down(window_t *window@<esi>);");
 	set_frame_size(0X4BE87B, 0, 0, 0);
 	add_func    (0X4BE8DE,0X4BE8DF);
 	set_func_flags(0X4BE8DE,0x4440);
 	set_frame_size(0X4BE8DE, 0, 0, 0);
 	add_func    (0X4BE8DF,0X4BE91E);
 	set_func_flags(0X4BE8DF,0x4400);
+	SetType(0X4BE8DF, "void __usercall ui__keyboard_shortcuts_edit__event_draw(window_t *window@<esi>, drawpixelinfo_t *context@<edi>);");
 	set_frame_size(0X4BE8DF, 0, 0, 0);
 	add_func    (0X4BE91E,0X4BE929);
 	set_func_flags(0X4BE91E,0x4400);
+	SetType(0X4BE91E, "void __usercall ui__keyboard_shortcuts_edit__event_on_mouse_up(window_t *window@<esi>, __int32 widgetIndex@<edx>, widget_t *widget@<edi>);");
 	set_frame_size(0X4BE91E, 0, 0, 0);
 	add_func    (0X4BE929,0X4BE92A);
 	set_func_flags(0X4BE929,0x4440);
@@ -125782,141 +126356,179 @@ static Functions_3(void) {
 	set_frame_size(0X4BF935, 0X4, 0, 0);
 	add_func    (0X4BFA04,0X4BFAF9);
 	set_func_flags(0X4BFA04,0x4400);
+	SetType(0X4BFA04, "void __usercall ui__options__event_1_prepare_draw(window_t *window@<esi>);");
 	set_frame_size(0X4BFA04, 0, 0, 0);
 	add_func    (0X4BFAF9,0X4BFB8C);
 	set_func_flags(0X4BFAF9,0x4400);
+	SetType(0X4BFAF9, "void __usercall ui__options__event_1_draw(window_t *window@<esi>, drawpixelinfo_t *context@<edi>);");
 	set_frame_size(0X4BFAF9, 0, 0, 0);
 	add_func    (0X4BFB8C,0X4BFBE0);
 	set_func_flags(0X4BFB8C,0x4400);
+	SetType(0X4BFB8C, "void __usercall ui__options__event_1_on_mouse_up(window_t *window@<esi>, __int32 widgetIndex@<edx>, widget_t *widget@<edi>);");
 	set_frame_size(0X4BFB8C, 0X4, 0, 0);
 	add_func    (0X4BFBE0,0X4BFBE8);
 	set_func_flags(0X4BFBE0,0x4400);
+	SetType(0X4BFBE0, "void __usercall ui__options__event_1_on_close(window_t *window@<esi>);");
 	set_frame_size(0X4BFBE0, 0X4, 0, 0);
 	add_func    (0X4BFBE8,0X4BFC11);
 	set_func_flags(0X4BFBE8,0x4400);
+	SetType(0X4BFBE8, "void __usercall ui__options__event_1_on_dropdown(window_t *window@<esi>, __int32 widgetIndex@<edx>, __int16 itemIndex@<ax>);");
 	set_frame_size(0X4BFBE8, 0, 0, 0);
 	add_func    (0X4BFCC7,0X4BFDE4);
 	set_func_flags(0X4BFCC7,0x4400);
 	set_frame_size(0X4BFCC7, 0, 0, 0);
 	add_func    (0X4C01F5,0X4C0216);
 	set_func_flags(0X4C01F5,0x4400);
+	SetType(0X4C01F5, "void __usercall ui__options__event_1_on_update(window_t *window@<esi>);");
 	set_frame_size(0X4C01F5, 0, 0, 0);
 	add_func    (0X4C0216,0X4C0217);
 	set_func_flags(0X4C0216,0x4440);
 	set_frame_size(0X4C0216, 0, 0, 0);
 	add_func    (0X4C0217,0X4C02F5);
 	set_func_flags(0X4C0217,0x4400);
+	SetType(0X4C0217, "void __usercall ui__options__event_2_prepare_draw(window_t *window@<esi>);");
 	set_frame_size(0X4C0217, 0, 0, 0);
 	add_func    (0X4C02F5,0X4C0322);
 	set_func_flags(0X4C02F5,0x4400);
+	SetType(0X4C02F5, "void __usercall ui__options__event_2_draw(window_t *window@<esi>, drawpixelinfo_t *context@<edi>);");
 	set_frame_size(0X4C02F5, 0, 0, 0);
 	add_func    (0X4C0322,0X4C0343);
 	set_func_flags(0X4C0322,0x4400);
+	SetType(0X4C0322, "void __usercall ui__options__event_2_on_mouse_up(window_t *window@<esi>, __int32 widgetIndex@<edx>, widget_t *widget@<edi>);");
 	set_frame_size(0X4C0322, 0, 0, 0);
 	add_func    (0X4C0343,0X4C0354);
 	set_func_flags(0X4C0343,0x4400);
+	SetType(0X4C0343, "void __usercall ui__options__event_2_on_mouse_down(window_t *window@<esi>, __int32 widgetIndex@<edx>, widget_t *widget@<edi>);");
 	set_frame_size(0X4C0343, 0, 0, 0);
 	add_func    (0X4C0354,0X4C035C);
 	set_func_flags(0X4C0354,0x4400);
+	SetType(0X4C0354, "void __usercall ui__options__event_2_on_close(window_t *window@<esi>);");
 	set_frame_size(0X4C0354, 0X4, 0, 0);
 	add_func    (0X4C035C,0X4C0371);
 	set_func_flags(0X4C035C,0x4400);
+	SetType(0X4C035C, "void __usercall ui__options__event_2_on_dropdown(window_t *window@<esi>, __int32 widgetIndex@<edx>, __int16 itemIndex@<ax>);");
 	set_frame_size(0X4C035C, 0, 0, 0);
 	add_func    (0X4C04E0,0X4C0501);
 	set_func_flags(0X4C04E0,0x4400);
+	SetType(0X4C04E0, "void __usercall ui__options__event_2_on_update(window_t *window@<esi>);");
 	set_frame_size(0X4C04E0, 0, 0, 0);
 	add_func    (0X4C0501,0X4C0502);
 	set_func_flags(0X4C0501,0x4440);
 	set_frame_size(0X4C0501, 0, 0, 0);
 	add_func    (0X4C0502,0X4C05F9);
 	set_func_flags(0X4C0502,0x4400);
+	SetType(0X4C0502, "void __usercall ui__options__event_3_prepare_draw(window_t *window@<esi>);");
 	set_frame_size(0X4C0502, 0, 0, 0);
 	add_func    (0X4C05F9,0X4C06B3);
 	set_func_flags(0X4C05F9,0x4400);
+	SetType(0X4C05F9, "void __usercall ui__options__event_3_draw(window_t *window@<esi>, drawpixelinfo_t *context@<edi>);");
 	set_frame_size(0X4C05F9, 0, 0, 0);
 	add_func    (0X4C06B3,0X4C06F2);
 	set_func_flags(0X4C06B3,0x4400);
+	SetType(0X4C06B3, "void __usercall ui__options__event_3_on_mouse_up(window_t *window@<esi>, __int32 widgetIndex@<edx>, widget_t *widget@<edi>);");
 	set_frame_size(0X4C06B3, 0, 0, 0);
 	add_func    (0X4C06F2,0X4C070D);
 	set_func_flags(0X4C06F2,0x4400);
+	SetType(0X4C06F2, "void __usercall ui__options__event_3_on_mouse_down(window_t *window@<esi>, __int32 widgetIndex@<edx>, widget_t *widget@<edi>);");
 	set_frame_size(0X4C06F2, 0, 0, 0);
 	add_func    (0X4C070D,0X4C0722);
 	set_func_flags(0X4C070D,0x4400);
+	SetType(0X4C070D, "void __usercall ui__options__event_3_on_dropdown(window_t *window@<esi>, __int32 widgetIndex@<edx>, __int16 itemIndex@<ax>);");
 	set_frame_size(0X4C070D, 0, 0, 0);
 	add_func    (0X4C0722,0X4C072A);
 	set_func_flags(0X4C0722,0x4400);
+	SetType(0X4C0722, "void __usercall ui__options__event_3_on_close(window_t *window@<esi>);");
 	set_frame_size(0X4C0722, 0X4, 0, 0);
 	add_func    (0X4C0A37,0X4C0A58);
 	set_func_flags(0X4C0A37,0x4400);
+	SetType(0X4C0A37, "void __usercall ui__options__event_3_on_update(window_t *window@<esi>);");
 	set_frame_size(0X4C0A37, 0, 0, 0);
 	add_func    (0X4C0A58,0X4C0A59);
 	set_func_flags(0X4C0A58,0x4440);
 	set_frame_size(0X4C0A58, 0, 0, 0);
 	add_func    (0X4C0A59,0X4C0B5B);
 	set_func_flags(0X4C0A59,0x4400);
+	SetType(0X4C0A59, "void __usercall ui__options__event_4_prepare_draw(window_t *window@<esi>);");
 	set_frame_size(0X4C0A59, 0, 0, 0);
 	add_func    (0X4C0B5B,0X4C0BEE);
 	set_func_flags(0X4C0B5B,0x4400);
+	SetType(0X4C0B5B, "void __usercall ui__options__event_4_draw(window_t *window@<esi>, drawpixelinfo_t *context@<edi>);");
 	set_frame_size(0X4C0B5B, 0, 0, 0);
 	add_func    (0X4C0BEE,0X4C0C1D);
 	set_func_flags(0X4C0BEE,0x4400);
+	SetType(0X4C0BEE, "void __usercall ui__options__event_4_on_mouse_up(window_t *window@<esi>, __int32 widgetIndex@<edx>, widget_t *widget@<edi>);");
 	set_frame_size(0X4C0BEE, 0, 0, 0);
 	add_func    (0X4C0C1D,0X4C0C42);
 	set_func_flags(0X4C0C1D,0x4400);
+	SetType(0X4C0C1D, "void __usercall ui__options__event_4_on_mouse_down(window_t *window@<esi>, __int32 widgetIndex@<edx>, widget_t *widget@<edi>);");
 	set_frame_size(0X4C0C1D, 0, 0, 0);
 	add_func    (0X4C0C42,0X4C0C4A);
 	set_func_flags(0X4C0C42,0x4400);
+	SetType(0X4C0C42, "void __usercall ui__options__event_4_on_close(window_t *window@<esi>);");
 	set_frame_size(0X4C0C42, 0X4, 0, 0);
 	add_func    (0X4C0C4A,0X4C0C73);
 	set_func_flags(0X4C0C4A,0x4400);
+	SetType(0X4C0C4A, "void __usercall ui__options__event_4_on_dropdown(window_t *window@<esi>, __int32 widgetIndex@<edx>, __int16 itemIndex@<ax>);");
 	set_frame_size(0X4C0C4A, 0, 0, 0);
 	add_func    (0X4C108A,0X4C10AB);
 	set_func_flags(0X4C108A,0x4400);
+	SetType(0X4C108A, "void __usercall ui__options__event_4_on_update(window_t *window@<esi>);");
 	set_frame_size(0X4C108A, 0, 0, 0);
 	add_func    (0X4C10AB,0X4C10AC);
 	set_func_flags(0X4C10AB,0x4440);
 	set_frame_size(0X4C10AB, 0, 0, 0);
 	add_func    (0X4C10AC,0X4C113F);
 	set_func_flags(0X4C10AC,0x4400);
+	SetType(0X4C10AC, "void __usercall ui__options__event_5_prepare_draw(window_t *window@<esi>);");
 	set_frame_size(0X4C10AC, 0, 0, 0);
 	add_func    (0X4C113F,0X4C114A);
 	set_func_flags(0X4C113F,0x4400);
+	SetType(0X4C113F, "void __usercall ui__options__event_5_draw(window_t *window@<esi>, drawpixelinfo_t *context@<edi>);");
 	set_frame_size(0X4C113F, 0, 0, 0);
 	add_func    (0X4C114A,0X4C1171);
 	set_func_flags(0X4C114A,0x4400);
+	SetType(0X4C114A, "void __usercall ui__options__event_5_on_mouse_up(window_t *window@<esi>, __int32 widgetIndex@<edx>, widget_t *widget@<edi>);");
 	set_frame_size(0X4C114A, 0, 0, 0);
 	add_func    (0X4C1171,0X4C1172);
 	set_func_flags(0X4C1171,0x4440);
 	set_frame_size(0X4C1171, 0, 0, 0);
 	add_func    (0X4C1172,0X4C117A);
 	set_func_flags(0X4C1172,0x4400);
+	SetType(0X4C1172, "void __usercall ui__options__event_5_on_close(window_t *window@<esi>);");
 	set_frame_size(0X4C1172, 0X4, 0, 0);
 	add_func    (0X4C1195,0X4C11B6);
 	set_func_flags(0X4C1195,0x4400);
+	SetType(0X4C1195, "void __usercall ui__options__event_5_on_update(window_t *window@<esi>);");
 	set_frame_size(0X4C1195, 0, 0, 0);
 	add_func    (0X4C11B6,0X4C11B7);
 	set_func_flags(0X4C11B6,0x4440);
 	set_frame_size(0X4C11B6, 0, 0, 0);
 	add_func    (0X4C11B7,0X4C1282);
 	set_func_flags(0X4C11B7,0x4400);
+	SetType(0X4C11B7, "void __usercall ui__options__event_6_prepare_draw(window_t *window@<esi>);");
 	set_frame_size(0X4C11B7, 0, 0, 0);
 	add_func    (0X4C1282,0X4C12D2);
 	set_func_flags(0X4C1282,0x4400);
+	SetType(0X4C1282, "void __usercall ui__options__event_6_draw(window_t *window@<esi>, drawpixelinfo_t *context@<edi>);");
 	set_frame_size(0X4C1282, 0, 0, 0);
 	add_func    (0X4C12D2,0X4C1303);
 	set_func_flags(0X4C12D2,0x4400);
+	SetType(0X4C12D2, "void __usercall ui__options__event_6_on_mouse_up(window_t *window@<esi>, __int32 widgetIndex@<edx>, widget_t *widget@<edi>);");
 	set_frame_size(0X4C12D2, 0, 0, 0);
 	add_func    (0X4C1303,0X4C1304);
 	set_func_flags(0X4C1303,0x4440);
 	set_frame_size(0X4C1303, 0, 0, 0);
 	add_func    (0X4C1304,0X4C1311);
 	set_func_flags(0X4C1304,0x4400);
+	SetType(0X4C1304, "void __usercall ui__options__event_6_text_input(window_t *window@<esi>);");
 	set_frame_size(0X4C1304, 0, 0, 0);
 	add_func    (0X4C1311,0X4C1319);
 	set_func_flags(0X4C1311,0x4400);
+	SetType(0X4C1311, "void __usercall ui__options__event_6_on_close(window_t *window@<esi>);");
 	set_frame_size(0X4C1311, 0X4, 0, 0);
 	add_func    (0X4C139C,0X4C13BD);
 	set_func_flags(0X4C139C,0x4400);
+	SetType(0X4C139C, "void __usercall ui__options__event_6_on_update(window_t *window@<esi>);");
 	set_frame_size(0X4C139C, 0, 0, 0);
 	add_func    (0X4C13BD,0X4C13BE);
 	set_func_flags(0X4C13BD,0x4440);
@@ -125941,45 +126553,57 @@ static Functions_3(void) {
 	set_frame_size(0X4C1602, 0, 0, 0);
 	add_func    (0X4C165D,0X4C1663);
 	set_func_flags(0X4C165D,0x4400);
+	SetType(0X4C165D, "void __usercall ui__music_selection__event_draw(window_t *window@<esi>, drawpixelinfo_t *context@<edi>);");
 	set_frame_size(0X4C165D, 0, 0, 0);
 	add_func    (0X4C1663,0X4C1757);
 	set_func_flags(0X4C1663,0x4400);
+	SetType(0X4C1663, "void __usercall ui__music_selection__event_draw_scroll(window_t *window@<esi>, drawpixelinfo_t *context@<edi>, __int32 scrollIndex@<eax>);");
 	set_frame_size(0X4C1663, 0X4, 0, 0);
 	add_func    (0X4C1757,0X4C1762);
 	set_func_flags(0X4C1757,0x4400);
+	SetType(0X4C1757, "void __usercall ui__music_selection__event_on_mouse_up(window_t *window@<esi>, __int32 widgetIndex@<edx>, widget_t *widget@<edi>);");
 	set_frame_size(0X4C1757, 0, 0, 0);
 	add_func    (0X4C1762,0X4C176C);
 	set_func_flags(0X4C1762,0x4400);
+	SetType(0X4C1762, "__int16 __usercall ui__music_selection__event_tooltip@<ax>(window_t *window@<esi>, __int16 widgetIndex@<ax>);");
 	set_frame_size(0X4C1762, 0, 0, 0);
 	add_func    (0X4C176C,0X4C1771);
 	set_func_flags(0X4C176C,0x4400);
+	SetType(0X4C176C, "void __usercall ui__music_selection__event_get_scroll_size(window_t *window@<esi>, __int32 scrollIndex@<eax>, __int16 width@<cx>, __int16 height@<dx>);");
 	set_frame_size(0X4C176C, 0, 0, 0);
 	add_func    (0X4C1771,0X4C1799);
 	set_func_flags(0X4C1771,0x4400);
+	SetType(0X4C1771, "void __usercall ui__music_selection__event_scroll_mouse_over(window_t *window@<esi>);");
 	set_frame_size(0X4C1771, 0, 0, 0);
 	add_func    (0X4C1799,0X4C17E3);
 	set_func_flags(0X4C1799,0x4400);
+	SetType(0X4C1799, "void __usercall ui__music_selection__event_scroll_mouse_down(window_t *window@<esi>);");
 	set_frame_size(0X4C1799, 0, 0, 0);
 	add_func    (0X4C17E3,0X4C1802);
 	set_func_flags(0X4C17E3,0x4400);
+	SetType(0X4C17E3, "void __usercall ui__music_selection__event_on_update(window_t *window@<esi>);");
 	set_frame_size(0X4C17E3, 0X4, 0, 0);
 	add_func    (0X4C1802,0X4C1803);
 	set_func_flags(0X4C1802,0x4440);
 	set_frame_size(0X4C1802, 0, 0, 0);
 	add_func    (0X4C18A5,0X4C18E4);
 	set_func_flags(0X4C18A5,0x4400);
+	SetType(0X4C18A5, "void __usercall ui__window_44__event_draw(window_t *window@<esi>, drawpixelinfo_t *context@<edi>);");
 	set_frame_size(0X4C18A5, 0, 0, 0);
 	add_func    (0X4C18E4,0X4C1917);
 	set_func_flags(0X4C18E4,0x4400);
+	SetType(0X4C18E4, "void __usercall ui__window_44__event_on_mouse_up(window_t *window@<esi>, __int32 widgetIndex@<edx>, widget_t *widget@<edi>);");
 	set_frame_size(0X4C18E4, 0, 0, 0);
 	add_func    (0X4C1917,0X4C1918);
 	set_func_flags(0X4C1917,0x4440);
 	set_frame_size(0X4C1917, 0, 0, 0);
 	add_func    (0X4C1918,0X4C195E);
 	set_func_flags(0X4C1918,0x4400);
+	SetType(0X4C1918, "void __usercall ui__prompt_confirm_display_mode__event_draw(window_t *window@<esi>, drawpixelinfo_t *context@<edi>);");
 	set_frame_size(0X4C1918, 0, 0, 0);
 	add_func    (0X4C195E,0X4C1969);
 	set_func_flags(0X4C195E,0x4400);
+	SetType(0X4C195E, "void __usercall ui__prompt_confirm_display_mode__event_on_mouse_up(window_t *window@<esi>, __int32 widgetIndex@<edx>, widget_t *widget@<edi>);");
 	set_frame_size(0X4C195E, 0, 0, 0);
 	add_func    (0X4C1969,0X4C19C2);
 	set_func_flags(0X4C1969,0x4400);
@@ -126025,27 +126649,35 @@ static Functions_3(void) {
 	set_frame_size(0X4C1F45, 0, 0, 0);
 	add_func    (0X4C1F88,0X4C211C);
 	set_func_flags(0X4C1F88,0x4400);
+	SetType(0X4C1F88, "void __usercall ui__vehicle_list__event_6_prepare_draw(window_t *window@<esi>);");
 	set_frame_size(0X4C1F88, 0, 0, 0);
 	add_func    (0X4C211C,0X4C21CD);
 	set_func_flags(0X4C211C,0x4400);
+	SetType(0X4C211C, "void __usercall ui__vehicle_list__event_6_draw(window_t *window@<esi>, drawpixelinfo_t *context@<edi>);");
 	set_frame_size(0X4C211C, 0, 0, 0);
 	add_func    (0X4C21CD,0X4C2409);
 	set_func_flags(0X4C21CD,0x4400);
+	SetType(0X4C21CD, "void __usercall ui__vehicle_list__event_6_draw_scroll(window_t *window@<esi>, drawpixelinfo_t *context@<edi>, __int32 scrollIndex@<eax>);");
 	set_frame_size(0X4C21CD, 0X14, 0, 0);
 	add_func    (0X4C2409,0X4C2434);
 	set_func_flags(0X4C2409,0x4400);
+	SetType(0X4C2409, "void __usercall ui__vehicle_list__event_6_on_mouse_up(window_t *window@<esi>, __int32 widgetIndex@<edx>, widget_t *widget@<edi>);");
 	set_frame_size(0X4C2409, 0, 0, 0);
 	add_func    (0X4C2434,0X4C243F);
 	set_func_flags(0X4C2434,0x4400);
+	SetType(0X4C2434, "void __usercall ui__vehicle_list__event_6_on_mouse_down(window_t *window@<esi>, __int32 widgetIndex@<edx>, widget_t *widget@<edi>);");
 	set_frame_size(0X4C2434, 0, 0, 0);
 	add_func    (0X4C243F,0X4C24CA);
 	set_func_flags(0X4C243F,0x4400);
+	SetType(0X4C243F, "void __usercall ui__vehicle_list__event_6_on_dropdown(window_t *window@<esi>, __int32 widgetIndex@<edx>, __int16 itemIndex@<ax>);");
 	set_frame_size(0X4C243F, 0, 0, 0);
 	add_func    (0X4C24CA,0X4C24D4);
 	set_func_flags(0X4C24CA,0x4400);
+	SetType(0X4C24CA, "__int16 __usercall ui__vehicle_list__event_6_tooltip@<ax>(window_t *window@<esi>, __int16 widgetIndex@<ax>);");
 	set_frame_size(0X4C24CA, 0, 0, 0);
 	add_func    (0X4C260B,0X4C2640);
 	set_func_flags(0X4C260B,0x4400);
+	SetType(0X4C260B, "void __usercall ui__vehicle_list__event_6_on_update(window_t *window@<esi>);");
 	set_frame_size(0X4C260B, 0, 0, 0);
 	add_func    (0X4C2640,0X4C2648);
 	set_func_flags(0X4C2640,0x4400);
@@ -126055,18 +126687,23 @@ static Functions_3(void) {
 	set_frame_size(0X4C2648, 0, 0, 0);
 	add_func    (0X4C265B,0X4C266D);
 	set_func_flags(0X4C265B,0x4400);
+	SetType(0X4C265B, "void __usercall ui__vehicle_list__event_6_get_scroll_size(window_t *window@<esi>, __int32 scrollIndex@<eax>, __int16 width@<cx>, __int16 height@<dx>);");
 	set_frame_size(0X4C265B, 0, 0, 0);
 	add_func    (0X4C266D,0X4C26A4);
 	set_func_flags(0X4C266D,0x4400);
+	SetType(0X4C266D, "void __usercall ui__vehicle_list__event_6_cursor(window_t *window@<esi>);");
 	set_frame_size(0X4C266D, 0, 0, 0);
 	add_func    (0X4C26A4,0X4C27C0);
 	set_func_flags(0X4C26A4,0x4400);
+	SetType(0X4C26A4, "void __usercall ui__vehicle_list__event_6_scroll_mouse_over(window_t *window@<esi>);");
 	set_frame_size(0X4C26A4, 0, 0, 0);
 	add_func    (0X4C27C0,0X4C2820);
 	set_func_flags(0X4C27C0,0x4400);
+	SetType(0X4C27C0, "void __usercall ui__vehicle_list__event_6_scroll_mouse_down(window_t *window@<esi>);");
 	set_frame_size(0X4C27C0, 0, 0, 0);
 	add_func    (0X4C2820,0X4C2863);
 	set_func_flags(0X4C2820,0x4400);
+	SetType(0X4C2820, "void __usercall ui__vehicle_list__event_6_on_resize(window_t *window@<esi>);");
 	set_frame_size(0X4C2820, 0, 0, 0);
 	add_func    (0X4C2863,0X4C2864);
 	set_func_flags(0X4C2863,0x4440);
@@ -126100,42 +126737,53 @@ static Functions_3(void) {
 	set_frame_size(0X4C2D8A, 0X4, 0, 0);
 	add_func    (0X4C2E5C,0X4C2F23);
 	set_func_flags(0X4C2E5C,0x4400);
+	SetType(0X4C2E5C, "void __usercall ui__build_vehicle__event_6_prepare_draw(window_t *window@<esi>);");
 	set_frame_size(0X4C2E5C, 0, 0, 0);
 	add_func    (0X4C2F23,0X4C3307);
 	set_func_flags(0X4C2F23,0x4400);
+	SetType(0X4C2F23, "void __usercall ui__build_vehicle__event_6_draw(window_t *window@<esi>, drawpixelinfo_t *context@<edi>);");
 	set_frame_size(0X4C2F23, 0, 0, 0);
 	add_func    (0X4C3307,0X4C3576);
 	set_func_flags(0X4C3307,0x4400);
+	SetType(0X4C3307, "void __usercall ui__build_vehicle__event_6_draw_scroll(window_t *window@<esi>, drawpixelinfo_t *context@<edi>, __int32 scrollIndex@<eax>);");
 	set_frame_size(0X4C3307, 0, 0, 0);
 	add_func    (0X4C3576,0X4C359D);
 	set_func_flags(0X4C3576,0x4400);
+	SetType(0X4C3576, "void __usercall ui__build_vehicle__event_6_on_mouse_up(window_t *window@<esi>, __int32 widgetIndex@<edx>, widget_t *widget@<edi>);");
 	set_frame_size(0X4C3576, 0, 0, 0);
 	add_func    (0X4C359D,0X4C359E);
 	set_func_flags(0X4C359D,0x4440);
 	set_frame_size(0X4C359D, 0, 0, 0);
 	add_func    (0X4C370C,0X4C377B);
 	set_func_flags(0X4C370C,0x4400);
+	SetType(0X4C370C, "__int16 __usercall ui__build_vehicle__event_6_tooltip@<ax>(window_t *window@<esi>, __int16 widgetIndex@<ax>);");
 	set_frame_size(0X4C370C, 0, 0, 0);
 	add_func    (0X4C377B,0X4C37B9);
 	set_func_flags(0X4C377B,0x4400);
+	SetType(0X4C377B, "void __usercall ui__build_vehicle__event_6_on_update(window_t *window@<esi>);");
 	set_frame_size(0X4C377B, 0, 0, 0);
 	add_func    (0X4C37B9,0X4C37CB);
 	set_func_flags(0X4C37B9,0x4400);
+	SetType(0X4C37B9, "void __usercall ui__build_vehicle__event_6_get_scroll_size(window_t *window@<esi>, __int32 scrollIndex@<eax>, __int16 width@<cx>, __int16 height@<dx>);");
 	set_frame_size(0X4C37B9, 0, 0, 0);
 	add_func    (0X4C37CB,0X4C3802);
 	set_func_flags(0X4C37CB,0x4400);
+	SetType(0X4C37CB, "void __usercall ui__build_vehicle__event_6_cursor(window_t *window@<esi>);");
 	set_frame_size(0X4C37CB, 0, 0, 0);
 	add_func    (0X4C3802,0X4C384B);
 	set_func_flags(0X4C3802,0x4400);
+	SetType(0X4C3802, "void __usercall ui__build_vehicle__event_6_scroll_mouse_over(window_t *window@<esi>);");
 	set_frame_size(0X4C3802, 0, 0, 0);
 	add_func    (0X4C384B,0X4C3923);
 	set_func_flags(0X4C384B,0x4400);
+	SetType(0X4C384B, "void __usercall ui__build_vehicle__event_6_scroll_mouse_down(window_t *window@<esi>);");
 	set_frame_size(0X4C384B, 0, 0, 0);
 	add_func    (0X4C3923,0X4C3929);
 	set_func_flags(0X4C3923,0x4400);
 	set_frame_size(0X4C3923, 0, 0, 0);
 	add_func    (0X4C3929,0X4C39D2);
 	set_func_flags(0X4C3929,0x4400);
+	SetType(0X4C3929, "void __usercall ui__build_vehicle__event_6_on_resize(window_t *window@<esi>);");
 	set_frame_size(0X4C3929, 0, 0, 0);
 	add_func    (0X4C39D2,0X4C39D3);
 	set_func_flags(0X4C39D2,0x4440);
@@ -126331,12 +126979,15 @@ static Functions_3(void) {
 	set_frame_size(0X4C9216, 0X8, 0, 0);
 	add_func    (0X4C9397,0X4C94F7);
 	set_func_flags(0X4C9397,0x4400);
+	SetType(0X4C9397, "void __usercall ui__tooltip___widgets__event_draw(window_t *window@<esi>, drawpixelinfo_t *context@<edi>);");
 	set_frame_size(0X4C9397, 0, 0, 0);
 	add_func    (0X4C94F7,0X4C94FF);
 	set_func_flags(0X4C94F7,0x4400);
+	SetType(0X4C94F7, "void __usercall ui__tooltip___widgets__event_on_close(window_t *window@<esi>);");
 	set_frame_size(0X4C94F7, 0, 0, 0);
 	add_func    (0X4C94FF,0X4C9512);
 	set_func_flags(0X4C94FF,0x4400);
+	SetType(0X4C94FF, "void __usercall ui__tooltip___widgets__event_on_update(window_t *window@<esi>);");
 	set_frame_size(0X4C94FF, 0, 0, 0);
 	add_func    (0X4C9512,0X4C9513);
 	set_func_flags(0X4C9512,0x4440);
@@ -126403,6 +127054,7 @@ static Functions_3(void) {
 	set_frame_size(0X4CA4BD, 0, 0, 0);
 	add_func    (0X4CA4DF,0X4CB966);
 	set_func_flags(0X4CA4DF,0x4400);
+	SetType(0X4CA4DF, "void __usercall window_draw_widgets(window_t *window@<esi>, drawpixelinfo_t *context@<edi>);");
 	set_frame_size(0X4CA4DF, 0X16, 0, 0);
 	define_local_var(0X4CA4DF, 0X4CB966, "[bp-0XC]", "right");
 	define_local_var(0X4CA4DF, 0X4CB966, "[bp-0XA]", "left");
@@ -126474,9 +127126,11 @@ static Functions_3(void) {
 	set_func_flags(0X4CCF8C,0x4400);
 	set_frame_size(0X4CCF8C, 0, 0, 0);
 	add_func    (0X4CD00E,0X4CD015);
-	set_func_flags(0X4CD00E,0x400);
+	set_func_flags(0X4CD00E,0x4400);
+	SetType(0X4CD00E, "void __usercall ui__dropdown___widgets__event_draw(window_t *window@<esi>, drawpixelinfo_t *context@<edi>);");
 	add_func    (0X4CD015,0X4CD01A);
 	set_func_flags(0X4CD015,0x4480);
+	SetType(0X4CD015, "void __usercall ui__dropdown___widgets__event_on_update(window_t *window@<esi>);");
 	set_frame_size(0X4CD015, 0, 0, 0);
 	add_func    (0X4CD01A,0X4CD01B);
 	set_func_flags(0X4CD01A,0x4440);
@@ -126535,15 +127189,19 @@ static Functions_3(void) {
 	set_frame_size(0X4CE6FF, 0, 0, 0);
 	add_func    (0X4CE726,0X4CE75B);
 	set_func_flags(0X4CE726,0x4400);
+	SetType(0X4CE726, "void __usercall ui__text_input___widgets__event_prepare_draw(window_t *window@<esi>);");
 	set_frame_size(0X4CE726, 0, 0, 0);
 	add_func    (0X4CE75B,0X4CE8B6);
 	set_func_flags(0X4CE75B,0x4400);
+	SetType(0X4CE75B, "void __usercall ui__text_input___widgets__event_draw(window_t *window@<esi>, drawpixelinfo_t *context@<edi>);");
 	set_frame_size(0X4CE75B, 0X8, 0, 0);
 	add_func    (0X4CE8B6,0X4CE8FA);
 	set_func_flags(0X4CE8B6,0x4400);
+	SetType(0X4CE8B6, "void __usercall ui__text_input___widgets__event_on_mouse_up(window_t *window@<esi>, __int32 widgetIndex@<edx>, widget_t *widget@<edi>);");
 	set_frame_size(0X4CE8B6, 0, 0, 0);
 	add_func    (0X4CE8FA,0X4CE90F);
 	set_func_flags(0X4CE8FA,0x4400);
+	SetType(0X4CE8FA, "void __usercall ui__text_input___widgets__event_on_update(window_t *window@<esi>);");
 	set_frame_size(0X4CE8FA, 0, 0, 0);
 	add_func    (0X4CE90F,0X4CE910);
 	set_func_flags(0X4CE90F,0x4440);
@@ -126574,9 +127232,11 @@ static Functions_3(void) {
 	set_frame_size(0X4CEEA7, 0, 0, 0);
 	add_func    (0X4CF010,0X4CF13B);
 	set_func_flags(0X4CF010,0x4400);
+	SetType(0X4CF010, "void __usercall ui__window_30___widgets__event_draw(window_t *window@<esi>, drawpixelinfo_t *context@<edi>);");
 	set_frame_size(0X4CF010, 0, 0, 0);
 	add_func    (0X4CF13B,0X4CF141);
 	set_func_flags(0X4CF13B,0x4400);
+	SetType(0X4CF13B, "void __usercall ui__window_30___widgets__event_on_update(window_t *window@<esi>);");
 	set_frame_size(0X4CF13B, 0, 0, 0);
 	add_func    (0X4CF141,0X4CF142);
 	set_func_flags(0X4CF141,0x4440);
@@ -126624,9 +127284,11 @@ static Functions_3(void) {
 	set_frame_size(0X4CF76D, 0, 0, 0);
 	add_func    (0X4CF78A,0X4CF7A0);
 	set_func_flags(0X4CF78A,0x4400);
+	SetType(0X4CF78A, "void __usercall ui__window_47___widgets__event_prepare_draw(window_t *window@<esi>);");
 	set_frame_size(0X4CF78A, 0, 0, 0);
 	add_func    (0X4CF7A0,0X4CF823);
 	set_func_flags(0X4CF7A0,0x4400);
+	SetType(0X4CF7A0, "void __usercall ui__window_47___widgets__event_draw(window_t *window@<esi>, drawpixelinfo_t *context@<edi>);");
 	set_frame_size(0X4CF7A0, 0, 0, 0);
 	add_func    (0X4CF823,0X4CF824);
 	set_func_flags(0X4CF823,0x4440);
@@ -126832,12 +127494,6 @@ static Functions_3(void) {
 	add_func    (0X4D2CE5,0X4D2D3F);
 	set_func_flags(0X4D2CE5,0x4400);
 	set_frame_size(0X4D2CE5, 0X4, 0, 0);
-	add_func    (0X4D2D3F,0X4D2D8D);
-	set_func_flags(0X4D2D3F,0x4400);
-	set_frame_size(0X4D2D3F, 0, 0, 0);
-	add_func    (0X4D2D8D,0X4D2DA5);
-	set_func_flags(0X4D2D8D,0x4400);
-	set_frame_size(0X4D2D8D, 0, 0, 0);
 	add_func    (0X4D2DA5,0X4D2DE3);
 	set_func_flags(0X4D2DA5,0x4410);
 	set_frame_size(0X4D2DA5, 0X8, 4, 0);
@@ -127150,10 +127806,6 @@ static Functions_3(void) {
 	add_func    (0X4D69CB,0X4D6A47);
 	set_func_flags(0X4D69CB,0x4410);
 	set_frame_size(0X4D69CB, 0X10, 4, 0);
-}
-
-static Functions_4(void) {
-
 	add_func    (0X4D6A47,0X4D6A9D);
 	set_func_flags(0X4D6A47,0x4400);
 	set_frame_size(0X4D6A47, 0X8, 0, 0);
@@ -127185,7 +127837,6 @@ static Functions(void) {
 	Functions_1();
 	Functions_2();
 	Functions_3();
-	Functions_4();
 }
 
 //------------------------------------------------------------------------
