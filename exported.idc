@@ -479,6 +479,12 @@ static ApplyStrucTInfos_0(void) {
 	id = get_struc_id("dropdown_format_args_t");
 	id = get_struc_id("drawpixelinfo_t");
 	id = get_struc_id("pair_ptr");
+	id = get_struc_id("obj_interface_skin_t");
+	id = get_struc_id("obj_sound_t");
+	id = get_struc_id("obj_currency_t");
+	id = get_struc_id("obj_town_names_t");
+	id = get_struc_id("obj_competitors_t");
+	id = get_struc_id("obj_scenario_text_t");
 	return id;
 }
 
@@ -542,6 +548,12 @@ static Structures_0(id) {
 	id = add_struc(-1,"dropdown_format_args_t",0);
 	id = add_struc(-1,"drawpixelinfo_t",0);
 	id = add_struc(-1,"pair_ptr",0);
+	id = add_struc(-1,"obj_interface_skin_t",0);
+	id = add_struc(-1,"obj_sound_t",0);
+	id = add_struc(-1,"obj_currency_t",0);
+	id = add_struc(-1,"obj_town_names_t",0);
+	id = add_struc(-1,"obj_competitors_t",0);
+	id = add_struc(-1,"obj_scenario_text_t",0);
 	
 	id = get_struc_id("_SCOPETABLE_ENTRY");
 	mid = add_struc_member(id,"EnclosingLevel",	0,	0x20000400,	-1,	4);
@@ -993,6 +1005,76 @@ static Structures_0(id) {
 	id = get_struc_id("pair_ptr");
 	mid = add_struc_member(id,"a",	0,	0x20500400,	0,	4,	0XFFFFFFFFFFFFFFFF,	0,	0x000002);
 	mid = add_struc_member(id,"b",	0X4,	0x20500400,	0,	4,	0XFFFFFFFFFFFFFFFF,	0,	0x000002);
+	
+	id = get_struc_id("obj_interface_skin_t");
+	mid = add_struc_member(id,"str",	0,	0x10000400,	-1,	2);
+	mid = add_struc_member(id,"img",	0X2,	0x20000400,	-1,	4);
+	mid = add_struc_member(id,"colour_06",	0X6,	0x000400,	-1,	1);
+	mid = add_struc_member(id,"colour_07",	0X7,	0x000400,	-1,	1);
+	mid = add_struc_member(id,"colour_08",	0X8,	0x000400,	-1,	1);
+	mid = add_struc_member(id,"colour_09",	0X9,	0x000400,	-1,	1);
+	mid = add_struc_member(id,"colour_0A",	0XA,	0x000400,	-1,	1);
+	mid = add_struc_member(id,"colour_0B",	0XB,	0x000400,	-1,	1);
+	mid = add_struc_member(id,"colour_0C",	0XC,	0x000400,	-1,	1);
+	mid = add_struc_member(id,"colour_10",	0X10,	0x000400,	-1,	1);
+	mid = add_struc_member(id,"colour_12",	0X12,	0x000400,	-1,	1);
+	mid = add_struc_member(id,"colour_13",	0X13,	0x000400,	-1,	1);
+	mid = add_struc_member(id,"colour_14",	0X14,	0x000400,	-1,	1);
+	mid = add_struc_member(id,"colour_15",	0X15,	0x000400,	-1,	1);
+	mid = add_struc_member(id,"colour_16",	0X16,	0x000400,	-1,	1);
+	mid = add_struc_member(id,"colour_17",	0X17,	0x000400,	-1,	1);
+	
+	id = get_struc_id("obj_sound_t");
+	mid = add_struc_member(id,"str",	0,	0x10000400,	-1,	2);
+	mid = add_struc_member(id,"var_002",	0X2,	0x20000400,	-1,	4);
+	mid = add_struc_member(id,"var_006",	0X6,	0x000400,	-1,	1);
+	mid = add_struc_member(id,"end",	0XB,	0x000400,	-1,	1);
+	
+	id = get_struc_id("obj_currency_t");
+	mid = add_struc_member(id,"name",	0,	0x10000400,	-1,	2);
+	mid = add_struc_member(id,"prefix_symbol",	0X2,	0x10000400,	-1,	2);
+	mid = add_struc_member(id,"suffix_symbol",	0X4,	0x10000400,	-1,	2);
+	mid = add_struc_member(id,"img",	0X6,	0x20000400,	-1,	4);
+	mid = add_struc_member(id,"separator",	0XA,	0x000400,	-1,	1);
+	mid = add_struc_member(id,"factor",	0XB,	0x000400,	-1,	1);
+	
+	id = get_struc_id("obj_town_names_t");
+	mid = add_struc_member(id,"str",	0,	0x10000400,	-1,	2);
+	mid = add_struc_member(id,"g0_count",	0X2,	0x000400,	-1,	1);
+	mid = add_struc_member(id,"g0_fill",	0X3,	0x000400,	-1,	1);
+	mid = add_struc_member(id,"g0_offset",	0X4,	0x10000400,	-1,	2);
+	mid = add_struc_member(id,"g1_count",	0X6,	0x000400,	-1,	1);
+	mid = add_struc_member(id,"g1_fill",	0X7,	0x000400,	-1,	1);
+	mid = add_struc_member(id,"g1_offset",	0X8,	0x10000400,	-1,	2);
+	mid = add_struc_member(id,"g2_count",	0XA,	0x000400,	-1,	1);
+	mid = add_struc_member(id,"g2_fill",	0XB,	0x000400,	-1,	1);
+	mid = add_struc_member(id,"g2_offset",	0XC,	0x10000400,	-1,	2);
+	mid = add_struc_member(id,"g3_count",	0XE,	0x000400,	-1,	1);
+	mid = add_struc_member(id,"g3_fill",	0XF,	0x000400,	-1,	1);
+	mid = add_struc_member(id,"g3_offset",	0X10,	0x10000400,	-1,	2);
+	mid = add_struc_member(id,"g4_count",	0X12,	0x000400,	-1,	1);
+	mid = add_struc_member(id,"g4_fill",	0X13,	0x000400,	-1,	1);
+	mid = add_struc_member(id,"g4_offset",	0X14,	0x10000400,	-1,	2);
+	mid = add_struc_member(id,"g5_count",	0X16,	0x000400,	-1,	1);
+	mid = add_struc_member(id,"g5_fill",	0X17,	0x000400,	-1,	1);
+	mid = add_struc_member(id,"end",	0X19,	0x000400,	-1,	1);
+	
+	id = get_struc_id("obj_competitors_t");
+	mid = add_struc_member(id,"str",	0,	0x10000400,	-1,	2);
+	mid = add_struc_member(id,"str2",	0X2,	0x10000400,	-1,	2);
+	mid = add_struc_member(id,"var_004",	0X4,	0x20000400,	-1,	4);
+	mid = add_struc_member(id,"var_008",	0X8,	0x20000400,	-1,	4);
+	mid = add_struc_member(id,"emotions",	0XC,	0x20000400,	-1,	4);
+	mid = add_struc_member(id,"imgs",	0X10,	0x20000400,	-1,	36);
+	mid = add_struc_member(id,"intelligence",	0X34,	0x000400,	-1,	1);
+	mid = add_struc_member(id,"agressiveness",	0X35,	0x000400,	-1,	1);
+	mid = add_struc_member(id,"competitiveness",	0X36,	0x000400,	-1,	1);
+	mid = add_struc_member(id,"end",	0X37,	0x000400,	-1,	1);
+	
+	id = get_struc_id("obj_scenario_text_t");
+	mid = add_struc_member(id,"str",	0,	0x10000400,	-1,	2);
+	mid = add_struc_member(id,"str2",	0X2,	0x10000400,	-1,	2);
+	mid = add_struc_member(id,"end",	0X5,	0x000400,	-1,	1);
 	return id;
 }
 
@@ -13680,6 +13762,8 @@ static Bytes_2(void) {
 	create_insn	(x=0X4291DA);
 	op_stroff	(x,	0,	GetStrucIdByName("window_t"),	0);
 	op_hex		(x,	1);
+	create_insn	(x=0X4291E9);
+	op_stroff	(x,	1,	GetStrucIdByName("obj_interface_skin_t"),	0);
 	create_insn	(x=0X4291EC);
 	op_hex		(x,	1);
 	create_insn	(x=0X4291EE);
@@ -14047,6 +14131,14 @@ static Bytes_2(void) {
 	op_plain_offset	(x,	129,	0);
 	create_insn	(0X429EEB);
 	set_name	(0X429EEB,	"ui::window_36::_widgets_2::event_on_update");
+	create_insn	(x=0X429F03);
+	op_stroff	(x,	0,	GetStrucIdByName("window_t"),	0);
+	create_insn	(x=0X429F0C);
+	op_stroff	(x,	0,	GetStrucIdByName("window_t"),	0);
+	create_insn	(x=0X429F1F);
+	op_stroff	(x,	0,	GetStrucIdByName("window_t"),	0);
+	create_insn	(x=0X429F2B);
+	op_stroff	(x,	0,	GetStrucIdByName("window_t"),	0);
 	create_insn	(x=0X429F4A);
 	op_hex		(x,	1);
 	create_insn	(x=0X429F68);
@@ -14104,6 +14196,8 @@ static Bytes_2(void) {
 	create_insn	(x=0X42A16E);
 	op_plain_offset	(x,	1,	0);
 	op_plain_offset	(x,	129,	0);
+	create_insn	(x=0X42A175);
+	op_stroff	(x,	1,	GetStrucIdByName("obj_competitors_t"),	0);
 	create_insn	(x=0X42A179);
 	op_plain_offset	(x,	1,	0);
 	op_plain_offset	(x,	129,	0);
@@ -14134,6 +14228,8 @@ static Bytes_2(void) {
 	create_insn	(x=0X42A2D2);
 	op_plain_offset	(x,	1,	0);
 	op_plain_offset	(x,	129,	0);
+	create_insn	(x=0X42A2D9);
+	op_stroff	(x,	1,	GetStrucIdByName("obj_competitors_t"),	0);
 	create_insn	(x=0X42A2DD);
 	op_plain_offset	(x,	1,	0);
 	op_plain_offset	(x,	129,	0);
@@ -14184,6 +14280,10 @@ static Bytes_2(void) {
 	create_insn	(x=0X42A4CB);
 	op_plain_offset	(x,	1,	0);
 	op_plain_offset	(x,	129,	0);
+	create_insn	(x=0X42A53B);
+	op_stroff	(x,	1,	GetStrucIdByName("obj_interface_skin_t"),	0);
+	create_insn	(x=0X42A53E);
+	op_stroff	(x,	0,	GetStrucIdByName("window_t"),	0);
 	create_insn	(0X42A545);
 	set_name	(0X42A545,	"ui::messages::event_1_prepare_draw");
 	create_insn	(x=0X42A563);
@@ -14371,10 +14471,14 @@ static Bytes_2(void) {
 	op_hex		(x,	1);
 	create_insn	(x=0X42ABA9);
 	op_hex		(x,	1);
+	create_insn	(x=0X42ABB8);
+	op_stroff	(x,	1,	GetStrucIdByName("obj_interface_skin_t"),	0);
 	create_insn	(x=0X42ABD8);
 	op_hex		(x,	1);
 	create_insn	(x=0X42ABDC);
 	op_hex		(x,	1);
+	create_insn	(x=0X42ABEB);
+	op_stroff	(x,	1,	GetStrucIdByName("obj_interface_skin_t"),	0);
 	create_insn	(0X42ABF9);
 	set_cmt	(0X42ABFE,	"wtf_messages",	1);
 	create_insn	(x=0X42ABFE);
@@ -16105,6 +16209,8 @@ static Bytes_2(void) {
 	create_insn	(x=0X42FE71);
 	op_stkvar	(x,	0);
 	op_hex		(x,	1);
+	create_insn	(x=0X42FE7C);
+	op_stroff	(x,	1,	GetStrucIdByName("obj_competitors_t"),	0);
 	create_insn	(x=0X42FE87);
 	op_stkvar	(x,	0);
 	create_insn	(x=0X42FE8A);
@@ -16115,15 +16221,22 @@ static Bytes_2(void) {
 	op_hex		(x,	1);
 	create_insn	(x=0X42FEB2);
 	op_hex		(x,	1);
+	create_insn	(x=0X42FEBB);
+	op_stroff	(x,	1,	GetStrucIdByName("obj_competitors_t"),	0);
 	create_insn	(x=0X42FEC0);
 	op_hex		(x,	1);
 	create_insn	(x=0X42FECB);
 	op_hex		(x,	1);
-	create_insn	(0X42FEDF);
+	create_insn	(x=0X42FED0);
+	op_stroff	(x,	1,	GetStrucIdByName("obj_competitors_t"),	0);
+	create_insn	(x=0X42FEDF);
+	op_stroff	(x,	1,	GetStrucIdByName("obj_competitors_t"),	0);
 	create_insn	(x=0X42FEE4);
 	op_hex		(x,	1);
 	create_insn	(x=0X42FEEF);
 	op_hex		(x,	1);
+	create_insn	(x=0X42FEF4);
+	op_stroff	(x,	1,	GetStrucIdByName("obj_competitors_t"),	0);
 	create_insn	(x=0X42FF03);
 	op_plain_offset	(x,	1,	0);
 	op_plain_offset	(x,	129,	0);
@@ -16725,6 +16838,8 @@ static Bytes_2(void) {
 	set_cmt	(0X431C3A,	"top",	0);
 	set_cmt	(0X431C3B,	"right",	0);
 	set_cmt	(0X431C3C,	"left",	0);
+	create_insn	(x=0X431C43);
+	op_stroff	(x,	1,	GetStrucIdByName("obj_interface_skin_t"),	0);
 	set_cmt	(0X431C47,	"colour",	0);
 	set_cmt	(0X431C55,	"left",	0);
 	set_cmt	(0X431C5A,	"right",	0);
@@ -16778,6 +16893,8 @@ static Bytes_2(void) {
 	create_insn	(x=0X431DA1);
 	op_plain_offset	(x,	1,	0);
 	op_plain_offset	(x,	129,	0);
+	create_insn	(x=0X431DA8);
+	op_stroff	(x,	1,	GetStrucIdByName("obj_competitors_t"),	0);
 	create_insn	(x=0X431DAC);
 	op_plain_offset	(x,	1,	0);
 	op_plain_offset	(x,	129,	0);
@@ -16881,6 +16998,8 @@ static Bytes_2(void) {
 	create_insn	(x=0X432078);
 	op_plain_offset	(x,	1,	0);
 	op_plain_offset	(x,	129,	0);
+	create_insn	(x=0X43207F);
+	op_stroff	(x,	1,	GetStrucIdByName("obj_competitors_t"),	0);
 	create_insn	(x=0X432083);
 	op_plain_offset	(x,	1,	0);
 	op_plain_offset	(x,	129,	0);
@@ -16910,6 +17029,8 @@ static Bytes_2(void) {
 	create_insn	(x=0X43211C);
 	op_plain_offset	(x,	1,	0);
 	op_plain_offset	(x,	129,	0);
+	create_insn	(x=0X432123);
+	op_stroff	(x,	1,	GetStrucIdByName("obj_competitors_t"),	0);
 	create_insn	(x=0X432127);
 	op_plain_offset	(x,	1,	0);
 	op_plain_offset	(x,	129,	0);
@@ -17205,6 +17326,8 @@ static Bytes_2(void) {
 	op_plain_offset	(x,	129,	0);
 	create_insn	(x=0X432825);
 	op_hex		(x,	1);
+	create_insn	(x=0X432833);
+	op_stroff	(x,	1,	GetStrucIdByName("obj_interface_skin_t"),	0);
 	create_insn	(x=0X43283B);
 	op_stroff	(x,	1,	GetStrucIdByName("window_t"),	0);
 	create_insn	(x=0X43283E);
@@ -17234,6 +17357,8 @@ static Bytes_2(void) {
 	create_insn	(x=0X43293C);
 	op_plain_offset	(x,	1,	0);
 	op_plain_offset	(x,	129,	0);
+	create_insn	(x=0X432943);
+	op_stroff	(x,	1,	GetStrucIdByName("obj_competitors_t"),	0);
 	create_insn	(x=0X432947);
 	op_plain_offset	(x,	1,	0);
 	op_plain_offset	(x,	129,	0);
@@ -17971,30 +18096,42 @@ static Bytes_2(void) {
 	create_insn	(0X434413);
 	create_insn	(x=0X434426);
 	op_hex		(x,	1);
+	create_insn	(x=0X434435);
+	op_stroff	(x,	1,	GetStrucIdByName("obj_interface_skin_t"),	0);
 	create_insn	(x=0X434455);
 	op_hex		(x,	1);
 	create_insn	(x=0X434458);
 	op_hex		(x,	1);
+	create_insn	(x=0X434467);
+	op_stroff	(x,	1,	GetStrucIdByName("obj_interface_skin_t"),	0);
 	create_insn	(x=0X434471);
 	op_hex		(x,	1);
 	create_insn	(x=0X434493);
 	op_hex		(x,	1);
 	create_insn	(x=0X434496);
 	op_hex		(x,	1);
+	create_insn	(x=0X4344A2);
+	op_stroff	(x,	1,	GetStrucIdByName("obj_interface_skin_t"),	0);
 	create_insn	(x=0X4344C2);
 	op_hex		(x,	1);
 	create_insn	(x=0X4344C6);
 	op_hex		(x,	1);
+	create_insn	(x=0X4344D5);
+	op_stroff	(x,	1,	GetStrucIdByName("obj_interface_skin_t"),	0);
 	create_insn	(x=0X4344F5);
 	op_hex		(x,	1);
 	create_insn	(x=0X4344F9);
 	op_hex		(x,	1);
+	create_insn	(x=0X434505);
+	op_stroff	(x,	1,	GetStrucIdByName("obj_interface_skin_t"),	0);
 	create_insn	(x=0X434512);
 	op_hex		(x,	1);
 	create_insn	(x=0X43452E);
 	op_hex		(x,	1);
 	create_insn	(x=0X434532);
 	op_hex		(x,	1);
+	create_insn	(x=0X434541);
+	op_stroff	(x,	1,	GetStrucIdByName("obj_interface_skin_t"),	0);
 	set_cmt	(0X43454F,	"windowtype",	0);
 	create_insn	(x=0X43454F);
 	op_enum		(x,	1,	GetEnum("windowtype"),0);
@@ -18053,6 +18190,8 @@ static Bytes_2(void) {
 	op_stroff	(x,	0,	GetStrucIdByName("window_t"),	0);
 	create_insn	(x=0X434819);
 	op_stroff	(x,	0,	GetStrucIdByName("window_t"),	0);
+	create_insn	(x=0X434829);
+	op_stroff	(x,	1,	GetStrucIdByName("obj_interface_skin_t"),	0);
 	create_insn	(x=0X43482C);
 	op_stroff	(x,	0,	GetStrucIdByName("window_t"),	0);
 	create_insn	(x=0X434832);
@@ -18224,9 +18363,44 @@ static Bytes_2(void) {
 	create_insn	(0X434C6E);
 	create_insn	(0X434C8E);
 	set_name	(0X434C8E,	"obj_competitors");
-	create_insn	(0X434D08);
+	create_insn	(x=0X434CA0);
+	op_stroff	(x,	1,	GetStrucIdByName("obj_competitors_t"),	0);
+	create_insn	(x=0X434CAA);
+	op_stroff	(x,	0,	GetStrucIdByName("obj_competitors_t"),	0);
+	create_insn	(x=0X434CB3);
+	op_stroff	(x,	0,	GetStrucIdByName("obj_competitors_t"),	0);
+	create_insn	(x=0X434CBF);
+	op_stroff	(x,	0,	GetStrucIdByName("obj_competitors_t"),	0);
+	create_insn	(x=0X434CCB);
+	op_stroff	(x,	0,	GetStrucIdByName("obj_competitors_t"),	0);
+	create_insn	(x=0X434CD1);
+	op_stroff	(x,	0,	GetStrucIdByName("obj_competitors_t"),	0);
+	create_insn	(x=0X434CEF);
+	op_stroff	(x,	1,	GetStrucIdByName("obj_competitors_t"),	0);
+	create_insn	(x=0X434CF7);
+	op_stroff	(x,	1,	GetStrucIdByName("obj_competitors_t"),	0);
+	create_insn	(x=0X434CFF);
+	op_stroff	(x,	1,	GetStrucIdByName("obj_competitors_t"),	0);
+	create_insn	(x=0X434D08);
+	op_stroff	(x,	0,	GetStrucIdByName("obj_competitors_t"),	0);
+	create_insn	(x=0X434D0D);
+	op_stroff	(x,	0,	GetStrucIdByName("obj_competitors_t"),	0);
+	create_insn	(x=0X434D15);
+	op_stroff	(x,	0,	GetStrucIdByName("obj_competitors_t"),	0);
 	create_insn	(x=0X434D24);
 	op_hex		(x,	1);
+	create_insn	(x=0X434D2D);
+	op_stroff	(x,	0,	GetStrucIdByName("obj_competitors_t"),	0);
+	create_insn	(x=0X434D33);
+	op_stroff	(x,	0,	GetStrucIdByName("obj_competitors_t"),	0);
+	create_insn	(x=0X434D39);
+	op_stroff	(x,	0,	GetStrucIdByName("obj_competitors_t"),	0);
+	create_insn	(x=0X434D3F);
+	op_stroff	(x,	0,	GetStrucIdByName("obj_competitors_t"),	0);
+	create_insn	(x=0X434D45);
+	op_stroff	(x,	0,	GetStrucIdByName("obj_competitors_t"),	0);
+	create_insn	(x=0X434D4B);
+	op_stroff	(x,	0,	GetStrucIdByName("obj_competitors_t"),	0);
 	create_insn	(0X434D54);
 	create_insn	(0X434D56);
 	set_cmt	(0X434D64,	"left",	0);
@@ -18234,13 +18408,21 @@ static Bytes_2(void) {
 	set_cmt	(0X434D72,	"right",	0);
 	set_cmt	(0X434D76,	"bottom",	0);
 	set_cmt	(0X434D7A,	"colour",	0);
+	create_insn	(x=0X434D8C);
+	op_stroff	(x,	1,	GetStrucIdByName("obj_competitors_t"),	0);
 	create_insn	(0X434DA7);
+	create_insn	(x=0X434DAA);
+	op_stroff	(x,	1,	GetStrucIdByName("obj_competitors_t"),	0);
 	create_insn	(x=0X434DC2);
 	op_plain_offset	(x,	1,	0);
 	op_plain_offset	(x,	129,	0);
+	create_insn	(x=0X434DDC);
+	op_stroff	(x,	1,	GetStrucIdByName("obj_competitors_t"),	0);
 	create_insn	(x=0X434DF4);
 	op_plain_offset	(x,	1,	0);
 	op_plain_offset	(x,	129,	0);
+	create_insn	(x=0X434E0E);
+	op_stroff	(x,	1,	GetStrucIdByName("obj_competitors_t"),	0);
 	create_insn	(x=0X434E26);
 	op_plain_offset	(x,	1,	0);
 	op_plain_offset	(x,	129,	0);
@@ -18295,6 +18477,8 @@ static Bytes_2(void) {
 	op_plain_offset	(x,	129,	0);
 	create_insn	(x=0X434F7A);
 	op_hex		(x,	1);
+	create_insn	(x=0X434F95);
+	op_stroff	(x,	1,	GetStrucIdByName("obj_interface_skin_t"),	0);
 	create_insn	(0X434FD0);
 	create_insn	(0X434FE8);
 	set_name	(0X434FE8,	"ui::company_face_selection::event_prepare_draw");
@@ -18314,6 +18498,15 @@ static Bytes_2(void) {
 	set_cmt	(0X435062,	"bottom",	0);
 	create_insn	(x=0X4350B2);
 	op_hex		(x,	1);
+}
+
+//------------------------------------------------------------------------
+// Information about bytes
+
+static Bytes_3(void) {
+        auto x;
+#define id x
+
 	create_insn	(x=0X4350EA);
 	op_plain_offset	(x,	1,	0);
 	op_plain_offset	(x,	129,	0);
@@ -18442,6 +18635,8 @@ static Bytes_2(void) {
 	create_insn	(x=0X4356A3);
 	op_plain_offset	(x,	1,	0);
 	op_plain_offset	(x,	129,	0);
+	create_insn	(x=0X4356B1);
+	op_stroff	(x,	1,	GetStrucIdByName("obj_competitors_t"),	0);
 	create_insn	(x=0X4356B5);
 	op_plain_offset	(x,	1,	0);
 	op_plain_offset	(x,	129,	0);
@@ -18522,15 +18717,6 @@ static Bytes_2(void) {
 	set_cmt	(0X4358EF,	"colour",	0);
 	set_cmt	(0X4358F9,	"bottom",	0);
 	set_cmt	(0X435901,	"top",	0);
-}
-
-//------------------------------------------------------------------------
-// Information about bytes
-
-static Bytes_3(void) {
-        auto x;
-#define id x
-
 	set_cmt	(0X435904,	"left",	0);
 	set_cmt	(0X435908,	"right",	0);
 	set_cmt	(0X43590C,	"colour",	0);
@@ -18642,6 +18828,10 @@ static Bytes_3(void) {
 	create_insn	(x=0X435C8D);
 	op_plain_offset	(x,	1,	0);
 	op_plain_offset	(x,	129,	0);
+	create_insn	(x=0X435CEB);
+	op_stroff	(x,	1,	GetStrucIdByName("obj_interface_skin_t"),	0);
+	create_insn	(x=0X435CF4);
+	op_stroff	(x,	1,	GetStrucIdByName("obj_interface_skin_t"),	0);
 	create_insn	(x=0X435D07);
 	op_stroff	(x,	1,	GetStrucIdByName("window_t"),	0);
 	set_name	(0X435D07,	"ui::company_list::event_1_prepare_draw");
@@ -18696,6 +18886,8 @@ static Bytes_3(void) {
 	create_insn	(x=0X435F5A);
 	op_plain_offset	(x,	1,	0);
 	op_plain_offset	(x,	129,	0);
+	create_insn	(x=0X435F61);
+	op_stroff	(x,	1,	GetStrucIdByName("obj_competitors_t"),	0);
 	create_insn	(x=0X435F65);
 	op_plain_offset	(x,	1,	0);
 	op_plain_offset	(x,	129,	0);
@@ -19060,28 +19252,38 @@ static Bytes_3(void) {
 	op_hex		(x,	1);
 	create_insn	(x=0X43764D);
 	op_hex		(x,	1);
+	create_insn	(x=0X43765C);
+	op_stroff	(x,	1,	GetStrucIdByName("obj_interface_skin_t"),	0);
 	create_insn	(x=0X43767C);
 	op_hex		(x,	1);
 	create_insn	(x=0X437680);
 	op_hex		(x,	1);
+	create_insn	(x=0X43768F);
+	op_stroff	(x,	1,	GetStrucIdByName("obj_interface_skin_t"),	0);
 	create_insn	(x=0X437699);
 	op_hex		(x,	1);
 	create_insn	(x=0X4376BB);
 	op_hex		(x,	1);
 	create_insn	(x=0X4376BF);
 	op_hex		(x,	1);
+	create_insn	(x=0X4376CE);
+	op_stroff	(x,	1,	GetStrucIdByName("obj_interface_skin_t"),	0);
 	create_insn	(x=0X4376D8);
 	op_hex		(x,	1);
 	create_insn	(x=0X4376FA);
 	op_hex		(x,	1);
 	create_insn	(x=0X4376FE);
 	op_hex		(x,	1);
+	create_insn	(x=0X43770D);
+	op_stroff	(x,	1,	GetStrucIdByName("obj_interface_skin_t"),	0);
 	create_insn	(x=0X437717);
 	op_hex		(x,	1);
 	create_insn	(x=0X437739);
 	op_hex		(x,	1);
 	create_insn	(x=0X43773D);
 	op_hex		(x,	1);
+	create_insn	(x=0X43774C);
+	op_stroff	(x,	1,	GetStrucIdByName("obj_interface_skin_t"),	0);
 	create_insn	(x=0X437756);
 	op_hex		(x,	1);
 	create_insn	(x=0X437794);
@@ -19092,6 +19294,8 @@ static Bytes_3(void) {
 	op_hex		(x,	1);
 	create_insn	(x=0X4377E7);
 	op_hex		(x,	1);
+	create_insn	(x=0X4377F6);
+	op_stroff	(x,	1,	GetStrucIdByName("obj_interface_skin_t"),	0);
 	create_insn	(x=0X437800);
 	op_hex		(x,	1);
 	create_insn	(x=0X437810);
@@ -19802,12 +20006,20 @@ static Bytes_3(void) {
 	create_insn	(x=0X438B8C);
 	op_stroff	(x,	0,	GetStrucIdByName("window_t"),	0);
 	op_hex		(x,	1);
+	create_insn	(x=0X438BA3);
+	op_stroff	(x,	1,	GetStrucIdByName("obj_interface_skin_t"),	0);
 	create_insn	(x=0X438BA6);
 	op_stroff	(x,	0,	GetStrucIdByName("window_t"),	0);
+	create_insn	(x=0X438BAC);
+	op_stroff	(x,	1,	GetStrucIdByName("obj_interface_skin_t"),	0);
 	create_insn	(x=0X438BAF);
 	op_stroff	(x,	0,	GetStrucIdByName("window_t"),	0);
+	create_insn	(x=0X438BB5);
+	op_stroff	(x,	1,	GetStrucIdByName("obj_interface_skin_t"),	0);
 	create_insn	(x=0X438BB8);
 	op_stroff	(x,	0,	GetStrucIdByName("window_t"),	0);
+	create_insn	(x=0X438BBE);
+	op_stroff	(x,	1,	GetStrucIdByName("obj_interface_skin_t"),	0);
 	create_insn	(x=0X438BC1);
 	op_stroff	(x,	0,	GetStrucIdByName("window_t"),	0);
 	create_insn	(x=0X438BD1);
@@ -19833,6 +20045,8 @@ static Bytes_3(void) {
 	op_hex		(x,	1);
 	create_insn	(x=0X438BFB);
 	op_stroff	(x,	0,	GetStrucIdByName("window_t"),	0);
+	create_insn	(x=0X438C14);
+	op_stroff	(x,	1,	GetStrucIdByName("obj_interface_skin_t"),	0);
 	create_insn	(x=0X438C17);
 	op_hex		(x,	1);
 	create_insn	(x=0X438C19);
@@ -19873,6 +20087,8 @@ static Bytes_3(void) {
 	op_stroff	(x,	0,	GetStrucIdByName("window_t"),	0);
 	create_insn	(x=0X438C7B);
 	op_stroff	(x,	0,	GetStrucIdByName("window_t"),	0);
+	create_insn	(x=0X438C94);
+	op_stroff	(x,	1,	GetStrucIdByName("obj_interface_skin_t"),	0);
 	create_insn	(x=0X438C97);
 	op_hex		(x,	1);
 	create_insn	(x=0X438C99);
@@ -19891,10 +20107,14 @@ static Bytes_3(void) {
 	op_stroff	(x,	0,	GetStrucIdByName("window_t"),	0);
 	op_plain_offset	(x,	1,	0);
 	op_plain_offset	(x,	129,	0);
+	create_insn	(x=0X438CF6);
+	op_stroff	(x,	1,	GetStrucIdByName("obj_interface_skin_t"),	0);
 	create_insn	(x=0X438CF9);
 	op_hex		(x,	1);
 	create_insn	(x=0X438CFB);
 	op_stroff	(x,	0,	GetStrucIdByName("window_t"),	0);
+	create_insn	(x=0X438D01);
+	op_stroff	(x,	1,	GetStrucIdByName("obj_interface_skin_t"),	0);
 	create_insn	(x=0X438D04);
 	op_hex		(x,	1);
 	create_insn	(x=0X438D06);
@@ -19991,6 +20211,8 @@ static Bytes_3(void) {
 	op_stroff	(x,	0,	GetStrucIdByName("window_t"),	0);
 	create_insn	(x=0X438E6D);
 	op_hex		(x,	1);
+	create_insn	(x=0X438EB7);
+	op_stroff	(x,	1,	GetStrucIdByName("obj_interface_skin_t"),	0);
 	create_insn	(0X438EC7);
 	set_name	(0X438EC7,	"ui::title_menu::_widgets::event_draw");
 	create_insn	(x=0X438EE3);
@@ -20302,6 +20524,8 @@ static Bytes_3(void) {
 	create_insn	(x=0X4398B3);
 	op_plain_offset	(x,	1,	0);
 	op_plain_offset	(x,	129,	0);
+	create_insn	(x=0X4398E5);
+	op_stroff	(x,	1,	GetStrucIdByName("obj_interface_skin_t"),	0);
 	create_insn	(0X4398FB);
 	set_name	(0X4398FB,	"ui::toolbar_time::_widgets::event_on_mouse_up");
 	create_insn	(0X43992E);
@@ -20373,8 +20597,32 @@ static Bytes_3(void) {
 	set_name	(0X439BCB,	"ui::toolbar_top::_widgets::event_prepare_draw");
 	create_insn	(x=0X439BD7);
 	op_hex		(x,	1);
+	create_insn	(x=0X439BE0);
+	op_stroff	(x,	1,	GetStrucIdByName("obj_interface_skin_t"),	0);
 	create_insn	(x=0X439BE8);
 	op_hex		(x,	1);
+	create_insn	(x=0X439C26);
+	op_stroff	(x,	1,	GetStrucIdByName("obj_interface_skin_t"),	0);
+	create_insn	(x=0X439C33);
+	op_stroff	(x,	1,	GetStrucIdByName("obj_interface_skin_t"),	0);
+	create_insn	(x=0X439C40);
+	op_stroff	(x,	1,	GetStrucIdByName("obj_interface_skin_t"),	0);
+	create_insn	(x=0X439C4D);
+	op_stroff	(x,	1,	GetStrucIdByName("obj_interface_skin_t"),	0);
+	create_insn	(x=0X439C5A);
+	op_stroff	(x,	1,	GetStrucIdByName("obj_interface_skin_t"),	0);
+	create_insn	(x=0X439C67);
+	op_stroff	(x,	1,	GetStrucIdByName("obj_interface_skin_t"),	0);
+	create_insn	(x=0X439C88);
+	op_stroff	(x,	1,	GetStrucIdByName("obj_interface_skin_t"),	0);
+	create_insn	(x=0X439C95);
+	op_stroff	(x,	1,	GetStrucIdByName("obj_interface_skin_t"),	0);
+	create_insn	(x=0X439CA6);
+	op_stroff	(x,	1,	GetStrucIdByName("obj_interface_skin_t"),	0);
+	create_insn	(x=0X439CB3);
+	op_stroff	(x,	1,	GetStrucIdByName("obj_interface_skin_t"),	0);
+	create_insn	(x=0X439CC4);
+	op_stroff	(x,	1,	GetStrucIdByName("obj_interface_skin_t"),	0);
 	create_insn	(0X439DE4);
 	set_name	(0X439DE4,	"ui::toolbar_top::_widgets::event_draw");
 	create_insn	(0X439E2C);
@@ -20383,6 +20631,8 @@ static Bytes_3(void) {
 	op_plain_offset	(x,	129,	0);
 	create_insn	(x=0X439E4A);
 	op_hex		(x,	1);
+	create_insn	(x=0X439E5A);
+	op_stroff	(x,	1,	GetStrucIdByName("obj_interface_skin_t"),	0);
 	create_insn	(x=0X439E9B);
 	op_hex		(x,	1);
 	create_insn	(0X439EE9);
@@ -20391,8 +20641,12 @@ static Bytes_3(void) {
 	op_plain_offset	(x,	129,	0);
 	create_insn	(x=0X439F07);
 	op_hex		(x,	1);
+	create_insn	(x=0X439F17);
+	op_stroff	(x,	1,	GetStrucIdByName("obj_interface_skin_t"),	0);
 	create_insn	(x=0X439F58);
 	op_hex		(x,	1);
+	create_insn	(x=0X439F8E);
+	op_stroff	(x,	1,	GetStrucIdByName("obj_interface_skin_t"),	0);
 	create_insn	(x=0X439F91);
 	op_hex		(x,	1);
 	create_insn	(x=0X439F9E);
@@ -20400,10 +20654,14 @@ static Bytes_3(void) {
 	op_plain_offset	(x,	129,	0);
 	create_insn	(x=0X439FA5);
 	op_hex		(x,	1);
+	create_insn	(x=0X439FB5);
+	op_stroff	(x,	1,	GetStrucIdByName("obj_interface_skin_t"),	0);
 	create_insn	(x=0X439FF6);
 	op_hex		(x,	1);
 	create_insn	(x=0X43A01F);
 	op_hex		(x,	1);
+	create_insn	(x=0X43A027);
+	op_stroff	(x,	1,	GetStrucIdByName("obj_interface_skin_t"),	0);
 	create_insn	(x=0X43A037);
 	op_plain_offset	(x,	1,	0);
 	op_plain_offset	(x,	129,	0);
@@ -20582,6 +20840,8 @@ static Bytes_3(void) {
 	create_insn	(x=0X43AACB);
 	op_plain_offset	(x,	1,	0);
 	op_plain_offset	(x,	129,	0);
+	create_insn	(x=0X43AAD2);
+	op_stroff	(x,	1,	GetStrucIdByName("obj_competitors_t"),	0);
 	create_insn	(x=0X43AAD6);
 	op_plain_offset	(x,	1,	0);
 	op_plain_offset	(x,	129,	0);
@@ -20726,8 +20986,12 @@ static Bytes_3(void) {
 	create_insn	(x=0X43B2C2);
 	op_stroff	(x,	0,	GetStrucIdByName("window_t"),	0);
 	op_hex		(x,	1);
+	create_insn	(x=0X43B2D1);
+	op_stroff	(x,	1,	GetStrucIdByName("obj_interface_skin_t"),	0);
 	create_insn	(x=0X43B2D4);
 	op_stroff	(x,	0,	GetStrucIdByName("window_t"),	0);
+	create_insn	(x=0X43B2DA);
+	op_stroff	(x,	1,	GetStrucIdByName("obj_interface_skin_t"),	0);
 	create_insn	(x=0X43B2DD);
 	op_stroff	(x,	0,	GetStrucIdByName("window_t"),	0);
 	create_insn	(0X43B2E4);
@@ -20758,6 +21022,10 @@ static Bytes_3(void) {
 	op_plain_offset	(x,	129,	0);
 	create_insn	(x=0X43B4FE);
 	op_hex		(x,	1);
+	create_insn	(x=0X43B50D);
+	op_stroff	(x,	1,	GetStrucIdByName("obj_interface_skin_t"),	0);
+	create_insn	(x=0X43B516);
+	op_stroff	(x,	1,	GetStrucIdByName("obj_interface_skin_t"),	0);
 	create_insn	(0X43B521);
 	set_cmt	(0X43B522,	"windowtype",	0);
 	create_insn	(x=0X43B522);
@@ -21032,10 +21300,21 @@ static Bytes_3(void) {
 	op_plain_offset	(x,	129,	0);
 	create_insn	(0X43C823);
 	set_name	(0X43C823,	"obj_interface_skin");
-	create_insn	(0X43C853);
+	create_insn	(x=0X43C82D);
+	op_stroff	(x,	1,	GetStrucIdByName("obj_interface_skin_t"),	0);
+	create_insn	(x=0X43C837);
+	op_stroff	(x,	0,	GetStrucIdByName("obj_interface_skin_t"),	0);
+	create_insn	(x=0X43C83F);
+	op_stroff	(x,	0,	GetStrucIdByName("obj_interface_skin_t"),	0);
+	create_insn	(x=0X43C853);
+	op_stroff	(x,	0,	GetStrucIdByName("obj_interface_skin_t"),	0);
+	create_insn	(x=0X43C858);
+	op_stroff	(x,	0,	GetStrucIdByName("obj_interface_skin_t"),	0);
 	create_insn	(0X43C860);
 	create_insn	(0X43C863);
 	create_insn	(0X43C865);
+	create_insn	(x=0X43C86D);
+	op_stroff	(x,	1,	GetStrucIdByName("obj_interface_skin_t"),	0);
 	create_insn	(0X43C888);
 	make_array	(0X43C88A,	0X2);
 	create_insn	(0X43C88C);
@@ -21238,8 +21517,12 @@ static Bytes_3(void) {
 	set_name	(0X43D2F3,	"ui::toolbar_top_alt::_widgets::event_prepare_draw");
 	create_insn	(x=0X43D3CD);
 	op_hex		(x,	1);
+	create_insn	(x=0X43D3D6);
+	op_stroff	(x,	1,	GetStrucIdByName("obj_interface_skin_t"),	0);
 	create_insn	(x=0X43D3DE);
 	op_hex		(x,	1);
+	create_insn	(x=0X43D3FA);
+	op_stroff	(x,	1,	GetStrucIdByName("obj_interface_skin_t"),	0);
 	create_insn	(0X43D474);
 	set_name	(0X43D474,	"ui::toolbar_top_alt::_widgets::event_draw");
 	create_insn	(0X43D4C5);
@@ -21624,7 +21907,16 @@ static Bytes_3(void) {
 	set_cmt	(0X43EDB7,	"number",	0);
 	create_insn	(0X43EDD9);
 	set_name	(0X43EDD9,	"obj_scenario_text");
-	create_insn	(0X43EE0B);
+	create_insn	(x=0X43EDE3);
+	op_stroff	(x,	1,	GetStrucIdByName("obj_scenario_text_t"),	0);
+	create_insn	(x=0X43EDED);
+	op_stroff	(x,	0,	GetStrucIdByName("obj_scenario_text_t"),	0);
+	create_insn	(x=0X43EDF6);
+	op_stroff	(x,	0,	GetStrucIdByName("obj_scenario_text_t"),	0);
+	create_insn	(x=0X43EE0B);
+	op_stroff	(x,	0,	GetStrucIdByName("obj_scenario_text_t"),	0);
+	create_insn	(x=0X43EE10);
+	op_stroff	(x,	0,	GetStrucIdByName("obj_scenario_text_t"),	0);
 	create_insn	(0X43EE17);
 	create_insn	(0X43EE1A);
 	create_insn	(0X43EE1C);
@@ -21681,6 +21973,8 @@ static Bytes_3(void) {
 	create_insn	(x=0X43F014);
 	op_plain_offset	(x,	1,	0);
 	op_plain_offset	(x,	129,	0);
+	create_insn	(x=0X43F038);
+	op_stroff	(x,	1,	GetStrucIdByName("obj_scenario_text_t"),	0);
 	create_insn	(x=0X43F05B);
 	op_plain_offset	(x,	1,	0);
 	op_plain_offset	(x,	129,	0);
@@ -21690,6 +21984,8 @@ static Bytes_3(void) {
 	create_insn	(x=0X43F0BD);
 	op_plain_offset	(x,	1,	0);
 	op_plain_offset	(x,	129,	0);
+	create_insn	(x=0X43F0E1);
+	op_stroff	(x,	1,	GetStrucIdByName("obj_scenario_text_t"),	0);
 	create_insn	(x=0X43F106);
 	op_plain_offset	(x,	1,	0);
 	op_plain_offset	(x,	129,	0);
@@ -21914,6 +22210,8 @@ static Bytes_3(void) {
 	create_insn	(x=0X44014B);
 	op_hex		(x,	1);
 	create_insn	(0X440165);
+	create_insn	(x=0X440178);
+	op_stroff	(x,	1,	GetStrucIdByName("obj_scenario_text_t"),	0);
 	create_insn	(x=0X44017C);
 	op_plain_offset	(x,	1,	0);
 	op_plain_offset	(x,	129,	0);
@@ -22484,6 +22782,15 @@ static Bytes_3(void) {
 	create_insn	(x=0X441646);
 	op_plain_offset	(x,	0,	0);
 	op_plain_offset	(x,	128,	0);
+}
+
+//------------------------------------------------------------------------
+// Information about bytes
+
+static Bytes_4(void) {
+        auto x;
+#define id x
+
 	create_insn	(x=0X44164B);
 	op_plain_offset	(x,	0,	0);
 	op_plain_offset	(x,	128,	0);
@@ -23035,15 +23342,6 @@ static Bytes_3(void) {
 	create_insn	(x=0X442923);
 	op_hex		(x,	1);
 	create_insn	(0X44293C);
-}
-
-//------------------------------------------------------------------------
-// Information about bytes
-
-static Bytes_4(void) {
-        auto x;
-#define id x
-
 	set_cmt	(0X442950,	"hObject",	0);
 	create_insn	(x=0X44295B);
 	op_hex		(x,	1);
@@ -23635,6 +23933,8 @@ static Bytes_4(void) {
 	create_insn	(x=0X444198);
 	op_plain_offset	(x,	1,	0);
 	op_plain_offset	(x,	129,	0);
+	create_insn	(x=0X4441B0);
+	op_stroff	(x,	1,	GetStrucIdByName("obj_scenario_text_t"),	0);
 	create_insn	(x=0X4441B4);
 	op_plain_offset	(x,	1,	0);
 	op_plain_offset	(x,	129,	0);
@@ -28416,6 +28716,15 @@ static Bytes_4(void) {
 	op_stkvar	(x,	1);
 	create_insn	(0X456505);
 	set_name	(0X456505,	"ui::industry::event_2_on_mouse_up");
+}
+
+//------------------------------------------------------------------------
+// Information about bytes
+
+static Bytes_5(void) {
+        auto x;
+#define id x
+
 	create_insn	(0X45652A);
 	set_name	(0X45652A,	"ui::industry::event_2_text_input");
 	create_insn	(0X456535);
@@ -28956,15 +29265,6 @@ static Bytes_4(void) {
 	op_hex		(x,	1);
 	create_insn	(x=0X457735);
 	op_hex		(x,	1);
-}
-
-//------------------------------------------------------------------------
-// Information about bytes
-
-static Bytes_5(void) {
-        auto x;
-#define id x
-
 	create_insn	(x=0X45773B);
 	op_hex		(x,	1);
 	create_insn	(x=0X45773E);
@@ -30706,10 +31006,18 @@ static Bytes_5(void) {
 	create_insn	(x=0X45EFDB);
 	op_stroff	(x,	1,	GetStrucIdByName("window_t"),	0);
 	set_name	(0X45EFDB,	"viewport_zoom_in");
+	create_insn	(x=0X45EFE2);
+	op_stroff	(x,	0,	GetStrucIdByName("viewport_t"),	0);
+	create_insn	(x=0X45EFE8);
+	op_stroff	(x,	0,	GetStrucIdByName("viewport_t"),	0);
 	create_insn	(x=0X45EFEB);
 	op_hex		(x,	1);
 	create_insn	(x=0X45EFEF);
 	op_hex		(x,	1);
+	create_insn	(x=0X45EFF3);
+	op_stroff	(x,	1,	GetStrucIdByName("viewport_t"),	0);
+	create_insn	(x=0X45EFF7);
+	op_stroff	(x,	1,	GetStrucIdByName("viewport_t"),	0);
 	create_insn	(x=0X45EFFB);
 	op_hex		(x,	1);
 	create_insn	(x=0X45EFFE);
@@ -34835,6 +35143,15 @@ static Bytes_5(void) {
 	op_hex		(x,	1);
 	create_insn	(x=0X46BBA2);
 	op_hex		(x,	1);
+}
+
+//------------------------------------------------------------------------
+// Information about bytes
+
+static Bytes_6(void) {
+        auto x;
+#define id x
+
 	create_insn	(x=0X46BBB2);
 	op_hex		(x,	1);
 	create_insn	(x=0X46BBB6);
@@ -35462,15 +35779,6 @@ static Bytes_5(void) {
 	create_insn	(x=0X46CFAC);
 	op_plain_offset	(x,	0,	0);
 	op_plain_offset	(x,	128,	0);
-}
-
-//------------------------------------------------------------------------
-// Information about bytes
-
-static Bytes_6(void) {
-        auto x;
-#define id x
-
 	create_insn	(x=0X46CFB6);
 	op_plain_offset	(x,	0,	0);
 	op_plain_offset	(x,	128,	0);
@@ -35859,10 +36167,32 @@ static Bytes_6(void) {
 	create_insn	(0X46DF3D);
 	create_insn	(0X46DF4C);
 	set_name	(0X46DF4C,	"obj_currency");
-	create_insn	(0X46DF90);
-	create_insn	(0X46DFA9);
+	create_insn	(x=0X46DF56);
+	op_stroff	(x,	1,	GetStrucIdByName("obj_currency_t"),	0);
+	create_insn	(x=0X46DF60);
+	op_stroff	(x,	0,	GetStrucIdByName("obj_currency_t"),	0);
+	create_insn	(x=0X46DF69);
+	op_stroff	(x,	0,	GetStrucIdByName("obj_currency_t"),	0);
+	create_insn	(x=0X46DF73);
+	op_stroff	(x,	0,	GetStrucIdByName("obj_currency_t"),	0);
+	create_insn	(x=0X46DF7C);
+	op_stroff	(x,	0,	GetStrucIdByName("obj_currency_t"),	0);
+	create_insn	(x=0X46DF90);
+	op_stroff	(x,	0,	GetStrucIdByName("obj_currency_t"),	0);
+	create_insn	(x=0X46DF95);
+	op_stroff	(x,	0,	GetStrucIdByName("obj_currency_t"),	0);
+	create_insn	(x=0X46DF9B);
+	op_stroff	(x,	0,	GetStrucIdByName("obj_currency_t"),	0);
+	create_insn	(x=0X46DFA1);
+	op_stroff	(x,	0,	GetStrucIdByName("obj_currency_t"),	0);
+	create_insn	(x=0X46DFA9);
+	op_stroff	(x,	0,	GetStrucIdByName("obj_currency_t"),	0);
+	create_insn	(x=0X46DFAF);
+	op_stroff	(x,	0,	GetStrucIdByName("obj_currency_t"),	0);
 	create_insn	(0X46DFB8);
 	create_insn	(0X46DFBA);
+	create_insn	(x=0X46DFC3);
+	op_stroff	(x,	1,	GetStrucIdByName("obj_currency_t"),	0);
 	create_insn	(x=0X46DFC9);
 	op_hex		(x,	1);
 	create_insn	(x=0X46DFCC);
@@ -36136,6 +36466,10 @@ static Bytes_6(void) {
 	create_insn	(0X46EA98);
 	set_name	(0X46EA98,	"ui::multiplayer::event_1_text_input");
 	create_insn	(0X46EAA3);
+	create_insn	(x=0X46EACE);
+	op_stroff	(x,	1,	GetStrucIdByName("window_t"),	0);
+	create_insn	(x=0X46EAD4);
+	op_stroff	(x,	1,	GetStrucIdByName("window_t"),	0);
 	create_insn	(x=0X46EAF2);
 	op_hex		(x,	1);
 	create_insn	(0X46EB52);
@@ -41005,6 +41339,15 @@ static Bytes_6(void) {
 	create_insn	(x=0X47993D);
 	op_hex		(x,	1);
 	create_insn	(0X479944);
+}
+
+//------------------------------------------------------------------------
+// Information about bytes
+
+static Bytes_7(void) {
+        auto x;
+#define id x
+
 	create_insn	(x=0X479958);
 	op_hex		(x,	1);
 	create_insn	(x=0X47996A);
@@ -41775,15 +42118,6 @@ static Bytes_6(void) {
 	set_cmt	(0X47B421,	"switch jump",	0);
 	set_cmt	(0X47B428,	"jumptable 0047B421 case 0",	1);
 	create_insn	(0X47B428);
-}
-
-//------------------------------------------------------------------------
-// Information about bytes
-
-static Bytes_7(void) {
-        auto x;
-#define id x
-
 	set_cmt	(0X47B434,	"jumptable 0047B421 case 1",	1);
 	create_insn	(0X47B434);
 	set_cmt	(0X47B440,	"jumptable 0047B421 case 2",	1);
@@ -44974,6 +45308,8 @@ static Bytes_7(void) {
 	create_insn	(x=0X48131B);
 	op_stkvar	(x,	1);
 	create_insn	(0X481357);
+	create_insn	(x=0X48136A);
+	op_stroff	(x,	1,	GetStrucIdByName("obj_competitors_t"),	0);
 	create_insn	(0X48137D);
 	create_insn	(0X48137F);
 	create_insn	(x=0X481382);
@@ -45418,6 +45754,8 @@ static Bytes_7(void) {
 	op_hex		(x,	1);
 	create_insn	(0X482530);
 	create_insn	(0X482533);
+	create_insn	(x=0X48254E);
+	op_stroff	(x,	1,	GetStrucIdByName("obj_competitors_t"),	0);
 	create_insn	(x=0X482552);
 	op_plain_offset	(x,	1,	0);
 	op_plain_offset	(x,	129,	0);
@@ -47080,6 +47418,8 @@ static Bytes_7(void) {
 	create_insn	(0X4869B8);
 	create_insn	(0X4869BD);
 	create_insn	(0X4869C2);
+	create_insn	(x=0X4869E5);
+	op_stroff	(x,	1,	GetStrucIdByName("obj_competitors_t"),	0);
 	create_insn	(x=0X4869E9);
 	op_plain_offset	(x,	1,	0);
 	op_plain_offset	(x,	129,	0);
@@ -48097,6 +48437,15 @@ static Bytes_7(void) {
 	op_hex		(x,	1);
 	create_insn	(x=0X4887A1);
 	op_hex		(x,	1);
+}
+
+//------------------------------------------------------------------------
+// Information about bytes
+
+static Bytes_8(void) {
+        auto x;
+#define id x
+
 	create_insn	(x=0X4887E6);
 	op_hex		(x,	1);
 	create_insn	(x=0X4887F7);
@@ -48829,6 +49178,8 @@ static Bytes_7(void) {
 	create_insn	(0X489E4A);
 	create_insn	(x=0X489E4B);
 	op_hex		(x,	1);
+	create_insn	(x=0X489E57);
+	op_stroff	(x,	1,	GetStrucIdByName("obj_sound_t"),	0);
 	create_insn	(x=0X489E67);
 	op_plain_offset	(x,	1,	0);
 	op_plain_offset	(x,	129,	0);
@@ -48877,15 +49228,6 @@ static Bytes_7(void) {
 	set_cmt	(0X489FFE,	"windowtype",	0);
 	create_insn	(x=0X489FFE);
 	op_enum		(x,	1,	GetEnum("windowtype"),0);
-}
-
-//------------------------------------------------------------------------
-// Information about bytes
-
-static Bytes_8(void) {
-        auto x;
-#define id x
-
 	create_insn	(x=0X48A03D);
 	op_plain_offset	(x,	1,	0);
 	op_plain_offset	(x,	129,	0);
@@ -48896,6 +49238,8 @@ static Bytes_8(void) {
 	create_insn	(0X48A0B3);
 	create_insn	(x=0X48A0B4);
 	op_hex		(x,	1);
+	create_insn	(x=0X48A0C0);
+	op_stroff	(x,	1,	GetStrucIdByName("obj_sound_t"),	0);
 	create_insn	(x=0X48A0D6);
 	op_plain_offset	(x,	1,	0);
 	op_plain_offset	(x,	129,	0);
@@ -49000,6 +49344,8 @@ static Bytes_8(void) {
 	op_hex		(x,	1);
 	create_insn	(x=0X48A548);
 	op_hex		(x,	1);
+	create_insn	(x=0X48A554);
+	op_stroff	(x,	1,	GetStrucIdByName("obj_sound_t"),	0);
 	create_insn	(x=0X48A580);
 	op_hex		(x,	1);
 	create_insn	(0X48A590);
@@ -49233,7 +49579,16 @@ static Bytes_8(void) {
 	op_hex		(x,	1);
 	create_insn	(0X48AFA5);
 	set_name	(0X48AFA5,	"obj_sound");
-	create_insn	(0X48AFE1);
+	create_insn	(x=0X48AFAF);
+	op_stroff	(x,	1,	GetStrucIdByName("obj_sound_t"),	0);
+	create_insn	(x=0X48AFB9);
+	op_stroff	(x,	0,	GetStrucIdByName("obj_sound_t"),	0);
+	create_insn	(x=0X48AFCB);
+	op_stroff	(x,	0,	GetStrucIdByName("obj_sound_t"),	0);
+	create_insn	(x=0X48AFE1);
+	op_stroff	(x,	0,	GetStrucIdByName("obj_sound_t"),	0);
+	create_insn	(x=0X48AFE6);
+	op_stroff	(x,	0,	GetStrucIdByName("obj_sound_t"),	0);
 	create_insn	(0X48AFEE);
 	create_insn	(0X48AFF1);
 	create_insn	(0X48AFF3);
@@ -49243,6 +49598,8 @@ static Bytes_8(void) {
 	op_stkvar	(x,	1);
 	create_insn	(x=0X48B001);
 	op_hex		(x,	1);
+	create_insn	(x=0X48B00E);
+	op_stroff	(x,	1,	GetStrucIdByName("obj_sound_t"),	0);
 	create_insn	(0X48B013);
 	create_insn	(x=0X48B01E);
 	op_hex		(x,	1);
@@ -54165,6 +54522,15 @@ static Bytes_8(void) {
 	op_stkvar	(x,	1);
 	create_insn	(0X495DC7);
 	set_name	(0X495DC7,	"formatMonthYearAbbrev_0");
+}
+
+//------------------------------------------------------------------------
+// Information about bytes
+
+static Bytes_9(void) {
+        auto x;
+#define id x
+
 	create_insn	(x=0X495DD6);
 	op_stkvar	(x,	1);
 	create_insn	(x=0X495DE6);
@@ -54766,72 +55132,120 @@ static Bytes_8(void) {
 	op_plain_offset	(x,	129,	0);
 	create_insn	(0X497A60);
 	create_insn	(0X497A6A);
+	create_insn	(x=0X497A7D);
+	op_stroff	(x,	1,	GetStrucIdByName("obj_town_names_t"),	0);
+	create_insn	(x=0X497A87);
+	op_stroff	(x,	1,	GetStrucIdByName("obj_town_names_t"),	0);
 	create_insn	(x=0X497A8C);
 	op_stkvar	(x,	1);
+	create_insn	(x=0X497A9B);
+	op_stroff	(x,	1,	GetStrucIdByName("obj_town_names_t"),	0);
 	create_insn	(x=0X497AA4);
 	op_stkvar	(x,	0);
 	create_insn	(x=0X497AA8);
 	op_stkvar	(x,	1);
+	create_insn	(x=0X497AAC);
+	op_stroff	(x,	1,	GetStrucIdByName("obj_town_names_t"),	0);
 	create_insn	(x=0X497AB4);
 	op_hex		(x,	1);
 	create_insn	(x=0X497AB6);
 	op_hex		(x,	1);
 	create_insn	(x=0X497ABB);
 	op_stkvar	(x,	0);
+	create_insn	(x=0X497AC0);
+	op_stroff	(x,	1,	GetStrucIdByName("obj_town_names_t"),	0);
+	create_insn	(x=0X497ACA);
+	op_stroff	(x,	1,	GetStrucIdByName("obj_town_names_t"),	0);
 	create_insn	(x=0X497ACF);
 	op_stkvar	(x,	1);
+	create_insn	(x=0X497ADE);
+	op_stroff	(x,	1,	GetStrucIdByName("obj_town_names_t"),	0);
 	create_insn	(x=0X497AE7);
 	op_stkvar	(x,	0);
 	create_insn	(x=0X497AEB);
 	op_stkvar	(x,	1);
+	create_insn	(x=0X497AEF);
+	op_stroff	(x,	1,	GetStrucIdByName("obj_town_names_t"),	0);
 	create_insn	(x=0X497AF7);
 	op_hex		(x,	1);
 	create_insn	(x=0X497AF9);
 	op_hex		(x,	1);
 	create_insn	(x=0X497AFE);
 	op_stkvar	(x,	0);
+	create_insn	(x=0X497B02);
+	op_stroff	(x,	1,	GetStrucIdByName("obj_town_names_t"),	0);
+	create_insn	(x=0X497B0C);
+	op_stroff	(x,	1,	GetStrucIdByName("obj_town_names_t"),	0);
 	create_insn	(x=0X497B11);
 	op_stkvar	(x,	1);
+	create_insn	(x=0X497B20);
+	op_stroff	(x,	1,	GetStrucIdByName("obj_town_names_t"),	0);
 	create_insn	(x=0X497B29);
 	op_stkvar	(x,	0);
 	create_insn	(x=0X497B2D);
 	op_stkvar	(x,	1);
+	create_insn	(x=0X497B31);
+	op_stroff	(x,	1,	GetStrucIdByName("obj_town_names_t"),	0);
 	create_insn	(x=0X497B39);
 	op_hex		(x,	1);
 	create_insn	(x=0X497B3B);
 	op_hex		(x,	1);
 	create_insn	(x=0X497B40);
 	op_stkvar	(x,	0);
+	create_insn	(x=0X497B44);
+	op_stroff	(x,	1,	GetStrucIdByName("obj_town_names_t"),	0);
+	create_insn	(x=0X497B4E);
+	op_stroff	(x,	1,	GetStrucIdByName("obj_town_names_t"),	0);
 	create_insn	(x=0X497B53);
 	op_stkvar	(x,	1);
+	create_insn	(x=0X497B62);
+	op_stroff	(x,	1,	GetStrucIdByName("obj_town_names_t"),	0);
 	create_insn	(x=0X497B6B);
 	op_stkvar	(x,	0);
 	create_insn	(x=0X497B6F);
 	op_stkvar	(x,	1);
+	create_insn	(x=0X497B73);
+	op_stroff	(x,	1,	GetStrucIdByName("obj_town_names_t"),	0);
 	create_insn	(x=0X497B7B);
 	op_hex		(x,	1);
 	create_insn	(x=0X497B7D);
 	op_hex		(x,	1);
 	create_insn	(x=0X497B82);
 	op_stkvar	(x,	0);
+	create_insn	(x=0X497B86);
+	op_stroff	(x,	1,	GetStrucIdByName("obj_town_names_t"),	0);
+	create_insn	(x=0X497B90);
+	op_stroff	(x,	1,	GetStrucIdByName("obj_town_names_t"),	0);
 	create_insn	(x=0X497B95);
 	op_stkvar	(x,	1);
+	create_insn	(x=0X497BA4);
+	op_stroff	(x,	1,	GetStrucIdByName("obj_town_names_t"),	0);
 	create_insn	(x=0X497BAD);
 	op_stkvar	(x,	0);
 	create_insn	(x=0X497BB1);
 	op_stkvar	(x,	1);
+	create_insn	(x=0X497BB5);
+	op_stroff	(x,	1,	GetStrucIdByName("obj_town_names_t"),	0);
 	create_insn	(x=0X497BBD);
 	op_hex		(x,	1);
 	create_insn	(x=0X497BBF);
 	op_hex		(x,	1);
 	create_insn	(x=0X497BC4);
 	op_stkvar	(x,	0);
+	create_insn	(x=0X497BC8);
+	op_stroff	(x,	1,	GetStrucIdByName("obj_town_names_t"),	0);
+	create_insn	(x=0X497BD2);
+	op_stroff	(x,	1,	GetStrucIdByName("obj_town_names_t"),	0);
 	create_insn	(x=0X497BD7);
 	op_stkvar	(x,	1);
+	create_insn	(x=0X497BE6);
+	op_stroff	(x,	1,	GetStrucIdByName("obj_town_names_t"),	0);
 	create_insn	(x=0X497BEF);
 	op_stkvar	(x,	0);
 	create_insn	(x=0X497BF3);
 	op_stkvar	(x,	1);
+	create_insn	(x=0X497BF7);
+	op_stroff	(x,	1,	GetStrucIdByName("obj_town_names_t"),	0);
 	create_insn	(x=0X497BFF);
 	op_hex		(x,	1);
 	create_insn	(x=0X497C01);
@@ -54888,15 +55302,6 @@ static Bytes_8(void) {
 	set_cmt	(0X497E35,	"windowtype",	0);
 	create_insn	(x=0X497E35);
 	op_enum		(x,	1,	GetEnum("windowtype"),0);
-}
-
-//------------------------------------------------------------------------
-// Information about bytes
-
-static Bytes_9(void) {
-        auto x;
-#define id x
-
 	set_cmt	(0X497E37,	"number",	0);
 	create_insn	(x=0X497E37);
 	op_stkvar	(x,	1);
@@ -55472,8 +55877,25 @@ static Bytes_9(void) {
 	create_insn	(0X498E0D);
 	create_insn	(0X498E13);
 	set_name	(0X498E13,	"obj_town_names");
-	create_insn	(0X498E3B);
+	create_insn	(x=0X498E1D);
+	op_stroff	(x,	1,	GetStrucIdByName("obj_town_names_t"),	0);
+	create_insn	(x=0X498E27);
+	op_stroff	(x,	0,	GetStrucIdByName("obj_town_names_t"),	0);
+	create_insn	(x=0X498E3B);
+	op_stroff	(x,	0,	GetStrucIdByName("obj_town_names_t"),	0);
 	create_insn	(0X498E41);
+	create_insn	(x=0X498E46);
+	op_stroff	(x,	1,	GetStrucIdByName("obj_town_names_t"),	0);
+	create_insn	(x=0X498E51);
+	op_stroff	(x,	1,	GetStrucIdByName("obj_town_names_t"),	0);
+	create_insn	(x=0X498E5C);
+	op_stroff	(x,	1,	GetStrucIdByName("obj_town_names_t"),	0);
+	create_insn	(x=0X498E67);
+	op_stroff	(x,	1,	GetStrucIdByName("obj_town_names_t"),	0);
+	create_insn	(x=0X498E72);
+	op_stroff	(x,	1,	GetStrucIdByName("obj_town_names_t"),	0);
+	create_insn	(x=0X498E7D);
+	op_stroff	(x,	1,	GetStrucIdByName("obj_town_names_t"),	0);
 	create_insn	(0X498E90);
 	create_insn	(0X498E92);
 	create_insn	(0X498E99);
@@ -60035,6 +60457,15 @@ static Bytes_9(void) {
 	create_insn	(0X4A4A54);
 	create_insn	(x=0X4A4A95);
 	op_hex		(x,	1);
+}
+
+//------------------------------------------------------------------------
+// Information about bytes
+
+static Bytes_10(void) {
+        auto x;
+#define id x
+
 	create_insn	(x=0X4A4ACC);
 	op_plain_offset	(x,	0,	0);
 	op_plain_offset	(x,	128,	0);
@@ -60945,15 +61376,6 @@ static Bytes_9(void) {
 	create_insn	(0X4A70BB);
 	create_insn	(x=0X4A70E3);
 	op_hex		(x,	1);
-}
-
-//------------------------------------------------------------------------
-// Information about bytes
-
-static Bytes_10(void) {
-        auto x;
-#define id x
-
 	create_insn	(x=0X4A70F3);
 	op_hex		(x,	1);
 	create_insn	(x=0X4A7101);
@@ -66804,6 +67226,15 @@ static Bytes_10(void) {
 	create_insn	(x=0X4B28EE);
 	op_plain_offset	(x,	1,	0);
 	op_plain_offset	(x,	129,	0);
+}
+
+//------------------------------------------------------------------------
+// Information about bytes
+
+static Bytes_11(void) {
+        auto x;
+#define id x
+
 	create_insn	(x=0X4B28FB);
 	op_hex		(x,	1);
 	create_insn	(x=0X4B2905);
@@ -67572,15 +68003,6 @@ static Bytes_10(void) {
 	create_insn	(x=0X4B423F);
 	op_plain_offset	(x,	1,	0);
 	op_plain_offset	(x,	129,	0);
-}
-
-//------------------------------------------------------------------------
-// Information about bytes
-
-static Bytes_11(void) {
-        auto x;
-#define id x
-
 	create_insn	(x=0X4B4249);
 	op_hex		(x,	1);
 	create_insn	(x=0X4B424C);
@@ -72598,6 +73020,15 @@ static Bytes_11(void) {
 	op_hex		(x,	1);
 	create_insn	(x=0X4BDFAD);
 	op_hex		(x,	1);
+}
+
+//------------------------------------------------------------------------
+// Information about bytes
+
+static Bytes_12(void) {
+        auto x;
+#define id x
+
 	create_insn	(x=0X4BDFB1);
 	op_stkvar	(x,	1);
 	create_insn	(x=0X4BDFB6);
@@ -72822,6 +73253,10 @@ static Bytes_11(void) {
 	op_plain_offset	(x,	129,	0);
 	create_insn	(x=0X4BE8BB);
 	op_hex		(x,	1);
+	create_insn	(x=0X4BE8CA);
+	op_stroff	(x,	1,	GetStrucIdByName("obj_interface_skin_t"),	0);
+	create_insn	(x=0X4BE8D3);
+	op_stroff	(x,	1,	GetStrucIdByName("obj_interface_skin_t"),	0);
 	create_insn	(0X4BE8DE);
 	set_name	(0X4BE8DE,	"nullsub_4be8de");
 	create_insn	(0X4BE8DF);
@@ -73179,9 +73614,31 @@ static Bytes_11(void) {
 	create_insn	(x=0X4BF7B9);
 	op_enum		(x,	1,	GetEnum("windowtype"),0);
 	create_insn	(0X4BF7C6);
+	create_insn	(x=0X4BF7CB);
+	op_stroff	(x,	0,	GetStrucIdByName("window_t"),	0);
+	create_insn	(x=0X4BF7D1);
+	op_stroff	(x,	0,	GetStrucIdByName("window_t"),	0);
+	create_insn	(x=0X4BF7D7);
+	op_stroff	(x,	0,	GetStrucIdByName("window_t"),	0);
+	create_insn	(x=0X4BF7EA);
+	op_stroff	(x,	0,	GetStrucIdByName("window_t"),	0);
+	create_insn	(x=0X4BF7F2);
+	op_stroff	(x,	0,	GetStrucIdByName("window_t"),	0);
+	create_insn	(x=0X4BF7FA);
+	op_stroff	(x,	0,	GetStrucIdByName("window_t"),	0);
+	create_insn	(x=0X4BF802);
+	op_stroff	(x,	0,	GetStrucIdByName("window_t"),	0);
+	create_insn	(x=0X4BF80A);
+	op_stroff	(x,	0,	GetStrucIdByName("window_t"),	0);
+	create_insn	(x=0X4BF80C);
+	op_stroff	(x,	0,	GetStrucIdByName("window_t"),	0);
+	create_insn	(x=0X4BF813);
+	op_stroff	(x,	1,	GetStrucIdByName("window_t"),	0);
 	set_cmt	(0X4BF815,	"wtf_options",	1);
 	create_insn	(x=0X4BF815);
 	op_stroff	(x,	0,	GetStrucIdByName("window_events_t"),	0);
+	create_insn	(x=0X4BF818);
+	op_stroff	(x,	1,	GetStrucIdByName("window_t"),	0);
 	set_cmt	(0X4BF81A,	"wtf_options",	1);
 	create_insn	(x=0X4BF81A);
 	op_stroff	(x,	0,	GetStrucIdByName("window_events_t"),	0);
@@ -73208,6 +73665,18 @@ static Bytes_11(void) {
 	create_insn	(x=0X4BF86E);
 	op_plain_offset	(x,	1,	0);
 	op_plain_offset	(x,	129,	0);
+	create_insn	(x=0X4BF885);
+	op_stroff	(x,	0,	GetStrucIdByName("window_t"),	0);
+	create_insn	(x=0X4BF88B);
+	op_stroff	(x,	0,	GetStrucIdByName("window_t"),	0);
+	create_insn	(x=0X4BF894);
+	op_stroff	(x,	0,	GetStrucIdByName("window_t"),	0);
+	create_insn	(x=0X4BF89D);
+	op_stroff	(x,	0,	GetStrucIdByName("window_t"),	0);
+	create_insn	(x=0X4BF8AF);
+	op_stroff	(x,	0,	GetStrucIdByName("window_t"),	0);
+	create_insn	(x=0X4BF8B8);
+	op_stroff	(x,	0,	GetStrucIdByName("window_t"),	0);
 	create_insn	(0X4BF8CD);
 	create_insn	(x=0X4BF8E4);
 	op_hex		(x,	1);
@@ -73258,12 +73727,84 @@ static Bytes_11(void) {
 	create_insn	(0X4BFC11);
 	create_insn	(x=0X4BFC60);
 	op_hex		(x,	1);
-	create_insn	(0X4BFCC7);
-	create_insn	(0X4BFCF9);
-	create_insn	(0X4BFD2B);
-	create_insn	(0X4BFD5A);
-	create_insn	(0X4BFD80);
-	create_insn	(0X4BFDA6);
+	create_insn	(x=0X4BFCC7);
+	op_stroff	(x,	0,	GetStrucIdByName("window_t"),	0);
+	create_insn	(x=0X4BFCCD);
+	op_stroff	(x,	0,	GetStrucIdByName("window_t"),	0);
+	create_insn	(x=0X4BFCD3);
+	op_stroff	(x,	0,	GetStrucIdByName("window_t"),	0);
+	create_insn	(x=0X4BFCD9);
+	op_stroff	(x,	0,	GetStrucIdByName("window_t"),	0);
+	create_insn	(x=0X4BFCDF);
+	op_stroff	(x,	0,	GetStrucIdByName("window_t"),	0);
+	create_insn	(x=0X4BFCE5);
+	op_stroff	(x,	0,	GetStrucIdByName("window_t"),	0);
+	create_insn	(x=0X4BFCEB);
+	op_stroff	(x,	0,	GetStrucIdByName("window_t"),	0);
+	create_insn	(x=0X4BFCF9);
+	op_stroff	(x,	0,	GetStrucIdByName("window_t"),	0);
+	create_insn	(x=0X4BFCFF);
+	op_stroff	(x,	0,	GetStrucIdByName("window_t"),	0);
+	create_insn	(x=0X4BFD05);
+	op_stroff	(x,	0,	GetStrucIdByName("window_t"),	0);
+	create_insn	(x=0X4BFD0B);
+	op_stroff	(x,	0,	GetStrucIdByName("window_t"),	0);
+	create_insn	(x=0X4BFD11);
+	op_stroff	(x,	0,	GetStrucIdByName("window_t"),	0);
+	create_insn	(x=0X4BFD17);
+	op_stroff	(x,	0,	GetStrucIdByName("window_t"),	0);
+	create_insn	(x=0X4BFD1D);
+	op_stroff	(x,	0,	GetStrucIdByName("window_t"),	0);
+	create_insn	(x=0X4BFD2B);
+	op_stroff	(x,	0,	GetStrucIdByName("window_t"),	0);
+	create_insn	(x=0X4BFD31);
+	op_stroff	(x,	0,	GetStrucIdByName("window_t"),	0);
+	create_insn	(x=0X4BFD37);
+	op_stroff	(x,	0,	GetStrucIdByName("window_t"),	0);
+	create_insn	(x=0X4BFD3D);
+	op_stroff	(x,	0,	GetStrucIdByName("window_t"),	0);
+	create_insn	(x=0X4BFD43);
+	op_stroff	(x,	0,	GetStrucIdByName("window_t"),	0);
+	create_insn	(x=0X4BFD49);
+	op_stroff	(x,	0,	GetStrucIdByName("window_t"),	0);
+	create_insn	(x=0X4BFD4F);
+	op_stroff	(x,	0,	GetStrucIdByName("window_t"),	0);
+	create_insn	(x=0X4BFD5A);
+	op_stroff	(x,	0,	GetStrucIdByName("window_t"),	0);
+	create_insn	(x=0X4BFD60);
+	op_stroff	(x,	0,	GetStrucIdByName("window_t"),	0);
+	create_insn	(x=0X4BFD66);
+	op_stroff	(x,	0,	GetStrucIdByName("window_t"),	0);
+	create_insn	(x=0X4BFD6C);
+	op_stroff	(x,	0,	GetStrucIdByName("window_t"),	0);
+	create_insn	(x=0X4BFD72);
+	op_stroff	(x,	0,	GetStrucIdByName("window_t"),	0);
+	create_insn	(x=0X4BFD78);
+	op_stroff	(x,	0,	GetStrucIdByName("window_t"),	0);
+	create_insn	(x=0X4BFD80);
+	op_stroff	(x,	0,	GetStrucIdByName("window_t"),	0);
+	create_insn	(x=0X4BFD86);
+	op_stroff	(x,	0,	GetStrucIdByName("window_t"),	0);
+	create_insn	(x=0X4BFD8C);
+	op_stroff	(x,	0,	GetStrucIdByName("window_t"),	0);
+	create_insn	(x=0X4BFD92);
+	op_stroff	(x,	0,	GetStrucIdByName("window_t"),	0);
+	create_insn	(x=0X4BFD98);
+	op_stroff	(x,	0,	GetStrucIdByName("window_t"),	0);
+	create_insn	(x=0X4BFD9E);
+	op_stroff	(x,	0,	GetStrucIdByName("window_t"),	0);
+	create_insn	(x=0X4BFDA6);
+	op_stroff	(x,	0,	GetStrucIdByName("window_t"),	0);
+	create_insn	(x=0X4BFDAC);
+	op_stroff	(x,	0,	GetStrucIdByName("window_t"),	0);
+	create_insn	(x=0X4BFDB2);
+	op_stroff	(x,	0,	GetStrucIdByName("window_t"),	0);
+	create_insn	(x=0X4BFDB8);
+	op_stroff	(x,	0,	GetStrucIdByName("window_t"),	0);
+	create_insn	(x=0X4BFDBE);
+	op_stroff	(x,	0,	GetStrucIdByName("window_t"),	0);
+	create_insn	(x=0X4BFDC4);
+	op_stroff	(x,	0,	GetStrucIdByName("window_t"),	0);
 	set_cmt	(0X4BFDCC,	"wtf_options",	1);
 	create_insn	(x=0X4BFDCC);
 	op_stroff	(x,	0,	GetStrucIdByName("window_events_t"),	0);
@@ -73327,15 +73868,6 @@ static Bytes_11(void) {
 	create_insn	(x=0X4C01FE);
 	op_stroff	(x,	0,	GetStrucIdByName("window_events_t"),	0);
 	set_cmt	(0X4C0201,	"number",	0);
-}
-
-//------------------------------------------------------------------------
-// Information about bytes
-
-static Bytes_12(void) {
-        auto x;
-#define id x
-
 	set_cmt	(0X4C0205,	"windowtype",	0);
 	create_insn	(x=0X4C0205);
 	op_enum		(x,	1,	GetEnum("windowtype"),0);
@@ -74403,6 +74935,8 @@ static Bytes_12(void) {
 	op_hex		(x,	1);
 	create_insn	(x=0X4C2A84);
 	op_hex		(x,	1);
+	create_insn	(x=0X4C2A93);
+	op_stroff	(x,	1,	GetStrucIdByName("obj_interface_skin_t"),	0);
 	create_insn	(x=0X4C2A9A);
 	op_plain_offset	(x,	1,	0);
 	op_plain_offset	(x,	129,	0);
@@ -74458,6 +74992,8 @@ static Bytes_12(void) {
 	op_hex		(x,	1);
 	create_insn	(x=0X4C2C13);
 	op_hex		(x,	1);
+	create_insn	(x=0X4C2C22);
+	op_stroff	(x,	1,	GetStrucIdByName("obj_interface_skin_t"),	0);
 	create_insn	(x=0X4C2C29);
 	op_plain_offset	(x,	1,	0);
 	op_plain_offset	(x,	129,	0);
@@ -74467,6 +75003,8 @@ static Bytes_12(void) {
 	op_hex		(x,	1);
 	create_insn	(x=0X4C2C55);
 	op_hex		(x,	1);
+	create_insn	(x=0X4C2C64);
+	op_stroff	(x,	1,	GetStrucIdByName("obj_interface_skin_t"),	0);
 	create_insn	(x=0X4C2C6B);
 	op_plain_offset	(x,	1,	0);
 	op_plain_offset	(x,	129,	0);
@@ -74476,6 +75014,8 @@ static Bytes_12(void) {
 	op_hex		(x,	1);
 	create_insn	(x=0X4C2C97);
 	op_hex		(x,	1);
+	create_insn	(x=0X4C2CA6);
+	op_stroff	(x,	1,	GetStrucIdByName("obj_interface_skin_t"),	0);
 	create_insn	(x=0X4C2CAD);
 	op_plain_offset	(x,	1,	0);
 	op_plain_offset	(x,	129,	0);
@@ -74485,6 +75025,8 @@ static Bytes_12(void) {
 	op_hex		(x,	1);
 	create_insn	(x=0X4C2CD9);
 	op_hex		(x,	1);
+	create_insn	(x=0X4C2CE8);
+	op_stroff	(x,	1,	GetStrucIdByName("obj_interface_skin_t"),	0);
 	create_insn	(x=0X4C2CEF);
 	op_plain_offset	(x,	1,	0);
 	op_plain_offset	(x,	129,	0);
@@ -74494,6 +75036,8 @@ static Bytes_12(void) {
 	op_hex		(x,	1);
 	create_insn	(x=0X4C2D1B);
 	op_hex		(x,	1);
+	create_insn	(x=0X4C2D2A);
+	op_stroff	(x,	1,	GetStrucIdByName("obj_interface_skin_t"),	0);
 	create_insn	(x=0X4C2D31);
 	op_plain_offset	(x,	1,	0);
 	op_plain_offset	(x,	129,	0);
@@ -74503,6 +75047,8 @@ static Bytes_12(void) {
 	op_hex		(x,	1);
 	create_insn	(x=0X4C2D5D);
 	op_hex		(x,	1);
+	create_insn	(x=0X4C2D6C);
+	op_stroff	(x,	1,	GetStrucIdByName("obj_interface_skin_t"),	0);
 	create_insn	(x=0X4C2D73);
 	op_plain_offset	(x,	1,	0);
 	op_plain_offset	(x,	129,	0);
@@ -76127,34 +76673,76 @@ static Bytes_12(void) {
 	create_insn	(0X4C6226);
 	create_insn	(x=0X4C625D);
 	op_stroff	(x,	0,	GetStrucIdByName("window_t"),	0);
+	create_insn	(x=0X4C6274);
+	op_stroff	(x,	0,	GetStrucIdByName("widget_t"),	0);
 	create_insn	(x=0X4C6285);
 	op_stroff	(x,	0,	GetStrucIdByName("window_t"),	0);
 	op_hex		(x,	1);
 	create_insn	(x=0X4C6290);
 	op_stroff	(x,	1,	GetStrucIdByName("window_t"),	0);
+	create_insn	(x=0X4C6295);
+	op_stroff	(x,	0,	GetStrucIdByName("widget_t"),	0);
+	create_insn	(x=0X4C629A);
+	op_stroff	(x,	0,	GetStrucIdByName("widget_t"),	0);
 	create_insn	(x=0X4C629F);
 	op_hex		(x,	1);
+	create_insn	(x=0X4C62A9);
+	op_stroff	(x,	1,	GetStrucIdByName("widget_t"),	0);
 	create_insn	(0X4C62AE);
 	create_insn	(x=0X4C62BC);
 	op_plain_offset	(x,	1,	0);
 	op_plain_offset	(x,	129,	0);
+	create_insn	(x=0X4C62C8);
+	op_stroff	(x,	1,	GetStrucIdByName("window_t"),	0);
+	create_insn	(x=0X4C62CD);
+	op_stroff	(x,	0,	GetStrucIdByName("widget_t"),	0);
+	create_insn	(x=0X4C62D2);
+	op_stroff	(x,	0,	GetStrucIdByName("widget_t"),	0);
 	create_insn	(x=0X4C62D7);
 	op_hex		(x,	1);
 	create_insn	(x=0X4C62E6);
 	op_hex		(x,	1);
+	create_insn	(x=0X4C62F0);
+	op_stroff	(x,	1,	GetStrucIdByName("window_t"),	0);
+	create_insn	(x=0X4C62FD);
+	op_stroff	(x,	1,	GetStrucIdByName("widget_t"),	0);
+	create_insn	(x=0X4C6301);
+	op_stroff	(x,	1,	GetStrucIdByName("widget_t"),	0);
 	create_insn	(x=0X4C6309);
 	op_hex		(x,	1);
+	create_insn	(x=0X4C6319);
+	op_stroff	(x,	1,	GetStrucIdByName("window_t"),	0);
+	create_insn	(x=0X4C632B);
+	op_stroff	(x,	0,	GetStrucIdByName("window_t"),	0);
+	create_insn	(x=0X4C6338);
+	op_stroff	(x,	1,	GetStrucIdByName("window_t"),	0);
 	set_cmt	(0X4C633E,	"windowtype",	0);
 	create_insn	(x=0X4C633E);
 	op_hex		(x,	1);
 	set_cmt	(0X4C6340,	"number",	0);
+	create_insn	(x=0X4C6340);
+	op_stroff	(x,	1,	GetStrucIdByName("window_t"),	0);
 	create_insn	(0X4C634B);
+	create_insn	(x=0X4C634C);
+	op_stroff	(x,	1,	GetStrucIdByName("window_t"),	0);
+	create_insn	(x=0X4C6359);
+	op_stroff	(x,	1,	GetStrucIdByName("widget_t"),	0);
+	create_insn	(x=0X4C635D);
+	op_stroff	(x,	1,	GetStrucIdByName("widget_t"),	0);
 	create_insn	(x=0X4C6365);
 	op_hex		(x,	1);
+	create_insn	(x=0X4C6375);
+	op_stroff	(x,	1,	GetStrucIdByName("window_t"),	0);
+	create_insn	(x=0X4C6387);
+	op_stroff	(x,	0,	GetStrucIdByName("window_t"),	0);
+	create_insn	(x=0X4C6394);
+	op_stroff	(x,	1,	GetStrucIdByName("window_t"),	0);
 	set_cmt	(0X4C639A,	"windowtype",	0);
 	create_insn	(x=0X4C639A);
 	op_hex		(x,	1);
 	set_cmt	(0X4C639C,	"number",	0);
+	create_insn	(x=0X4C639C);
+	op_stroff	(x,	1,	GetStrucIdByName("window_t"),	0);
 	create_insn	(x=0X4C63A6);
 	op_hex		(x,	1);
 	create_insn	(0X4C63C1);
@@ -76185,7 +76773,10 @@ static Bytes_12(void) {
 	create_insn	(x=0X4C6483);
 	op_plain_offset	(x,	1,	0);
 	op_plain_offset	(x,	129,	0);
-	create_insn	(0X4C64BF);
+	create_insn	(x=0X4C64BF);
+	op_stroff	(x,	1,	GetStrucIdByName("viewport_t"),	0);
+	create_insn	(x=0X4C64C3);
+	op_stroff	(x,	1,	GetStrucIdByName("viewport_t"),	0);
 	create_insn	(x=0X4C64C7);
 	op_hex		(x,	1);
 	create_insn	(x=0X4C64CA);
@@ -76206,8 +76797,12 @@ static Bytes_12(void) {
 	create_insn	(0X4C6581);
 	create_insn	(x=0X4C658D);
 	op_hex		(x,	1);
+	create_insn	(x=0X4C6596);
+	op_stroff	(x,	1,	GetStrucIdByName("viewport_t"),	0);
 	create_insn	(x=0X4C659A);
 	op_hex		(x,	1);
+	create_insn	(x=0X4C65A0);
+	op_stroff	(x,	1,	GetStrucIdByName("viewport_t"),	0);
 	create_insn	(x=0X4C65A4);
 	op_hex		(x,	1);
 	create_insn	(x=0X4C65AA);
@@ -76221,8 +76816,12 @@ static Bytes_12(void) {
 	create_insn	(x=0X4C65C6);
 	op_stroff	(x,	0,	GetStrucIdByName("window_t"),	0);
 	op_hex		(x,	1);
+	create_insn	(x=0X4C65D2);
+	op_stroff	(x,	1,	GetStrucIdByName("viewport_t"),	0);
 	create_insn	(x=0X4C65DB);
 	op_hex		(x,	1);
+	create_insn	(x=0X4C65DF);
+	op_stroff	(x,	1,	GetStrucIdByName("viewport_t"),	0);
 	create_insn	(x=0X4C65E8);
 	op_hex		(x,	1);
 	create_insn	(x=0X4C65F4);
@@ -76236,6 +76835,10 @@ static Bytes_12(void) {
 	op_hex		(x,	1);
 	create_insn	(x=0X4C6612);
 	op_hex		(x,	1);
+	create_insn	(x=0X4C661C);
+	op_stroff	(x,	1,	GetStrucIdByName("viewport_t"),	0);
+	create_insn	(x=0X4C6620);
+	op_stroff	(x,	1,	GetStrucIdByName("viewport_t"),	0);
 	set_cmt	(0X4C662A,	"window",	0);
 	create_insn	(x=0X4C662B);
 	op_stroff	(x,	0,	GetStrucIdByName("window_t"),	0);
@@ -76325,16 +76928,149 @@ static Bytes_12(void) {
 	op_plain_offset	(x,	129,	0);
 	create_insn	(0X4C68E4);
 	set_name	(0X4C68E4,	"viewport_move");
+	create_insn	(x=0X4C68E6);
+	op_stroff	(x,	1,	GetStrucIdByName("viewport_t"),	0);
+	create_insn	(x=0X4C68EA);
+	op_stroff	(x,	1,	GetStrucIdByName("viewport_t"),	0);
+	create_insn	(x=0X4C68EE);
+	op_stroff	(x,	0,	GetStrucIdByName("window_t"),	0);
+	create_insn	(x=0X4C68F2);
+	op_stroff	(x,	0,	GetStrucIdByName("window_t"),	0);
+	create_insn	(x=0X4C68F6);
+	op_stroff	(x,	1,	GetStrucIdByName("viewport_t"),	0);
 	create_insn	(x=0X4C6913);
 	op_hex		(x,	1);
 	create_insn	(x=0X4C691B);
 	op_stroff	(x,	0,	GetStrucIdByName("window_t"),	0);
 	op_hex		(x,	1);
+	create_insn	(x=0X4C6924);
+	op_stroff	(x,	1,	GetStrucIdByName("viewport_t"),	0);
+	create_insn	(x=0X4C6928);
+	op_stroff	(x,	1,	GetStrucIdByName("viewport_t"),	0);
+	create_insn	(x=0X4C692C);
+	op_stroff	(x,	1,	GetStrucIdByName("viewport_t"),	0);
+	create_insn	(x=0X4C692F);
+	op_stroff	(x,	1,	GetStrucIdByName("viewport_t"),	0);
 	create_insn	(0X4C6978);
-	create_insn	(0X4C6979);
+	create_insn	(x=0X4C6979);
+	op_stroff	(x,	0,	GetStrucIdByName("viewport_t"),	0);
+	create_insn	(x=0X4C697D);
+	op_stroff	(x,	0,	GetStrucIdByName("viewport_t"),	0);
+	create_insn	(x=0X4C6980);
+	op_stroff	(x,	0,	GetStrucIdByName("viewport_t"),	0);
+	create_insn	(x=0X4C6984);
+	op_stroff	(x,	0,	GetStrucIdByName("viewport_t"),	0);
+	create_insn	(x=0X4C6988);
+	op_stroff	(x,	0,	GetStrucIdByName("viewport_t"),	0);
+	create_insn	(x=0X4C698C);
+	op_stroff	(x,	0,	GetStrucIdByName("viewport_t"),	0);
+	create_insn	(x=0X4C6990);
+	op_stroff	(x,	0,	GetStrucIdByName("viewport_t"),	0);
+	create_insn	(x=0X4C6994);
+	op_stroff	(x,	0,	GetStrucIdByName("viewport_t"),	0);
+	create_insn	(x=0X4C6998);
+	op_stroff	(x,	1,	GetStrucIdByName("viewport_t"),	0);
+	create_insn	(x=0X4C699B);
+	op_stroff	(x,	1,	GetStrucIdByName("viewport_t"),	0);
+	create_insn	(x=0X4C69A4);
+	op_stroff	(x,	0,	GetStrucIdByName("viewport_t"),	0);
+	create_insn	(x=0X4C69A7);
+	op_stroff	(x,	0,	GetStrucIdByName("viewport_t"),	0);
+	create_insn	(x=0X4C69B0);
+	op_stroff	(x,	0,	GetStrucIdByName("viewport_t"),	0);
+	create_insn	(x=0X4C69B4);
+	op_stroff	(x,	0,	GetStrucIdByName("viewport_t"),	0);
+	create_insn	(x=0X4C69B8);
+	op_stroff	(x,	1,	GetStrucIdByName("viewport_t"),	0);
+	create_insn	(x=0X4C69BC);
+	op_stroff	(x,	1,	GetStrucIdByName("viewport_t"),	0);
+	create_insn	(x=0X4C69C8);
+	op_stroff	(x,	0,	GetStrucIdByName("viewport_t"),	0);
+	create_insn	(x=0X4C69CE);
+	op_stroff	(x,	0,	GetStrucIdByName("viewport_t"),	0);
+	create_insn	(x=0X4C69D2);
+	op_stroff	(x,	0,	GetStrucIdByName("viewport_t"),	0);
+	create_insn	(x=0X4C69D8);
+	op_stroff	(x,	1,	GetStrucIdByName("viewport_t"),	0);
+	create_insn	(x=0X4C69E1);
+	op_stroff	(x,	0,	GetStrucIdByName("viewport_t"),	0);
+	create_insn	(x=0X4C69E5);
+	op_stroff	(x,	0,	GetStrucIdByName("viewport_t"),	0);
+	create_insn	(x=0X4C69EE);
+	op_stroff	(x,	0,	GetStrucIdByName("viewport_t"),	0);
+	create_insn	(x=0X4C69F2);
+	op_stroff	(x,	0,	GetStrucIdByName("viewport_t"),	0);
+	create_insn	(x=0X4C69F6);
+	op_stroff	(x,	1,	GetStrucIdByName("viewport_t"),	0);
+	create_insn	(x=0X4C69FA);
+	op_stroff	(x,	1,	GetStrucIdByName("viewport_t"),	0);
+	create_insn	(x=0X4C6A07);
+	op_stroff	(x,	0,	GetStrucIdByName("viewport_t"),	0);
+	create_insn	(x=0X4C6A0E);
+	op_stroff	(x,	0,	GetStrucIdByName("viewport_t"),	0);
+	create_insn	(x=0X4C6A12);
+	op_stroff	(x,	0,	GetStrucIdByName("viewport_t"),	0);
+	create_insn	(x=0X4C6A20);
+	op_stroff	(x,	0,	GetStrucIdByName("viewport_t"),	0);
+	create_insn	(x=0X4C6A24);
+	op_stroff	(x,	0,	GetStrucIdByName("viewport_t"),	0);
+	create_insn	(x=0X4C6A28);
+	op_stroff	(x,	0,	GetStrucIdByName("viewport_t"),	0);
+	create_insn	(x=0X4C6A2C);
+	op_stroff	(x,	0,	GetStrucIdByName("viewport_t"),	0);
+	create_insn	(x=0X4C6A30);
+	op_stroff	(x,	0,	GetStrucIdByName("viewport_t"),	0);
+	create_insn	(x=0X4C6A34);
+	op_stroff	(x,	0,	GetStrucIdByName("viewport_t"),	0);
+	create_insn	(x=0X4C6A38);
+	op_stroff	(x,	0,	GetStrucIdByName("viewport_t"),	0);
+	create_insn	(x=0X4C6A3B);
+	op_stroff	(x,	0,	GetStrucIdByName("viewport_t"),	0);
 	create_insn	(0X4C6A40);
 	create_insn	(x=0X4C6A4D);
 	op_hex		(x,	1);
+	create_insn	(x=0X4C6A5A);
+	op_stroff	(x,	1,	GetStrucIdByName("window_t"),	0);
+	create_insn	(x=0X4C6A63);
+	op_stroff	(x,	1,	GetStrucIdByName("window_t"),	0);
+	create_insn	(x=0X4C6A6C);
+	op_stroff	(x,	1,	GetStrucIdByName("viewport_t"),	0);
+	create_insn	(x=0X4C6A70);
+	op_stroff	(x,	1,	GetStrucIdByName("viewport_t"),	0);
+	create_insn	(x=0X4C6A73);
+	op_stroff	(x,	1,	GetStrucIdByName("window_t"),	0);
+	create_insn	(x=0X4C6A7D);
+	op_stroff	(x,	1,	GetStrucIdByName("window_t"),	0);
+	create_insn	(x=0X4C6A81);
+	op_stroff	(x,	1,	GetStrucIdByName("window_t"),	0);
+	create_insn	(x=0X4C6A85);
+	op_stroff	(x,	1,	GetStrucIdByName("viewport_t"),	0);
+	create_insn	(x=0X4C6A8B);
+	op_stroff	(x,	1,	GetStrucIdByName("viewport_t"),	0);
+	create_insn	(x=0X4C6A8F);
+	op_stroff	(x,	1,	GetStrucIdByName("viewport_t"),	0);
+	create_insn	(x=0X4C6A93);
+	op_stroff	(x,	1,	GetStrucIdByName("window_t"),	0);
+	create_insn	(x=0X4C6A99);
+	op_stroff	(x,	1,	GetStrucIdByName("window_t"),	0);
+	create_insn	(x=0X4C6A9D);
+	op_stroff	(x,	1,	GetStrucIdByName("window_t"),	0);
+	create_insn	(x=0X4C6AA8);
+	op_stroff	(x,	1,	GetStrucIdByName("window_t"),	0);
+	create_insn	(x=0X4C6AAC);
+	op_stroff	(x,	1,	GetStrucIdByName("window_t"),	0);
+	create_insn	(x=0X4C6AB0);
+	op_stroff	(x,	1,	GetStrucIdByName("window_t"),	0);
+	create_insn	(x=0X4C6AB4);
+	op_stroff	(x,	1,	GetStrucIdByName("window_t"),	0);
+	create_insn	(x=0X4C6ABE);
+	op_stroff	(x,	1,	GetStrucIdByName("viewport_t"),	0);
+	create_insn	(x=0X4C6ACA);
+	op_stroff	(x,	1,	GetStrucIdByName("viewport_t"),	0);
+	create_insn	(x=0X4C6AD5);
+	op_stroff	(x,	1,	GetStrucIdByName("viewport_t"),	0);
+	create_insn	(x=0X4C6AE1);
+	op_stroff	(x,	1,	GetStrucIdByName("viewport_t"),	0);
 	create_insn	(0X4C6B08);
 	create_insn	(0X4C6B09);
 	create_insn	(x=0X4C6BA9);
@@ -76839,6 +77575,15 @@ static Bytes_12(void) {
 	set_cmt	(0X4C85C1,	"windowtype",	0);
 	create_insn	(x=0X4C85C1);
 	op_hex		(x,	1);
+}
+
+//------------------------------------------------------------------------
+// Information about bytes
+
+static Bytes_13(void) {
+        auto x;
+#define id x
+
 	create_insn	(x=0X4C85CC);
 	op_stroff	(x,	0,	GetStrucIdByName("window_events_t"),	0);
 	create_insn	(0X4C85D0);
@@ -77137,6 +77882,8 @@ static Bytes_12(void) {
 	set_cmt	(0X4C93CC,	"top",	0);
 	set_cmt	(0X4C93CD,	"right",	0);
 	set_cmt	(0X4C93CE,	"left",	0);
+	create_insn	(x=0X4C93D5);
+	op_stroff	(x,	1,	GetStrucIdByName("obj_interface_skin_t"),	0);
 	set_cmt	(0X4C93D9,	"colour",	0);
 	set_cmt	(0X4C93E7,	"left",	0);
 	set_cmt	(0X4C93EC,	"right",	0);
@@ -77191,6 +77938,8 @@ static Bytes_12(void) {
 	set_name	(0X4C9512,	"nullsub_4c9512");
 	create_insn	(0X4C9513);
 	set_name	(0X4C9513,	"window_find_widget_from_point");
+	create_insn	(x=0X4C9517);
+	op_stroff	(x,	1,	GetStrucIdByName("window_t"),	0);
 	create_insn	(x=0X4C9519);
 	op_stroff	(x,	0,	GetStrucIdByName("window_events_t"),	0);
 	create_insn	(x=0X4C951E);
@@ -77215,7 +77964,13 @@ static Bytes_12(void) {
 	op_stroff	(x,	1,	GetStrucIdByName("window_t"),	0);
 	create_insn	(x=0X4C957B);
 	op_stkvar	(x,	0);
+	create_insn	(x=0X4C958D);
+	op_stroff	(x,	1,	GetStrucIdByName("widget_t"),	0);
 	create_insn	(0X4C9592);
+	create_insn	(x=0X4C959A);
+	op_stroff	(x,	0,	GetStrucIdByName("widget_t"),	0);
+	create_insn	(x=0X4C959F);
+	op_stroff	(x,	1,	GetStrucIdByName("widget_t"),	0);
 	create_insn	(x=0X4C95A6);
 	op_hex		(x,	1);
 	create_insn	(x=0X4C95C9);
@@ -77339,9 +78094,13 @@ static Bytes_12(void) {
 	op_stroff	(x,	1,	GetStrucIdByName("window_t"),	0);
 	create_insn	(x=0X4C9B72);
 	op_stroff	(x,	1,	GetStrucIdByName("window_t"),	0);
+	create_insn	(x=0X4C9B78);
+	op_stroff	(x,	1,	GetStrucIdByName("window_t"),	0);
 	create_insn	(0X4C9B80);
 	create_insn	(0X4C9B85);
 	create_insn	(x=0X4C9B8D);
+	op_stroff	(x,	1,	GetStrucIdByName("window_t"),	0);
+	create_insn	(x=0X4C9B95);
 	op_stroff	(x,	1,	GetStrucIdByName("window_t"),	0);
 	create_insn	(0X4C9B9D);
 	create_insn	(0X4C9BA2);
@@ -77428,8 +78187,16 @@ static Bytes_12(void) {
 	create_insn	(x=0X4CA138);
 	op_stroff	(x,	0,	GetStrucIdByName("widget_t"),	0);
 	op_hex		(x,	1);
+	create_insn	(x=0X4CA141);
+	op_stroff	(x,	1,	GetStrucIdByName("window_t"),	0);
+	create_insn	(x=0X4CA14A);
+	op_stroff	(x,	0,	GetStrucIdByName("window_t"),	0);
 	create_insn	(x=0X4CA14F);
 	op_hex		(x,	1);
+	create_insn	(x=0X4CA158);
+	op_stroff	(x,	1,	GetStrucIdByName("window_t"),	0);
+	create_insn	(x=0X4CA161);
+	op_stroff	(x,	0,	GetStrucIdByName("window_t"),	0);
 	create_insn	(0X4CA17E);
 	create_insn	(0X4CA17F);
 	set_name	(0X4CA17F,	"window_init_scroll_widgets");
@@ -77577,8 +78344,12 @@ static Bytes_12(void) {
 	create_insn	(0X4CA493);
 	create_insn	(x=0X4CA49F);
 	op_hex		(x,	1);
+	create_insn	(x=0X4CA4A8);
+	op_stroff	(x,	1,	GetStrucIdByName("viewport_t"),	0);
 	create_insn	(x=0X4CA4AC);
 	op_hex		(x,	1);
+	create_insn	(x=0X4CA4B2);
+	op_stroff	(x,	1,	GetStrucIdByName("viewport_t"),	0);
 	create_insn	(x=0X4CA4B6);
 	op_hex		(x,	1);
 	create_insn	(0X4CA4BD);
@@ -77608,16 +78379,24 @@ static Bytes_12(void) {
 	op_stroff	(x,	1,	GetStrucIdByName("window_t"),	0);
 	create_insn	(x=0X4CA5F5);
 	op_hex		(x,	1);
+	create_insn	(x=0X4CA5FE);
+	op_stroff	(x,	1,	GetStrucIdByName("drawpixelinfo_t"),	0);
 	create_insn	(x=0X4CA602);
 	op_stroff	(x,	1,	GetStrucIdByName("window_t"),	0);
 	create_insn	(x=0X4CA606);
 	op_stroff	(x,	1,	GetStrucIdByName("widget_t"),	0);
+	create_insn	(x=0X4CA610);
+	op_stroff	(x,	1,	GetStrucIdByName("drawpixelinfo_t"),	0);
 	create_insn	(x=0X4CA614);
 	op_stroff	(x,	1,	GetStrucIdByName("widget_t"),	0);
+	create_insn	(x=0X4CA61E);
+	op_stroff	(x,	1,	GetStrucIdByName("drawpixelinfo_t"),	0);
 	create_insn	(x=0X4CA622);
 	op_stroff	(x,	1,	GetStrucIdByName("window_t"),	0);
 	create_insn	(x=0X4CA626);
 	op_stroff	(x,	1,	GetStrucIdByName("widget_t"),	0);
+	create_insn	(x=0X4CA630);
+	op_stroff	(x,	1,	GetStrucIdByName("drawpixelinfo_t"),	0);
 	create_insn	(x=0X4CA634);
 	op_stroff	(x,	1,	GetStrucIdByName("widget_t"),	0);
 	create_insn	(x=0X4CA64F);
@@ -77884,15 +78663,6 @@ static Bytes_12(void) {
 	set_cmt	(0X4CAA5B,	"right",	0);
 	set_cmt	(0X4CAA5E,	"top",	0);
 	set_cmt	(0X4CAA60,	"bottom",	0);
-}
-
-//------------------------------------------------------------------------
-// Information about bytes
-
-static Bytes_13(void) {
-        auto x;
-#define id x
-
 	create_insn	(x=0X4CAA62);
 	op_stkvar	(x,	1);
 	set_cmt	(0X4CAA65,	"colour",	0);
@@ -78445,6 +79215,20 @@ static Bytes_13(void) {
 	op_hex		(x,	1);
 	create_insn	(x=0X4CB60B);
 	op_hex		(x,	1);
+	create_insn	(x=0X4CB61A);
+	op_stroff	(x,	1,	GetStrucIdByName("drawpixelinfo_t"),	0);
+	create_insn	(x=0X4CB622);
+	op_stroff	(x,	1,	GetStrucIdByName("drawpixelinfo_t"),	0);
+	create_insn	(x=0X4CB62D);
+	op_stroff	(x,	1,	GetStrucIdByName("drawpixelinfo_t"),	0);
+	create_insn	(x=0X4CB638);
+	op_stroff	(x,	1,	GetStrucIdByName("drawpixelinfo_t"),	0);
+	create_insn	(x=0X4CB643);
+	op_stroff	(x,	1,	GetStrucIdByName("drawpixelinfo_t"),	0);
+	create_insn	(x=0X4CB64E);
+	op_stroff	(x,	1,	GetStrucIdByName("drawpixelinfo_t"),	0);
+	create_insn	(x=0X4CB659);
+	op_stroff	(x,	1,	GetStrucIdByName("drawpixelinfo_t"),	0);
 	create_insn	(x=0X4CB733);
 	op_plain_offset	(x,	1,	0);
 	op_plain_offset	(x,	129,	0);
@@ -78556,8 +79340,26 @@ static Bytes_13(void) {
 	op_stroff	(x,	1,	GetStrucIdByName("window_t"),	0);
 	create_insn	(x=0X4CB9B6);
 	op_stroff	(x,	1,	GetStrucIdByName("window_t"),	0);
+	create_insn	(x=0X4CB9BD);
+	op_stroff	(x,	1,	GetStrucIdByName("window_t"),	0);
 	create_insn	(x=0X4CB9C4);
 	op_hex		(x,	1);
+	create_insn	(x=0X4CB9CB);
+	op_stroff	(x,	1,	GetStrucIdByName("widget_t"),	0);
+	create_insn	(x=0X4CB9D5);
+	op_stroff	(x,	1,	GetStrucIdByName("widget_t"),	0);
+	create_insn	(x=0X4CB9D9);
+	op_stroff	(x,	1,	GetStrucIdByName("widget_t"),	0);
+	create_insn	(x=0X4CB9DD);
+	op_stroff	(x,	1,	GetStrucIdByName("widget_t"),	0);
+	create_insn	(x=0X4CB9E5);
+	op_stroff	(x,	1,	GetStrucIdByName("window_t"),	0);
+	create_insn	(x=0X4CB9E9);
+	op_stroff	(x,	1,	GetStrucIdByName("window_t"),	0);
+	create_insn	(x=0X4CB9ED);
+	op_stroff	(x,	1,	GetStrucIdByName("window_t"),	0);
+	create_insn	(x=0X4CB9F1);
+	op_stroff	(x,	1,	GetStrucIdByName("window_t"),	0);
 	create_insn	(0X4CBA03);
 	create_insn	(x=0X4CBA06);
 	op_hex		(x,	1);
@@ -78726,9 +79528,27 @@ static Bytes_13(void) {
 	create_insn	(x=0X4CC750);
 	op_hex		(x,	1);
 	set_name	(0X4CC750,	"window_bring_to_front");
+	create_insn	(x=0X4CC767);
+	op_stroff	(x,	0,	GetStrucIdByName("window_t"),	0);
 	create_insn	(x=0X4CC76E);
 	op_plain_offset	(x,	1,	0);
 	op_plain_offset	(x,	129,	0);
+	create_insn	(x=0X4CC77A);
+	op_stroff	(x,	1,	GetStrucIdByName("window_t"),	0);
+	create_insn	(x=0X4CC77D);
+	op_stroff	(x,	1,	GetStrucIdByName("window_t"),	0);
+	create_insn	(x=0X4CC793);
+	op_stroff	(x,	1,	GetStrucIdByName("window_t"),	0);
+	create_insn	(x=0X4CC797);
+	op_stroff	(x,	1,	GetStrucIdByName("window_t"),	0);
+	create_insn	(x=0X4CC7A5);
+	op_stroff	(x,	1,	GetStrucIdByName("window_t"),	0);
+	create_insn	(x=0X4CC7A9);
+	op_stroff	(x,	0,	GetStrucIdByName("window_t"),	0);
+	create_insn	(x=0X4CC7AD);
+	op_stroff	(x,	1,	GetStrucIdByName("window_t"),	0);
+	create_insn	(x=0X4CC7B8);
+	op_stroff	(x,	1,	GetStrucIdByName("window_t"),	0);
 	create_insn	(x=0X4CC7CB);
 	op_stroff	(x,	1,	GetStrucIdByName("window_t"),	0);
 	set_name	(0X4CC7CB,	"window_set_disabled_widgets_and_invalidate");
@@ -79016,6 +79836,8 @@ static Bytes_13(void) {
 	op_stroff	(x,	0,	GetStrucIdByName("window_t"),	0);
 	create_insn	(x=0X4CD313);
 	op_stroff	(x,	0,	GetStrucIdByName("window_t"),	0);
+	create_insn	(x=0X4CD317);
+	op_stroff	(x,	1,	GetStrucIdByName("window_t"),	0);
 	create_insn	(0X4CD31F);
 	create_insn	(0X4CD320);
 	create_insn	(0X4CD3A9);
@@ -79067,6 +79889,8 @@ static Bytes_13(void) {
 	set_name	(0X4CD658,	"viewport_interaction_get_item_left");
 	create_insn	(x=0X4CD665);
 	op_hex		(x,	1);
+	create_insn	(x=0X4CD718);
+	op_stroff	(x,	1,	GetStrucIdByName("window_t"),	0);
 	create_insn	(x=0X4CD76B);
 	op_hex		(x,	1);
 	create_insn	(x=0X4CD76E);
@@ -79335,6 +80159,8 @@ static Bytes_13(void) {
 	set_name	(0X4CE438,	"window_get_main");
 	create_insn	(x=0X4CE445);
 	op_stroff	(x,	0,	GetStrucIdByName("window_t"),	0);
+	create_insn	(x=0X4CE44E);
+	op_stroff	(x,	1,	GetStrucIdByName("window_t"),	0);
 	create_insn	(0X4CE456);
 	create_insn	(0X4CE458);
 	create_insn	(0X4CE45C);
@@ -79381,6 +80207,10 @@ static Bytes_13(void) {
 	create_insn	(0X4CE520);
 	create_insn	(0X4CE523);
 	set_name	(0X4CE523,	"open_textinput");
+	create_insn	(x=0X4CE526);
+	op_stroff	(x,	1,	GetStrucIdByName("window_t"),	0);
+	create_insn	(x=0X4CE52C);
+	op_stroff	(x,	1,	GetStrucIdByName("window_t"),	0);
 	create_insn	(x=0X4CE581);
 	op_plain_offset	(x,	1,	0);
 	op_plain_offset	(x,	129,	0);
@@ -79413,6 +80243,38 @@ static Bytes_13(void) {
 	create_insn	(x=0X4CE5EF);
 	op_hex		(x,	1);
 	set_cmt	(0X4CE629,	"windowtype",	0);
+	create_insn	(x=0X4CE63B);
+	op_stroff	(x,	1,	GetStrucIdByName("window_t"),	0);
+	create_insn	(x=0X4CE641);
+	op_stroff	(x,	0,	GetStrucIdByName("window_t"),	0);
+	create_insn	(x=0X4CE647);
+	op_stroff	(x,	1,	GetStrucIdByName("window_t"),	0);
+	create_insn	(x=0X4CE64D);
+	op_stroff	(x,	0,	GetStrucIdByName("window_t"),	0);
+	create_insn	(x=0X4CE653);
+	op_stroff	(x,	1,	GetStrucIdByName("window_t"),	0);
+	create_insn	(x=0X4CE659);
+	op_stroff	(x,	0,	GetStrucIdByName("window_t"),	0);
+	create_insn	(x=0X4CE65F);
+	op_stroff	(x,	0,	GetStrucIdByName("window_t"),	0);
+	create_insn	(x=0X4CE66E);
+	op_stroff	(x,	1,	GetStrucIdByName("obj_interface_skin_t"),	0);
+	create_insn	(x=0X4CE671);
+	op_stroff	(x,	0,	GetStrucIdByName("window_t"),	0);
+	create_insn	(x=0X4CE677);
+	op_stroff	(x,	1,	GetStrucIdByName("obj_interface_skin_t"),	0);
+	create_insn	(x=0X4CE67A);
+	op_stroff	(x,	0,	GetStrucIdByName("window_t"),	0);
+	create_insn	(x=0X4CE687);
+	op_stroff	(x,	0,	GetStrucIdByName("window_t"),	0);
+	create_insn	(x=0X4CE696);
+	op_stroff	(x,	1,	GetStrucIdByName("obj_interface_skin_t"),	0);
+	create_insn	(x=0X4CE699);
+	op_stroff	(x,	0,	GetStrucIdByName("window_t"),	0);
+	create_insn	(x=0X4CE6A4);
+	op_stroff	(x,	0,	GetStrucIdByName("window_t"),	0);
+	create_insn	(x=0X4CE6B1);
+	op_stroff	(x,	0,	GetStrucIdByName("window_t"),	0);
 	create_insn	(x=0X4CE6BA);
 	op_hex		(x,	1);
 	create_insn	(0X4CE6C9);
@@ -79433,11 +80295,21 @@ static Bytes_13(void) {
 	set_name	(0X4CE726,	"ui::text_input::_widgets::event_prepare_draw");
 	create_insn	(0X4CE75B);
 	set_name	(0X4CE75B,	"ui::text_input::_widgets::event_draw");
+	create_insn	(x=0X4CE760);
+	op_stroff	(x,	1,	GetStrucIdByName("window_t"),	0);
 	create_insn	(x=0X4CE76B);
 	op_hex		(x,	1);
+	create_insn	(x=0X4CE76E);
+	op_stroff	(x,	1,	GetStrucIdByName("window_t"),	0);
+	create_insn	(x=0X4CE776);
+	op_stroff	(x,	1,	GetStrucIdByName("window_t"),	0);
 	create_insn	(x=0X4CE7A1);
 	op_plain_offset	(x,	1,	0);
 	op_plain_offset	(x,	129,	0);
+	create_insn	(x=0X4CE7D5);
+	op_stroff	(x,	1,	GetStrucIdByName("window_t"),	0);
+	create_insn	(x=0X4CE7D9);
+	op_stroff	(x,	1,	GetStrucIdByName("window_t"),	0);
 	create_insn	(x=0X4CE7E8);
 	op_plain_offset	(x,	1,	0);
 	op_plain_offset	(x,	129,	0);
@@ -79464,6 +80336,8 @@ static Bytes_13(void) {
 	set_cmt	(0X4CE898,	"bottom",	0);
 	create_insn	(x=0X4CE89C);
 	op_stkvar	(x,	1);
+	create_insn	(x=0X4CE89F);
+	op_stroff	(x,	1,	GetStrucIdByName("window_t"),	0);
 	set_cmt	(0X4CE8A6,	"colour",	0);
 	create_insn	(0X4CE8B6);
 	set_name	(0X4CE8B6,	"ui::text_input::_widgets::event_on_mouse_up");
@@ -79604,6 +80478,8 @@ static Bytes_13(void) {
 	op_stroff	(x,	0,	GetStrucIdByName("window_t"),	0);
 	create_insn	(x=0X4CEE91);
 	op_stroff	(x,	1,	GetStrucIdByName("window_t"),	0);
+	create_insn	(x=0X4CEE98);
+	op_stroff	(x,	0,	GetStrucIdByName("viewport_t"),	0);
 	create_insn	(0X4CEEA5);
 	create_insn	(0X4CEEA7);
 	create_insn	(x=0X4CEF3C);
@@ -79629,6 +80505,14 @@ static Bytes_13(void) {
 	create_insn	(x=0X4CEFC8);
 	op_plain_offset	(x,	1,	0);
 	op_plain_offset	(x,	129,	0);
+	create_insn	(x=0X4CEFD5);
+	op_stroff	(x,	1,	GetStrucIdByName("obj_interface_skin_t"),	0);
+	create_insn	(x=0X4CEFD8);
+	op_stroff	(x,	0,	GetStrucIdByName("window_t"),	0);
+	create_insn	(x=0X4CEFDE);
+	op_stroff	(x,	1,	GetStrucIdByName("obj_interface_skin_t"),	0);
+	create_insn	(x=0X4CEFE1);
+	op_stroff	(x,	0,	GetStrucIdByName("window_t"),	0);
 	create_insn	(0X4CEFE9);
 	create_insn	(x=0X4CEFF2);
 	op_hex		(x,	1);
@@ -79735,6 +80619,8 @@ static Bytes_13(void) {
 	create_insn	(x=0X4CF32E);
 	op_plain_offset	(x,	1,	0);
 	op_plain_offset	(x,	129,	0);
+	create_insn	(x=0X4CF335);
+	op_stroff	(x,	1,	GetStrucIdByName("obj_competitors_t"),	0);
 	create_insn	(x=0X4CF339);
 	op_plain_offset	(x,	1,	0);
 	op_plain_offset	(x,	129,	0);
@@ -81228,6 +82114,15 @@ static Bytes_13(void) {
 	op_plain_offset	(x,	128,	0);
 	create_dword	(0X4D0D64);
 	make_array	(0X4D0D64,	0X3);
+}
+
+//------------------------------------------------------------------------
+// Information about bytes
+
+static Bytes_14(void) {
+        auto x;
+#define id x
+
 	create_dword	(x=0X4D0D70);
 	op_plain_offset	(x,	0,	0);
 	op_plain_offset	(x,	128,	0);
@@ -82968,15 +83863,6 @@ static Bytes_13(void) {
 	op_stkvar	(x,	0);
 	create_insn	(x=0X4D3251);
 	op_stkvar	(x,	0);
-}
-
-//------------------------------------------------------------------------
-// Information about bytes
-
-static Bytes_14(void) {
-        auto x;
-#define id x
-
 	create_insn	(x=0X4D325A);
 	op_stkvar	(x,	1);
 	create_insn	(x=0X4D3261);
@@ -86624,6 +87510,15 @@ static Bytes_14(void) {
 	op_plain_offset	(x,	0,	0);
 	op_plain_offset	(x,	128,	0);
 	set_name	(0X4D71CC,	"LoadLibraryA");
+}
+
+//------------------------------------------------------------------------
+// Information about bytes
+
+static Bytes_15(void) {
+        auto x;
+#define id x
+
 	create_dword	(x=0X4D71D0);
 	op_plain_offset	(x,	0,	0);
 	op_plain_offset	(x,	128,	0);
@@ -88333,15 +89228,6 @@ static Bytes_14(void) {
 	create_dword	(x=0X4D7A70);
 	op_plain_offset	(x,	0,	0);
 	op_plain_offset	(x,	128,	0);
-}
-
-//------------------------------------------------------------------------
-// Information about bytes
-
-static Bytes_15(void) {
-        auto x;
-#define id x
-
 	create_dword	(x=0X4D7A74);
 	op_plain_offset	(x,	0,	0);
 	op_plain_offset	(x,	128,	0);
@@ -92272,6 +93158,15 @@ static Bytes_15(void) {
 	create_dword	(x=0X4D8EE8);
 	op_plain_offset	(x,	0,	0);
 	op_plain_offset	(x,	128,	0);
+}
+
+//------------------------------------------------------------------------
+// Information about bytes
+
+static Bytes_16(void) {
+        auto x;
+#define id x
+
 	create_dword	(x=0X4D8EEC);
 	op_plain_offset	(x,	0,	0);
 	op_plain_offset	(x,	128,	0);
@@ -94090,15 +94985,6 @@ static Bytes_15(void) {
 	create_dword	(x=0X4D9860);
 	op_plain_offset	(x,	0,	0);
 	op_plain_offset	(x,	128,	0);
-}
-
-//------------------------------------------------------------------------
-// Information about bytes
-
-static Bytes_16(void) {
-        auto x;
-#define id x
-
 	create_dword	(x=0X4D9864);
 	op_plain_offset	(x,	0,	0);
 	op_plain_offset	(x,	128,	0);
@@ -97813,6 +98699,15 @@ static Bytes_16(void) {
 	create_dword	(x=0X4FAED0);
 	op_plain_offset	(x,	0,	0);
 	op_plain_offset	(x,	128,	0);
+}
+
+//------------------------------------------------------------------------
+// Information about bytes
+
+static Bytes_17(void) {
+        auto x;
+#define id x
+
 	create_dword	(x=0X4FAED4);
 	op_plain_offset	(x,	0,	0);
 	op_plain_offset	(x,	128,	0);
@@ -99514,15 +100409,6 @@ static Bytes_16(void) {
 	create_dword	(x=0X4FBCC0);
 	op_plain_offset	(x,	0,	0);
 	op_plain_offset	(x,	128,	0);
-}
-
-//------------------------------------------------------------------------
-// Information about bytes
-
-static Bytes_17(void) {
-        auto x;
-#define id x
-
 	create_dword	(x=0X4FBCC4);
 	op_plain_offset	(x,	0,	0);
 	op_plain_offset	(x,	128,	0);
@@ -103427,6 +104313,15 @@ static Bytes_17(void) {
 	create_dword	(x=0X4FDC30);
 	op_plain_offset	(x,	0,	0);
 	op_plain_offset	(x,	128,	0);
+}
+
+//------------------------------------------------------------------------
+// Information about bytes
+
+static Bytes_18(void) {
+        auto x;
+#define id x
+
 	create_dword	(x=0X4FDC34);
 	op_plain_offset	(x,	0,	0);
 	op_plain_offset	(x,	128,	0);
@@ -105114,15 +106009,6 @@ static Bytes_17(void) {
 	create_dword	(x=0X4FFC58);
 	op_plain_offset	(x,	0,	0);
 	op_plain_offset	(x,	128,	0);
-}
-
-//------------------------------------------------------------------------
-// Information about bytes
-
-static Bytes_18(void) {
-        auto x;
-#define id x
-
 	create_dword	(x=0X4FFC5C);
 	op_plain_offset	(x,	0,	0);
 	op_plain_offset	(x,	128,	0);
@@ -108008,6 +108894,15 @@ static Bytes_18(void) {
 	set_name	(0X50DBC2,	"_str0070");
 	create_strlit	(0X50DBF6,	0X50DC1D);
 	set_name	(0X50DBF6,	"_str0071");
+}
+
+//------------------------------------------------------------------------
+// Information about bytes
+
+static Bytes_19(void) {
+        auto x;
+#define id x
+
 	create_strlit	(0X50DC1D,	0X50DC37);
 	set_name	(0X50DC1D,	"_str0072");
 	create_strlit	(0X50DC37,	0X50DC5A);
@@ -109056,15 +109951,6 @@ static Bytes_18(void) {
 	set_name	(0X510305,	"_str0594");
 	create_strlit	(0X510311,	0X510324);
 	set_name	(0X510311,	"_str0595");
-}
-
-//------------------------------------------------------------------------
-// Information about bytes
-
-static Bytes_19(void) {
-        auto x;
-#define id x
-
 	create_strlit	(0X510324,	0X510334);
 	set_name	(0X510324,	"_str0596");
 	create_strlit	(0X510334,	0X51034B);
@@ -111333,6 +112219,15 @@ static Bytes_19(void) {
 	set_name	(0X515080,	"_str1728");
 	create_strlit	(0X51508F,	0X5150AA);
 	set_name	(0X51508F,	"_str1729");
+}
+
+//------------------------------------------------------------------------
+// Information about bytes
+
+static Bytes_20(void) {
+        auto x;
+#define id x
+
 	create_strlit	(0X5150AA,	0X5150B5);
 	set_name	(0X5150AA,	"_str1730");
 	create_strlit	(0X5150B5,	0X5150BD);
@@ -112368,15 +113263,6 @@ static Bytes_19(void) {
 	create_byte	(0X52336C);
 	create_byte	(0X52336D);
 	set_name	(0X52336D,	"input_state");
-}
-
-//------------------------------------------------------------------------
-// Information about bytes
-
-static Bytes_20(void) {
-        auto x;
-#define id x
-
 	create_byte	(0X52336E);
 	create_byte	(x=0X52336F);
 	op_enum		(x,	0,	GetEnum("windowtype"),0);
