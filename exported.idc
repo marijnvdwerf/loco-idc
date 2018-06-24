@@ -44,10 +44,10 @@ static GenInfo(void) {
 	set_inf_attr(INF_STRLIT_BREAK, 0xA);
 	set_flag(INF_CMTFLAG, SW_ALLCMT, 0);
 	set_flag(INF_OUTFLAGS, OFLG_SHOW_VOID, 0);
-	set_inf_attr(INF_XREFNUM, 0);
+	set_inf_attr(INF_XREFNUM, 2);
 	set_flag(INF_OUTFLAGS, OFLG_SHOW_AUTO, 1);
-	set_inf_attr(INF_INDENT, 0);
-	set_inf_attr(INF_COMMENT, 24);
+	set_inf_attr(INF_INDENT, 16);
+	set_inf_attr(INF_COMMENT, 40);
 	set_inf_attr(INF_MAXREF, 0x10);
 	add_default_til("mssdk");
 	add_default_til("vc6win");
@@ -878,12 +878,12 @@ static Structures_0(id) {
 	mid = add_struc_member(id,"v_top",	0XA,	0x10000400,	-1,	2);
 	mid = add_struc_member(id,"v_bottom",	0XC,	0x10000400,	-1,	2);
 	mid = add_struc_member(id,"v_thumb_top",	0XE,	0x10000400,	-1,	2);
-	mid = add_struc_member(id,"end",	0X11,	0x000400,	-1,	1);
+	mid = add_struc_member(id,"v_thumb_bottom",	0X10,	0x10000400,	-1,	2);
 	
 	id = get_struc_id("viewport_config_t");
 	mid = add_struc_member(id,"viewport_target_sprite",	0,	0x10000400,	-1,	2);
 	mid = add_struc_member(id,"saved_view_x",	0X2,	0x10000400,	-1,	2);
-	mid = add_struc_member(id,"end",	0X5,	0x000400,	-1,	1);
+	mid = add_struc_member(id,"saved_view_y",	0X4,	0x10000400,	-1,	2);
 	
 	id = get_struc_id("window_t");
 	mid = add_struc_member(id,"event_handlers",	0,	0x20000400,	-1,	4);
@@ -924,7 +924,7 @@ static Structures_0(id) {
 	mid = add_struc_member(id,"view_width",	0XC,	0x10000400,	-1,	2);
 	mid = add_struc_member(id,"view_height",	0XE,	0x10000400,	-1,	2);
 	mid = add_struc_member(id,"zoom",	0X10,	0x000400,	-1,	1);
-	mid = add_struc_member(id,"end",	0X13,	0x000400,	-1,	1);
+	mid = add_struc_member(id,"var_012",	0X12,	0x10000400,	-1,	2);
 	
 	id = get_struc_id("company_t");
 	mid = add_struc_member(id,"end",	0X8FA7,	0x000400,	-1,	1);
@@ -948,7 +948,7 @@ static Structures_0(id) {
 	mid = add_struc_member(id,"x",	0X8,	0x10000400,	-1,	2);
 	mid = add_struc_member(id,"y",	0XA,	0x10000400,	-1,	2);
 	mid = add_struc_member(id,"flags",	0XC,	0x10000400,	-1,	2);
-	mid = add_struc_member(id,"end",	0XF,	0x000400,	-1,	1);
+	mid = add_struc_member(id,"pad",	0XE,	0x10000400,	-1,	2);
 	
 	id = get_struc_id("str_32");
 	mid = add_struc_member(id,"end",	0X1F,	0x000400,	-1,	1);
@@ -963,7 +963,7 @@ static Structures_0(id) {
 	mid = add_struc_member(id,"width",	0X8,	0x10000400,	-1,	2);
 	mid = add_struc_member(id,"height",	0XA,	0x10000400,	-1,	2);
 	mid = add_struc_member(id,"pitch",	0XC,	0x10000400,	-1,	2);
-	mid = add_struc_member(id,"end",	0XF,	0x000400,	-1,	1);
+	mid = add_struc_member(id,"zoom_level",	0XE,	0x10000400,	-1,	2);
 	
 	id = get_struc_id("colourmap_a");
 	mid = add_struc_member(id,"shade_0",	0,	0x000400,	-1,	1);
@@ -1011,7 +1011,7 @@ static Structures_0(id) {
 	mid = add_struc_member(id,"str",	0,	0x10000400,	-1,	2);
 	mid = add_struc_member(id,"var_002",	0X2,	0x20000400,	-1,	4);
 	mid = add_struc_member(id,"var_006",	0X6,	0x000400,	-1,	1);
-	mid = add_struc_member(id,"end",	0XB,	0x000400,	-1,	1);
+	mid = add_struc_member(id,"var_008",	0X8,	0x20000400,	-1,	4);
 	
 	id = get_struc_id("obj_currency_t");
 	mid = add_struc_member(id,"name",	0,	0x10000400,	-1,	2);
@@ -1040,7 +1040,7 @@ static Structures_0(id) {
 	mid = add_struc_member(id,"g4_offset",	0X14,	0x10000400,	-1,	2);
 	mid = add_struc_member(id,"g5_count",	0X16,	0x000400,	-1,	1);
 	mid = add_struc_member(id,"g5_fill",	0X17,	0x000400,	-1,	1);
-	mid = add_struc_member(id,"end",	0X19,	0x000400,	-1,	1);
+	mid = add_struc_member(id,"g5_offset",	0X18,	0x10000400,	-1,	2);
 	
 	id = get_struc_id("obj_competitors_t");
 	mid = add_struc_member(id,"str",	0,	0x10000400,	-1,	2);
@@ -18544,7 +18544,7 @@ static Bytes_3(void) {
 	op_plain_offset	(x,	1,	0);
 	op_plain_offset	(x,	129,	0);
 	create_insn	(0X435003);
-	set_name	(0X435003,	"ui__company_face_selection__event_draw");
+	set_name	(0X435003,	"ui::company_face_selection::event_draw");
 	create_insn	(x=0X435008);
 	op_stroff	(x,	0,	GetStrucIdByName("window_t"),	0);
 	create_insn	(x=0X435024);
@@ -18611,6 +18611,7 @@ static Bytes_3(void) {
 	set_name	(0X435314,	"ui::company_face_selection::event_scroll_mouse_down");
 	create_insn	(x=0X43531E);
 	op_hex		(x,	1);
+	set_cmt	(0X435372,	"window",	0);
 	create_insn	(0X435380);
 	set_name	(0X435380,	"nullsub_435380");
 	create_insn	(0X435381);
@@ -19986,6 +19987,7 @@ static Bytes_3(void) {
 	op_enum		(x,	1,	GetEnum("windowtype"),0);
 	make_array	(0X438A69,	0X3);
 	create_insn	(0X438A6C);
+	set_name	(0X438A6C,	"gui_init");
 	create_insn	(x=0X438A78);
 	op_hex		(x,	1);
 	create_insn	(x=0X438A96);
@@ -21390,6 +21392,7 @@ static Bytes_3(void) {
 	create_insn	(0X43CB8E);
 	create_insn	(0X43CB9D);
 	create_insn	(0X43CB9F);
+	set_name	(0X43CB9F,	"editor_init");
 	create_insn	(x=0X43CBB2);
 	op_hex		(x,	1);
 	set_cmt	(0X43CBC3,	"windowtype",	0);
@@ -22793,11 +22796,6 @@ static Bytes_3(void) {
 	create_insn	(0X44154A);
 	create_insn	(0X44154B);
 	set_name	(0X44154B,	"check_file_paths");
-	create_insn	(0X44155B);
-	set_name	(0X44155B,	"check_file_path");
-	create_insn	(x=0X441562);
-	op_plain_offset	(x,	0,	0);
-	op_plain_offset	(x,	128,	0);
 }
 
 //------------------------------------------------------------------------
@@ -22807,6 +22805,11 @@ static Bytes_4(void) {
         auto x;
 #define id x
 
+	create_insn	(0X44155B);
+	set_name	(0X44155B,	"check_file_path");
+	create_insn	(x=0X441562);
+	op_plain_offset	(x,	0,	0);
+	op_plain_offset	(x,	128,	0);
 	set_cmt	(0X441579,	"lpFileName",	0);
 	create_insn	(x=0X44157F);
 	op_hex		(x,	1);
@@ -23191,6 +23194,7 @@ static Bytes_4(void) {
 	op_hex		(x,	1);
 	create_insn	(0X441FA5);
 	create_insn	(0X441FA7);
+	set_name	(0X441FA7,	"loadTitleSequence");
 	create_insn	(x=0X441FB3);
 	op_hex		(x,	1);
 	set_cmt	(0X441FD3,	"lpFileName",	0);
@@ -24851,6 +24855,7 @@ static Bytes_4(void) {
 	set_cmt	(0X446674,	"windowtype",	0);
 	create_insn	(x=0X446674);
 	op_enum		(x,	1,	GetEnum("windowtype"),0);
+	set_cmt	(0X446688,	"window",	0);
 	create_insn	(0X446688);
 	create_insn	(x=0X446689);
 	op_plain_offset	(x,	1,	0);
@@ -27468,12 +27473,16 @@ static Bytes_4(void) {
 	op_hex		(x,	1);
 	create_insn	(x=0X452D34);
 	op_hex		(x,	1);
+	set_cmt	(0X452D44,	"left",	0);
 	create_insn	(x=0X452D44);
 	op_plain_offset	(x,	1,	0);
 	op_plain_offset	(x,	129,	0);
+	set_cmt	(0X452D4B,	"top",	0);
+	set_cmt	(0X452D58,	"right",	0);
 	create_insn	(x=0X452D58);
 	op_plain_offset	(x,	1,	0);
 	op_plain_offset	(x,	129,	0);
+	set_cmt	(0X452D5F,	"bottom",	0);
 	create_insn	(x=0X452D71);
 	op_plain_offset	(x,	1,	0);
 	op_plain_offset	(x,	129,	0);
@@ -28717,6 +28726,15 @@ static Bytes_4(void) {
 	create_insn	(x=0X4563E1);
 	op_plain_offset	(x,	1,	0);
 	op_plain_offset	(x,	129,	0);
+}
+
+//------------------------------------------------------------------------
+// Information about bytes
+
+static Bytes_5(void) {
+        auto x;
+#define id x
+
 	create_insn	(x=0X4563FB);
 	op_stkvar	(x,	1);
 	create_insn	(x=0X456402);
@@ -28733,15 +28751,6 @@ static Bytes_4(void) {
 	op_plain_offset	(x,	129,	0);
 	set_cmt	(0X456450,	"left",	0);
 	set_cmt	(0X456456,	"top",	0);
-}
-
-//------------------------------------------------------------------------
-// Information about bytes
-
-static Bytes_5(void) {
-        auto x;
-#define id x
-
 	set_cmt	(0X45645A,	"bottom",	0);
 	create_insn	(x=0X45645A);
 	op_stkvar	(x,	1);
@@ -29639,6 +29648,7 @@ static Bytes_5(void) {
 	set_name	(0X4585AD,	"ui::industry_list::event_2_tool_abort");
 	create_insn	(0X4585B8);
 	set_name	(0X4585B8,	"ui::industry_list::event_2_on_update");
+	set_cmt	(0X4585D9,	"window",	0);
 	create_insn	(0X45866E);
 	set_cmt	(0X4586A1,	"wtf_industry_list",	1);
 	create_insn	(x=0X4586A1);
@@ -35152,15 +35162,6 @@ static Bytes_5(void) {
 	create_insn	(0X46B9BA);
 	create_insn	(0X46B9CB);
 	create_insn	(0X46B9D4);
-	create_insn	(0X46B9E7);
-	set_name	(0X46B9E7,	"ui::map::event_get_scroll_size");
-	set_cmt	(0X46B9EA,	"wtf_map",	1);
-	create_insn	(x=0X46B9EA);
-	op_stroff	(x,	0,	GetStrucIdByName("window_events_t"),	0);
-	create_insn	(0X46B9F7);
-	set_name	(0X46B9F7,	"ui::map::event_on_resize");
-	create_insn	(0X46BA5B);
-	set_name	(0X46BA5B,	"ui::map::event_on_update");
 }
 
 //------------------------------------------------------------------------
@@ -35170,6 +35171,15 @@ static Bytes_6(void) {
         auto x;
 #define id x
 
+	create_insn	(0X46B9E7);
+	set_name	(0X46B9E7,	"ui::map::event_get_scroll_size");
+	set_cmt	(0X46B9EA,	"wtf_map",	1);
+	create_insn	(x=0X46B9EA);
+	op_stroff	(x,	0,	GetStrucIdByName("window_events_t"),	0);
+	create_insn	(0X46B9F7);
+	set_name	(0X46B9F7,	"ui::map::event_on_resize");
+	create_insn	(0X46BA5B);
+	set_name	(0X46BA5B,	"ui::map::event_on_update");
 	set_cmt	(0X46BA64,	"wtf_map",	1);
 	create_insn	(x=0X46BA64);
 	op_stroff	(x,	0,	GetStrucIdByName("window_events_t"),	0);
@@ -36545,6 +36555,7 @@ static Bytes_6(void) {
 	op_plain_offset	(x,	1,	0);
 	op_plain_offset	(x,	129,	0);
 	create_insn	(0X46EBFB);
+	set_cmt	(0X46EBFE,	"window",	0);
 	create_insn	(0X46EC0A);
 	create_insn	(0X46EC14);
 	create_insn	(0X46EC34);
@@ -38084,6 +38095,7 @@ static Bytes_6(void) {
 	op_stkvar	(x,	1);
 	create_insn	(0X472217);
 	create_insn	(0X47221F);
+	set_name	(0X47221F,	"object_load_images");
 	create_insn	(x=0X47224B);
 	op_plain_offset	(x,	0,	0);
 	op_plain_offset	(x,	128,	0);
@@ -41310,6 +41322,15 @@ static Bytes_6(void) {
 	create_insn	(x=0X4795E3);
 	op_plain_offset	(x,	1,	0);
 	op_plain_offset	(x,	129,	0);
+}
+
+//------------------------------------------------------------------------
+// Information about bytes
+
+static Bytes_7(void) {
+        auto x;
+#define id x
+
 	create_insn	(x=0X4795EE);
 	op_hex		(x,	1);
 	create_insn	(x=0X4795F6);
@@ -41343,15 +41364,6 @@ static Bytes_6(void) {
 	op_hex		(x,	1);
 	create_insn	(x=0X479663);
 	op_hex		(x,	1);
-}
-
-//------------------------------------------------------------------------
-// Information about bytes
-
-static Bytes_7(void) {
-        auto x;
-#define id x
-
 	create_insn	(0X47966E);
 	create_insn	(x=0X479680);
 	op_hex		(x,	1);
@@ -48407,6 +48419,15 @@ static Bytes_7(void) {
 	create_insn	(x=0X48858C);
 	op_hex		(x,	1);
 	create_insn	(0X488595);
+}
+
+//------------------------------------------------------------------------
+// Information about bytes
+
+static Bytes_8(void) {
+        auto x;
+#define id x
+
 	create_insn	(x=0X488598);
 	op_hex		(x,	1);
 	create_insn	(x=0X4885AB);
@@ -48440,15 +48461,6 @@ static Bytes_7(void) {
 	op_hex		(x,	1);
 	create_insn	(x=0X48862B);
 	op_hex		(x,	1);
-}
-
-//------------------------------------------------------------------------
-// Information about bytes
-
-static Bytes_8(void) {
-        auto x;
-#define id x
-
 	create_insn	(x=0X48864C);
 	op_hex		(x,	1);
 	create_insn	(x=0X488656);
@@ -54522,6 +54534,15 @@ static Bytes_8(void) {
 	set_name	(0X495C5D,	"formatPush16");
 	create_insn	(0X495C65);
 	set_name	(0X495C65,	"calc_date");
+}
+
+//------------------------------------------------------------------------
+// Information about bytes
+
+static Bytes_9(void) {
+        auto x;
+#define id x
+
 	create_insn	(x=0X495C6E);
 	op_hex		(x,	1);
 	create_insn	(x=0X495C73);
@@ -54542,15 +54563,6 @@ static Bytes_8(void) {
 	op_stkvar	(x,	1);
 	create_insn	(x=0X495CF8);
 	op_stkvar	(x,	1);
-}
-
-//------------------------------------------------------------------------
-// Information about bytes
-
-static Bytes_9(void) {
-        auto x;
-#define id x
-
 	create_insn	(0X495D09);
 	set_name	(0X495D09,	"formatDayMonthYearFull");
 	create_insn	(x=0X495D12);
@@ -56532,6 +56544,7 @@ static Bytes_9(void) {
 	set_name	(0X49AD46,	"ui::town_list::event_4_tool_abort");
 	create_insn	(0X49AD51);
 	set_name	(0X49AD51,	"ui::town_list::event_4_on_update");
+	set_cmt	(0X49AD72,	"window",	0);
 	create_insn	(0X49AE07);
 	set_cmt	(0X49AE3A,	"wtf_town_list",	1);
 	create_insn	(x=0X49AE3A);
@@ -60418,6 +60431,15 @@ static Bytes_9(void) {
 	op_hex		(x,	1);
 	create_insn	(x=0X4A4733);
 	op_hex		(x,	1);
+}
+
+//------------------------------------------------------------------------
+// Information about bytes
+
+static Bytes_10(void) {
+        auto x;
+#define id x
+
 	create_insn	(x=0X4A4739);
 	op_hex		(x,	1);
 	create_insn	(x=0X4A4741);
@@ -60447,15 +60469,6 @@ static Bytes_9(void) {
 	op_stkvar	(x,	1);
 	create_insn	(x=0X4A4868);
 	op_stkvar	(x,	1);
-}
-
-//------------------------------------------------------------------------
-// Information about bytes
-
-static Bytes_10(void) {
-        auto x;
-#define id x
-
 	create_insn	(x=0X4A486D);
 	op_stkvar	(x,	1);
 	create_insn	(x=0X4A48B1);
@@ -67221,6 +67234,15 @@ static Bytes_10(void) {
 	set_name	(0X4B251A,	"ui::vehicle::event_1_on_mouse_down");
 	create_insn	(0X4B252F);
 	set_name	(0X4B252F,	"ui::vehicle::event_1_text_input");
+}
+
+//------------------------------------------------------------------------
+// Information about bytes
+
+static Bytes_11(void) {
+        auto x;
+#define id x
+
 	create_insn	(0X4B253A);
 	set_name	(0X4B253A,	"ui::vehicle::event_1_on_dropdown");
 	create_insn	(0X4B2545);
@@ -67235,15 +67257,6 @@ static Bytes_10(void) {
 	set_cmt	(0X4B261F,	"wtf_vehicle",	1);
 	create_insn	(x=0X4B261F);
 	op_stroff	(x,	0,	GetStrucIdByName("window_events_t"),	0);
-}
-
-//------------------------------------------------------------------------
-// Information about bytes
-
-static Bytes_11(void) {
-        auto x;
-#define id x
-
 	set_cmt	(0X4B2624,	"wtf_vehicle",	1);
 	create_insn	(x=0X4B2624);
 	op_stroff	(x,	0,	GetStrucIdByName("window_events_t"),	0);
@@ -69075,6 +69088,7 @@ static Bytes_11(void) {
 	create_insn	(0X4B6271);
 	set_name	(0X4B6271,	"ui::window_25::_widgets::event_on_move");
 	create_insn	(0X4B62AC);
+	set_cmt	(0X4B62CC,	"window",	0);
 	set_cmt	(0X4B62CD,	"windowtype",	0);
 	create_insn	(x=0X4B62CD);
 	op_enum		(x,	1,	GetEnum("windowtype"),0);
@@ -70391,7 +70405,7 @@ static Bytes_11(void) {
 	op_plain_offset	(x,	1,	0);
 	op_plain_offset	(x,	129,	0);
 	create_insn	(0X4B8405);
-	set_name	(0X4B8405,	"paint_small_scenery_entry");
+	set_name	(0X4B8405,	"obj_vehicle");
 	create_insn	(x=0X4B8444);
 	op_hex		(x,	1);
 	create_insn	(x=0X4B8496);
@@ -72977,6 +72991,15 @@ static Bytes_11(void) {
 	op_hex		(x,	1);
 	create_insn	(x=0X4BDD5E);
 	op_hex		(x,	1);
+}
+
+//------------------------------------------------------------------------
+// Information about bytes
+
+static Bytes_12(void) {
+        auto x;
+#define id x
+
 	create_insn	(x=0X4BDD77);
 	op_hex		(x,	1);
 	create_insn	(x=0X4BDD7B);
@@ -73016,15 +73039,6 @@ static Bytes_11(void) {
 	create_insn	(0X4BDE74);
 	create_insn	(x=0X4BDE80);
 	op_hex		(x,	1);
-}
-
-//------------------------------------------------------------------------
-// Information about bytes
-
-static Bytes_12(void) {
-        auto x;
-#define id x
-
 	create_insn	(0X4BDE96);
 	create_insn	(x=0X4BDEA4);
 	op_hex		(x,	1);
@@ -73470,6 +73484,8 @@ static Bytes_12(void) {
 	set_cmt	(0X4BF089,	"windowtype",	0);
 	create_insn	(x=0X4BF089);
 	op_enum		(x,	1,	GetEnum("windowtype"),0);
+	set_name	(0X4BF089,	"close_topmost_window");
+	set_cmt	(0X4BF099,	"window",	0);
 	create_insn	(x=0X4BF09F);
 	op_plain_offset	(x,	1,	0);
 	op_plain_offset	(x,	129,	0);
@@ -73669,6 +73685,7 @@ static Bytes_12(void) {
 	set_cmt	(0X4BF7B9,	"windowtype",	0);
 	create_insn	(x=0X4BF7B9);
 	op_enum		(x,	1,	GetEnum("windowtype"),0);
+	set_name	(0X4BF7B9,	"windowmgr::open_options");
 	create_insn	(0X4BF7C6);
 	create_insn	(x=0X4BF7CB);
 	op_stroff	(x,	0,	GetStrucIdByName("window_t"),	0);
@@ -74346,6 +74363,7 @@ static Bytes_12(void) {
 	set_cmt	(0X4C17E4,	"windowtype",	0);
 	create_insn	(x=0X4C17E4);
 	op_enum		(x,	1,	GetEnum("windowtype"),0);
+	set_cmt	(0X4C17FC,	"window",	0);
 	create_insn	(0X4C17FC);
 	create_insn	(0X4C1802);
 	set_name	(0X4C1802,	"nullsub_4c1802");
@@ -76809,6 +76827,7 @@ static Bytes_12(void) {
 	create_insn	(0X4C640F);
 	create_insn	(x=0X4C641F);
 	op_stroff	(x,	0,	GetStrucIdByName("window_t"),	0);
+	set_name	(0X4C641F,	"viewport_set_underground_flag");
 	create_insn	(x=0X4C6435);
 	op_hex		(x,	1);
 	create_insn	(0X4C643E);
@@ -76989,9 +77008,9 @@ static Bytes_12(void) {
 	create_insn	(x=0X4C68EA);
 	op_stroff	(x,	1,	GetStrucIdByName("viewport_t"),	0);
 	create_insn	(x=0X4C68EE);
-	op_stroff	(x,	0,	GetStrucIdByName("window_t"),	0);
+	op_stroff	(x,	0,	GetStrucIdByName("viewport_t"),	0);
 	create_insn	(x=0X4C68F2);
-	op_stroff	(x,	0,	GetStrucIdByName("window_t"),	0);
+	op_stroff	(x,	0,	GetStrucIdByName("viewport_t"),	0);
 	create_insn	(x=0X4C68F6);
 	op_stroff	(x,	1,	GetStrucIdByName("viewport_t"),	0);
 	create_insn	(x=0X4C6913);
@@ -77579,6 +77598,15 @@ static Bytes_12(void) {
 	op_stroff	(x,	1,	GetStrucIdByName("window_t"),	0);
 	create_insn	(x=0X4C8358);
 	op_stroff	(x,	1,	GetStrucIdByName("window_t"),	0);
+}
+
+//------------------------------------------------------------------------
+// Information about bytes
+
+static Bytes_13(void) {
+        auto x;
+#define id x
+
 	set_cmt	(0X4C835E,	"windowtype",	0);
 	create_insn	(x=0X4C835E);
 	op_enum		(x,	1,	GetEnum("windowtype"),0);
@@ -77604,15 +77632,6 @@ static Bytes_12(void) {
 	op_stroff	(x,	1,	GetStrucIdByName("window_t"),	0);
 	create_insn	(x=0X4C84CC);
 	op_stroff	(x,	1,	GetStrucIdByName("window_t"),	0);
-}
-
-//------------------------------------------------------------------------
-// Information about bytes
-
-static Bytes_13(void) {
-        auto x;
-#define id x
-
 	set_cmt	(0X4C84D2,	"windowtype",	0);
 	create_insn	(x=0X4C84D2);
 	op_enum		(x,	1,	GetEnum("windowtype"),0);
@@ -78100,6 +78119,10 @@ static Bytes_13(void) {
 	op_hex		(x,	1);
 	create_insn	(x=0X4C9A49);
 	op_hex		(x,	1);
+	set_cmt	(0X4C9A76,	"left",	0);
+	set_cmt	(0X4C9A7A,	"top",	0);
+	set_cmt	(0X4C9A7E,	"right",	0);
+	set_cmt	(0X4C9A82,	"bottom",	0);
 	create_insn	(0X4C9A94);
 	create_insn	(0X4C9A95);
 	set_name	(0X4C9A95,	"ui::windowmgr::find_at");
@@ -78228,6 +78251,7 @@ static Bytes_13(void) {
 	op_hex		(x,	1);
 	create_insn	(x=0X4CA01A);
 	op_hex		(x,	1);
+	set_cmt	(0X4CA0F5,	"window",	0);
 	create_insn	(x=0X4CA0F5);
 	op_plain_offset	(x,	1,	0);
 	op_plain_offset	(x,	129,	0);
@@ -78410,6 +78434,10 @@ static Bytes_13(void) {
 	op_hex		(x,	1);
 	create_insn	(0X4CA4BD);
 	set_name	(0X4CA4BD,	"window_invalidate");
+	set_cmt	(0X4CA4C2,	"left",	0);
+	set_cmt	(0X4CA4C6,	"top",	0);
+	set_cmt	(0X4CA4D2,	"right",	0);
+	set_cmt	(0X4CA4D5,	"bottom",	0);
 	create_insn	(x=0X4CA4DF);
 	op_hex		(x,	1);
 	set_name	(0X4CA4DF,	"window_draw_widgets");
@@ -79408,12 +79436,16 @@ static Bytes_13(void) {
 	op_stroff	(x,	1,	GetStrucIdByName("widget_t"),	0);
 	create_insn	(x=0X4CB9DD);
 	op_stroff	(x,	1,	GetStrucIdByName("widget_t"),	0);
+	set_cmt	(0X4CB9E5,	"left",	0);
 	create_insn	(x=0X4CB9E5);
 	op_stroff	(x,	1,	GetStrucIdByName("window_t"),	0);
+	set_cmt	(0X4CB9E9,	"top",	0);
 	create_insn	(x=0X4CB9E9);
 	op_stroff	(x,	1,	GetStrucIdByName("window_t"),	0);
+	set_cmt	(0X4CB9ED,	"right",	0);
 	create_insn	(x=0X4CB9ED);
 	op_stroff	(x,	1,	GetStrucIdByName("window_t"),	0);
+	set_cmt	(0X4CB9F1,	"bottom",	0);
 	create_insn	(x=0X4CB9F1);
 	op_stroff	(x,	1,	GetStrucIdByName("window_t"),	0);
 	create_insn	(0X4CBA03);
@@ -79432,26 +79464,46 @@ static Bytes_13(void) {
 	create_insn	(x=0X4CBA30);
 	op_plain_offset	(x,	1,	0);
 	op_plain_offset	(x,	129,	0);
+	set_cmt	(0X4CBADB,	"left",	0);
+	set_cmt	(0X4CBADF,	"top",	0);
+	set_cmt	(0X4CBAE3,	"right",	0);
+	set_cmt	(0X4CBAE7,	"bottom",	0);
 	create_insn	(0X4CBAFF);
 	create_insn	(0X4CBB01);
 	create_insn	(x=0X4CBB1C);
 	op_plain_offset	(x,	1,	0);
 	op_plain_offset	(x,	129,	0);
+	set_cmt	(0X4CBBAD,	"left",	0);
+	set_cmt	(0X4CBBB1,	"top",	0);
+	set_cmt	(0X4CBBB5,	"right",	0);
+	set_cmt	(0X4CBBB9,	"bottom",	0);
 	create_insn	(0X4CBBD0);
 	create_insn	(0X4CBBD2);
 	create_insn	(x=0X4CBBED);
 	op_plain_offset	(x,	1,	0);
 	op_plain_offset	(x,	129,	0);
+	set_cmt	(0X4CBC87,	"left",	0);
+	set_cmt	(0X4CBC8B,	"top",	0);
+	set_cmt	(0X4CBC8F,	"right",	0);
+	set_cmt	(0X4CBC93,	"bottom",	0);
 	create_insn	(0X4CBCAA);
 	create_insn	(0X4CBCAC);
 	create_insn	(x=0X4CBCC7);
 	op_plain_offset	(x,	1,	0);
 	op_plain_offset	(x,	129,	0);
+	set_cmt	(0X4CBD61,	"left",	0);
+	set_cmt	(0X4CBD65,	"top",	0);
+	set_cmt	(0X4CBD69,	"right",	0);
+	set_cmt	(0X4CBD6D,	"bottom",	0);
 	create_insn	(0X4CBD84);
 	create_insn	(0X4CBD86);
 	create_insn	(x=0X4CBDA1);
 	op_plain_offset	(x,	1,	0);
 	op_plain_offset	(x,	129,	0);
+	set_cmt	(0X4CBE3A,	"left",	0);
+	set_cmt	(0X4CBE3E,	"top",	0);
+	set_cmt	(0X4CBE42,	"right",	0);
+	set_cmt	(0X4CBE46,	"bottom",	0);
 	create_insn	(0X4CBE5D);
 	create_insn	(0X4CBE5F);
 	set_name	(0X4CBE5F,	"map_invalidate_tile_full");
@@ -79470,6 +79522,10 @@ static Bytes_13(void) {
 	create_insn	(x=0X4CBF18);
 	op_plain_offset	(x,	1,	0);
 	op_plain_offset	(x,	129,	0);
+	set_cmt	(0X4CBF9A,	"left",	0);
+	set_cmt	(0X4CBF9E,	"top",	0);
+	set_cmt	(0X4CBFA2,	"right",	0);
+	set_cmt	(0X4CBFA6,	"bottom",	0);
 	create_insn	(0X4CBFBD);
 	create_insn	(0X4CBFBF);
 	create_insn	(0X4CBFD8);
@@ -79500,6 +79556,10 @@ static Bytes_13(void) {
 	create_insn	(x=0X4CC168);
 	op_plain_offset	(x,	1,	0);
 	op_plain_offset	(x,	129,	0);
+	set_cmt	(0X4CC1EA,	"left",	0);
+	set_cmt	(0X4CC1EE,	"top",	0);
+	set_cmt	(0X4CC1F2,	"right",	0);
+	set_cmt	(0X4CC1F6,	"bottom",	0);
 	create_insn	(0X4CC20D);
 	create_insn	(0X4CC20F);
 	create_insn	(0X4CC228);
@@ -79517,6 +79577,10 @@ static Bytes_13(void) {
 	create_insn	(x=0X4CC2DF);
 	op_plain_offset	(x,	1,	0);
 	op_plain_offset	(x,	129,	0);
+	set_cmt	(0X4CC36B,	"left",	0);
+	set_cmt	(0X4CC36F,	"top",	0);
+	set_cmt	(0X4CC373,	"right",	0);
+	set_cmt	(0X4CC377,	"bottom",	0);
 	create_insn	(0X4CC38E);
 	create_insn	(0X4CC390);
 	create_insn	(0X4CC3A9);
@@ -79534,6 +79598,10 @@ static Bytes_13(void) {
 	create_insn	(x=0X4CC460);
 	op_plain_offset	(x,	1,	0);
 	op_plain_offset	(x,	129,	0);
+	set_cmt	(0X4CC4EC,	"left",	0);
+	set_cmt	(0X4CC4F0,	"top",	0);
+	set_cmt	(0X4CC4F4,	"right",	0);
+	set_cmt	(0X4CC4F8,	"bottom",	0);
 	create_insn	(0X4CC50F);
 	create_insn	(0X4CC511);
 	create_insn	(0X4CC52A);
@@ -79551,9 +79619,14 @@ static Bytes_13(void) {
 	create_insn	(x=0X4CC5E1);
 	op_plain_offset	(x,	1,	0);
 	op_plain_offset	(x,	129,	0);
+	set_cmt	(0X4CC66D,	"left",	0);
+	set_cmt	(0X4CC671,	"top",	0);
+	set_cmt	(0X4CC675,	"right",	0);
+	set_cmt	(0X4CC679,	"bottom",	0);
 	create_insn	(0X4CC690);
 	create_insn	(0X4CC692);
 	set_name	(0X4CC692,	"window_close_by_id");
+	set_cmt	(0X4CC693,	"window",	0);
 	create_insn	(x=0X4CC693);
 	op_plain_offset	(x,	1,	0);
 	op_plain_offset	(x,	129,	0);
@@ -79910,6 +79983,10 @@ static Bytes_13(void) {
 	create_insn	(0X4CD3FB);
 	create_insn	(0X4CD406);
 	set_name	(0X4CD406,	"gfx_invalidate_screen");
+	set_cmt	(0X4CD407,	"left",	0);
+	set_cmt	(0X4CD40A,	"top",	0);
+	set_cmt	(0X4CD40D,	"right",	0);
+	set_cmt	(0X4CD414,	"bottom",	0);
 	create_insn	(0X4CD422);
 	set_name	(0X4CD422,	"process_mouse_tool");
 	set_cmt	(0X4CD42C,	"windowtype",	0);
@@ -80262,7 +80339,7 @@ static Bytes_13(void) {
 	op_hex		(x,	1);
 	create_insn	(0X4CE520);
 	create_insn	(0X4CE523);
-	set_name	(0X4CE523,	"open_textinput");
+	set_name	(0X4CE523,	"ui::textinput::open");
 	create_insn	(x=0X4CE526);
 	op_stroff	(x,	1,	GetStrucIdByName("window_t"),	0);
 	create_insn	(x=0X4CE52C);
@@ -80334,17 +80411,19 @@ static Bytes_13(void) {
 	create_insn	(x=0X4CE6BA);
 	op_hex		(x,	1);
 	create_insn	(0X4CE6C9);
+	set_name	(0X4CE6C9,	"ui::textinput::sub_4CE6C9");
 	set_cmt	(0X4CE6CC,	"windowtype",	0);
 	create_insn	(x=0X4CE6CC);
 	op_enum		(x,	1,	GetEnum("windowtype"),0);
 	create_insn	(0X4CE6F2);
-	set_name	(0X4CE6F2,	"textinput_cancel");
+	set_name	(0X4CE6F2,	"ui::textinput::cancel");
 	set_cmt	(0X4CE6F3,	"windowtype",	0);
 	create_insn	(x=0X4CE6F3);
 	op_enum		(x,	1,	GetEnum("windowtype"),0);
 	set_cmt	(0X4CE6FF,	"windowtype",	0);
 	create_insn	(x=0X4CE6FF);
 	op_enum		(x,	1,	GetEnum("windowtype"),0);
+	set_name	(0X4CE6FF,	"ui::textinput::sub_4CE6FF");
 	set_cmt	(0X4CE70B,	"windowtype",	0);
 	create_insn	(0X4CE720);
 	create_insn	(0X4CE726);
@@ -80406,6 +80485,7 @@ static Bytes_13(void) {
 	op_stroff	(x,	1,	GetStrucIdByName("window_t"),	0);
 	create_insn	(x=0X4CE8F1);
 	op_stroff	(x,	0,	GetStrucIdByName("window_events_t"),	0);
+	set_cmt	(0X4CE8F4,	"window",	0);
 	create_insn	(0X4CE8FA);
 	set_name	(0X4CE8FA,	"ui::text_input::_widgets::event_on_update");
 	create_insn	(x=0X4CE900);
@@ -80415,6 +80495,7 @@ static Bytes_13(void) {
 	set_cmt	(0X4CE910,	"windowtype",	0);
 	create_insn	(x=0X4CE910);
 	op_enum		(x,	1,	GetEnum("windowtype"),0);
+	set_name	(0X4CE910,	"ui::textinput::sub_4CE910");
 	create_insn	(0X4CE971);
 	set_cmt	(0X4CE978,	"wtf_textinput",	1);
 	create_insn	(x=0X4CE978);
@@ -80463,6 +80544,7 @@ static Bytes_13(void) {
 	op_enum		(x,	1,	GetEnum("windowtype"),0);
 	set_cmt	(0X4CEB44,	"number",	0);
 	create_insn	(0X4CEB67);
+	set_name	(0X4CEB67,	"txtutils_4CEB67");
 	create_insn	(x=0X4CEB68);
 	op_plain_offset	(x,	1,	0);
 	op_plain_offset	(x,	129,	0);
@@ -80726,6 +80808,7 @@ static Bytes_13(void) {
 	set_cmt	(0X4CF457,	"windowtype",	0);
 	create_insn	(x=0X4CF457);
 	op_enum		(x,	1,	GetEnum("windowtype"),0);
+	set_cmt	(0X4CF467,	"window",	0);
 	create_insn	(x=0X4CF46D);
 	op_plain_offset	(x,	1,	0);
 	op_plain_offset	(x,	129,	0);
@@ -81986,6 +82069,15 @@ static Bytes_13(void) {
 	create_dword	(x=0X4D0B30);
 	op_plain_offset	(x,	0,	0);
 	op_plain_offset	(x,	128,	0);
+}
+
+//------------------------------------------------------------------------
+// Information about bytes
+
+static Bytes_14(void) {
+        auto x;
+#define id x
+
 	create_dword	(0X4D0B34);
 	make_array	(0X4D0B34,	0X3);
 	create_dword	(x=0X4D0B40);
@@ -82130,15 +82222,6 @@ static Bytes_13(void) {
 	op_plain_offset	(x,	128,	0);
 	create_dword	(0X4D0CE4);
 	make_array	(0X4D0CE4,	0X3);
-}
-
-//------------------------------------------------------------------------
-// Information about bytes
-
-static Bytes_14(void) {
-        auto x;
-#define id x
-
 	create_dword	(x=0X4D0CF0);
 	op_plain_offset	(x,	0,	0);
 	op_plain_offset	(x,	128,	0);
@@ -87421,6 +87504,15 @@ static Bytes_14(void) {
 	op_plain_offset	(x,	0,	0);
 	op_plain_offset	(x,	128,	0);
 	set_name	(0X4D7138,	"HeapDestroy");
+}
+
+//------------------------------------------------------------------------
+// Information about bytes
+
+static Bytes_15(void) {
+        auto x;
+#define id x
+
 	create_dword	(x=0X4D713C);
 	op_plain_offset	(x,	0,	0);
 	op_plain_offset	(x,	128,	0);
@@ -87533,15 +87625,6 @@ static Bytes_14(void) {
 	op_plain_offset	(x,	0,	0);
 	op_plain_offset	(x,	128,	0);
 	set_name	(0X4D71A8,	"GetEnvironmentStringsW");
-}
-
-//------------------------------------------------------------------------
-// Information about bytes
-
-static Bytes_15(void) {
-        auto x;
-#define id x
-
 	create_dword	(x=0X4D71AC);
 	op_plain_offset	(x,	0,	0);
 	op_plain_offset	(x,	128,	0);
@@ -93013,6 +93096,15 @@ static Bytes_15(void) {
 	create_dword	(x=0X4D8DD8);
 	op_plain_offset	(x,	0,	0);
 	op_plain_offset	(x,	128,	0);
+}
+
+//------------------------------------------------------------------------
+// Information about bytes
+
+static Bytes_16(void) {
+        auto x;
+#define id x
+
 	create_dword	(x=0X4D8DDC);
 	op_plain_offset	(x,	0,	0);
 	op_plain_offset	(x,	128,	0);
@@ -93169,15 +93261,6 @@ static Bytes_15(void) {
 	create_dword	(x=0X4D8EA8);
 	op_plain_offset	(x,	0,	0);
 	op_plain_offset	(x,	128,	0);
-}
-
-//------------------------------------------------------------------------
-// Information about bytes
-
-static Bytes_16(void) {
-        auto x;
-#define id x
-
 	create_dword	(x=0X4D8EAC);
 	op_plain_offset	(x,	0,	0);
 	op_plain_offset	(x,	128,	0);
@@ -98561,6 +98644,15 @@ static Bytes_16(void) {
 	create_dword	(x=0X4FAA34);
 	op_plain_offset	(x,	0,	0);
 	op_plain_offset	(x,	128,	0);
+}
+
+//------------------------------------------------------------------------
+// Information about bytes
+
+static Bytes_17(void) {
+        auto x;
+#define id x
+
 	create_dword	(x=0X4FAA38);
 	op_plain_offset	(x,	0,	0);
 	op_plain_offset	(x,	128,	0);
@@ -98710,15 +98802,6 @@ static Bytes_16(void) {
 	create_dword	(x=0X4FAE90);
 	op_plain_offset	(x,	0,	0);
 	op_plain_offset	(x,	128,	0);
-}
-
-//------------------------------------------------------------------------
-// Information about bytes
-
-static Bytes_17(void) {
-        auto x;
-#define id x
-
 	create_dword	(x=0X4FAE94);
 	op_plain_offset	(x,	0,	0);
 	op_plain_offset	(x,	128,	0);
@@ -103621,53 +103704,25 @@ static Bytes_17(void) {
 	create_byte	(0X4FD020);
 	make_array	(0X4FD021,	0X7);
 	create_dword	(x=0X4FD120);
+	make_array	(x,	0X4);
 	op_plain_offset	(x,	0,	0);
 	op_plain_offset	(x,	128,	0);
-	create_dword	(x=0X4FD124);
-	op_plain_offset	(x,	0,	0);
-	op_plain_offset	(x,	128,	0);
-	create_dword	(x=0X4FD128);
-	op_plain_offset	(x,	0,	0);
-	op_plain_offset	(x,	128,	0);
-	create_dword	(x=0X4FD12C);
-	op_plain_offset	(x,	0,	0);
-	op_plain_offset	(x,	128,	0);
+	set_name	(0X4FD120,	"AddToPlotList1");
 	create_dword	(x=0X4FD130);
+	make_array	(x,	0X4);
 	op_plain_offset	(x,	0,	0);
 	op_plain_offset	(x,	128,	0);
-	create_dword	(x=0X4FD134);
-	op_plain_offset	(x,	0,	0);
-	op_plain_offset	(x,	128,	0);
-	create_dword	(x=0X4FD138);
-	op_plain_offset	(x,	0,	0);
-	op_plain_offset	(x,	128,	0);
-	create_dword	(x=0X4FD13C);
-	op_plain_offset	(x,	0,	0);
-	op_plain_offset	(x,	128,	0);
+	set_name	(0X4FD130,	"AddToPlotList2");
 	create_dword	(x=0X4FD140);
+	make_array	(x,	0X4);
 	op_plain_offset	(x,	0,	0);
 	op_plain_offset	(x,	128,	0);
-	create_dword	(x=0X4FD144);
-	op_plain_offset	(x,	0,	0);
-	op_plain_offset	(x,	128,	0);
-	create_dword	(x=0X4FD148);
-	op_plain_offset	(x,	0,	0);
-	op_plain_offset	(x,	128,	0);
-	create_dword	(x=0X4FD14C);
-	op_plain_offset	(x,	0,	0);
-	op_plain_offset	(x,	128,	0);
+	set_name	(0X4FD140,	"AddToPlotList3");
 	create_dword	(x=0X4FD150);
+	make_array	(x,	0X4);
 	op_plain_offset	(x,	0,	0);
 	op_plain_offset	(x,	128,	0);
-	create_dword	(x=0X4FD154);
-	op_plain_offset	(x,	0,	0);
-	op_plain_offset	(x,	128,	0);
-	create_dword	(x=0X4FD158);
-	op_plain_offset	(x,	0,	0);
-	op_plain_offset	(x,	128,	0);
-	create_dword	(x=0X4FD15C);
-	op_plain_offset	(x,	0,	0);
-	op_plain_offset	(x,	128,	0);
+	set_name	(0X4FD150,	"AddToPlotList4");
 	create_dword	(x=0X4FD160);
 	op_plain_offset	(x,	0,	0);
 	op_plain_offset	(x,	128,	0);
@@ -104192,6 +104247,15 @@ static Bytes_17(void) {
 	create_dword	(x=0X4FDB40);
 	op_plain_offset	(x,	0,	0);
 	op_plain_offset	(x,	128,	0);
+}
+
+//------------------------------------------------------------------------
+// Information about bytes
+
+static Bytes_18(void) {
+        auto x;
+#define id x
+
 	create_dword	(x=0X4FDB44);
 	op_plain_offset	(x,	0,	0);
 	op_plain_offset	(x,	128,	0);
@@ -104324,15 +104388,6 @@ static Bytes_17(void) {
 	create_dword	(x=0X4FDBF0);
 	op_plain_offset	(x,	0,	0);
 	op_plain_offset	(x,	128,	0);
-}
-
-//------------------------------------------------------------------------
-// Information about bytes
-
-static Bytes_18(void) {
-        auto x;
-#define id x
-
 	create_dword	(x=0X4FDBF4);
 	op_plain_offset	(x,	0,	0);
 	op_plain_offset	(x,	128,	0);
@@ -108859,6 +108914,15 @@ static Bytes_18(void) {
 	create_byte	(x=0X50D700);
 	op_enum		(x,	0,	GetEnum("widget_type"),0);
 	make_array	(0X50D701,	0X3);
+}
+
+//------------------------------------------------------------------------
+// Information about bytes
+
+static Bytes_19(void) {
+        auto x;
+#define id x
+
 	MakeStruct	(0X50D704,	"widget_t");
 	make_array	(0X50D704,	0X9);
 	set_name	(0X50D704,	"ui::station::_widgets_3");
@@ -108933,15 +108997,6 @@ static Bytes_18(void) {
 	set_name	(0X50D92A,	"_str0029");
 	create_strlit	(0X50D92F,	0X50D934);
 	set_name	(0X50D92F,	"_str0030");
-}
-
-//------------------------------------------------------------------------
-// Information about bytes
-
-static Bytes_19(void) {
-        auto x;
-#define id x
-
 	create_strlit	(0X50D934,	0X50D939);
 	set_name	(0X50D934,	"_str0031");
 	create_strlit	(0X50D939,	0X50D93E);
@@ -112180,6 +112235,15 @@ static Bytes_19(void) {
 	set_name	(0X5148A6,	"_str1648");
 	create_strlit	(0X5148C7,	0X5148CE);
 	set_name	(0X5148C7,	"_str1649");
+}
+
+//------------------------------------------------------------------------
+// Information about bytes
+
+static Bytes_20(void) {
+        auto x;
+#define id x
+
 	create_strlit	(0X5148CE,	0X5148EB);
 	set_name	(0X5148CE,	"_str1650");
 	create_strlit	(0X5148EB,	0X5148F3);
@@ -112258,15 +112322,6 @@ static Bytes_19(void) {
 	set_name	(0X514B6C,	"_str1687");
 	create_strlit	(0X514B85,	0X514BA0);
 	set_name	(0X514B85,	"_str1688");
-}
-
-//------------------------------------------------------------------------
-// Information about bytes
-
-static Bytes_20(void) {
-        auto x;
-#define id x
-
 	create_strlit	(0X514BA0,	0X514BBC);
 	set_name	(0X514BA0,	"_str1689");
 	create_strlit	(0X514BBC,	0X514BC0);
@@ -113408,9 +113463,11 @@ static Bytes_20(void) {
 	create_dword	(0X523358);
 	make_array	(0X52335C,	0X4);
 	create_word	(0X523360);
+	set_name	(0X523360,	"textinput::_callingWidget");
 	create_word	(0X523362);
-	create_byte	(x=0X523364);
-	op_enum		(x,	0,	GetEnum("windowtype"),0);
+	set_name	(0X523362,	"textinput::_windowNumber");
+	create_byte	(0X523364);
+	set_name	(0X523364,	"textinput::_windowType");
 	make_array	(0X523365,	0X3);
 	create_dword	(0X523368);
 	set_name	(0X523368,	"input_flags");
@@ -115557,10 +115614,9 @@ static Bytes_20(void) {
 	create_word	(0X1136536);
 	create_word	(0X1136538);
 	create_word	(0X113653A);
-	create_dword	(0X113653C);
-	create_dword	(0X1136540);
-	create_dword	(0X1136544);
-	create_dword	(0X1136548);
+	create_byte	(0X113653C);
+	make_array	(0X113653C,	0X10);
+	set_name	(0X113653C,	"formatargs");
 	create_dword	(0X113658C);
 	create_dword	(0X1136590);
 	create_dword	(0X1136594);
@@ -115570,8 +115626,11 @@ static Bytes_20(void) {
 	create_word	(0X113659C);
 	create_word	(0X113659E);
 	create_word	(0X11365A0);
+	set_name	(0X11365A0,	"textinput::_title");
 	create_word	(0X11366A0);
+	set_name	(0X11366A0,	"textinput::_message");
 	create_byte	(0X11369A0);
+	make_array	(0X11369A0,	0X200);
 	set_name	(0X11369A0,	"textinput_buffer");
 	MakeStruct	(0X1136BA0,	"colourmap_a");
 	make_array	(0X1136BA0,	0X1F);
@@ -115580,6 +115639,7 @@ static Bytes_20(void) {
 	make_array	(0X1136C98,	0X1F);
 	set_name	(0X1136C98,	"ColourMapB");
 	create_byte	(0X1136D90);
+	make_array	(0X1136D90,	0X200);
 	create_word	(0X1136F90);
 	create_word	(0X1136F92);
 	create_word	(0X1136F94);
@@ -115591,6 +115651,7 @@ static Bytes_20(void) {
 	create_word	(0X1136FA0);
 	create_word	(0X1136FA2);
 	create_word	(0X1136FA4);
+	set_name	(0X1136FA4,	"txtutils::word_1136FA4");
 	create_byte	(0X1136FA6);
 	create_byte	(0X1136FA7);
 	create_byte	(0X11370A8);
@@ -120644,7 +120705,7 @@ static Functions_1(void) {
 	set_frame_size(0X434FE8, 0, 0, 0);
 	add_func    (0X435003,0X435152);
 	set_func_flags(0X435003,0x4400);
-	SetType(0X435003, "void __usercall ui__company_face_selection__event_draw(window_t *window@<esi>);");
+	SetType(0X435003, "void __usercall ui__company_face_selection__event_draw(window_t *window@<esi>, drawpixelinfo_t *context@<edi>);");
 	set_frame_size(0X435003, 0, 0, 0);
 	add_func    (0X435152,0X435299);
 	set_func_flags(0X435152,0x4400);
@@ -127947,6 +128008,7 @@ static Functions_3(void) {
 	define_local_var(0X4C58C7, 0X4C5C69, "[bp-0X4]", "bottom");
 	add_func    (0X4C5C69,0X4C5CFA);
 	set_func_flags(0X4C5C69,0x4400);
+	SetType(0X4C5C69, "void __usercall gfx_set_dirty_blocks(__int16 left@<ax>, __int16 top@<bx>, __int16 right@<dx>, __int16 bottom@<bp>);");
 	set_frame_size(0X4C5C69, 0, 0, 0);
 	add_func    (0X4C5CFA,0X4C5DD5);
 	set_func_flags(0X4C5CFA,0x4400);
@@ -128167,6 +128229,7 @@ static Functions_3(void) {
 	set_frame_size(0X4CC692, 0X4, 0, 0);
 	add_func    (0X4CC6EA,0X4CC750);
 	set_func_flags(0X4CC6EA,0x4400);
+	SetType(0X4CC6EA, "void __usercall window_close(window_t *window@<esi>);");
 	set_frame_size(0X4CC6EA, 0, 0, 0);
 	add_func    (0X4CC750,0X4CC7CB);
 	set_func_flags(0X4CC750,0x4400);
@@ -128276,6 +128339,16 @@ static Functions_3(void) {
 	add_func    (0X4CE910,0X4CEB67);
 	set_func_flags(0X4CE910,0x4400);
 	set_frame_size(0X4CE910, 0, 0, 0);
+	set_name(0X4CE971, "handle_return", SN_LOCAL);
+	set_name(0X4CE97C, "handle_escape", SN_LOCAL);
+	set_name(0X4CE987, "handle_home", SN_LOCAL);
+	set_name(0X4CE9A2, "handle_end", SN_LOCAL);
+	set_name(0X4CE9B0, "handle_left", SN_LOCAL);
+	set_name(0X4CE9F0, "handle_right", SN_LOCAL);
+	set_name(0X4CEA32, "handle_key", SN_LOCAL);
+	set_name(0X4CEAA5, "handle_delete", SN_LOCAL);
+	set_name(0X4CEAE4, "handle_backspace", SN_LOCAL);
+	set_name(0X4CEB42, "render", SN_LOCAL);
 	add_func    (0X4CEB67,0X4CEBFB);
 	set_func_flags(0X4CEB67,0x4400);
 	set_frame_size(0X4CEB67, 0, 0, 0);
@@ -128864,6 +128937,10 @@ static Functions_3(void) {
 	add_func    (0X4D669E,0X4D66D9);
 	set_func_flags(0X4D669E,0x4400);
 	set_frame_size(0X4D669E, 0X4, 0, 0);
+}
+
+static Functions_4(void) {
+
 	add_func    (0X4D66D9,0X4D6735);
 	set_func_flags(0X4D66D9,0x4400);
 	set_frame_size(0X4D66D9, 0XC, 0, 0);
@@ -128879,10 +128956,6 @@ static Functions_3(void) {
 	add_func    (0X4D69CB,0X4D6A47);
 	set_func_flags(0X4D69CB,0x4410);
 	set_frame_size(0X4D69CB, 0X10, 4, 0);
-}
-
-static Functions_4(void) {
-
 	add_func    (0X4D6A47,0X4D6A9D);
 	set_func_flags(0X4D6A47,0x4400);
 	set_frame_size(0X4D6A47, 0X8, 0, 0);
