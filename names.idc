@@ -77,6 +77,7 @@ static initNames(void)
     MakeName(0x0040FBD9, "SEH_12A719C");
     MakeName(0x0040FC61, "SEH_12A7E8C");
     MakeName(0x0040FC79, "SEH_12A7F2C");
+    set_cmt(0x004296B7, "context", 0);
     MakeName(0x0042A4A8, "windowmgr::open_messages");
     MakeName(0x00431315, "do_game_command");
     MakeName(0x00431A8A, "window_error_open");
@@ -228,6 +229,8 @@ static initNames(void)
     MakeName(0x00489CB5, "audio_play_sound_panned");
     MakeName(0x0048AC2B, "stop_title_music");
     MakeName(0x0048AC66, "play_title_screen_music");
+    set_name(0x0048DCA5, "recalculate_station_label");
+    set_name(0x0048DDC3, "recalculate_station_labels");
     MakeName(0x0048EF02, "window_station_2_draw_rating_bar");
     MakeName(0x0048F210, "open_station_window");
     MakeName(0x0048F29F, "window_station_create");
@@ -282,6 +285,8 @@ static initNames(void)
     MakeName(0x0049678D, "getStringWidth_maybe");
     MakeName(0x004968C7, "date_tick");
     MakeName(0x004969DA, "get_local_time");
+    set_name(0x00497616, "recalculate_town_label");
+    set_name(0x0049771C, "recalculate_town_labels");
     MakeName(0x00498EAF, "window_town_prepare_0");
     MakeName(0x00499B7E, "window_town_open");
     MakeName(0x0049B206, "town_list_49B206");
@@ -314,6 +319,9 @@ static initNames(void)
     MakeName(0x004BF3B3, "toggle_last_announcement");
     MakeName(0x004BF3DC, "send_chat");
     MakeName(0x004BF7B9, "windowmgr::open_options");
+    set_name(0x004BF823, "open_options_from_toolbar");
+    set_name(0x004BF833, "create_options_window");
+    set_name(0x004BFCC7, "ui__options_resize_window");
     MakeName(0x004C1AA2, "windowmgr::create_vehicle_list");
     MakeName(0x004C1C64, "windowmgr::open_build_vehicle");
     MakeName(0x004C57C0, "viewport_init_all");
@@ -327,6 +335,12 @@ static initNames(void)
     MakeName(0x004C6118, "window_update_all");
     MakeName(0x004C641F, "viewport_set_underground_flag");
     MakeName(0x004C6456, "viewports_update_position");
+    set_cmt(0x004C64BF, "view_width", 1);
+    set_cmt(0x004C64C3, "view_height", 1);
+    set_cmt(0x004C6545, "0", 1);
+    set_cmt(0x004C6559, "1", 1);
+    set_cmt(0x004C656D, "2", 1);
+    set_cmt(0x004C6581, "3", 1);
     MakeName(0x004C68E4, "viewport_move");
     MakeName(0x004C6E65, "update_cursor_position");
     MakeName(0x004C6EE6, "game_get_next_input");
@@ -344,6 +358,7 @@ static initNames(void)
     MakeName(0x004C8CFD, "input_scroll_drag_continue");
     MakeName(0x004C8EF0, "widget_scroll_get_part");
     MakeName(0x004C906B, "window_tooltip_open");
+    set_name(0x004C9216, "ui__tooltip__update");
     MakeName(0x004C9513, "window_find_widget_from_point");
     MakeName(0x004C96E7, "handle_input");
     MakeName(0x004C9984, "invalidate_all_windows_after_input");
@@ -391,6 +406,7 @@ static initNames(void)
     MakeName(0x004CC750, "window_bring_to_front");
     MakeName(0x004CC7CB, "window_set_disabled_widgets_and_invalidate");
     MakeName(0x004CC807, "show_text_dropdown_custom_width");
+    set_name(0x004CC989, "dropdown_show_below");
     MakeName(0x004CCA6D, "show_text_dropdown");
     MakeName(0x004CCC7C, "show_text_dropdown_2");
     MakeName(0x004CCDE7, "show_image_dropdown");
@@ -424,6 +440,8 @@ static initNames(void)
     MakeName(0x004CEB67, "txtutils_4CEB67");
     MakeName(0x004CEC25, "viewport_update_pointers");
     MakeName(0x004CEC50, "clip_drawpixelinfo");
+    set_cmt(0x004CEE1C, "right", 1);
+    set_cmt(0x004CEE1F, "bottom", 1);
     MakeName(0x004CF142, "set_cursor_to_1");
     MakeName(0x004CF167, "set_cursor");
     MakeName(0x004CF5C5, "progressbar_begin");
@@ -485,6 +503,7 @@ static initNames(void)
     MakeName(0x0050D13C, "installed_object_list");
     MakeName(0x0050D154, "total_num_images");
     MakeName(0x0050D1E8, "current_sound_device");
+    set_name(0x0050D555, "enable_sound");
     MakeName(0x0050D5B4, "playing_title_music");
     MakeName(0x005183FC, "strings");
     MakeName(0x005230C8, "map_elements");
@@ -567,6 +586,7 @@ static initNames(void)
     MakeName(0x009C68E4, "game_command_map_z");
     MakeName(0x009C68E6, "game_command_error_reason_stringid");
     MakeName(0x009CCA34, "scenario_header_chunk");
+    set_name(0x009D0E73, "FileName");
     MakeName(0x009D118E, "path_buffer");
     MakeName(0x009D1C9C, "save_scenario_or_game_flags");
     MakeName(0x009D1CBC, "common_hfile");
@@ -620,6 +640,7 @@ static initNames(void)
     MakeName(0x0113DC70, "dropdown_num_columns");
     MakeName(0x0113DC74, "dropdown_num_rows");
     MakeName(0x0113DE00, "cursor_pointer");
+    set_name(0x00113DE04, "hCursor");
     MakeName(0x0113DF34, "Locale");
     MakeName(0x0113DF44, "CodePage");
     MakeName(0x0113DF54, "Filename");
