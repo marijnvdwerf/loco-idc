@@ -2,7 +2,7 @@
 
 static initNames(void)
 {
-    // Functions
+    // sort on
     MakeName(0x004014DF, "fptc");
     MakeName(0x0040194E, "dsound_sound_load");
     MakeName(0x00401999, "dsound_sound_start");
@@ -246,7 +246,7 @@ static initNames(void)
     MakeName(0x00495685, "gfx_get_string_width");
     MakeName(0x00495715, "gfx_get_string_width_new_lined");
     MakeName(0x004957C4, "gfx::clip_string");
-    SetType(0X4957C4, "__int16 __usercall gfx__clip_string@<cx>(__int16 width@<di>, void *buffer@<esi>);");
+    SetType(0x004957C4, "__int16 __usercall gfx__clip_string@<cx>(__int16 width@<di>, void *buffer@<esi>);");
     MakeName(0x004958C6, "format_string");
     MakeName(0x0049593C, "format_string_part");
     MakeName(0x0049598C, "formatSprite");
@@ -429,12 +429,11 @@ static initNames(void)
     MakeName(0x004CF5C5, "progressbar_begin");
     MakeName(0x004CF60B, "progressbar_end");
     MakeName(0x004CF621, "progressbar_increment");
-    MakeName(0x004D2D3F, "__cropzeros");
-    MakeName(0x004D2D8D, "__positive");
-    // Data
     MakeName(0x004D1090, "LeadUp1");
     MakeName(0x004D10BC, "LeadUp2");
     MakeName(0x004D1178, "TrailUp0");
+    MakeName(0x004D2D3F, "__cropzeros");
+    MakeName(0x004D2D8D, "__positive");
     MakeName(0x004D46EC, "LeadUp2_0");
     MakeName(0x004D47A8, "TrailUp0_0");
     MakeName(0x004D728C, "wsprintfA");
@@ -656,4 +655,5 @@ static initNames(void)
     MakeName(0x011427E0, "uNumber");
     MakeName(0x011427F8, "lpMem");
     MakeName(0x011427FC, "hHeap");
+    // sort off
 }
